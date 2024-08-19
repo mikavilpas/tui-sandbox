@@ -1,0 +1,20 @@
+name: reviewdog eslint
+on: [pull_request]
+jobs:
+  eslint:
+    name: runner / eslint
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: write
+    steps:
+      - uses: actions/checkout@v4.1.7
+      - uses: actions/setup-node@v4.0.3
+        with:
+          node-version-file: .nvmrc
+      - run: npm run clean-install:all
+      - uses: reviewdog/action-eslint@v1.31.0
+        with:
+          workdir: integration-tests
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          reporter: github-pr-review # Change reporter.

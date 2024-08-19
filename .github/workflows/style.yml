@@ -1,0 +1,29 @@
+# yaml-language-server: $schema=https://json.schemastore.org/github-workflow.json
+
+name: Style checking
+
+on: [push, pull_request]
+
+jobs:
+  prettier:
+    runs-on: ubuntu-22.04
+    name: prettier
+    steps:
+      - uses: actions/checkout@v4.1.7
+      - uses: actions/setup-node@v4.0.3
+        with:
+          node-version-file: .nvmrc
+      - run: npm ci
+      - run: npm run prettier
+
+  stylua:
+    name: stylua
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v4.1.7
+      - uses: JohnnyMorganz/stylua-action@v4.0.0
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          version: latest
+          # CLI arguments
+          args: --color always --check lua/

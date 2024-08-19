@@ -1,0 +1,14 @@
+node_modules
+demo/demo.mp4
+development_dependencies
+scripts/lazy.nvim/
+/luarocks
+/lua_modules
+/.luarocks
+.repro
+packages/integration-tests/server/build/server.js
+packages/integration-tests/pid.txt
+packages/integration-tests/server/build
+*.pem
+packages/integration-tests/cypress/screenshots
+packages/integration-tests/test-environment/testdirs

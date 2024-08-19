@@ -1,0 +1,32 @@
+{
+  "name": "@tui-sandbox/monorepo",
+  "version": "1.0.0",
+  "license": "MIT",
+  "author": "Mika Vilpas",
+  "type": "module",
+  "workspaces": [
+    "./packages/integration-tests/"
+  ],
+  "scripts": {
+    "cy:run": "npm run cy:run --workspace integration-tests",
+    "dev": "npm run dev --workspace ./packages/integration-tests/",
+    "eslint": "eslint --max-warnings=0 .",
+    "install:all": "npm install --workspaces --include-workspace-root",
+    "markdownlint": "markdownlint-cli2 README.md",
+    "prettier": "prettier --check ."
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "8.1.0",
+    "@typescript-eslint/parser": "8.1.0",
+    "@umbrelladocs/linkspector": "0.3.12",
+    "eslint": "9.9.0",
+    "eslint-config-prettier": "9.1.0",
+    "eslint-plugin-no-only-tests": "3.1.0",
+    "markdownlint-cli2": "0.13.0",
+    "prettier": "3.3.3",
+    "prettier-plugin-organize-imports": "4.0.0",
+    "prettier-plugin-packagejson": "2.5.1",
+    "typescript": "5.5.4"
+  }
+}

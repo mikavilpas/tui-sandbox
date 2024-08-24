@@ -2,12 +2,18 @@
 // the test runner to do this because it doesn't have direct access to either
 
 import type { StartNeovimArguments } from "../library/server/types.ts"
-import type { MyTestDirectory } from "../MyTestDirectory.ts"
+import type { MyTestDirectory, testDirectoryFiles } from "../MyTestDirectory"
 
-// the server or the client.
+export type NeovimContext = {
+  contents: MyTestDirectory
+  /** provides easy access to all relative file paths from the root of the test
+   * directory */
+  files: (typeof testDirectoryFiles)["enum"]
+}
+
 declare global {
   interface Window {
-    startNeovim(startArguments?: StartNeovimArguments): Promise<MyTestDirectory>
+    startNeovim(startArguments?: StartNeovimArguments): Promise<NeovimContext>
   }
 }
 

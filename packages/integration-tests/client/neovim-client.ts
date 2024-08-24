@@ -1,7 +1,7 @@
-import type { MyTestDirectory } from "../MyTestDirectory"
-import { MyTestDirectoryContentsSchema } from "../MyTestDirectory"
+import { MyTestDirectoryContentsSchema, testDirectoryFiles } from "../MyTestDirectory"
 import { prepareClient } from "../library/client/websocket-client"
 import type { StartNeovimArguments } from "../library/server/types"
+import type { NeovimContext } from "./__global"
 
 const app = document.querySelector<HTMLElement>("#app")
 if (!app) {
@@ -11,9 +11,12 @@ if (!app) {
 const prepareServer = prepareClient(app)
 
 /** Entrypoint for the test runner (cypress) */
-window.startNeovim = async function (startArgs?: StartNeovimArguments): Promise<MyTestDirectory> {
+window.startNeovim = async function (startArgs?: StartNeovimArguments): Promise<NeovimContext> {
   const server = await prepareServer
   const neovim = await server.startNeovim(startArgs)
 
-  return MyTestDirectoryContentsSchema.parse(neovim.contents)
+  const contents = MyTestDirectoryContentsSchema.parse(neovim.contents)
+  const files = testDirectoryFiles.enum
+
+  return { contents, files }
 }

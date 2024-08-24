@@ -39,8 +39,8 @@
 // }
 
 import "../../client/__global.ts"
+import type { NeovimContext } from "../../client/__global.ts"
 import type { StartNeovimArguments } from "../../library/server/types.ts"
-import type { MyTestDirectory } from "../../MyTestDirectory.ts"
 
 Cypress.Commands.add("startNeovim", (startArguments?: StartNeovimArguments) => {
   cy.window().then(win => {
@@ -57,16 +57,8 @@ Cypress.Commands.add("typeIntoTerminal", (text: string, options?: Partial<Cypres
 declare global {
   namespace Cypress {
     interface Chainable {
-      startNeovim(args?: StartNeovimArguments): Chainable<MyTestDirectory>
+      startNeovim(args?: StartNeovimArguments): Chainable<NeovimContext>
       typeIntoTerminal(text: string, options?: Partial<Cypress.TypeOptions>): Chainable<void>
     }
   }
 }
-
-afterEach(() => {
-  cy.task("showYaziLog")
-})
-
-beforeEach(() => {
-  cy.task("removeYaziLog")
-})

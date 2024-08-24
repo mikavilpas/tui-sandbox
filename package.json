@@ -13,7 +13,8 @@
     "eslint": "eslint --max-warnings=0 .",
     "install:all": "npm install --workspaces --include-workspace-root",
     "markdownlint": "markdownlint-cli2 README.md",
-    "prettier": "prettier --check ."
+    "prettier": "prettier --check .",
+    "test": "vitest"
   },
   "dependencies": {},
   "devDependencies": {

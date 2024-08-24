@@ -4,6 +4,7 @@ import path from "path"
 import type { StartNeovimServerArguments } from "../../library/server/types"
 import { DisposableSingleApplication } from "../../library/server/utilities/DisposableSingleApplication"
 import { TerminalApplication } from "../../library/server/utilities/TerminalApplication"
+import type { MyTestDirectoryFile } from "../../MyTestDirectory"
 import { NeovimTestDirectory } from "./environment/NeovimTestEnvironment"
 
 /*
@@ -71,7 +72,7 @@ export class NeovimApplication extends DisposableSingleApplication {
   ): Promise<void> {
     await this[Symbol.asyncDispose]()
 
-    const neovimArguments = ["-u", "test-setup.lua"]
+    const neovimArguments = ["-u", "test-setup.lua" satisfies MyTestDirectoryFile]
 
     if (startArgs.startupScriptModifications) {
       for (const modification of startArgs.startupScriptModifications) {

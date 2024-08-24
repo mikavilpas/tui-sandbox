@@ -2,22 +2,22 @@
 
 version: 2
 updates:
-  - package-ecosystem: 'github-actions'
-    directory: '/'
+  - package-ecosystem: "github-actions"
+    directory: "/"
     schedule:
       # Check for updates to GitHub Actions every week
-      interval: 'daily'
+      interval: "daily"
 
-  - package-ecosystem: 'npm'
+  - package-ecosystem: "npm"
     directories:
-      - '/'
-      - 'integration-tests/'
+      - "/"
+      - "integration-tests/"
     groups:
       # Update all npm dependencies together
       # https://github.blog/2023-08-24-a-faster-way-to-manage-version-updates-with-dependabot/
-      'NPM dependencies':
-        'patterns':
-          - '*'
+      "NPM dependencies":
+        "patterns":
+          - "*"
 
     schedule:
-      interval: 'daily'
+      interval: "daily"

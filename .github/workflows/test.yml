@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        neovim_version: ['nightly', 'stable']
+        neovim_version: ["nightly", "stable"]
 
     steps:
       - uses: actions/checkout@v4.1.7
@@ -22,39 +22,6 @@ jobs:
           which rg || {
             sudo apt-get install ripgrep
           }
-
-          # realpath is used to resolve relative paths
-          which realpath || {
-            # just fail with an error message if realpath is not found
-            echo "realpath is not installed, but it should be part of GNU coreutils and included in Ubuntu"
-            exit 1
-          }
-
-      - name: Compile and install `yazi-fm` from source
-        uses: baptiste0928/cargo-install@v3.1.1
-        with:
-          # yazi-fm is the `yazi` executable
-          crate: yazi-fm
-          git: https://github.com/sxyazi/yazi
-          # fix: 7zip shows different error messages for RAR and ZIP files (#1468)
-          # https://github.com/sxyazi/yazi/commit/22a4be1f3d84111b96ea832feaf274b6f8953f46
-          commit: 22a4be1f3d84111b96ea832feaf274b6f8953f46
-
-      - name: Compile and install yazi from source
-        uses: baptiste0928/cargo-install@v3.1.1
-        with:
-          # yazi-cli is the `ya` command line interface
-          crate: yazi-cli
-          git: https://github.com/sxyazi/yazi
-          # fix: 7zip shows different error messages for RAR and ZIP files (#1468)
-          # https://github.com/sxyazi/yazi/commit/22a4be1f3d84111b96ea832feaf274b6f8953f46
-          commit: 22a4be1f3d84111b96ea832feaf274b6f8953f46
-
-      - name: Run tests
-        uses: nvim-neorocks/nvim-busted-action@v1.0.1
-        with:
-          nvim_version: ${{ matrix.neovim_version }}
-          luarocks_version: '3.11.1'
 
       - name: Cypress run
         uses: cypress-io/github-action@v6.7.2

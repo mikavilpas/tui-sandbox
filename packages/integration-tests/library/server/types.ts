@@ -1,22 +1,6 @@
 import { z } from "zod"
+import { MyTestDirectoryContentsSchema, testDirectoryFiles } from "../../MyTestDirectory"
 import { tabIdSchema } from "./utilities/tabId"
-
-export type FileEntry = {
-  /** The name of the file and its extension.
-   * @example "file.txt"
-   */
-  name: string
-
-  /** The name of the file without its extension.
-   * @example "file"
-   */
-  stem: string
-
-  /** The extension of the file.
-   * @example ".txt"
-   */
-  extension: string
-}
 
 /** Describes the contents of the test directory, which is a blueprint for
  * files and directories. Tests can create a unique, safe environment for
@@ -36,13 +20,15 @@ export type TestDirectory = {
 export const startNeovimArguments = z.object({
   filename: z
     .union([
-      z.string(),
+      testDirectoryFiles,
       z.object({
-        openInVerticalSplits: z.array(z.string()),
+        openInVerticalSplits: z.array(testDirectoryFiles),
       }),
     ])
     .optional(),
-  startupScriptModifications: z.array(z.string()).optional(),
+  startupScriptModifications: z
+    .array(z.enum(MyTestDirectoryContentsSchema.shape["config-modifications"].shape.contents.keyof().options))
+    .optional(),
 })
 export type StartNeovimArguments = z.infer<typeof startNeovimArguments>
 

@@ -4,8 +4,9 @@ import { Type } from "dree"
 import { constants, readdirSync } from "fs"
 import { access, mkdir, mkdtemp } from "fs/promises"
 import path from "path"
-import { buildTestDirectorySchema, convertDree, getDirectoryTree } from "../../../library/server/dirtree/index"
+import { convertDree, getDirectoryTree } from "../../../library/server/dirtree/index"
 import type { TestDirectory } from "../../../library/server/types"
+import { updateTestdirectorySchemaFile } from "../../../library/server/updateTestdirectorySchemaFile"
 import { MyTestDirectorySchema } from "../../../MyTestDirectory"
 import { NeovimTestDirectory } from "./NeovimTestEnvironment"
 
@@ -21,17 +22,12 @@ export async function createTempDir(): Promise<TestDirectory> {
     })
     console.log(`Created test directory at ${dir}`)
 
-    const tree = convertDree(getDirectoryTree(dir))
-
+    const tree = convertDree(getDirectoryTree(dir).dree)
     assert(tree.type === Type.DIRECTORY)
-    const contents = MyTestDirectorySchema.shape.contents.safeParse(tree.contents)
-    if (!contents.success) {
-      await buildTestDirectorySchema(NeovimTestDirectory.testEnvironmentDir)
-      throw new Error(
-        `Failed to validate the test directory contents: ${contents.error.toString()}. Got ${JSON.stringify(tree, null, 2)}`
-      )
-    }
-    return { rootPathAbsolute: dir, contents: contents.data }
+
+    await updateTestdirectorySchemaFile()
+    const contents = MyTestDirectorySchema.shape.contents.parse(tree.contents)
+    return { rootPathAbsolute: dir, contents: contents }
   } catch (err) {
     console.error(err)
     throw err

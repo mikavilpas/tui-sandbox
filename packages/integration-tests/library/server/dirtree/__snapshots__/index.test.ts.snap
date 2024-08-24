@@ -1,0 +1,219 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`dirtree > should be able to read the tree 1`] = `
+"{
+  "name": "test-environment",
+  "path": "/Users/mikavilpas/git/tui-sandbox/packages/integration-tests/test-environment",
+  "relativePath": ".",
+  "type": "directory",
+  "isSymbolicLink": false,
+  "children": [
+    {
+      "name": "config-modifications",
+      "path": "/Users/mikavilpas/git/tui-sandbox/packages/integration-tests/test-environment/config-modifications",
+      "relativePath": "config-modifications",
+      "type": "directory",
+      "isSymbolicLink": false,
+      "children": [
+        {
+          "name": "add_command_to_count_open_buffers.lua",
+          "path": "/Users/mikavilpas/git/tui-sandbox/packages/integration-tests/test-environment/config-modifications/add_command_to_count_open_buffers.lua",
+          "relativePath": "config-modifications/add_command_to_count_open_buffers.lua",
+          "type": "file",
+          "isSymbolicLink": false,
+          "extension": "lua"
+        },
+        {
+          "name": "disable_a_keybinding.lua",
+          "path": "/Users/mikavilpas/git/tui-sandbox/packages/integration-tests/test-environment/config-modifications/disable_a_keybinding.lua",
+          "relativePath": "config-modifications/disable_a_keybinding.lua",
+          "type": "file",
+          "isSymbolicLink": false,
+          "extension": "lua"
+        },
+        {
+          "name": "modify_yazi_config_and_add_hovered_buffer_background.lua",
+          "path": "/Users/mikavilpas/git/tui-sandbox/packages/integration-tests/test-environment/config-modifications/modify_yazi_config_and_add_hovered_buffer_background.lua",
+          "relativePath": "config-modifications/modify_yazi_config_and_add_hovered_buffer_background.lua",
+          "type": "file",
+          "isSymbolicLink": false,
+          "extension": "lua"
+        },
+        {
+          "name": "modify_yazi_config_and_highlight_buffers_in_same_directory.lua",
+          "path": "/Users/mikavilpas/git/tui-sandbox/packages/integration-tests/test-environment/config-modifications/modify_yazi_config_and_highlight_buffers_in_same_directory.lua",
+          "relativePath": "config-modifications/modify_yazi_config_and_highlight_buffers_in_same_directory.lua",
+          "type": "file",
+          "isSymbolicLink": false,
+          "extension": "lua"
+        },
+        {
+          "name": "modify_yazi_config_and_open_multiple_files.lua",
+          "path": "/Users/mikavilpas/git/tui-sandbox/packages/integration-tests/test-environment/config-modifications/modify_yazi_config_and_open_multiple_files.lua",
+          "relativePath": "config-modifications/modify_yazi_config_and_open_multiple_files.lua",
+          "type": "file",
+          "isSymbolicLink": false,
+          "extension": "lua"
+        },
+        {
+          "name": "modify_yazi_config_and_set_help_key.lua",
+          "path": "/Users/mikavilpas/git/tui-sandbox/packages/integration-tests/test-environment/config-modifications/modify_yazi_config_and_set_help_key.lua",
+          "relativePath": "config-modifications/modify_yazi_config_and_set_help_key.lua",
+          "type": "file",
+          "isSymbolicLink": false,
+          "extension": "lua"
+        },
+        {
+          "name": "notify_hover_events.lua",
+          "path": "/Users/mikavilpas/git/tui-sandbox/packages/integration-tests/test-environment/config-modifications/notify_hover_events.lua",
+          "relativePath": "config-modifications/notify_hover_events.lua",
+          "type": "file",
+          "isSymbolicLink": false,
+          "extension": "lua"
+        },
+        {
+          "name": "report_loaded_yazi_modules.lua",
+          "path": "/Users/mikavilpas/git/tui-sandbox/packages/integration-tests/test-environment/config-modifications/report_loaded_yazi_modules.lua",
+          "relativePath": "config-modifications/report_loaded_yazi_modules.lua",
+          "type": "file",
+          "isSymbolicLink": false,
+          "extension": "lua"
+        },
+        {
+          "name": "use_light_neovim_colorscheme.lua",
+          "path": "/Users/mikavilpas/git/tui-sandbox/packages/integration-tests/test-environment/config-modifications/use_light_neovim_colorscheme.lua",
+          "relativePath": "config-modifications/use_light_neovim_colorscheme.lua",
+          "type": "file",
+          "isSymbolicLink": false,
+          "extension": "lua"
+        }
+      ]
+    },
+    {
+      "name": "dir with spaces",
+      "path": "/Users/mikavilpas/git/tui-sandbox/packages/integration-tests/test-environment/dir with spaces",
+      "relativePath": "dir with spaces",
+      "type": "directory",
+      "isSymbolicLink": false,
+      "children": [
+        {
+          "name": "file1.txt",
+          "path": "/Users/mikavilpas/git/tui-sandbox/packages/integration-tests/test-environment/dir with spaces/file1.txt",
+          "relativePath": "dir with spaces/file1.txt",
+          "type": "file",
+          "isSymbolicLink": false,
+          "extension": "txt"
+        },
+        {
+          "name": "file2.txt",
+          "path": "/Users/mikavilpas/git/tui-sandbox/packages/integration-tests/test-environment/dir with spaces/file2.txt",
+          "relativePath": "dir with spaces/file2.txt",
+          "type": "file",
+          "isSymbolicLink": false,
+          "extension": "txt"
+        }
+      ]
+    },
+    {
+      "name": "file.txt",
+      "path": "/Users/mikavilpas/git/tui-sandbox/packages/integration-tests/test-environment/file.txt",
+      "relativePath": "file.txt",
+      "type": "file",
+      "isSymbolicLink": false,
+      "extension": "txt"
+    },
+    {
+      "name": "initial-file.txt",
+      "path": "/Users/mikavilpas/git/tui-sandbox/packages/integration-tests/test-environment/initial-file.txt",
+      "relativePath": "initial-file.txt",
+      "type": "file",
+      "isSymbolicLink": false,
+      "extension": "txt"
+    },
+    {
+      "name": "other-subdirectory",
+      "path": "/Users/mikavilpas/git/tui-sandbox/packages/integration-tests/test-environment/other-subdirectory",
+      "relativePath": "other-subdirectory",
+      "type": "directory",
+      "isSymbolicLink": false,
+      "children": [
+        {
+          "name": "other-sub-file.txt",
+          "path": "/Users/mikavilpas/git/tui-sandbox/packages/integration-tests/test-environment/other-subdirectory/other-sub-file.txt",
+          "relativePath": "other-subdirectory/other-sub-file.txt",
+          "type": "file",
+          "isSymbolicLink": false,
+          "extension": "txt"
+        }
+      ]
+    },
+    {
+      "name": "routes",
+      "path": "/Users/mikavilpas/git/tui-sandbox/packages/integration-tests/test-environment/routes",
+      "relativePath": "routes",
+      "type": "directory",
+      "isSymbolicLink": false,
+      "children": [
+        {
+          "name": "posts.$postId",
+          "path": "/Users/mikavilpas/git/tui-sandbox/packages/integration-tests/test-environment/routes/posts.$postId",
+          "relativePath": "routes/posts.$postId",
+          "type": "directory",
+          "isSymbolicLink": false,
+          "children": [
+            {
+              "name": "adjacent-file.txt",
+              "path": "/Users/mikavilpas/git/tui-sandbox/packages/integration-tests/test-environment/routes/posts.$postId/adjacent-file.txt",
+              "relativePath": "routes/posts.$postId/adjacent-file.txt",
+              "type": "file",
+              "isSymbolicLink": false,
+              "extension": "txt"
+            },
+            {
+              "name": "route.tsx",
+              "path": "/Users/mikavilpas/git/tui-sandbox/packages/integration-tests/test-environment/routes/posts.$postId/route.tsx",
+              "relativePath": "routes/posts.$postId/route.tsx",
+              "type": "file",
+              "isSymbolicLink": false,
+              "extension": "tsx"
+            },
+            {
+              "name": "should-be-excluded-file.txt",
+              "path": "/Users/mikavilpas/git/tui-sandbox/packages/integration-tests/test-environment/routes/posts.$postId/should-be-excluded-file.txt",
+              "relativePath": "routes/posts.$postId/should-be-excluded-file.txt",
+              "type": "file",
+              "isSymbolicLink": false,
+              "extension": "txt"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "subdirectory",
+      "path": "/Users/mikavilpas/git/tui-sandbox/packages/integration-tests/test-environment/subdirectory",
+      "relativePath": "subdirectory",
+      "type": "directory",
+      "isSymbolicLink": false,
+      "children": [
+        {
+          "name": "subdirectory-file.txt",
+          "path": "/Users/mikavilpas/git/tui-sandbox/packages/integration-tests/test-environment/subdirectory/subdirectory-file.txt",
+          "relativePath": "subdirectory/subdirectory-file.txt",
+          "type": "file",
+          "isSymbolicLink": false,
+          "extension": "txt"
+        }
+      ]
+    },
+    {
+      "name": "test-setup.lua",
+      "path": "/Users/mikavilpas/git/tui-sandbox/packages/integration-tests/test-environment/test-setup.lua",
+      "relativePath": "test-setup.lua",
+      "type": "file",
+      "isSymbolicLink": false,
+      "extension": "lua"
+    }
+  ]
+}"
+`;

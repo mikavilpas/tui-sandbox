@@ -38,8 +38,8 @@
 //   }
 // }
 
-import type { MyTestDirectory } from 'client/neovim-client.ts'
 import type { StartNeovimArguments } from 'library/server/types.ts'
+import type { MyTestDirectoryType } from 'MyTestDirectory.ts'
 import '../../client/__global.ts'
 
 Cypress.Commands.add('startNeovim', (startArguments?: StartNeovimArguments) => {
@@ -57,7 +57,7 @@ Cypress.Commands.add('typeIntoTerminal', (text: string, options?: Partial<Cypres
 declare global {
   namespace Cypress {
     interface Chainable {
-      startNeovim(args?: StartNeovimArguments): Chainable<MyTestDirectory>
+      startNeovim(args?: StartNeovimArguments): Chainable<MyTestDirectoryType>
       typeIntoTerminal(text: string, options?: Partial<Cypress.TypeOptions>): Chainable<void>
     }
   }

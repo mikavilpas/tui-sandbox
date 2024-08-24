@@ -1,9 +1,7 @@
-import { prepareClient } from 'library/client/websocket-client.ts'
-import type { StartNeovimArguments, TestDirectory } from 'library/server/types.ts'
-import type { MyTestDirectoryFile } from 'server/neovim/environment/testEnvironmentTypes.ts'
-import './__global.ts'
-
-export type MyTestDirectory = TestDirectory<MyTestDirectoryFile>
+import type { MyTestDirectoryType } from '../MyTestDirectory'
+import { MyTestDirectorySchema } from '../MyTestDirectory'
+import { prepareClient } from '../library/client/websocket-client'
+import type { StartNeovimArguments } from '../library/server/types'
 
 const app = document.querySelector<HTMLElement>('#app')
 if (!app) {
@@ -13,9 +11,9 @@ if (!app) {
 const prepareServer = prepareClient(app)
 
 /** Entrypoint for the test runner (cypress) */
-window.startNeovim = async function (startArgs?: StartNeovimArguments): Promise<MyTestDirectory> {
+window.startNeovim = async function (startArgs?: StartNeovimArguments): Promise<MyTestDirectoryType> {
   const server = await prepareServer
   const neovim = await server.startNeovim(startArgs)
 
-  return neovim
+  return MyTestDirectorySchema.parse(neovim)
 }

@@ -1,5 +1,5 @@
-import { tabIdSchema } from 'library/server/utilities/tabId'
 import { z } from 'zod'
+import { tabIdSchema } from './utilities/tabId'
 
 export type FileEntry = {
   /** The name of the file and its extension.

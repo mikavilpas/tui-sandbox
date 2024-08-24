@@ -1,18 +1,26 @@
-import type { AnyRouter } from "@trpc/server"
-import { applyWSSHandler } from "@trpc/server/adapters/ws"
-import "core-js/proposals/async-explicit-resource-management"
-import { once } from "events"
-import { WebSocketServer } from "ws"
-import { createContext } from "./connection/trpc"
+import type { AnyRouter } from '@trpc/server'
+import { applyWSSHandler } from '@trpc/server/adapters/ws'
+import 'core-js/proposals/async-explicit-resource-management'
+import { once } from 'events'
+import { writeFileSync } from 'fs'
+import path from 'path'
+import { fileURLToPath } from 'url'
+import { WebSocketServer } from 'ws'
+import { createContext } from './connection/trpc'
+import { buildTestDirectorySchema } from './dirtree'
+
+const __dirname = fileURLToPath(new URL('.', import.meta.resolve('.')))
 
 export class TestServer {
   public constructor(private readonly port: number) {}
 
   // eslint-disable-next-line @typescript-eslint/no-unnecessary-type-parameters
-  public async startAndRun<TRouter extends AnyRouter>(
-    appRouter: TRouter,
-  ): Promise<void> {
-    console.log("🚀 Server starting")
+  public async startAndRun<TRouter extends AnyRouter>(appRouter: TRouter): Promise<void> {
+    console.log('🚀 Server starting')
+
+    const testEnvironmentPath = path.join(__dirname, '..', '..', 'test-environment')
+    const schema = await buildTestDirectorySchema(testEnvironmentPath)
+    writeFileSync(path.join(__dirname, '..', '..', 'MyTestDirectory.ts'), schema)
 
     const wss = new WebSocketServer({ port: this.port })
     const handler = applyWSSHandler<TRouter>({
@@ -29,23 +37,23 @@ export class TestServer {
       },
     })
 
-    wss.on("connection", (socket) => {
+    wss.on('connection', socket => {
       console.log(`➕➕ Connection (${wss.clients.size})`)
-      socket.once("close", () => {
+      socket.once('close', () => {
         console.log(`➖➖ Connection (${wss.clients.size})`)
       })
     })
     console.log(`✅ WebSocket Server listening on ws://localhost:${this.port}`)
 
-    await Promise.race([once(process, "SIGTERM"), once(process, "SIGINT")])
-    console.log("Shutting down...")
+    await Promise.race([once(process, 'SIGTERM'), once(process, 'SIGINT')])
+    console.log('Shutting down...')
     handler.broadcastReconnectNotification()
-    wss.close((error) => {
+    wss.close(error => {
       if (error) {
-        console.error("Error closing WebSocket server", error)
+        console.error('Error closing WebSocket server', error)
         process.exit(1)
       }
-      console.log("WebSocket server closed")
+      console.log('WebSocket server closed')
       process.exit(0)
     })
   }

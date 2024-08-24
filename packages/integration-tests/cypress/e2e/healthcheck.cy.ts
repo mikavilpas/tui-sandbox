@@ -11,15 +11,13 @@ describe("the healthcheck", () => {
     cy.typeIntoTerminal(":checkhealth yazi{enter}")
 
     // the version of yazi.nvim itself should be shown
-    cy.readFile("../.release-please-manifest.json").then(
-      (yaziNvimManifest: unknown) => {
-        assert.ok(typeof yaziNvimManifest === "object")
-        assert.ok(yaziNvimManifest)
-        assert.ok("." in yaziNvimManifest)
-        assert.ok(typeof yaziNvimManifest["."] === "string")
-        cy.contains(`Running yazi.nvim version ${yaziNvimManifest["."]}`)
-      },
-    )
+    cy.readFile("../.release-please-manifest.json").then((yaziNvimManifest: unknown) => {
+      assert.ok(typeof yaziNvimManifest === "object")
+      assert.ok(yaziNvimManifest)
+      assert.ok("." in yaziNvimManifest)
+      assert.ok(typeof yaziNvimManifest["."] === "string")
+      cy.contains(`Running yazi.nvim version ${yaziNvimManifest["."]}`)
+    })
 
     // the `yazi` and `ya` applications should be found successfully
     cy.contains(new RegExp("Found yazi version Yazi \\d+?.\\d+?.\\d+?"))

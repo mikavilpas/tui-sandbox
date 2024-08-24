@@ -1,15 +1,15 @@
-import { observable } from '@trpc/server/observable'
-import { trpc } from 'library/server/connection/trpc'
-import { startNeovimServerArguments } from 'library/server/types'
-import type { TabId } from 'library/server/utilities/tabId'
-import { tabIdSchema } from 'library/server/utilities/tabId'
-import assert from 'node:assert'
-import z from 'zod'
-import { NeovimTestDirectory } from './environment/NeovimTestEnvironment'
-import type { StdoutMessage } from './NeovimApplication'
-import { NeovimApplication } from './NeovimApplication'
+import { observable } from "@trpc/server/observable"
+import assert from "assert"
+import { z } from "zod"
+import { trpc } from "../../library/server/connection/trpc"
+import { startNeovimServerArguments } from "../../library/server/types"
+import type { TabId } from "../../library/server/utilities/tabId"
+import { tabIdSchema } from "../../library/server/utilities/tabId"
+import { NeovimTestDirectory } from "./environment/NeovimTestEnvironment"
+import type { StdoutMessage } from "./NeovimApplication"
+import { NeovimApplication } from "./NeovimApplication"
 
-const neovims = new Map<TabId['tabId'], NeovimApplication>()
+const neovims = new Map<TabId["tabId"], NeovimApplication>()
 
 export const neovimRouter = trpc.router({
   start: trpc.procedure.input(startNeovimServerArguments).mutation(async options => {
@@ -20,7 +20,7 @@ export const neovimRouter = trpc.router({
     await neovim.startNextAndKillCurrent(testDirectory, options.input)
 
     const processId = neovim.processId()
-    assert(processId !== undefined, 'Neovim was started without a process ID. This is a bug - please open an issue.')
+    assert(processId !== undefined, "Neovim was started without a process ID. This is a bug - please open an issue.")
     console.log(`🚀 Started Neovim instance ${processId}`)
 
     return { dir: testDirectory.directory }
@@ -35,14 +35,14 @@ export const neovimRouter = trpc.router({
       }
 
       const send = (data: unknown) => {
-        assert(typeof data === 'string')
+        assert(typeof data === "string")
         emit.next(data)
       }
 
-      neovim.events.on('stdout' satisfies StdoutMessage, send)
+      neovim.events.on("stdout" satisfies StdoutMessage, send)
 
       return () => {
-        neovim.events.off('stdout' satisfies StdoutMessage, send)
+        neovim.events.off("stdout" satisfies StdoutMessage, send)
         void neovim[Symbol.asyncDispose]().finally(() => {
           neovims.delete(tabId)
         })

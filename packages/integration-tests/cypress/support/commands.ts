@@ -38,35 +38,35 @@
 //   }
 // }
 
-import type { StartNeovimArguments } from 'library/server/types.ts'
-import type { MyTestDirectoryType } from 'MyTestDirectory.ts'
-import '../../client/__global.ts'
+import "../../client/__global.ts"
+import type { StartNeovimArguments } from "../../library/server/types.ts"
+import type { MyTestDirectory } from "../../MyTestDirectory.ts"
 
-Cypress.Commands.add('startNeovim', (startArguments?: StartNeovimArguments) => {
+Cypress.Commands.add("startNeovim", (startArguments?: StartNeovimArguments) => {
   cy.window().then(win => {
     return win.startNeovim(startArguments)
   })
 })
 
-Cypress.Commands.add('typeIntoTerminal', (text: string, options?: Partial<Cypress.TypeOptions>) => {
+Cypress.Commands.add("typeIntoTerminal", (text: string, options?: Partial<Cypress.TypeOptions>) => {
   // the syntax for keys is described here:
   // https://docs.cypress.io/api/commands/type
-  cy.get('textarea').focus().type(text, options)
+  cy.get("textarea").focus().type(text, options)
 })
 
 declare global {
   namespace Cypress {
     interface Chainable {
-      startNeovim(args?: StartNeovimArguments): Chainable<MyTestDirectoryType>
+      startNeovim(args?: StartNeovimArguments): Chainable<MyTestDirectory>
       typeIntoTerminal(text: string, options?: Partial<Cypress.TypeOptions>): Chainable<void>
     }
   }
 }
 
 afterEach(() => {
-  cy.task('showYaziLog')
+  cy.task("showYaziLog")
 })
 
 beforeEach(() => {
-  cy.task('removeYaziLog')
+  cy.task("removeYaziLog")
 })

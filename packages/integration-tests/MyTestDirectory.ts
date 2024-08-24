@@ -7,7 +7,7 @@
 // be written with confidence that the files and directories they expect are
 // actually found. Otherwise the tests are brittle and can break easily.
 
-import { z } from "zod";
+import { z } from "zod"
 
 export const MyTestDirectorySchema = z.object({
   name: z.literal("test-environment"),
@@ -30,26 +30,17 @@ export const MyTestDirectorySchema = z.object({
           stem: z.literal("disable_a_keybinding."),
         }),
         "modify_yazi_config_and_add_hovered_buffer_background.lua": z.object({
-          name: z.literal(
-            "modify_yazi_config_and_add_hovered_buffer_background.lua",
-          ),
+          name: z.literal("modify_yazi_config_and_add_hovered_buffer_background.lua"),
           type: z.literal("file"),
           extension: z.literal("lua"),
-          stem: z.literal(
-            "modify_yazi_config_and_add_hovered_buffer_background.",
-          ),
+          stem: z.literal("modify_yazi_config_and_add_hovered_buffer_background."),
         }),
-        "modify_yazi_config_and_highlight_buffers_in_same_directory.lua":
-          z.object({
-            name: z.literal(
-              "modify_yazi_config_and_highlight_buffers_in_same_directory.lua",
-            ),
-            type: z.literal("file"),
-            extension: z.literal("lua"),
-            stem: z.literal(
-              "modify_yazi_config_and_highlight_buffers_in_same_directory.",
-            ),
-          }),
+        "modify_yazi_config_and_highlight_buffers_in_same_directory.lua": z.object({
+          name: z.literal("modify_yazi_config_and_highlight_buffers_in_same_directory.lua"),
+          type: z.literal("file"),
+          extension: z.literal("lua"),
+          stem: z.literal("modify_yazi_config_and_highlight_buffers_in_same_directory."),
+        }),
         "modify_yazi_config_and_open_multiple_files.lua": z.object({
           name: z.literal("modify_yazi_config_and_open_multiple_files.lua"),
           type: z.literal("file"),
@@ -173,6 +164,9 @@ export const MyTestDirectorySchema = z.object({
       stem: z.literal("test-setup."),
     }),
   }),
-});
+})
 
-export type MyTestDirectoryType = z.infer<typeof MyTestDirectorySchema>
+export const MyTestDirectoryContentsSchema = MyTestDirectorySchema.shape.contents
+export type MyTestDirectoryContentsSchemaType = z.infer<typeof MyTestDirectorySchema>
+
+export type MyTestDirectory = MyTestDirectoryContentsSchemaType["contents"]

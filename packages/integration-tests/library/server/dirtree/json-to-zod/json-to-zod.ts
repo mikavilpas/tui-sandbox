@@ -1,23 +1,26 @@
-import { format } from 'prettier'
-import babelParser from 'prettier/parser-babel'
+import { format, resolveConfig } from "prettier"
+import babelParser from "prettier/parser-babel"
+import { fileURLToPath } from "url"
 
-export const jsonToZod = (object: unknown, name: string = 'schema'): Promise<string> => {
+const __filename = fileURLToPath(import.meta.url)
+
+export async function jsonToZod(object: unknown, name: string = "schema"): Promise<string> {
   const parse = (o: unknown, seen: object[]): string => {
     switch (typeof o) {
-      case 'string':
+      case "string":
         return `z.literal("${o}")`
-      case 'number':
-        return 'z.number()'
-      case 'bigint':
-        return 'z.number().int()'
-      case 'boolean':
-        return 'z.boolean()'
-      case 'object':
+      case "number":
+        return "z.number()"
+      case "bigint":
+        return "z.number().int()"
+      case "boolean":
+        return "z.boolean()"
+      case "object":
         if (o === null) {
-          return 'z.null()'
+          return "z.null()"
         }
         if (seen.find(_obj => Object.is(_obj, o))) {
-          throw new Error('Circular objects are not supported')
+          throw new Error("Circular objects are not supported")
         }
         seen.push(o)
         if (Array.isArray(o)) {
@@ -35,18 +38,21 @@ export const jsonToZod = (object: unknown, name: string = 'schema'): Promise<str
         }
         // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
         return `z.object({${Object.entries(o).map(([k, v]) => `'${k}':${parse(v, seen)}`)}})`
-      case 'undefined':
-        return 'z.undefined()'
-      case 'function':
-        return 'z.function()'
-      case 'symbol':
+      case "undefined":
+        return "z.undefined()"
+      case "function":
+        return "z.function()"
+      case "symbol":
       default:
-        return 'z.unknown()'
+        return "z.unknown()"
     }
   }
 
+  const prettierConfig = await resolveConfig(__filename)
+
   return format(`import {z} from "zod"\n\nexport const ${name}=${parse(object, [])}`, {
-    parser: 'babel',
+    ...(prettierConfig || {}),
+    parser: "babel",
     plugins: [babelParser],
   })
 }

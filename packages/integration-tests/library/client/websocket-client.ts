@@ -1,16 +1,14 @@
-import { flavors } from '@catppuccin/palette'
-import { createTRPCClient, createWSClient, wsLink } from '@trpc/client'
-import type { AppRouter } from 'server/server.ts'
-import './__global.ts'
-import './style.css'
-
-import { FitAddon } from '@xterm/addon-fit'
-import { Terminal } from '@xterm/xterm'
-import '@xterm/xterm/css/xterm.css'
-import type { StartNeovimArguments, TestDirectory } from 'library/server/types.ts'
-import type { TabId } from 'library/server/utilities/tabId'
-import z from 'zod'
-import { validateMouseEvent } from './validateMouseEvent'
+import { flavors } from "@catppuccin/palette"
+import { createTRPCClient, createWSClient, wsLink } from "@trpc/client"
+import { FitAddon } from "@xterm/addon-fit"
+import { Terminal } from "@xterm/xterm"
+import "@xterm/xterm/css/xterm.css"
+import z from "zod"
+import type { AppRouter } from "../../server/server.ts"
+import type { StartNeovimArguments, TestDirectory } from "../server/types.ts"
+import type { TabId } from "../server/utilities/tabId.ts"
+import "./style.css"
+import { validateMouseEvent } from "./validateMouseEvent"
 
 export type StartTerminalOptions = {
   onMouseEvent: (data: string) => void
@@ -50,7 +48,7 @@ export function startTerminal(app: HTMLElement, options: StartTerminalOptions): 
   terminal.open(app)
   fitAddon.fit()
 
-  window.addEventListener('resize', () => {
+  window.addEventListener("resize", () => {
     fitAddon.fit()
   })
 
@@ -61,7 +59,7 @@ export function startTerminal(app: HTMLElement, options: StartTerminalOptions): 
     // this gets called for mouse events. However, some mouse events seem to
     // confuse Neovim, so for now let's just send click events
 
-    if (typeof data !== 'string') {
+    if (typeof data !== "string") {
       throw new Error(`unexpected onData message type: '${JSON.stringify(data)}'`)
     }
 
@@ -83,10 +81,10 @@ export function startTerminal(app: HTMLElement, options: StartTerminalOptions): 
 export function getTabId(): TabId {
   // Other tabs will have a different id because sessionStorage is unique to
   // each tab.
-  let tabId = z.string().safeParse(sessionStorage.getItem('tabId')).data
+  let tabId = z.string().safeParse(sessionStorage.getItem("tabId")).data
   if (!tabId) {
     tabId = Math.random().toString(36)
-    sessionStorage.setItem('tabId', tabId)
+    sessionStorage.setItem("tabId", tabId)
   }
 
   return { tabId }
@@ -119,7 +117,7 @@ export async function prepareClient(app: HTMLElement): Promise<TestPreparationRe
   // start listening to Neovim stdout - this will take some (short) amount of
   // time to complete
   const ready = new Promise<void>(resolve => {
-    console.log('Subscribing to Neovim stdout')
+    console.log("Subscribing to Neovim stdout")
     trpc.neovim.onStdout.subscribe(
       { client: tabId },
       {
@@ -143,7 +141,7 @@ export async function prepareClient(app: HTMLElement): Promise<TestPreparationRe
       const terminalDimensions = { cols: terminal.cols, rows: terminal.rows }
       const neovim = await trpc.neovim.start.mutate({
         tabId,
-        filename: startArgs?.filename ?? 'initial-file.txt',
+        filename: startArgs?.filename ?? "initial-file.txt",
         startupScriptModifications: startArgs?.startupScriptModifications,
         terminalDimensions,
       })

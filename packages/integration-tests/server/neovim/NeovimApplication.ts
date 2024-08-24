@@ -1,10 +1,10 @@
-import EventEmitter from 'events'
-import { existsSync } from 'fs'
-import type { StartNeovimServerArguments } from 'library/server/types'
-import { DisposableSingleApplication } from 'library/server/utilities/DisposableSingleApplication'
-import { TerminalApplication } from 'library/server/utilities/TerminalApplication'
-import path from 'path'
-import { NeovimTestDirectory } from './environment/NeovimTestEnvironment'
+import EventEmitter from "events"
+import { existsSync } from "fs"
+import path from "path"
+import type { StartNeovimServerArguments } from "../../library/server/types"
+import { DisposableSingleApplication } from "../../library/server/utilities/DisposableSingleApplication"
+import { TerminalApplication } from "../../library/server/utilities/TerminalApplication"
+import { NeovimTestDirectory } from "./environment/NeovimTestEnvironment"
 
 /*
 
@@ -51,7 +51,7 @@ Run "nvim -V1 -v" for more info
 
 */
 
-export type StdoutMessage = 'stdout'
+export type StdoutMessage = "stdout"
 
 export class NeovimApplication extends DisposableSingleApplication {
   private testDirectory: NeovimTestDirectory | undefined
@@ -71,29 +71,29 @@ export class NeovimApplication extends DisposableSingleApplication {
   ): Promise<void> {
     await this[Symbol.asyncDispose]()
 
-    const neovimArguments = ['-u', 'test-setup.lua']
+    const neovimArguments = ["-u", "test-setup.lua"]
 
     if (startArgs.startupScriptModifications) {
       for (const modification of startArgs.startupScriptModifications) {
-        const file = path.join(testDirectory.directory.rootPathAbsolute, 'config-modifications', modification)
+        const file = path.join(testDirectory.directory.rootPathAbsolute, "config-modifications", modification)
         if (!existsSync(file)) {
           throw new Error(`startupScriptModifications file does not exist: ${file}`)
         }
 
-        neovimArguments.push('-c', `lua dofile('${file}')`)
+        neovimArguments.push("-c", `lua dofile('${file}')`)
       }
     }
 
     if (!startArgs.filename) {
-      startArgs.filename = 'initial-file.txt'
+      startArgs.filename = "initial-file.txt"
     }
 
-    if (typeof startArgs.filename === 'string') {
+    if (typeof startArgs.filename === "string") {
       const file = path.join(testDirectory.directory.rootPathAbsolute, startArgs.filename)
       neovimArguments.push(file)
     } else if (startArgs.filename.openInVerticalSplits.length > 0) {
       // `-O[N]` Open N vertical windows (default: one per file)
-      neovimArguments.push('-O')
+      neovimArguments.push("-O")
 
       for (const file of startArgs.filename.openInVerticalSplits) {
         const filePath = path.join(testDirectory.directory.rootPathAbsolute, file)
@@ -104,7 +104,7 @@ export class NeovimApplication extends DisposableSingleApplication {
 
     this.testDirectory = testDirectory
     this.application = TerminalApplication.start({
-      command: 'nvim',
+      command: "nvim",
       args: neovimArguments,
 
       cwd: NeovimTestDirectory.testEnvironmentDir,
@@ -112,7 +112,7 @@ export class NeovimApplication extends DisposableSingleApplication {
       dimensions: startArgs.terminalDimensions,
 
       onStdoutOrStderr(data: string) {
-        stdout.emit('stdout' satisfies StdoutMessage, data)
+        stdout.emit("stdout" satisfies StdoutMessage, data)
       },
     })
   }

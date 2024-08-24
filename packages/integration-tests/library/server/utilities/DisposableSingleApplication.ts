@@ -1,4 +1,4 @@
-import type { TerminalApplication } from './TerminalApplication'
+import type { TerminalApplication } from "./TerminalApplication"
 
 /** A testable application that can be started, killed, and given input. For a
  * single instance of this interface, only a single instance can be running at

@@ -1,17 +1,17 @@
-import path from 'path'
-import { describe, expect, it } from 'vitest'
-import { buildSchemaForDirectoryTree, getDirectoryTree } from '.'
-import { Lazy } from '../utilities/Lazy'
+import path from "path"
+import { describe, expect, it } from "vitest"
+import { buildSchemaForDirectoryTree, getDirectoryTree } from "."
+import { Lazy } from "../utilities/Lazy"
 
-describe('dirtree', () => {
-  const output = new Lazy(() => getDirectoryTree(path.join(__dirname, '..', '..', '..', 'test-environment/')))
-  it('should be able to read the tree', () => {
+describe("dirtree", () => {
+  const output = new Lazy(() => getDirectoryTree(path.join(__dirname, "..", "..", "..", "test-environment/")))
+  it("should be able to read the tree", () => {
     const json = JSON.stringify(output.get(), null, 2)
     expect(json).toMatchSnapshot()
   })
 
-  it('should be able to build a typescript type for the tree', async () => {
-    const result = await buildSchemaForDirectoryTree(output.get(), 'MyDirectoryTree')
+  it("should be able to build a typescript type for the tree", async () => {
+    const result = await buildSchemaForDirectoryTree(output.get(), "MyDirectoryTree")
 
     expect(result).toMatchInlineSnapshot(`
       "
@@ -23,7 +23,7 @@ describe('dirtree', () => {
       // be written with confidence that the files and directories they expect are
       // actually found. Otherwise the tests are brittle and can break easily.
 
-      import { z } from "zod";
+      import { z } from "zod"
 
       export const MyDirectoryTreeSchema = z.object({
         name: z.literal("test-environment"),
@@ -46,26 +46,17 @@ describe('dirtree', () => {
                 stem: z.literal("disable_a_keybinding."),
               }),
               "modify_yazi_config_and_add_hovered_buffer_background.lua": z.object({
-                name: z.literal(
-                  "modify_yazi_config_and_add_hovered_buffer_background.lua",
-                ),
+                name: z.literal("modify_yazi_config_and_add_hovered_buffer_background.lua"),
                 type: z.literal("file"),
                 extension: z.literal("lua"),
-                stem: z.literal(
-                  "modify_yazi_config_and_add_hovered_buffer_background.",
-                ),
+                stem: z.literal("modify_yazi_config_and_add_hovered_buffer_background."),
               }),
-              "modify_yazi_config_and_highlight_buffers_in_same_directory.lua":
-                z.object({
-                  name: z.literal(
-                    "modify_yazi_config_and_highlight_buffers_in_same_directory.lua",
-                  ),
-                  type: z.literal("file"),
-                  extension: z.literal("lua"),
-                  stem: z.literal(
-                    "modify_yazi_config_and_highlight_buffers_in_same_directory.",
-                  ),
-                }),
+              "modify_yazi_config_and_highlight_buffers_in_same_directory.lua": z.object({
+                name: z.literal("modify_yazi_config_and_highlight_buffers_in_same_directory.lua"),
+                type: z.literal("file"),
+                extension: z.literal("lua"),
+                stem: z.literal("modify_yazi_config_and_highlight_buffers_in_same_directory."),
+              }),
               "modify_yazi_config_and_open_multiple_files.lua": z.object({
                 name: z.literal("modify_yazi_config_and_open_multiple_files.lua"),
                 type: z.literal("file"),
@@ -189,9 +180,12 @@ describe('dirtree', () => {
             stem: z.literal("test-setup."),
           }),
         }),
-      });
+      })
 
-      export type MyDirectoryTreeType = z.infer<typeof MyDirectoryTreeSchema>"
+      export const MyDirectoryTreeContentsSchema = MyDirectoryTreeSchema.shape.contents
+      export type MyDirectoryTreeContentsSchemaType = z.infer<typeof MyDirectoryTreeSchema>
+
+      export type MyDirectoryTree = MyDirectoryTreeContentsSchemaType["contents"]"
     `)
   })
 })

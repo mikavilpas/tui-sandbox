@@ -1,5 +1,5 @@
-import { TestServer } from "library/server"
-import { trpc } from "library/server/connection/trpc"
+import { TestServer } from "../library/server"
+import { trpc } from "../library/server/connection/trpc"
 import { neovimRouter } from "./neovim/neovimRouter"
 
 /** Stack for managing resources that need to be disposed of when the server

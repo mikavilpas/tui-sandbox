@@ -1,10 +1,10 @@
-import { exec } from 'child_process'
-import type { TestDirectory } from 'library/server/types'
-import path from 'path'
-import { fileURLToPath } from 'url'
-import { createTempDir } from './createTempDir'
+import { exec } from "child_process"
+import path from "path"
+import { fileURLToPath } from "url"
+import type { TestDirectory } from "../../../library/server/types.ts"
+import { createTempDir } from "./createTempDir"
 
-const __dirname = fileURLToPath(new URL('.', import.meta.url))
+const __dirname = fileURLToPath(new URL(".", import.meta.url))
 
 /** A neovim specific test directory */
 export class NeovimTestDirectory implements AsyncDisposable {
@@ -15,7 +15,7 @@ export class NeovimTestDirectory implements AsyncDisposable {
     return new NeovimTestDirectory(dir)
   }
 
-  public static testEnvironmentDir = path.join(path.join(__dirname, '..', '..', '..'), 'test-environment/')
+  public static testEnvironmentDir = path.join(path.join(__dirname, "..", "..", ".."), "test-environment/")
 
   public async [Symbol.asyncDispose](): Promise<void> {
     exec(`rm -rf ${this.directory.rootPathAbsolute}`)

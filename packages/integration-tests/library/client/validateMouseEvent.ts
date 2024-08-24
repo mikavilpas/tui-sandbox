@@ -8,9 +8,7 @@ export function validateMouseEvent(data: string): string | undefined {
     const row = parseInt(match[3], 10)
     const isRelease = match[4] === "m"
 
-    console.log(
-      `Mouse event: buttonCode=${buttonCode}, column=${column}, row=${row}, isRelease=${isRelease}`,
-    )
+    console.log(`Mouse event: buttonCode=${buttonCode}, column=${column}, row=${row}, isRelease=${isRelease}`)
 
     return data
   }

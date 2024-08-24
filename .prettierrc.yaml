@@ -3,7 +3,7 @@ arrowParens: avoid
 printWidth: 120
 proseWrap: always
 semi: false
-singleQuote: true
+singleQuote: false
 trailingComma: 'es5'
 plugins:
   - prettier-plugin-organize-imports

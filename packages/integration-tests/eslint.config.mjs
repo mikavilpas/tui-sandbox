@@ -14,17 +14,12 @@ const compat = new FlatCompat({
 
 export default [
   {
-    ignores: [
-      "**/vite.config.js",
-      "**/cypress.config.ts",
-      "**/test-environment/",
-      "eslint.config.mjs",
-    ],
+    ignores: ["**/vite.config.js", "**/cypress.config.ts", "**/test-environment/", "eslint.config.mjs"],
   },
   ...compat.extends(
     "plugin:@typescript-eslint/recommended",
     "plugin:@typescript-eslint/strict-type-checked",
-    "prettier",
+    "prettier"
   ),
   {
     plugins: {

@@ -1,5 +1,5 @@
-import { z } from 'zod'
-import { tabIdSchema } from './utilities/tabId'
+import { z } from "zod"
+import { tabIdSchema } from "./utilities/tabId"
 
 export type FileEntry = {
   /** The name of the file and its extension.
@@ -26,15 +26,10 @@ export type FileEntry = {
  * be written with confidence that the files and directories they expect are
  * actually found. Otherwise the tests are brittle and can break easily.
  */
-export type TestDirectory<TFile extends string = string> = {
+export type TestDirectory = {
   /** The path to the unique test directory (the root). */
   rootPathAbsolute: string
-
-  /** The path to the unique test directory, relative to the root of the
-   * test-environment directory. */
-  rootPathRelativeToTestEnvironmentDir: string
-
-  contents: Record<TFile, FileEntry>
+  contents: object
 }
 
 /** The arguments given from the tests to send to the server */

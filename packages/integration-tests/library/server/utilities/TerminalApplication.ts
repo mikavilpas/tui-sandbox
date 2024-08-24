@@ -17,17 +17,14 @@ export class TerminalApplication {
 
   private constructor(
     private readonly subProcess: IPty,
-    public readonly onStdoutOrStderr: (data: string) => void,
+    public readonly onStdoutOrStderr: (data: string) => void
   ) {
     this.processId = subProcess.pid
 
     this.logger = winston.createLogger({
       transports: [new winston.transports.Console()],
       defaultMeta: { pid: this.processId },
-      format: winston.format.combine(
-        winston.format.colorize(),
-        winston.format.cli(),
-      ),
+      format: winston.format.combine(winston.format.colorize(), winston.format.cli()),
     })
 
     this.logger.debug(`started`)
@@ -36,7 +33,7 @@ export class TerminalApplication {
 
     subProcess.onExit(({ exitCode, signal }) => {
       this.logger.debug(
-        `Child process ${this.processId} exited with code ${String(exitCode)} and signal ${String(signal)}`,
+        `Child process ${this.processId} exited with code ${String(exitCode)} and signal ${String(signal)}`
       )
     })
   }

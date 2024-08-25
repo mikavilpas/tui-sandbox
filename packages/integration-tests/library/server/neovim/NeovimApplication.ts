@@ -1,11 +1,12 @@
+import { exec } from "child_process"
 import EventEmitter from "events"
 import { existsSync } from "fs"
 import path from "path"
-import type { StartNeovimServerArguments } from "../../library/server/types"
-import { DisposableSingleApplication } from "../../library/server/utilities/DisposableSingleApplication"
-import { TerminalApplication } from "../../library/server/utilities/TerminalApplication"
-import type { MyTestDirectoryFile } from "../../MyTestDirectory"
-import { NeovimTestDirectory } from "./environment/NeovimTestEnvironment"
+import { fileURLToPath } from "url"
+import type { MyTestDirectoryFile } from "../../../MyTestDirectory"
+import type { TestDirectory } from "../types"
+import { DisposableSingleApplication } from "../utilities/DisposableSingleApplication"
+import { TerminalApplication } from "../utilities/TerminalApplication"
 
 /*
 
@@ -52,10 +53,18 @@ Run "nvim -V1 -v" for more info
 
 */
 
+const __dirname = fileURLToPath(new URL(".", import.meta.url))
 export type StdoutMessage = "stdout"
 
+export type StartNeovimGenericArguments = {
+  tabId: { tabId: string }
+  terminalDimensions?: { cols: number; rows: number }
+  filename?: string | { openInVerticalSplits: string[] }
+  startupScriptModifications?: string[]
+}
+
 export class NeovimApplication extends DisposableSingleApplication {
-  private testDirectory: NeovimTestDirectory | undefined
+  private testDirectory: TestDirectory | undefined
   public readonly events: EventEmitter
 
   public constructor() {
@@ -67,16 +76,17 @@ export class NeovimApplication extends DisposableSingleApplication {
    * Kill the current application and start a new one with the given arguments.
    */
   public async startNextAndKillCurrent(
-    testDirectory: NeovimTestDirectory,
-    startArgs: StartNeovimServerArguments
+    testDirectory: TestDirectory,
+    startArgs: StartNeovimGenericArguments
   ): Promise<void> {
     await this[Symbol.asyncDispose]()
+    this.testDirectory = testDirectory
 
     const neovimArguments = ["-u", "test-setup.lua" satisfies MyTestDirectoryFile]
 
     if (startArgs.startupScriptModifications) {
       for (const modification of startArgs.startupScriptModifications) {
-        const file = path.join(testDirectory.directory.rootPathAbsolute, "config-modifications", modification)
+        const file = path.join(testDirectory.rootPathAbsolute, "config-modifications", modification)
         if (!existsSync(file)) {
           throw new Error(`startupScriptModifications file does not exist: ${file}`)
         }
@@ -90,25 +100,24 @@ export class NeovimApplication extends DisposableSingleApplication {
     }
 
     if (typeof startArgs.filename === "string") {
-      const file = path.join(testDirectory.directory.rootPathAbsolute, startArgs.filename)
+      const file = path.join(testDirectory.rootPathAbsolute, startArgs.filename)
       neovimArguments.push(file)
     } else if (startArgs.filename.openInVerticalSplits.length > 0) {
       // `-O[N]` Open N vertical windows (default: one per file)
       neovimArguments.push("-O")
 
       for (const file of startArgs.filename.openInVerticalSplits) {
-        const filePath = path.join(testDirectory.directory.rootPathAbsolute, file)
+        const filePath = path.join(testDirectory.rootPathAbsolute, file)
         neovimArguments.push(filePath)
       }
     }
     const stdout = this.events
 
-    this.testDirectory = testDirectory
     this.application = TerminalApplication.start({
       command: "nvim",
       args: neovimArguments,
 
-      cwd: NeovimTestDirectory.testEnvironmentDir,
+      cwd: NeovimApplication.testEnvironmentDir,
       env: process.env,
       dimensions: startArgs.terminalDimensions,
 
@@ -120,6 +129,10 @@ export class NeovimApplication extends DisposableSingleApplication {
 
   override async [Symbol.asyncDispose](): Promise<void> {
     await super.killCurrent()
-    await this.testDirectory?.[Symbol.asyncDispose]()
+    if (this.testDirectory) {
+      exec(`rm -rf ${this.testDirectory.rootPathAbsolute}`)
+    }
   }
+
+  public static testEnvironmentDir = path.join(path.join(__dirname, "..", "..", ".."), "test-environment/")
 }

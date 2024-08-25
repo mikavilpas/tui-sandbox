@@ -8,7 +8,8 @@
     "./packages/integration-tests/"
   ],
   "scripts": {
-    "cy:run": "npm run cy:run --workspace integration-tests",
+    "clean-install:all": "npm ci --workspaces --include-workspace-root",
+    "cy:run": "npm run cy:run --workspace ./packages/integration-tests/",
     "dev": "npm run dev --workspace ./packages/integration-tests/",
     "eslint": "eslint --max-warnings=0 .",
     "install:all": "npm install --workspaces --include-workspace-root",

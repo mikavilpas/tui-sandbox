@@ -16,12 +16,9 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4.1.7
-      - name: Set up dependencies
-        run: |
-          # ripgrep is a telescope dependency
-          which rg || {
-            sudo apt-get install ripgrep
-          }
+      - uses: rhysd/action-setup-vim@v1
+        with:
+          neovim: true
 
       - name: Cypress run
         uses: cypress-io/github-action@v6.7.2

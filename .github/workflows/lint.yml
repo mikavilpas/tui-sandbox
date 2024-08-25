@@ -3,22 +3,25 @@ name: Linting
 on: [push, pull_request]
 
 jobs:
-  selene:
-    name: selene
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4.1.7
-      - uses: NTBBloodbath/selene-action@v1.0.0
-        with:
-          # Github secret token
-          token: ${{ secrets.GITHUB_TOKEN }}
-          # selene arguments
-          args: --display-style=quiet .
-          # selene version
-          version: 0.12.1
-
   markdownlint:
     name: markdownlint
     runs-on: ubuntu-latest
     steps:
       - uses: DavidAnson/markdownlint-cli2-action@v16.0.0
+
+  eslint:
+    name: runner / eslint
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: write
+    steps:
+      - uses: actions/checkout@v4.1.7
+      - uses: actions/setup-node@v4.0.3
+        with:
+          node-version-file: .nvmrc
+      - run: npm run clean-install:all
+      - uses: reviewdog/action-eslint@v1.31.0
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          reporter: github-pr-review # Change reporter.

@@ -140,13 +140,15 @@ export async function prepareClient(app: HTMLElement): Promise<TestPreparationRe
       await ready
       const terminalDimensions = { cols: terminal.cols, rows: terminal.rows }
       const neovim = await trpc.neovim.start.mutate({
-        tabId,
-        filename: startArgs?.filename ?? "initial-file.txt",
-        startupScriptModifications: startArgs?.startupScriptModifications ?? [],
+        startNeovimArguments: {
+          filename: startArgs?.filename ?? "initial-file.txt",
+          startupScriptModifications: startArgs?.startupScriptModifications ?? [],
+        },
+        tabId: tabId,
         terminalDimensions,
       })
 
-      return neovim.dir
+      return neovim
     },
   }
 }

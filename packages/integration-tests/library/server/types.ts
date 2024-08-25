@@ -33,16 +33,15 @@ export const startNeovimArguments = z.object({
 export type StartNeovimArguments = z.infer<typeof startNeovimArguments>
 
 /** The arguments given to the server */
-export const startNeovimServerArguments = z.intersection(
-  z.object({
-    tabId: tabIdSchema,
-    terminalDimensions: z
-      .object({
-        cols: z.number(),
-        rows: z.number(),
-      })
-      .optional(),
-  }),
-  startNeovimArguments
-)
+export const startNeovimServerArguments = z.object({
+  tabId: tabIdSchema,
+  terminalDimensions: z
+    .object({
+      cols: z.number(),
+      rows: z.number(),
+    })
+    .optional(),
+  startNeovimArguments,
+})
+
 export type StartNeovimServerArguments = z.infer<typeof startNeovimServerArguments>

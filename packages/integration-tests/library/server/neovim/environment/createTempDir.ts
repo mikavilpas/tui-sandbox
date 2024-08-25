@@ -4,21 +4,21 @@ import { Type } from "dree"
 import { constants, readdirSync } from "fs"
 import { access, mkdir, mkdtemp } from "fs/promises"
 import path from "path"
-import { convertDree, getDirectoryTree } from "../../../library/server/dirtree/index"
-import type { TestDirectory } from "../../../library/server/types"
-import { updateTestdirectorySchemaFile } from "../../../library/server/updateTestdirectorySchemaFile"
-import { MyTestDirectorySchema } from "../../../MyTestDirectory"
-import { NeovimTestDirectory } from "./NeovimTestEnvironment"
+import { MyTestDirectorySchema } from "../../../../MyTestDirectory"
+import { convertDree, getDirectoryTree } from "../../dirtree"
+import type { TestDirectory } from "../../types"
+import { updateTestdirectorySchemaFile } from "../../updateTestdirectorySchemaFile"
+import { NeovimApplication } from "../NeovimApplication"
 
 export async function createTempDir(): Promise<TestDirectory> {
   try {
     const dir = await createUniqueDirectory()
 
-    readdirSync(NeovimTestDirectory.testEnvironmentDir).forEach(entry => {
+    readdirSync(NeovimApplication.testEnvironmentDir).forEach(entry => {
       if (entry === "testdirs") return
       if (entry === ".repro") return
 
-      execSync(`cp -a '${path.join(NeovimTestDirectory.testEnvironmentDir, entry)}' ${dir}/`)
+      execSync(`cp -a '${path.join(NeovimApplication.testEnvironmentDir, entry)}' ${dir}/`)
     })
     console.log(`Created test directory at ${dir}`)
 
@@ -35,7 +35,7 @@ export async function createTempDir(): Promise<TestDirectory> {
 }
 
 async function createUniqueDirectory(): Promise<string> {
-  const testdirs = path.join(NeovimTestDirectory.testEnvironmentDir, "testdirs")
+  const testdirs = path.join(NeovimApplication.testEnvironmentDir, "testdirs")
   try {
     await access(testdirs, constants.F_OK)
   } catch {

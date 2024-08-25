@@ -23,6 +23,5 @@ jobs:
       - run: npm run clean-install:all
       - uses: reviewdog/action-eslint@v1.31.0
         with:
-          workdir: integration-tests
           github_token: ${{ secrets.GITHUB_TOKEN }}
           reporter: github-pr-review # Change reporter.

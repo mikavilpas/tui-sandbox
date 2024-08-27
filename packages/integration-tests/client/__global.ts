@@ -1,8 +1,9 @@
 // This defines a way for the test runner to start Neovim. We need a way for
 // the test runner to do this because it doesn't have direct access to either
+// the backend or the frontend
 
-import type { StartNeovimArguments } from "../library/server/types.ts"
 import type { MyTestDirectory, testDirectoryFiles } from "../MyTestDirectory"
+import type { MyStartNeovimServerArguments } from "../server/server.ts"
 
 export type NeovimContext = {
   contents: MyTestDirectory
@@ -13,7 +14,7 @@ export type NeovimContext = {
 
 declare global {
   interface Window {
-    startNeovim(startArguments?: StartNeovimArguments): Promise<NeovimContext>
+    startNeovim(startArguments?: MyStartNeovimServerArguments): Promise<NeovimContext>
   }
 }
 

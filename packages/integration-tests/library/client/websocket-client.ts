@@ -4,8 +4,8 @@ import { FitAddon } from "@xterm/addon-fit"
 import { Terminal } from "@xterm/xterm"
 import "@xterm/xterm/css/xterm.css"
 import z from "zod"
-import type { AppRouter } from "../../server/server.ts"
-import type { StartNeovimArguments, TestDirectory } from "../server/types.ts"
+import type { AppRouter, MyStartNeovimServerArguments } from "../../server/server.ts"
+import type { TestDirectory } from "../server/types.ts"
 import type { TabId } from "../server/utilities/tabId.ts"
 import "./style.css"
 import { validateMouseEvent } from "./validateMouseEvent"
@@ -92,7 +92,7 @@ export function getTabId(): TabId {
 
 export type TestPreparationResult = {
   terminal: Terminal
-  startNeovim(startArgs?: StartNeovimArguments): Promise<TestDirectory>
+  startNeovim(startArgs?: MyStartNeovimServerArguments): Promise<TestDirectory>
 }
 
 export async function prepareClient(app: HTMLElement): Promise<TestPreparationResult> {
@@ -136,7 +136,65 @@ export async function prepareClient(app: HTMLElement): Promise<TestPreparationRe
 
   return {
     terminal,
-    async startNeovim(startArgs?: StartNeovimArguments): Promise<TestDirectory> {
+    async startNeovim(startArgs?: MyStartNeovimServerArguments): Promise<TestDirectory> {
+      await ready
+      const terminalDimensions = { cols: terminal.cols, rows: terminal.rows }
+      const neovim = await trpc.neovim.start.mutate({
+        startNeovimArguments: {
+          filename: startArgs?.filename ?? "initial-file.txt",
+          startupScriptModifications: startArgs?.startupScriptModifications ?? [],
+        },
+        tabId: tabId,
+        terminalDimensions,
+      })
+
+      return neovim
+    },
+  }
+}
+
+export async function prepareClient2(app: HTMLElement): Promise<TestPreparationResult> {
+  const wsClient = createWSClient({ url: `ws://localhost:3000`, WebSocket })
+  const trpc = createTRPCClient<AppRouter>({
+    links: [wsLink({ client: wsClient })],
+  })
+
+  const tabId = getTabId()
+
+  const terminal = startTerminal(app, {
+    onMouseEvent(data: string) {
+      void trpc.neovim.sendStdin.mutate({ tabId, data }).catch((error: unknown) => {
+        console.error(`Error sending mouse event`, error)
+      })
+    },
+    onKeyPress(event) {
+      void trpc.neovim.sendStdin.mutate({ tabId, data: event.key })
+    },
+  })
+
+  // start listening to Neovim stdout - this will take some (short) amount of
+  // time to complete
+  const ready = new Promise<void>(resolve => {
+    console.log("Subscribing to Neovim stdout")
+    trpc.neovim.onStdout.subscribe(
+      { client: tabId },
+      {
+        onStarted() {
+          resolve()
+        },
+        onData(data: string) {
+          terminal.write(data)
+        },
+        onError(err: unknown) {
+          console.error(`Error from Neovim`, err)
+        },
+      }
+    )
+  })
+
+  return {
+    terminal,
+    async startNeovim(startArgs?: MyStartNeovimServerArguments): Promise<TestDirectory> {
       await ready
       const terminalDimensions = { cols: terminal.cols, rows: terminal.rows }
       const neovim = await trpc.neovim.start.mutate({

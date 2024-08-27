@@ -1,6 +1,5 @@
 import { z } from "zod"
 import { MyTestDirectoryContentsSchema, testDirectoryFiles } from "../../MyTestDirectory"
-import { tabIdSchema } from "./utilities/tabId"
 
 /** Describes the contents of the test directory, which is a blueprint for
  * files and directories. Tests can create a unique, safe environment for
@@ -17,7 +16,7 @@ export type TestDirectory = {
 }
 
 /** The arguments given from the tests to send to the server */
-export const startNeovimArguments = z.object({
+export const myStartNeovimArguments = z.object({
   filename: z
     .union([
       testDirectoryFiles,
@@ -30,18 +29,3 @@ export const startNeovimArguments = z.object({
     .array(z.enum(MyTestDirectoryContentsSchema.shape["config-modifications"].shape.contents.keyof().options))
     .optional(),
 })
-export type StartNeovimArguments = z.infer<typeof startNeovimArguments>
-
-/** The arguments given to the server */
-export const startNeovimServerArguments = z.object({
-  tabId: tabIdSchema,
-  terminalDimensions: z
-    .object({
-      cols: z.number(),
-      rows: z.number(),
-    })
-    .optional(),
-  startNeovimArguments,
-})
-
-export type StartNeovimServerArguments = z.infer<typeof startNeovimServerArguments>

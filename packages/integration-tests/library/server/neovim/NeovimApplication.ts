@@ -3,7 +3,6 @@ import EventEmitter from "events"
 import { existsSync } from "fs"
 import path from "path"
 import { fileURLToPath } from "url"
-import type { MyTestDirectoryFile } from "../../../MyTestDirectory"
 import type { TestDirectory } from "../types"
 import { DisposableSingleApplication } from "../utilities/DisposableSingleApplication"
 import { TerminalApplication } from "../utilities/TerminalApplication"
@@ -82,7 +81,7 @@ export class NeovimApplication extends DisposableSingleApplication {
     await this[Symbol.asyncDispose]()
     this.testDirectory = testDirectory
 
-    const neovimArguments = ["-u", "test-setup.lua" satisfies MyTestDirectoryFile]
+    const neovimArguments = ["-u", "test-setup.lua"]
 
     if (startArgs.startupScriptModifications) {
       for (const modification of startArgs.startupScriptModifications) {

@@ -1,3 +1,4 @@
+import type { inferRouterInputs } from "@trpc/server"
 import { z } from "zod"
 import { TestServer } from "../library/server"
 import { trpc } from "../library/server/connection/trpc"
@@ -44,16 +45,19 @@ export type MyStartNeovimServerArguments = z.infer<typeof myStartNeovimArguments
 
 const appRouter = trpc.router({
   neovim: trpc.router({
-    start: trpc.procedure.input(myStartNeovimServerArguments).mutation(options => neovim.start(options.input)),
-    onStdout: trpc.procedure
-      .input(z.object({ client: tabIdSchema }))
-      .subscription(options => neovim.onStdout(options.input)),
-    sendStdin: trpc.procedure
-      .input(z.object({ tabId: tabIdSchema, data: z.string() }))
-      .mutation(options => neovim.sendStdin(options.input)),
+    start: trpc.procedure.input(myStartNeovimServerArguments).mutation(options => {
+      return neovim.start(options.input)
+    }),
+    onStdout: trpc.procedure.input(z.object({ client: tabIdSchema })).subscription(options => {
+      return neovim.onStdout(options.input)
+    }),
+    sendStdin: trpc.procedure.input(z.object({ tabId: tabIdSchema, data: z.string() })).mutation(options => {
+      return neovim.sendStdin(options.input)
+    }),
   }),
 })
 export type AppRouter = typeof appRouter
+export type RouterInput = inferRouterInputs<AppRouter>
 
 export const testServer = new TestServer(3000)
 await testServer.startAndRun(appRouter)

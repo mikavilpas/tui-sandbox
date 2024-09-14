@@ -3,7 +3,7 @@
 // the backend or the frontend
 
 import type { MyTestDirectory, testDirectoryFiles } from "../MyTestDirectory"
-import type { MyStartNeovimServerArguments } from "../server/server.ts"
+import type { MyStartNeovimServerArguments } from "./neovim-client.ts"
 
 export type NeovimContext = {
   contents: MyTestDirectory

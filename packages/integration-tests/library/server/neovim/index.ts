@@ -33,9 +33,9 @@ export function onStdout(options: { client: TabId }): Observable<string, unknown
   })
 }
 
-export async function start(options: StartNeovimGenericArguments): Promise<TestDirectory> {
-  const neovim = neovims.get(options.tabId.tabId)
-  assert(neovim, `Neovim instance not found for client id ${options.tabId.tabId}`)
+export async function start(options: StartNeovimGenericArguments, tabId: TabId): Promise<TestDirectory> {
+  const neovim = neovims.get(tabId.tabId)
+  assert(neovim, `Neovim instance not found for client id ${tabId.tabId}`)
 
   const testDirectory = await createTempDir()
   await neovim.startNextAndKillCurrent(testDirectory, options)

@@ -3,7 +3,7 @@
 
 import "../../client/__global.ts"
 import type { NeovimContext } from "../../client/__global.ts"
-import type { MyStartNeovimServerArguments } from "../../server/server.ts"
+import type { MyStartNeovimServerArguments } from "../../client/neovim-client.ts"
 
 Cypress.Commands.add("startNeovim", (startArguments?: MyStartNeovimServerArguments) => {
   cy.window().then(win => {

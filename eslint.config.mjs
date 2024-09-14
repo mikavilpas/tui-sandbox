@@ -18,9 +18,10 @@ const compat = new FlatCompat({
 export default [
   {
     ignores: [
-      "packages/integration-tests/vite.config.js",
-      "packages/integration-tests/test-environment/routes/posts.$postId/route.tsx",
       "eslint.config.mjs",
+      "packages/integration-tests/cypress.config.ts",
+      "packages/integration-tests/test-environment/**/*",
+      "packages/integration-tests/vite.config.js",
       "vitest.workspace.js",
     ],
   },

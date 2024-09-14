@@ -4,7 +4,7 @@ import { FitAddon } from "@xterm/addon-fit"
 import { Terminal } from "@xterm/xterm"
 import "@xterm/xterm/css/xterm.css"
 import z from "zod"
-import type { MyStartNeovimServerArguments } from "../../client/neovim-client.ts"
+import type { StartNeovimGenericArguments } from "../server/neovim/NeovimApplication.ts"
 import type { AppRouter } from "../server/server.ts"
 import type { TestDirectory } from "../server/types.ts"
 import type { TabId } from "../server/utilities/tabId.ts"
@@ -140,7 +140,7 @@ export class NeovimClient {
     })
   }
 
-  public async startNeovim(args: MyStartNeovimServerArguments): Promise<TestDirectory> {
+  public async startNeovim(args: StartNeovimGenericArguments): Promise<TestDirectory> {
     await this.ready
 
     const neovim = await this.trpc.neovim.start.mutate({

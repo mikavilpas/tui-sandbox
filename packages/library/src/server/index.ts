@@ -4,16 +4,17 @@ import "core-js/proposals/async-explicit-resource-management"
 import { once } from "events"
 import { WebSocketServer } from "ws"
 import { createContext } from "./connection/trpc"
+import type { TestServerConfig } from "./updateTestdirectorySchemaFile"
 import { updateTestdirectorySchemaFile } from "./updateTestdirectorySchemaFile"
 
 export class TestServer {
   public constructor(private readonly port: number) {}
 
   // eslint-disable-next-line @typescript-eslint/no-unnecessary-type-parameters
-  public async startAndRun<TRouter extends AnyRouter>(appRouter: TRouter): Promise<void> {
+  public async startAndRun<TRouter extends AnyRouter>(appRouter: TRouter, config: TestServerConfig): Promise<void> {
     console.log("🚀 Server starting")
 
-    await updateTestdirectorySchemaFile()
+    await updateTestdirectorySchemaFile(config)
 
     const wss = new WebSocketServer({ port: this.port })
     const handler = applyWSSHandler<TRouter>({

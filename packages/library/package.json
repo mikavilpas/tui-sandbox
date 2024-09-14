@@ -1,14 +1,8 @@
 {
-  "name": "@tui-sandbox/integration-tests",
+  "name": "@tui-sandbox/library",
   "version": "0.0.0",
-  "private": true,
   "type": "module",
-  "scripts": {
-    "build": "vite build",
-    "cy:run": "concurrently --success command-cypress --kill-others --names 'app,cypress' --prefix-colors 'green,yellow' 'npm run dev'  'wait-on --timeout 60000 http://127.0.0.1:5173 && npx cypress run'",
-    "dev": "concurrently --names 'client,server' --prefix-colors 'blue,green' vite 'tsx ./server/server.ts'",
-    "test": "vitest"
-  },
+  "scripts": {},
   "dependencies": {
     "@catppuccin/palette": "1.3.0",
     "@runtyping/zod": "2.1.1",
@@ -18,7 +12,6 @@
     "core-js": "3.38.1",
     "node-pty": "1.0.0",
     "tsx": "4.19.1",
-    "wait-on": "8.0.1",
     "winston": "3.14.2",
     "zod": "3.23.8"
   },

@@ -4,7 +4,6 @@ import { Type } from "dree"
 import { constants, readdirSync } from "fs"
 import { access, mkdir, mkdtemp } from "fs/promises"
 import path from "path"
-import { MyTestDirectorySchema } from "../../../../MyTestDirectory"
 import { convertDree, getDirectoryTree } from "../../dirtree"
 import type { TestDirectory } from "../../types"
 import { updateTestdirectorySchemaFile } from "../../updateTestdirectorySchemaFile"
@@ -26,8 +25,7 @@ export async function createTempDir(): Promise<TestDirectory> {
     assert(tree.type === Type.DIRECTORY)
 
     await updateTestdirectorySchemaFile()
-    const contents = MyTestDirectorySchema.shape.contents.parse(tree.contents)
-    return { rootPathAbsolute: dir, contents: contents }
+    return { rootPathAbsolute: dir, contents: tree.contents }
   } catch (err) {
     console.error(err)
     throw err

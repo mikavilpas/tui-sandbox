@@ -1,9 +1,9 @@
 import type { inferRouterInputs } from "@trpc/server"
 import { z } from "zod"
-import { TestServer } from "../library/server"
-import { trpc } from "../library/server/connection/trpc"
-import * as neovim from "../library/server/neovim"
-import { tabIdSchema } from "../library/server/utilities/tabId"
+import { TestServer } from "."
+import { trpc } from "./connection/trpc"
+import * as neovim from "./neovim"
+import { tabIdSchema } from "./utilities/tabId"
 
 /** Stack for managing resources that need to be disposed of when the server
  * shuts down */

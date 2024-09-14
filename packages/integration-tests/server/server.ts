@@ -4,7 +4,6 @@ import { TestServer } from "../library/server"
 import { trpc } from "../library/server/connection/trpc"
 import * as neovim from "../library/server/neovim"
 import { tabIdSchema } from "../library/server/utilities/tabId"
-import { MyTestDirectoryContentsSchema, testDirectoryFiles } from "../MyTestDirectory"
 
 /** Stack for managing resources that need to be disposed of when the server
  * shuts down */
@@ -14,40 +13,34 @@ autocleanup.defer(() => {
 })
 export { autocleanup }
 
-/** The arguments given from the tests to send to the server */
-export const myStartNeovimArguments = z.object({
-  filename: z
-    .union([
-      testDirectoryFiles,
-      z.object({
-        openInVerticalSplits: z.array(testDirectoryFiles),
-      }),
-    ])
-    .optional(),
-  startupScriptModifications: z
-    .array(z.enum(MyTestDirectoryContentsSchema.shape["config-modifications"].shape.contents.keyof().options))
-    .optional(),
-})
-
-/** The arguments given to the server */
-const myStartNeovimServerArguments = z.object({
-  tabId: tabIdSchema,
-  terminalDimensions: z
-    .object({
-      cols: z.number(),
-      rows: z.number(),
-    })
-    .optional(),
-  startNeovimArguments: myStartNeovimArguments,
-})
-
-export type MyStartNeovimServerArguments = z.infer<typeof myStartNeovimArguments>
-
 const appRouter = trpc.router({
   neovim: trpc.router({
-    start: trpc.procedure.input(myStartNeovimServerArguments).mutation(options => {
-      return neovim.start(options.input)
-    }),
+    start: trpc.procedure
+      .input(
+        z.object({
+          tabId: tabIdSchema,
+          terminalDimensions: z
+            .object({
+              cols: z.number(),
+              rows: z.number(),
+            })
+            .optional(),
+          startNeovimArguments: z.object({
+            filename: z
+              .union([
+                z.string(),
+                z.object({
+                  openInVerticalSplits: z.array(z.string()),
+                }),
+              ])
+              .optional(),
+            startupScriptModifications: z.array(z.string()).optional(),
+          }),
+        })
+      )
+      .mutation(options => {
+        return neovim.start(options.input, options.input.tabId)
+      }),
     onStdout: trpc.procedure.input(z.object({ client: tabIdSchema })).subscription(options => {
       return neovim.onStdout(options.input)
     }),
@@ -56,6 +49,7 @@ const appRouter = trpc.router({
     }),
   }),
 })
+
 export type AppRouter = typeof appRouter
 export type RouterInput = inferRouterInputs<AppRouter>
 

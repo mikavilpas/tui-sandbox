@@ -56,7 +56,6 @@ const __dirname = fileURLToPath(new URL(".", import.meta.url))
 export type StdoutMessage = "stdout"
 
 export type StartNeovimGenericArguments = {
-  tabId: { tabId: string }
   terminalDimensions?: { cols: number; rows: number }
   filename?: string | { openInVerticalSplits: string[] }
   startupScriptModifications?: string[]

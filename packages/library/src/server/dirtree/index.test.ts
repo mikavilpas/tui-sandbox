@@ -4,7 +4,9 @@ import { buildSchemaForDirectoryTree, getDirectoryTree } from "."
 import { Lazy } from "../utilities/Lazy"
 
 describe("dirtree", () => {
-  const output = new Lazy(() => getDirectoryTree(path.join(__dirname, "..", "..", "..", "test-environment/")))
+  const output = new Lazy(() =>
+    getDirectoryTree(path.join(__dirname, "..", "..", "..", "..", "integration-tests", "test-environment"))
+  )
 
   it("can get a list of all the files", () => {
     const result = output.get().allFiles

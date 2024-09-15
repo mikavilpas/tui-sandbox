@@ -20,6 +20,10 @@ jobs:
         with:
           neovim: true
 
+      - name: npm test
+        run: |
+          npm test
+
       - name: Cypress run
         uses: cypress-io/github-action@v6.7.6
         with:

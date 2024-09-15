@@ -23,6 +23,7 @@ export default [
       "packages/integration-tests/test-environment/**/*",
       "packages/integration-tests/vite.config.js",
       "vitest.workspace.js",
+      "packages/integration-tests/dist/",
     ],
   },
   ...compat.extends(
@@ -39,7 +40,11 @@ export default [
       ecmaVersion: "latest",
       sourceType: "module",
       parserOptions: {
-        project: ["packages/integration-tests/tsconfig.json"],
+        project: [
+          //
+          "packages/integration-tests/tsconfig.json",
+          "packages/library/tsconfig.json",
+        ],
       },
     },
 

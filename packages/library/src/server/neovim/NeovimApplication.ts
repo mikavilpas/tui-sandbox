@@ -65,7 +65,7 @@ export class NeovimApplication extends DisposableSingleApplication {
   private testDirectory: TestDirectory | undefined
   public readonly events: EventEmitter
 
-  public constructor() {
+  public constructor(private readonly testEnvironmentPath: string) {
     super()
     this.events = new EventEmitter()
   }
@@ -115,7 +115,7 @@ export class NeovimApplication extends DisposableSingleApplication {
       command: "nvim",
       args: neovimArguments,
 
-      cwd: NeovimApplication.testEnvironmentDir,
+      cwd: this.testEnvironmentPath,
       env: process.env,
       dimensions: startArgs.terminalDimensions,
 
@@ -131,6 +131,4 @@ export class NeovimApplication extends DisposableSingleApplication {
       exec(`rm -rf ${this.testDirectory.rootPathAbsolute}`)
     }
   }
-
-  public static testEnvironmentDir = path.join(path.join(__dirname, "..", "..", ".."), "test-environment/")
 }

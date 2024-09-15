@@ -12,3 +12,4 @@ packages/integration-tests/server/build
 *.pem
 packages/integration-tests/cypress/screenshots
 packages/integration-tests/test-environment/testdirs
+packages/library/dist

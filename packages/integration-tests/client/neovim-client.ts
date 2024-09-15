@@ -1,5 +1,5 @@
 import { z } from "zod"
-import { NeovimClient } from "../library/client/websocket-client"
+import { NeovimClient } from "../../library/src/client/websocket-client"
 import { MyTestDirectoryContentsSchema, testDirectoryFiles } from "../MyTestDirectory"
 import type { NeovimContext } from "./__global"
 

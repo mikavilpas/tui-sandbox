@@ -17,10 +17,12 @@ jobs:
       pull-requests: write
     steps:
       - uses: actions/checkout@v4.1.7
+      - uses: pnpm/action-setup@v4
       - uses: actions/setup-node@v4.0.3
         with:
           node-version-file: .nvmrc
-      - run: npm run clean-install:all
+          cache: "pnpm"
+      - run: pnpm install
       - uses: reviewdog/action-eslint@v1.31.0
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}

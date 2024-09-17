@@ -1,4 +1,5 @@
-import winston from "winston"
+import type winston from "winston"
+import { createLogger, format, transports } from "winston"
 
 import type { ITerminalDimensions } from "@xterm/addon-fit"
 import type { IPty } from "node-pty"
@@ -21,10 +22,10 @@ export class TerminalApplication {
   ) {
     this.processId = subProcess.pid
 
-    this.logger = winston.createLogger({
-      transports: [new winston.transports.Console()],
+    this.logger = createLogger({
+      transports: [new transports.Console()],
       defaultMeta: { pid: this.processId },
-      format: winston.format.combine(winston.format.colorize(), winston.format.cli()),
+      format: format.combine(format.colorize(), format.cli()),
     })
 
     this.logger.debug(`started`)

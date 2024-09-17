@@ -4,21 +4,16 @@
   "license": "MIT",
   "author": "Mika Vilpas",
   "type": "module",
-  "workspaces": [
-    "./packages/integration-tests/",
-    "./packages/library/"
-  ],
   "scripts": {
-    "clean-install:all": "npm ci --workspaces --include-workspace-root",
-    "cy:run": "npm run cy:run --workspace ./packages/integration-tests/",
-    "dev": "npm run dev --workspace ./packages/integration-tests/",
+    "clean-install:all": "pnpm ci",
+    "cy:run": "pnpm --filter ./packages/integration-tests cy:run",
+    "dev": "pnpm --filter ./packages/integration-tests/ dev",
     "eslint": "eslint --max-warnings=0 .",
-    "install:all": "npm install --workspaces --include-workspace-root",
+    "preinstall": "npx only-allow pnpm",
     "markdownlint": "markdownlint-cli2 README.md",
     "prettier": "prettier --check .",
     "test": "vitest run"
   },
-  "dependencies": {},
   "devDependencies": {
     "@eslint/js": "9.10.0",
     "@typescript-eslint/eslint-plugin": "8.5.0",
@@ -26,6 +21,8 @@
     "@umbrelladocs/linkspector": "0.3.13",
     "cypress": "13.14.2",
     "eslint-config-prettier": "9.1.0",
+    "eslint-import-resolver-typescript": "3.6.3",
+    "eslint-plugin-import-x": "4.2.1",
     "eslint-plugin-no-only-tests": "3.3.0",
     "markdownlint-cli2": "0.14.0",
     "prettier": "3.3.3",
@@ -34,5 +31,15 @@
     "typescript": "5.6.2",
     "vitest": "2.1.1",
     "wait-on": "8.0.1"
+  },
+  "packageManager": "pnpm@9.10.0+sha512.73a29afa36a0d092ece5271de5177ecbf8318d454ecd701343131b8ebc0c1a91c487da46ab77c8e596d6acf1461e3594ced4becedf8921b074fbd8653ed7051c",
+  "pnpm": {
+    "packageExtensions": {
+      "node-pty": {
+        "optionalDependencies": {
+          "node-gyp": "*"
+        }
+      }
+    }
   }
 }

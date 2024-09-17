@@ -20,9 +20,13 @@ jobs:
         with:
           neovim: true
 
-      - name: npm test
-        run: |
-          npm test
+      - uses: actions/setup-node@v4.0.3
+        with:
+          node-version-file: .nvmrc
+
+      - run: npm ci
+      - run: npm run prettier
+      - run: npm test
 
       - name: Cypress run
         uses: cypress-io/github-action@v6.7.6

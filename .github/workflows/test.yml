@@ -20,18 +20,20 @@ jobs:
         with:
           neovim: true
 
+      - uses: pnpm/action-setup@v4
       - uses: actions/setup-node@v4.0.3
         with:
           node-version-file: .nvmrc
+          cache: "pnpm"
 
-      - run: npm ci
-      - run: npm run prettier
-      - run: npm test
+      - run: pnpm install
+      - run: pnpm prettier
+      - run: pnpm test
 
       - name: Cypress run
         uses: cypress-io/github-action@v6.7.6
         with:
-          command: npm run cy:run
+          command: pnpm cy:run
 
       - uses: actions/upload-artifact@v4.4.0
         # add the line below to store screenshots only on failures

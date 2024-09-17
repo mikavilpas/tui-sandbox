@@ -3,6 +3,7 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import { FlatCompat } from "@eslint/eslintrc"
 import js from "@eslint/js"
+import eslintPluginImportX from "eslint-plugin-import-x"
 import noOnlyTests from "eslint-plugin-no-only-tests"
 import path from "node:path"
 import { fileURLToPath } from "node:url"
@@ -24,6 +25,7 @@ export default [
       "packages/integration-tests/vite.config.js",
       "vitest.workspace.js",
       "packages/integration-tests/dist/",
+      "packages/library/dist/",
     ],
   },
   ...compat.extends(
@@ -31,6 +33,8 @@ export default [
     "plugin:@typescript-eslint/strict-type-checked",
     "prettier"
   ),
+  eslintPluginImportX.flatConfigs.recommended,
+  eslintPluginImportX.flatConfigs.typescript,
   {
     plugins: {
       "no-only-tests": noOnlyTests,
@@ -100,6 +104,25 @@ export default [
       ],
 
       "@typescript-eslint/no-unused-vars": "off",
+
+      "import-x/no-extraneous-dependencies": [
+        "error",
+        {
+          // Forbid the import of external modules that are not declared in the
+          // package.json. This rule makes sure all the expected dependencies are
+          // available at runtime. Because we leave out devDependencies from
+          // production, there might be an issue if production code depended on a
+          // devDependency.
+          //
+          // https://github.com/import-js/eslint-plugin-import/blob/HEAD/docs/rules/no-extraneous-dependencies.md
+          devDependencies: [
+            // don't check this in the files that match these
+            "**/*.test.ts",
+          ],
+          optionalDependencies: false,
+          peerDependencies: false,
+        },
+      ],
     },
   },
 ]

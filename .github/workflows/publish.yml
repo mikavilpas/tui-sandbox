@@ -1,5 +1,6 @@
-name: Release components package
+name: Publish to NPM
 on:
+  workflow_dispatch: # makes it possible to run the workflow manually
   release:
     types: [published]
 jobs:

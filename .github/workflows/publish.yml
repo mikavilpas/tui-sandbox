@@ -1,0 +1,22 @@
+name: Publish npm package
+on:
+  push:
+    branches:
+      - main
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4.1.7
+      - uses: pnpm/action-setup@v4.0.0
+      - name: Install Node.js
+        uses: actions/setup-node@v4.0.3
+        with:
+          node-version-file: .nvmrc
+          cache: "pnpm"
+      - run: pnpm install
+      - uses: JS-DevTools/npm-publish@v3.1.1
+        with:
+          token: ${{ secrets.NPM_RELEASE_TOKEN }}
+          package: packages/library/package.json

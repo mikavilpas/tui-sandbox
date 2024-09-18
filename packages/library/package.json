@@ -2,7 +2,9 @@
   "name": "@tui-sandbox/library",
   "version": "1.0.0",
   "type": "module",
-  "scripts": {},
+  "scripts": {
+    "build": "tsc"
+  },
   "dependencies": {
     "@catppuccin/palette": "1.3.0",
     "@runtyping/zod": "2.1.1",

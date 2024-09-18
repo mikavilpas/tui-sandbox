@@ -18,6 +18,7 @@ jobs:
           registry-url: https://registry.npmjs.org
 
       - run: pnpm install
+      - run: pnpm build
       - name: Publish 🚀
         shell: bash
         run: pnpm publish packages/library --access public --no-git-checks

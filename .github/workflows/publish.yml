@@ -1,8 +1,7 @@
-name: Publish npm package
+name: Release components package
 on:
-  push:
-    branches:
-      - main
+  release:
+    types: [published]
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -16,7 +15,10 @@ jobs:
           node-version-file: .nvmrc
           cache: "pnpm"
       - run: pnpm install
-      - uses: JS-DevTools/npm-publish@v3.1.1
-        with:
-          token: ${{ secrets.NPM_RELEASE_TOKEN }}
-          package: packages/library/package.json
+      - name: Publish 🚀
+        shell: bash
+        run: pnpm publish packages/library --access public --no-git-checks
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_RELEASE_TOKEN }}
+#
+# https://dev.to/receter/automatically-publish-your-node-package-to-npm-with-pnpm-and-github-actions-22eg

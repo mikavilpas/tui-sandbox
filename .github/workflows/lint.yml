@@ -23,7 +23,7 @@ jobs:
           node-version-file: .nvmrc
           cache: "pnpm"
       - run: pnpm install
-      - uses: reviewdog/action-eslint@v1.31.0
+      - uses: reviewdog/action-eslint@v1.32.0
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           reporter: github-pr-review # Change reporter.

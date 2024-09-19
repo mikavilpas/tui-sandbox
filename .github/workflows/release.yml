@@ -20,3 +20,25 @@ jobs:
           token: ${{ secrets.RELEASE_PLEASE_ACCESS_TOKEN }}
           config-file: release-please-config.json
           manifest-file: .release-please-manifest.json
+
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      # https://dev.to/receter/automatically-publish-your-node-package-to-npm-with-pnpm-and-github-actions-22eg
+      - name: Checkout
+        uses: actions/checkout@v4.1.7
+      - uses: pnpm/action-setup@v4.0.0
+      - name: Install Node.js
+        uses: actions/setup-node@v4.0.3
+        with:
+          node-version-file: .nvmrc
+          cache: "pnpm"
+          registry-url: https://registry.npmjs.org
+
+      - run: pnpm install
+      - run: pnpm build
+      - name: Publish 🚀
+        shell: bash
+        run: pnpm publish packages/library --access public --no-git-checks
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_RELEASE_TOKEN }}

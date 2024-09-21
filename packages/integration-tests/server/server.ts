@@ -1,6 +1,6 @@
+import { startTestServer } from "@tui-sandbox/library/src/server/server"
 import path from "node:path"
 import { fileURLToPath } from "node:url"
-import { startTestServer } from "../../library/src/server/server"
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)

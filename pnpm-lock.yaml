@@ -73,6 +73,9 @@ importers:
       '@trpc/server':
         specifier: 11.0.0-rc.477
         version: 11.0.0-rc.477
+      '@tui-sandbox/library':
+        specifier: workspace:*
+        version: link:../library
       '@types/uuid':
         specifier: 10.0.0
         version: 10.0.0

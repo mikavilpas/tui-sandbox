@@ -12,7 +12,13 @@ export async function updateTestdirectorySchemaFile({
   outputFilePath,
 }: TestServerConfig): Promise<void> {
   const newSchema = await buildTestDirectorySchema(testEnvironmentPath)
-  const oldSchema = readFileSync(outputFilePath, "utf-8")
+  let oldSchema = ""
+
+  try {
+    oldSchema = readFileSync(outputFilePath, "utf-8")
+  } catch (error) {
+    console.log("No existing schema file found, creating a new one")
+  }
 
   if (oldSchema !== newSchema) {
     // it's important to not write the file if the schema hasn't changed

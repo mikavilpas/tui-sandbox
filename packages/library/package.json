@@ -3,7 +3,8 @@
   "version": "1.0.1",
   "type": "module",
   "scripts": {
-    "build": "tsc"
+    "build": "tsc",
+    "test": "vitest"
   },
   "dependencies": {
     "@catppuccin/palette": "1.3.0",

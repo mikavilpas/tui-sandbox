@@ -46,12 +46,6 @@ describe("dirtree", () => {
                 extension: z.literal("lua"),
                 stem: z.literal("add_command_to_count_open_buffers."),
               }),
-              "use_light_neovim_colorscheme.lua": z.object({
-                name: z.literal("use_light_neovim_colorscheme.lua"),
-                type: z.literal("file"),
-                extension: z.literal("lua"),
-                stem: z.literal("use_light_neovim_colorscheme."),
-              }),
             }),
           }),
           "dir with spaces": z.object({
@@ -154,7 +148,6 @@ describe("dirtree", () => {
 
       export const testDirectoryFiles = z.enum([
         "config-modifications/add_command_to_count_open_buffers.lua",
-        "config-modifications/use_light_neovim_colorscheme.lua",
         "config-modifications",
         "dir with spaces/file1.txt",
         "dir with spaces/file2.txt",

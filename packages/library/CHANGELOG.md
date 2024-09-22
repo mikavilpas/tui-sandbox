@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.0](https://github.com/mikavilpas/tui-sandbox/compare/library-v1.0.5...library-v1.1.0) (2024-09-22)
+
+
+### Features
+
+* log when building schema for test directory ([b8b0c7c](https://github.com/mikavilpas/tui-sandbox/commit/b8b0c7c1be0e0dacc9eb45c96308e706785e4a56))
+
 ## [1.0.5](https://github.com/mikavilpas/tui-sandbox/compare/library-v1.0.4...library-v1.0.5) (2024-09-22)
 
 

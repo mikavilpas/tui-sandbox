@@ -28,20 +28,18 @@ function createAppRouter(config: TestServerConfig) {
               })
               .optional(),
             startNeovimArguments: z.object({
-              filename: z
-                .union([
-                  z.string(),
-                  z.object({
-                    openInVerticalSplits: z.array(z.string()),
-                  }),
-                ])
-                .optional(),
+              filename: z.union([
+                z.string(),
+                z.object({
+                  openInVerticalSplits: z.array(z.string()),
+                }),
+              ]),
               startupScriptModifications: z.array(z.string()).optional(),
             }),
           })
         )
         .mutation(options => {
-          return neovim.start(options.input, options.input.tabId, config)
+          return neovim.start(options.input.startNeovimArguments, options.input.tabId, config)
         }),
       onStdout: trpc.procedure.input(z.object({ client: tabIdSchema })).subscription(options => {
         return neovim.onStdout(options.input, config.testEnvironmentPath)

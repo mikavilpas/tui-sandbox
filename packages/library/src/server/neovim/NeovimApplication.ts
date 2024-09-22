@@ -2,7 +2,6 @@ import { exec } from "child_process"
 import EventEmitter from "events"
 import { existsSync } from "fs"
 import path from "path"
-import { fileURLToPath } from "url"
 import type { TestDirectory } from "../types"
 import { DisposableSingleApplication } from "../utilities/DisposableSingleApplication"
 import { TerminalApplication } from "../utilities/TerminalApplication"
@@ -52,12 +51,11 @@ Run "nvim -V1 -v" for more info
 
 */
 
-const __dirname = fileURLToPath(new URL(".", import.meta.url))
 export type StdoutMessage = "stdout"
 
 export type StartNeovimGenericArguments = {
   terminalDimensions?: { cols: number; rows: number }
-  filename?: string | { openInVerticalSplits: string[] }
+  filename: string | { openInVerticalSplits: string[] }
   startupScriptModifications?: string[]
 }
 
@@ -91,10 +89,6 @@ export class NeovimApplication extends DisposableSingleApplication {
 
         neovimArguments.push("-c", `lua dofile('${file}')`)
       }
-    }
-
-    if (!startArgs.filename) {
-      startArgs.filename = "initial-file.txt"
     }
 
     if (typeof startArgs.filename === "string") {

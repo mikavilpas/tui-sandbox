@@ -34,8 +34,10 @@ window.startNeovim = async function (startArgs?: MyStartNeovimServerArguments): 
     filename: startArgs?.filename ?? "initial-file.txt",
     startupScriptModifications: startArgs?.startupScriptModifications ?? [],
   })
-  const contents = MyTestDirectoryContentsSchema.parse(neovim.contents)
-  const files = testDirectoryFiles.enum
 
-  return { contents, files }
+  return {
+    contents: MyTestDirectoryContentsSchema.parse(neovim.contents),
+    files: testDirectoryFiles.enum,
+    rootPathAbsolute: neovim.rootPathAbsolute,
+  }
 }

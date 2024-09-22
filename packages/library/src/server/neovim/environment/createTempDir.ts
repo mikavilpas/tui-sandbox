@@ -25,7 +25,12 @@ export async function createTempDir(config: TestServerConfig): Promise<TestDirec
     assert(tree.type === Type.DIRECTORY)
 
     await updateTestdirectorySchemaFile(config)
-    return { rootPathAbsolute: dir, contents: tree.contents }
+    return {
+      rootPathAbsolute: dir,
+      contents: tree.contents,
+      testEnvironmentPath: config.testEnvironmentPath,
+      testEnvironmentPathRelative: path.relative(config.testEnvironmentPath, dir),
+    }
   } catch (err) {
     console.error(err)
     throw err

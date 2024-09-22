@@ -7,7 +7,24 @@
  * actually found. Otherwise the tests are brittle and can break easily.
  */
 export type TestDirectory = {
-  /** The path to the unique test directory (the root). */
+  /** The path to the unique test directory (the root).
+   *
+   * @example /Users/mikavilpas/git/tui-sandbox/packages/integration-tests/test-environment/testdirs/dir-0199UZ
+   */
   rootPathAbsolute: string
+
+  /** The path to the test environment directory, which is the blueprint for
+   *
+   * the test directory.
+   * @example /Users/mikavilpas/git/tui-sandbox/packages/integration-tests/test-environment
+   * */
+  testEnvironmentPath: string
+
+  /** The relative path from the {@link testEnvironmentPath} to {@link rootPathAbsolute}.
+   *
+   * @example testdirs/dir-0199UZ/
+   */
+  testEnvironmentPathRelative: string
+
   contents: object
 }

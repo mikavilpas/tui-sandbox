@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.0](https://github.com/mikavilpas/tui-sandbox/compare/library-v1.1.0...library-v1.2.0) (2024-09-22)
+
+
+### Features
+
+* expose testEnvironmentPath in more detail ([#38](https://github.com/mikavilpas/tui-sandbox/issues/38)) ([53eedaa](https://github.com/mikavilpas/tui-sandbox/commit/53eedaaedba32924c57fe56a7bec6a6cc0140aa1))
+
 ## [1.1.0](https://github.com/mikavilpas/tui-sandbox/compare/library-v1.0.5...library-v1.1.0) (2024-09-22)
 
 

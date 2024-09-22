@@ -54,7 +54,7 @@ export function convertDree(root: Dree): TreeNode {
     }
   }
 
-  assert(root.children)
+  assert(root.children, `Expected children for directory node ${root.name}`)
   const node: DirectoryNode = {
     name: root.name,
     type: root.type,
@@ -104,6 +104,7 @@ export async function buildSchemaForDirectoryTree(result: TreeResult, name: stri
 const __filename = fileURLToPath(import.meta.url)
 
 export async function buildTestDirectorySchema(testDirectoryPath: string): Promise<string> {
+  console.log("Building schema for test directory", testDirectoryPath)
   const dree = getDirectoryTree(testDirectoryPath)
   let text = await buildSchemaForDirectoryTree(dree, "MyTestDirectory")
 

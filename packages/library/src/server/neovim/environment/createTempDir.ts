@@ -14,7 +14,7 @@ export async function createTempDir(config: TestServerConfig): Promise<TestDirec
     const dir = await createUniqueDirectory(config.testEnvironmentPath)
 
     readdirSync(config.testEnvironmentPath).forEach(entry => {
-      if (entry === "testdirs") return
+      if (entry === ("testdirs" satisfies TestDirsPath)) return
       if (entry === ".repro") return
 
       execSync(`cp -a '${path.join(config.testEnvironmentPath, entry)}' ${dir}/`)
@@ -37,8 +37,10 @@ export async function createTempDir(config: TestServerConfig): Promise<TestDirec
   }
 }
 
+export type TestDirsPath = "testdirs"
+
 async function createUniqueDirectory(testEnvironmentPath: string): Promise<string> {
-  const testdirs = path.join(testEnvironmentPath, "testdirs")
+  const testdirs = path.join(testEnvironmentPath, "testdirs" satisfies TestDirsPath)
   try {
     await access(testdirs, constants.F_OK)
   } catch {

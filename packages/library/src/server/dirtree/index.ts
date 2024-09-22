@@ -54,13 +54,12 @@ export function convertDree(root: Dree): TreeNode {
     }
   }
 
-  assert(root.children, `Expected children for directory node ${root.name}`)
   const node: DirectoryNode = {
     name: root.name,
     type: root.type,
     contents: {},
   }
-  for (const child of root.children) {
+  for (const child of root.children || []) {
     node.contents[child.name] = convertDree(child)
   }
 

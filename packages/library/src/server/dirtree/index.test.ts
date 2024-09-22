@@ -1,3 +1,4 @@
+import assert from "assert"
 import path from "path"
 import { describe, expect, it } from "vitest"
 import { buildSchemaForDirectoryTree, getDirectoryTree } from "."
@@ -11,7 +12,9 @@ describe("dirtree", () => {
   it("can get a list of all the files", () => {
     const result = output.get().allFiles
 
+    assert(result)
     expect(result.length).toBeGreaterThan(1)
+    assert(result[0])
     expect(result[0].relativePath).toBeTruthy()
   })
 

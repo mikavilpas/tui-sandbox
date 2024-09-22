@@ -10,6 +10,7 @@ export type NeovimContext = {
   /** provides easy access to all relative file paths from the root of the test
    * directory */
   files: (typeof testDirectoryFiles)["enum"]
+  rootPathAbsolute: string
 }
 
 declare global {

@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.5](https://github.com/mikavilpas/tui-sandbox/compare/library-v1.0.4...library-v1.0.5) (2024-09-22)
+
+
+### Bug Fixes
+
+* build errors ([0d7c07e](https://github.com/mikavilpas/tui-sandbox/commit/0d7c07eab5b683903026d266357e6a406212fb93))
+
 ## 1.0.4 (2024-09-22)
 
 

@@ -10,8 +10,8 @@
   "dependencies": {
     "@catppuccin/palette": "1.4.0",
     "@runtyping/zod": "2.1.1",
-    "@trpc/client": "11.0.0-rc.477",
-    "@trpc/server": "11.0.0-rc.477",
+    "@trpc/client": "11.0.0-rc.528",
+    "@trpc/server": "11.0.0-rc.528",
     "@types/uuid": "10.0.0",
     "@xterm/addon-attach": "0.11.0",
     "@xterm/addon-fit": "0.10.0",
@@ -27,7 +27,7 @@
   },
   "devDependencies": {
     "@types/express": "4.17.21",
-    "@types/node": "22.5.5",
+    "@types/node": "22.6.0",
     "@types/tinycolor2": "1.4.6",
     "@types/ws": "8.5.12",
     "@xterm/addon-attach": "0.11.0",

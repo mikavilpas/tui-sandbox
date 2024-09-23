@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.3.0](https://github.com/mikavilpas/tui-sandbox/compare/library-v1.2.0...library-v1.3.0) (2024-09-23)
+
+
+### Features
+
+* add license (MIT) to library package ([#42](https://github.com/mikavilpas/tui-sandbox/issues/42)) ([8c72eb1](https://github.com/mikavilpas/tui-sandbox/commit/8c72eb13e17c5e6838220a5a16da0d44a6aba792))
+* allow test dirs that have no contents ([#40](https://github.com/mikavilpas/tui-sandbox/issues/40)) ([863e9f0](https://github.com/mikavilpas/tui-sandbox/commit/863e9f0731b1565bf5f9afdb6834275598196f22))
+
 ## [1.2.0](https://github.com/mikavilpas/tui-sandbox/compare/library-v1.1.0...library-v1.2.0) (2024-09-22)
 
 

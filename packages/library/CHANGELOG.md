@@ -1,5 +1,16 @@
 # Changelog
 
+## [2.0.0](https://github.com/mikavilpas/tui-sandbox/compare/library-v1.3.0...library-v2.0.0) (2024-09-24)
+
+
+### ⚠ BREAKING CHANGES
+
+* add public client and server APIs ([#46](https://github.com/mikavilpas/tui-sandbox/issues/46))
+
+### Features
+
+* add public client and server APIs ([#46](https://github.com/mikavilpas/tui-sandbox/issues/46)) ([3f13f53](https://github.com/mikavilpas/tui-sandbox/commit/3f13f5386f31de9bb5bf6fc099e2e404261d31b0))
+
 ## [1.3.0](https://github.com/mikavilpas/tui-sandbox/compare/library-v1.2.0...library-v1.3.0) (2024-09-23)
 
 

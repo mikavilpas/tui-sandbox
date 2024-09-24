@@ -1,8 +1,8 @@
 import type { inferRouterInputs } from "@trpc/server"
 import { z } from "zod"
-import { TestServer } from "."
 import { trpc } from "./connection/trpc"
 import * as neovim from "./neovim"
+import { TestServer } from "./TestServer"
 import type { TestServerConfig } from "./updateTestdirectorySchemaFile"
 import { tabIdSchema } from "./utilities/tabId"
 

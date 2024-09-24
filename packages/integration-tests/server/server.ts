@@ -1,4 +1,4 @@
-import { startTestServer } from "@tui-sandbox/library/src/server/server"
+import { startTestServer } from "@tui-sandbox/library/src/server"
 import path from "node:path"
 import { fileURLToPath } from "node:url"
 

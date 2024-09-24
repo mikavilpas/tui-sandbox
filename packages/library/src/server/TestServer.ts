@@ -1,4 +1,4 @@
-import type { AnyRouter } from "@trpc/server"
+import type { AnyTRPCRouter } from "@trpc/server"
 import { applyWSSHandler } from "@trpc/server/adapters/ws"
 import "core-js/proposals/async-explicit-resource-management"
 import { once } from "events"
@@ -11,7 +11,7 @@ export class TestServer {
   public constructor(private readonly port: number) {}
 
   // eslint-disable-next-line @typescript-eslint/no-unnecessary-type-parameters
-  public async startAndRun<TRouter extends AnyRouter>(appRouter: TRouter, config: TestServerConfig): Promise<void> {
+  public async startAndRun<TRouter extends AnyTRPCRouter>(appRouter: TRouter, config: TestServerConfig): Promise<void> {
     console.log("🚀 Server starting")
 
     await updateTestdirectorySchemaFile(config)

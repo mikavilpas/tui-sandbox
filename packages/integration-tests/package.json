@@ -12,8 +12,8 @@
   "dependencies": {
     "@catppuccin/palette": "1.4.0",
     "@runtyping/zod": "2.1.1",
-    "@trpc/client": "11.0.0-rc.477",
-    "@trpc/server": "11.0.0-rc.477",
+    "@trpc/client": "11.0.0-rc.528",
+    "@trpc/server": "11.0.0-rc.528",
     "@tui-sandbox/library": "workspace:*",
     "@types/uuid": "10.0.0",
     "core-js": "3.38.1",
@@ -25,7 +25,7 @@
   },
   "devDependencies": {
     "@types/express": "4.17.21",
-    "@types/node": "22.5.5",
+    "@types/node": "22.6.1",
     "@types/tinycolor2": "1.4.6",
     "@types/ws": "8.5.12",
     "concurrently": "9.0.1",

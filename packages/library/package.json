@@ -10,8 +10,8 @@
   "dependencies": {
     "@catppuccin/palette": "1.4.0",
     "@runtyping/zod": "2.1.1",
-    "@trpc/client": "11.0.0-rc.528",
-    "@trpc/server": "11.0.0-rc.528",
+    "@trpc/client": "11.0.0-rc.532",
+    "@trpc/server": "11.0.0-rc.532",
     "@xterm/addon-attach": "0.11.0",
     "@xterm/addon-fit": "0.10.0",
     "@xterm/xterm": "5.5.0",

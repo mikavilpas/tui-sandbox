@@ -15,7 +15,7 @@ jobs:
         neovim_version: ["nightly", "stable"]
 
     steps:
-      - uses: actions/checkout@v4.1.7
+      - uses: actions/checkout@v4.2.0
       - uses: rhysd/action-setup-vim@v1
         with:
           neovim: true

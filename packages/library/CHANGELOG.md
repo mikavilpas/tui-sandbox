@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.0.1](https://github.com/mikavilpas/tui-sandbox/compare/library-v2.0.0...library-v2.0.1) (2024-10-02)
+
+
+### Bug Fixes
+
+* missing ws types ([#55](https://github.com/mikavilpas/tui-sandbox/issues/55)) ([f29863c](https://github.com/mikavilpas/tui-sandbox/commit/f29863cfe580c5418058d62aabb34eac509771ba))
+
 ## [2.0.0](https://github.com/mikavilpas/tui-sandbox/compare/library-v1.3.0...library-v2.0.0) (2024-09-24)
 
 

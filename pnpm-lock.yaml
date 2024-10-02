@@ -107,6 +107,9 @@ importers:
       '@trpc/server':
         specifier: 11.0.0-rc.553
         version: 11.0.0-rc.553
+      '@types/ws':
+        specifier: 8.5.12
+        version: 8.5.12
       '@xterm/addon-attach':
         specifier: 0.11.0
         version: 0.11.0(@xterm/xterm@5.5.0)
@@ -141,9 +144,6 @@ importers:
       '@types/node':
         specifier: 22.7.4
         version: 22.7.4
-      '@types/ws':
-        specifier: 8.5.12
-        version: 8.5.12
       concurrently:
         specifier: 9.0.1
         version: 9.0.1

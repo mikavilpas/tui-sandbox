@@ -16,7 +16,7 @@
     "test": "vitest run"
   },
   "devDependencies": {
-    "@eslint/js": "9.11.1",
+    "@eslint/js": "9.12.0",
     "@typescript-eslint/eslint-plugin": "8.8.0",
     "@typescript-eslint/parser": "8.8.0",
     "@umbrelladocs/linkspector": "0.3.13",

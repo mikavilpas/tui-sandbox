@@ -1,5 +1,7 @@
 # 🧪 A terminal test environment and development playground 🛝
 
+![NPM Version](https://img.shields.io/npm/v/%40tui-sandbox%2Flibrary)
+
 tui-sandbox is a framework for using the [cypress](https://www.cypress.io/) browser testing tool to run tests against
 terminal applications. Currently only [Neovim](https://github.com/neovim/neovim) is supported.
 

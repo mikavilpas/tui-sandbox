@@ -56,3 +56,8 @@ For example, it takes 70 seconds to run 40 test cases in yazi.nvim (1.75s per te
 to run 110 unit tests in the same project (0.002s per test).
 
 _Note that this is true for any unit/integration test comparison in general, so I recommend using both._
+
+## Getting started
+
+Even though it's being used in a nontrivial project, this framework is not very mature yet. If you are interested in
+using it, please reach out to me via github issues. I would love to help.

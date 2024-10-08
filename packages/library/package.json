@@ -10,8 +10,8 @@
   "dependencies": {
     "@catppuccin/palette": "1.4.0",
     "@runtyping/zod": "2.1.1",
-    "@trpc/client": "11.0.0-rc.563",
-    "@trpc/server": "11.0.0-rc.563",
+    "@trpc/client": "11.0.0-rc.566",
+    "@trpc/server": "11.0.0-rc.566",
     "@types/ws": "8.5.12",
     "@xterm/addon-attach": "0.11.0",
     "@xterm/addon-fit": "0.10.0",
@@ -30,7 +30,7 @@
     "nodemon": "3.1.7",
     "prettier-plugin-organize-imports": "4.1.0",
     "tsx": "4.19.1",
-    "typescript": "5.6.2",
+    "typescript": "5.6.3",
     "vitest": "2.1.2"
   }
 }

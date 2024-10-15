@@ -102,11 +102,11 @@ importers:
         specifier: 2.1.1
         version: 2.1.1(typescript@5.6.3)(zod@3.23.8)
       '@trpc/client':
-        specifier: 11.0.0-rc.571
-        version: 11.0.0-rc.571(@trpc/server@11.0.0-rc.571)
+        specifier: 11.0.0-rc.577
+        version: 11.0.0-rc.577(@trpc/server@11.0.0-rc.577)
       '@trpc/server':
-        specifier: 11.0.0-rc.571
-        version: 11.0.0-rc.571
+        specifier: 11.0.0-rc.577
+        version: 11.0.0-rc.577
       '@types/ws':
         specifier: 8.5.12
         version: 8.5.12
@@ -695,13 +695,13 @@ packages:
   '@tootallnate/quickjs-emscripten@0.23.0':
     resolution: {integrity: sha512-C5Mc6rdnsaJDjO3UpGW/CQTHtCKaYlScZTly4JIu97Jxo/odCiH0ITnDXSJPTOrEKk/ycSZ0AOgTmkDtkOsvIA==}
 
-  '@trpc/client@11.0.0-rc.571':
-    resolution: {integrity: sha512-mUX47avAwgkirC91rtnde7B8QVbvd+121wgud3q22gYBI1hrGFn8isFwXdPquVneXNL5p1JjfhpZzDwzHmUJ4Q==}
+  '@trpc/client@11.0.0-rc.577':
+    resolution: {integrity: sha512-ZjW7wDKtixKeQGwXB/VBw4xFyORHb6nItzY8zAYa0RJ6I4m8DQ5GKf+eZTlw84foGv+yVrQJIUMqwMSjmd+mmg==}
     peerDependencies:
-      '@trpc/server': 11.0.0-rc.571+a70e169ce
+      '@trpc/server': 11.0.0-rc.577+6b5a608eb
 
-  '@trpc/server@11.0.0-rc.571':
-    resolution: {integrity: sha512-CISo9BoXSArTPt3MfxbOTPUcEdtKOl5Qgp8P+udiaA/nRmjndvVeZWQSmy1elRv0mQ/vvUI1VLsYm9Dn1/bysw==}
+  '@trpc/server@11.0.0-rc.577':
+    resolution: {integrity: sha512-Hk3m8ONry6mcXXEr7bzF2USCWq96GwMkYXiyOinXl6iMQT/FWpx+B0kdRCg3TOCQYIIBZbDwE6/tm1H6WyXHRA==}
 
   '@ts-morph/common@0.21.0':
     resolution: {integrity: sha512-ES110Mmne5Vi4ypUKrtVQfXFDtCsDXiUiGxF6ILVlE90dDD4fdpC1LSjydl/ml7xJWKSDZwUYD2zkOePMSrPBA==}
@@ -3612,11 +3612,11 @@ snapshots:
 
   '@tootallnate/quickjs-emscripten@0.23.0': {}
 
-  '@trpc/client@11.0.0-rc.571(@trpc/server@11.0.0-rc.571)':
+  '@trpc/client@11.0.0-rc.577(@trpc/server@11.0.0-rc.577)':
     dependencies:
-      '@trpc/server': 11.0.0-rc.571
+      '@trpc/server': 11.0.0-rc.577
 
-  '@trpc/server@11.0.0-rc.571': {}
+  '@trpc/server@11.0.0-rc.577': {}
 
   '@ts-morph/common@0.21.0':
     dependencies:

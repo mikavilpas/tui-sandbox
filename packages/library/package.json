@@ -9,7 +9,6 @@
   },
   "dependencies": {
     "@catppuccin/palette": "1.4.0",
-    "@runtyping/zod": "2.1.1",
     "@trpc/client": "11.0.0-rc.586",
     "@trpc/server": "11.0.0-rc.586",
     "@types/ws": "8.5.12",
@@ -25,12 +24,10 @@
     "zod": "3.23.8"
   },
   "devDependencies": {
+    "@runtyping/zod": "2.1.1",
     "@types/node": "22.7.6",
-    "concurrently": "9.0.1",
     "nodemon": "3.1.7",
-    "prettier-plugin-organize-imports": "4.1.0",
     "tsx": "4.19.1",
-    "typescript": "5.6.3",
     "vitest": "2.1.3"
   }
 }

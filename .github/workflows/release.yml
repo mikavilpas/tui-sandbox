@@ -8,7 +8,7 @@ permissions:
   contents: write
   pull-requests: write
 
-name: release-please
+name: release
 
 jobs:
   release-please:
@@ -21,7 +21,7 @@ jobs:
           config-file: release-please-config.json
           manifest-file: .release-please-manifest.json
 
-  build:
+  publish-to-npm:
     runs-on: ubuntu-latest
     steps:
       # https://dev.to/receter/automatically-publish-your-node-package-to-npm-with-pnpm-and-github-actions-22eg
@@ -39,6 +39,13 @@ jobs:
       - run: pnpm build
       - name: Publish 🚀
         shell: bash
-        run: pnpm publish packages/library --access public --no-git-checks
+        run: |
+          npm_version=$(pnpm show @tui-sandbox/library version)
+          local_version=$(node -p "require('./packages/library/package.json').version")
+          if [ "$npm_version" = "$local_version" ]; then
+            echo "Version $npm_version already published. Skipping publish."
+            exit 0
+          fi
+          pnpm publish packages/library --access public --no-git-checks
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_RELEASE_TOKEN }}

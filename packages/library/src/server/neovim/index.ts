@@ -12,7 +12,7 @@ const neovims = new Map<TabId["tabId"], NeovimApplication>()
 async function* eventEmitterToAsyncGenerator(
   emitter: EventEmitter,
   eventName: string
-): AsyncGenerator<unknown, void, unknown> {
+): AsyncGenerator<string, void, unknown> {
   // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
   while (true) {
     yield await new Promise(resolve => {
@@ -25,7 +25,7 @@ export async function onStdout(
   options: { client: TabId },
   signal: AbortSignal | undefined,
   testEnvironmentPath: string
-): Promise<AsyncGenerator<unknown, void, unknown>> {
+): Promise<AsyncGenerator<string, void, unknown>> {
   const tabId = options.client.tabId
   const neovim = neovims.get(tabId) ?? new NeovimApplication(testEnvironmentPath)
   if (neovims.get(tabId) === undefined) {

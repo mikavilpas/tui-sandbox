@@ -27,7 +27,6 @@
     "@runtyping/zod": "2.1.1",
     "@types/node": "22.7.6",
     "nodemon": "3.1.7",
-    "tsx": "4.19.1",
     "vitest": "2.1.3"
   }
 }

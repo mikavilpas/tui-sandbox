@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.0.2](https://github.com/mikavilpas/tui-sandbox/compare/library-v2.0.1...library-v2.0.2) (2024-10-20)
+
+
+### Bug Fixes
+
+* zoomed in screen sizes could lose text ([#78](https://github.com/mikavilpas/tui-sandbox/issues/78)) ([4f3f659](https://github.com/mikavilpas/tui-sandbox/commit/4f3f659c404e9a93c8108f4359d049ddd573afd4))
+
 ## [2.0.1](https://github.com/mikavilpas/tui-sandbox/compare/library-v2.0.0...library-v2.0.1) (2024-10-02)
 
 

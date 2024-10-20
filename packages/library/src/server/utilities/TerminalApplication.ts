@@ -5,10 +5,6 @@ import type { ITerminalDimensions } from "@xterm/addon-fit"
 import type { IPty } from "node-pty"
 import pty from "node-pty"
 
-// NOTE the size for the terminal was chosen so that it looks good in my
-// cypress test preview
-const defaultDimensions: ITerminalDimensions = { cols: 125, rows: 43 }
-
 // NOTE separating stdout and stderr is not supported by node-pty
 // https://github.com/microsoft/node-pty/issues/71
 export class TerminalApplication {
@@ -46,17 +42,15 @@ export class TerminalApplication {
     args,
     cwd,
     env,
-    dimensions: givenDimensions,
+    dimensions,
   }: {
     onStdoutOrStderr: (data: string) => void
     command: string
     args: string[]
     cwd: string
     env?: NodeJS.ProcessEnv
-    dimensions?: ITerminalDimensions
+    dimensions: ITerminalDimensions
   }): TerminalApplication {
-    const dimensions = givenDimensions ?? defaultDimensions
-
     console.log(`Starting '${command} ${args.join(" ")}' in cwd '${cwd}'`)
     const ptyProcess = pty.spawn(command, args, {
       name: "xterm-color",

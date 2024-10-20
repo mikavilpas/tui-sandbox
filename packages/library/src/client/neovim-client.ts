@@ -60,12 +60,14 @@ export class NeovimClient {
     await this.ready
 
     const neovim = await this.trpc.neovim.start.mutate({
-      startNeovimArguments: args,
-      tabId: this.tabId,
-      terminalDimensions: {
-        cols: this.terminal.cols,
-        rows: this.terminal.rows,
+      startNeovimArguments: {
+        ...args,
+        terminalDimensions: {
+          cols: this.terminal.cols,
+          rows: this.terminal.rows,
+        },
       },
+      tabId: this.tabId,
     })
 
     return neovim

@@ -21,12 +21,6 @@ function createAppRouter(config: TestServerConfig) {
         .input(
           z.object({
             tabId: tabIdSchema,
-            terminalDimensions: z
-              .object({
-                cols: z.number(),
-                rows: z.number(),
-              })
-              .optional(),
             startNeovimArguments: z.object({
               filename: z.union([
                 z.string(),
@@ -35,6 +29,10 @@ function createAppRouter(config: TestServerConfig) {
                 }),
               ]),
               startupScriptModifications: z.array(z.string()).optional(),
+              terminalDimensions: z.object({
+                cols: z.number(),
+                rows: z.number(),
+              }),
             }),
           })
         )

@@ -54,7 +54,7 @@ Run "nvim -V1 -v" for more info
 export type StdoutMessage = "stdout"
 
 export type StartNeovimGenericArguments = {
-  terminalDimensions?: { cols: number; rows: number }
+  terminalDimensions: { cols: number; rows: number }
   filename: string | { openInVerticalSplits: string[] }
   startupScriptModifications?: string[]
 }

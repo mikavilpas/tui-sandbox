@@ -113,7 +113,8 @@ export class NeovimApplication extends DisposableSingleApplication {
       env: process.env,
       dimensions: startArgs.terminalDimensions,
 
-      onStdoutOrStderr(data: string) {
+      onStdoutOrStderr(data) {
+        data satisfies string
         stdout.emit("stdout" satisfies StdoutMessage, data)
       },
     })

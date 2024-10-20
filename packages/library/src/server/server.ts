@@ -40,7 +40,7 @@ function createAppRouter(config: TestServerConfig) {
           return neovim.start(options.input.startNeovimArguments, options.input.tabId, config)
         }),
       onStdout: trpc.procedure.input(z.object({ client: tabIdSchema })).subscription(options => {
-        return neovim.onStdout(options.input, config.testEnvironmentPath)
+        return neovim.onStdout(options.input, options.signal, config.testEnvironmentPath)
       }),
       sendStdin: trpc.procedure.input(z.object({ tabId: tabIdSchema, data: z.string() })).mutation(options => {
         return neovim.sendStdin(options.input)

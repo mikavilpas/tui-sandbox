@@ -1,37 +1,47 @@
-import type { Observable } from "@trpc/server/observable"
-import { observable } from "@trpc/server/observable"
 import assert from "assert"
+import type EventEmitter from "events"
 import type { TestDirectory } from "../types"
 import type { TestServerConfig } from "../updateTestdirectorySchemaFile"
 import type { TabId } from "../utilities/tabId"
 import { createTempDir } from "./environment/createTempDir"
-import type { StartNeovimGenericArguments, StdoutMessage } from "./NeovimApplication"
+import type { StartNeovimGenericArguments } from "./NeovimApplication"
 import { NeovimApplication } from "./NeovimApplication"
 
 const neovims = new Map<TabId["tabId"], NeovimApplication>()
 
-export function onStdout(options: { client: TabId }, testEnvironmentPath: string): Observable<string, unknown> {
-  return observable<string>(emit => {
-    const tabId = options.client.tabId
-    const neovim = neovims.get(tabId) ?? new NeovimApplication(testEnvironmentPath)
-    if (neovims.get(tabId) === undefined) {
-      neovims.set(tabId, neovim)
-    }
+async function* eventEmitterToAsyncGenerator(
+  emitter: EventEmitter,
+  eventName: string
+): AsyncGenerator<string, void, unknown> {
+  // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
+  while (true) {
+    yield await new Promise(resolve => {
+      emitter.once(eventName, resolve)
+    })
+  }
+}
 
-    const send = (data: unknown) => {
-      assert(typeof data === "string")
-      emit.next(data)
-    }
+export async function onStdout(
+  options: { client: TabId },
+  signal: AbortSignal | undefined,
+  testEnvironmentPath: string
+): Promise<AsyncGenerator<string, void, unknown>> {
+  const tabId = options.client.tabId
+  const neovim = neovims.get(tabId) ?? new NeovimApplication(testEnvironmentPath)
+  if (neovims.get(tabId) === undefined) {
+    neovims.set(tabId, neovim)
+  }
 
-    neovim.events.on("stdout" satisfies StdoutMessage, send)
-
-    return () => {
-      neovim.events.off("stdout" satisfies StdoutMessage, send)
+  const stdout = eventEmitterToAsyncGenerator(neovim.events, "stdout")
+  if (signal) {
+    signal.addEventListener("abort", () => {
       void neovim[Symbol.asyncDispose]().finally(() => {
         neovims.delete(tabId)
       })
-    }
-  })
+    })
+  }
+
+  return stdout
 }
 
 export async function start(

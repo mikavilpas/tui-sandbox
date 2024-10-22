@@ -63,6 +63,14 @@ export default [
           message: "Don't declare enums",
         },
       ],
+      "@typescript-eslint/no-restricted-types": [
+        "error",
+        {
+          types: {
+            Omit: "Prefer using Except from type-fest instead. That one checks that the unwanted properties actually exist on the source object. See https://github.com/sindresorhus/type-fest",
+          },
+        },
+      ],
 
       "@typescript-eslint/restrict-template-expressions": [
         "error",

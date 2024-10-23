@@ -11,7 +11,7 @@
     "esModuleInterop": true,
     "outDir": "dist",
     "lib": ["ES2023", "ESNext.Disposable"],
-    "types": ["node"],
+    "types": ["node", "vitest/globals"],
     "composite": true,
 
     /* Linting */
@@ -21,5 +21,5 @@
     "noFallthroughCasesInSwitch": true
   },
 
-  "include": ["./src/"]
+  "include": ["./src/", "./vitest.config.ts"]
 }

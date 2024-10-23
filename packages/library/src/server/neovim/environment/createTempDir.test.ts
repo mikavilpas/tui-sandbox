@@ -4,6 +4,10 @@ import { expect, it } from "vitest"
 import type { TestDirsPath } from "./createTempDir"
 import { createTempDir } from "./createTempDir"
 
+vi.spyOn(console, "log").mockImplementation(() => {
+  //
+})
+
 type TestTempDirPrefix = "test-temp-dir-"
 
 class TempDirectory implements Disposable {

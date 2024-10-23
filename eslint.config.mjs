@@ -26,6 +26,7 @@ export default [
       "vitest.workspace.js",
       "packages/integration-tests/dist/",
       "packages/library/dist/",
+      "packages/library/vitest.config.ts",
     ],
   },
   ...compat.extends(

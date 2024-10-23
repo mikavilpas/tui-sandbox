@@ -3,10 +3,6 @@ import type { TerminalApplication } from "./TerminalApplication"
 /** A testable application that can be started, killed, and given input. For a
  * single instance of this interface, only a single instance can be running at
  * a time (1 to 1 mapping).
- *
- * @typeParam T The type of context the tests should have, e.g. information
- * about a custom directory that the application is running in.
- *
  */
 export abstract class DisposableSingleApplication implements AsyncDisposable {
   protected application: TerminalApplication | undefined

@@ -5,9 +5,7 @@ import { updateTestdirectorySchemaFile } from "./updateTestdirectorySchemaFile"
 
 vi.mock("fs")
 vi.mock("./dirtree")
-vi.spyOn(console, "log").mockImplementation(() => {
-  //
-})
+vi.spyOn(console, "log").mockImplementation(vi.fn())
 
 const mock = {
   readFileSync: vi.mocked(readFileSync),

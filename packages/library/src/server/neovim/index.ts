@@ -55,10 +55,6 @@ export async function start(
   const testDirectory = await createTempDir(config)
   await neovim.startNextAndKillCurrent(testDirectory, options)
 
-  const processId = neovim.processId()
-  assert(processId !== undefined, "Neovim was started without a process ID. This is a bug - please open an issue.")
-  console.log(`🚀 Started Neovim instance ${processId}`)
-
   return testDirectory
 }
 
@@ -68,6 +64,10 @@ export async function sendStdin(options: { tabId: TabId; data: string }): Promis
     neovim !== undefined,
     `Neovim instance for clientId not found - cannot send stdin. Maybe it's not started yet?`
   )
+  assert(
+    neovim.application,
+    `Neovim application not found for client id ${options.tabId.tabId}. Maybe it's not started yet?`
+  )
 
-  await neovim.write(options.data)
+  await neovim.application.write(options.data)
 }

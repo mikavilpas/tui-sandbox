@@ -1,3 +1,4 @@
+import assert from "assert"
 import { exec } from "child_process"
 import EventEmitter from "events"
 import { existsSync } from "fs"
@@ -59,12 +60,14 @@ export type StartNeovimGenericArguments = {
   startupScriptModifications?: string[]
 }
 
-export class NeovimApplication extends DisposableSingleApplication {
+export class NeovimApplication {
   private testDirectory: TestDirectory | undefined
   public readonly events: EventEmitter
 
-  public constructor(private readonly testEnvironmentPath: string) {
-    super()
+  public constructor(
+    private readonly testEnvironmentPath: string,
+    public readonly application: DisposableSingleApplication = new DisposableSingleApplication()
+  ) {
     this.events = new EventEmitter()
   }
 
@@ -105,23 +108,29 @@ export class NeovimApplication extends DisposableSingleApplication {
     }
     const stdout = this.events
 
-    this.application = TerminalApplication.start({
-      command: "nvim",
-      args: neovimArguments,
+    await this.application.startNextAndKillCurrent(async () => {
+      return TerminalApplication.start({
+        command: "nvim",
+        args: neovimArguments,
 
-      cwd: this.testEnvironmentPath,
-      env: process.env,
-      dimensions: startArgs.terminalDimensions,
+        cwd: this.testEnvironmentPath,
+        env: process.env,
+        dimensions: startArgs.terminalDimensions,
 
-      onStdoutOrStderr(data) {
-        data satisfies string
-        stdout.emit("stdout" satisfies StdoutMessage, data)
-      },
+        onStdoutOrStderr(data) {
+          data satisfies string
+          stdout.emit("stdout" satisfies StdoutMessage, data)
+        },
+      })
     })
+
+    const processId = this.application.processId()
+    assert(processId !== undefined, "Neovim was started without a process ID. This is a bug - please open an issue.")
+    console.log(`🚀 Started Neovim instance ${processId}`)
   }
 
-  override async [Symbol.asyncDispose](): Promise<void> {
-    await super.killCurrent()
+  async [Symbol.asyncDispose](): Promise<void> {
+    await this.application[Symbol.asyncDispose]()
     if (this.testDirectory) {
       exec(`rm -rf ${this.testDirectory.rootPathAbsolute}`)
     }

@@ -1,25 +1,13 @@
 import assert from "assert"
-import type EventEmitter from "events"
 import type { TestDirectory } from "../types"
 import type { TestServerConfig } from "../updateTestdirectorySchemaFile"
+import { convertEventEmitterToAsyncGenerator } from "../utilities/generator"
 import type { TabId } from "../utilities/tabId"
 import { createTempDir } from "./environment/createTempDir"
 import type { StartNeovimGenericArguments } from "./NeovimApplication"
 import { NeovimApplication } from "./NeovimApplication"
 
 const neovims = new Map<TabId["tabId"], NeovimApplication>()
-
-async function* eventEmitterToAsyncGenerator(
-  emitter: EventEmitter,
-  eventName: string
-): AsyncGenerator<string, void, unknown> {
-  // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
-  while (true) {
-    yield await new Promise(resolve => {
-      emitter.once(eventName, resolve)
-    })
-  }
-}
 
 export async function onStdout(
   options: { client: TabId },
@@ -32,7 +20,7 @@ export async function onStdout(
     neovims.set(tabId, neovim)
   }
 
-  const stdout = eventEmitterToAsyncGenerator(neovim.events, "stdout")
+  const stdout = convertEventEmitterToAsyncGenerator(neovim.events, "stdout")
   if (signal) {
     signal.addEventListener("abort", () => {
       void neovim[Symbol.asyncDispose]().finally(() => {

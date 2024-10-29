@@ -9,8 +9,8 @@
   },
   "dependencies": {
     "@catppuccin/palette": "1.5.0",
-    "@trpc/client": "11.0.0-rc.599",
-    "@trpc/server": "11.0.0-rc.599",
+    "@trpc/client": "11.0.0-rc.601",
+    "@trpc/server": "11.0.0-rc.601",
     "@types/ws": "8.5.12",
     "@xterm/addon-attach": "0.11.0",
     "@xterm/addon-fit": "0.10.0",
@@ -26,7 +26,7 @@
   },
   "devDependencies": {
     "@runtyping/zod": "2.1.1",
-    "@types/node": "22.8.2",
+    "@types/node": "22.8.4",
     "nodemon": "3.1.7",
     "vitest": "2.1.4"
   }

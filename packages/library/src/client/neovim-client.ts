@@ -15,8 +15,10 @@ export class NeovimClient {
   private readonly trpc: ReturnType<typeof createTRPCClient<AppRouter>>
 
   constructor(app: HTMLElement) {
+    // eslint-disable-next-line @typescript-eslint/no-deprecated
     const wsClient = createWSClient({ url: `ws://localhost:3000`, WebSocket })
     const trpc = createTRPCClient<AppRouter>({
+      // eslint-disable-next-line @typescript-eslint/no-deprecated
       links: [wsLink({ client: wsClient })],
     })
     this.trpc = trpc

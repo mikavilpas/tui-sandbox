@@ -15,10 +15,9 @@ describe("neovim features", () => {
 
   it("can start with a different file name", () => {
     cy.visit("http://localhost:5173")
-    cy.startNeovim({ filename: "subdirectory/subdirectory-file.txt" }).then(dir => {
+    cy.startNeovim({ filename: "subdirectory/subdirectory-file.txt" }).then(() => {
       cy.typeIntoTerminal("{control+l}")
       cy.contains("Hello from the subdirectory!")
-      //
     })
   })
 })

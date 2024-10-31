@@ -9,8 +9,8 @@
   },
   "dependencies": {
     "@catppuccin/palette": "1.5.0",
-    "@trpc/client": "11.0.0-rc.601",
-    "@trpc/server": "11.0.0-rc.601",
+    "@trpc/client": "11.0.0-rc.604",
+    "@trpc/server": "11.0.0-rc.604",
     "@types/ws": "8.5.12",
     "@xterm/addon-attach": "0.11.0",
     "@xterm/addon-fit": "0.10.0",

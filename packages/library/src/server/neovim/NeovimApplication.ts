@@ -1,11 +1,15 @@
 import assert from "assert"
 import { exec } from "child_process"
 import EventEmitter from "events"
-import { existsSync } from "fs"
+import { access } from "fs/promises"
+import type { NeovimClient as NeovimApiClient } from "neovim"
+import { tmpdir } from "os"
 import path from "path"
 import type { TestDirectory } from "../types"
 import { DisposableSingleApplication } from "../utilities/DisposableSingleApplication"
+import type { Lazy } from "../utilities/Lazy"
 import { TerminalApplication } from "../utilities/TerminalApplication"
+import { connectNeovimApi } from "./NeovimJavascriptApiClient"
 
 /*
 
@@ -60,8 +64,14 @@ export type StartNeovimGenericArguments = {
   startupScriptModifications?: string[]
 }
 
+type ResettableState = {
+  testDirectory: TestDirectory
+  socketPath: string
+  client: Lazy<Promise<NeovimApiClient>>
+}
+
 export class NeovimApplication {
-  private testDirectory: TestDirectory | undefined
+  private state: ResettableState | undefined
   public readonly events: EventEmitter
 
   public constructor(
@@ -79,15 +89,20 @@ export class NeovimApplication {
     startArgs: StartNeovimGenericArguments
   ): Promise<void> {
     await this[Symbol.asyncDispose]()
-    this.testDirectory = testDirectory
+    assert(
+      this.state === undefined,
+      "NeovimApplication state should be undefined after disposing so that no previous state is reused."
+    )
 
     const neovimArguments = ["-u", "test-setup.lua"]
 
     if (startArgs.startupScriptModifications) {
       for (const modification of startArgs.startupScriptModifications) {
         const file = path.join(testDirectory.rootPathAbsolute, "config-modifications", modification)
-        if (!existsSync(file)) {
-          throw new Error(`startupScriptModifications file does not exist: ${file}`)
+        try {
+          await access(file)
+        } catch (e) {
+          throw new Error(`startupScriptModifications file does not exist: ${file}. Error: ${String(e)}`)
         }
 
         neovimArguments.push("-c", `lua dofile('${file}')`)
@@ -106,6 +121,11 @@ export class NeovimApplication {
         neovimArguments.push(filePath)
       }
     }
+
+    const id = Math.random().toString().slice(2, 8)
+    const socketPath = `${tmpdir()}/tui-sandbox-nvim-socket-${id}`
+    neovimArguments.push("--listen", socketPath)
+
     const stdout = this.events
 
     await this.application.startNextAndKillCurrent(async () => {
@@ -126,13 +146,30 @@ export class NeovimApplication {
 
     const processId = this.application.processId()
     assert(processId !== undefined, "Neovim was started without a process ID. This is a bug - please open an issue.")
+
+    this.state = {
+      testDirectory,
+      socketPath,
+      client: connectNeovimApi(socketPath),
+    }
+
     console.log(`🚀 Started Neovim instance ${processId}`)
   }
 
   async [Symbol.asyncDispose](): Promise<void> {
     await this.application[Symbol.asyncDispose]()
-    if (this.testDirectory) {
-      exec(`rm -rf ${this.testDirectory.rootPathAbsolute}`)
+
+    if (!this.state) return
+
+    exec(`rm -rf ${this.state.testDirectory.rootPathAbsolute}`)
+
+    try {
+      await access(this.state.socketPath)
+      throw new Error(`Socket file ${this.state.socketPath} should have been removed by neovim when it exited.`)
+    } catch (e) {
+      // all good
     }
+
+    this.state = undefined
   }
 }

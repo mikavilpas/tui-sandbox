@@ -9,13 +9,13 @@
   },
   "dependencies": {
     "@catppuccin/palette": "1.5.0",
-    "@trpc/client": "11.0.0-rc.601",
-    "@trpc/server": "11.0.0-rc.601",
+    "@trpc/client": "11.0.0-rc.604",
+    "@trpc/server": "11.0.0-rc.604",
     "@types/ws": "8.5.12",
     "@xterm/addon-attach": "0.11.0",
     "@xterm/addon-fit": "0.10.0",
     "@xterm/xterm": "5.5.0",
-    "core-js": "3.38.1",
+    "core-js": "3.39.0",
     "dree": "5.1.5",
     "node-pty": "1.0.0",
     "prettier": "3.3.3",
@@ -26,7 +26,7 @@
   },
   "devDependencies": {
     "@runtyping/zod": "2.1.1",
-    "@types/node": "22.8.4",
+    "@types/node": "22.8.6",
     "nodemon": "3.1.7",
     "vitest": "2.1.4"
   }

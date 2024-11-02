@@ -1,4 +1,4 @@
-import { createTRPCClient, createWSClient, wsLink } from "@trpc/client"
+import { createTRPCClient, httpBatchLink, splitLink, unstable_httpSubscriptionLink } from "@trpc/client"
 import type { Terminal } from "@xterm/xterm"
 import "@xterm/xterm/css/xterm.css"
 import type { Except } from "type-fest"
@@ -15,11 +15,18 @@ export class NeovimClient {
   private readonly trpc: ReturnType<typeof createTRPCClient<AppRouter>>
 
   constructor(app: HTMLElement) {
-    // eslint-disable-next-line @typescript-eslint/no-deprecated
-    const wsClient = createWSClient({ url: `ws://localhost:3000`, WebSocket })
     const trpc = createTRPCClient<AppRouter>({
-      // eslint-disable-next-line @typescript-eslint/no-deprecated
-      links: [wsLink({ client: wsClient })],
+      links: [
+        splitLink({
+          condition: operation => operation.type === "subscription",
+          true: unstable_httpSubscriptionLink({
+            url: "http://localhost:3000",
+          }),
+          false: httpBatchLink({
+            url: "http://localhost:3000",
+          }),
+        }),
+      ],
     })
     this.trpc = trpc
 

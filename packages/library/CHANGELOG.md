@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.1.0](https://github.com/mikavilpas/tui-sandbox/compare/library-v2.0.2...library-v2.1.0) (2024-11-02)
+
+
+### Features
+
+* client connects to server using server-sent events ([e07765e](https://github.com/mikavilpas/tui-sandbox/commit/e07765e20dba6394538cf29b1b16463b62ba4b7a))
+
 ## [2.0.2](https://github.com/mikavilpas/tui-sandbox/compare/library-v2.0.1...library-v2.0.2) (2024-10-20)
 
 

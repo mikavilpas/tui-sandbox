@@ -4,6 +4,7 @@ import { trpc } from "./connection/trpc"
 import * as neovim from "./neovim"
 import { TestServer } from "./TestServer"
 import type { TestServerConfig } from "./updateTestdirectorySchemaFile"
+import { applicationAvailable } from "./utilities/applicationAvailable"
 import { tabIdSchema } from "./utilities/tabId"
 
 /** Stack for managing resources that need to be disposed of when the server
@@ -14,7 +15,13 @@ autocleanup.defer(() => {
 })
 export { autocleanup }
 
-function createAppRouter(config: TestServerConfig) {
+/** @private */
+// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+export async function createAppRouter(config: TestServerConfig) {
+  if (!(await applicationAvailable("nvim"))) {
+    throw new Error("Neovim is not installed. Please install Neovim (nvim).")
+  }
+
   const appRouter = trpc.router({
     neovim: trpc.router({
       start: trpc.procedure
@@ -51,12 +58,12 @@ function createAppRouter(config: TestServerConfig) {
   return appRouter
 }
 
-export type AppRouter = ReturnType<typeof createAppRouter>
+export type AppRouter = Awaited<ReturnType<typeof createAppRouter>>
 export type RouterInput = inferRouterInputs<AppRouter>
 
 export async function startTestServer(config: TestServerConfig): Promise<TestServer> {
   const testServer = new TestServer(3000)
-  const appRouter = createAppRouter(config)
+  const appRouter = await createAppRouter(config)
   await testServer.startAndRun(appRouter, config)
 
   return testServer

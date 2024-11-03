@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.3.0](https://github.com/mikavilpas/tui-sandbox/compare/library-v2.2.0...library-v2.3.0) (2024-11-03)
+
+
+### Features
+
+* **wip:** allow access to neovim via a type safe socket connection ([#109](https://github.com/mikavilpas/tui-sandbox/issues/109)) ([1c4d919](https://github.com/mikavilpas/tui-sandbox/commit/1c4d9194ec8961bde0e8f84d500c27363c66a61b))
+
 ## [2.2.0](https://github.com/mikavilpas/tui-sandbox/compare/library-v2.1.0...library-v2.2.0) (2024-11-03)
 
 

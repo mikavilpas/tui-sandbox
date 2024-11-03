@@ -20,7 +20,7 @@ describe("Neovim server", () => {
   })
 
   it("creates a router when neovim is installed", async () => {
-    mocked.applicationAvailable.mockResolvedValue(true)
+    mocked.applicationAvailable.mockResolvedValue("nvim")
 
     await expect(
       createAppRouter({

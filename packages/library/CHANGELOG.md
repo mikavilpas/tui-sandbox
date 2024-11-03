@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.2.0](https://github.com/mikavilpas/tui-sandbox/compare/library-v2.1.0...library-v2.2.0) (2024-11-03)
+
+
+### Features
+
+* check that neovim is available before starting the server ([#107](https://github.com/mikavilpas/tui-sandbox/issues/107)) ([bcc817f](https://github.com/mikavilpas/tui-sandbox/commit/bcc817fe25a9811cdd7b1832f6811fa4f92974bd))
+
 ## [2.1.0](https://github.com/mikavilpas/tui-sandbox/compare/library-v2.0.2...library-v2.1.0) (2024-11-02)
 
 

@@ -8,7 +8,7 @@
     "test": "vitest"
   },
   "dependencies": {
-    "@catppuccin/palette": "1.5.0",
+    "@catppuccin/palette": "1.7.1",
     "@trpc/client": "11.0.0-rc.608",
     "@trpc/server": "11.0.0-rc.608",
     "@xterm/addon-attach": "0.11.0",
@@ -29,7 +29,7 @@
     "@runtyping/zod": "2.1.1",
     "@types/command-exists": "1.2.3",
     "@types/cors": "2.8.17",
-    "@types/node": "22.8.6",
+    "@types/node": "22.8.7",
     "nodemon": "3.1.7",
     "vitest": "2.1.4"
   }

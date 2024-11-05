@@ -31,7 +31,7 @@ jobs:
       - run: pnpm test
 
       - name: Cypress run
-        uses: cypress-io/github-action@v6.7.6
+        uses: cypress-io/github-action@v6.7.7
         with:
           command: pnpm cy:run
 

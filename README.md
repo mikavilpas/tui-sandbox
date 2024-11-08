@@ -13,9 +13,17 @@ terminal applications. Currently only [Neovim](https://github.com/neovim/neovim)
 > Neovim plugin shows the terminal file manager [yazi](https://github.com/sxyazi/yazi/) in a floating window inside
 > Neovim, and tests their full integration exactly as a user interacts with them.
 
-## Great use cases
+## The problems tui-sandbox solves
 
-As a developer, you can use tui-sandbox for the following.
+Modern terminal applications are complex. They often depend on external programs as well as the network and filesystem.
+The development ecosystem is also diverse, spanning many different toolchains.
+
+As a developer, it is difficult to
+
+1. Ensure that all contributors have the same development environment
+2. Write tests that are reliable, easy to maintain, and easily understood
+
+tui-sandbox can solve these issues:
 
 ### Develop terminal applications in a live environment
 

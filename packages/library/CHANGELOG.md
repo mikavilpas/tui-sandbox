@@ -1,5 +1,16 @@
 # Changelog
 
+## [3.0.0](https://github.com/mikavilpas/tui-sandbox/compare/library-v2.3.0...library-v3.0.0) (2024-11-08)
+
+
+### ⚠ BREAKING CHANGES
+
+* This change modifies the directory names in the MyTestDirectory file. To upgrade, run your tests once, and then commit the changes to that file. That's all.
+
+### Features
+
+* add `/` to the end of directory names to make it clear ([#114](https://github.com/mikavilpas/tui-sandbox/issues/114)) ([f40c912](https://github.com/mikavilpas/tui-sandbox/commit/f40c9129ad8ac5ec62bdf3276caead1606b2fedc))
+
 ## [2.3.0](https://github.com/mikavilpas/tui-sandbox/compare/library-v2.2.0...library-v2.3.0) (2024-11-03)
 
 

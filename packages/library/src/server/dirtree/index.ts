@@ -55,7 +55,7 @@ export function convertDree(root: Dree): TreeNode {
   }
 
   const node: DirectoryNode = {
-    name: root.name,
+    name: `${root.name}/`,
     type: root.type,
     contents: {},
   }

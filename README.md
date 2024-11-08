@@ -63,3 +63,9 @@ _Note that this is true for any unit/integration test comparison in general, so 
 
 Even though it's being used in a nontrivial project, this framework is not very mature yet. If you are interested in
 using it, please reach out to me via github issues. I would love to help.
+
+Example projects that use tui-sandbox:
+
+- [yazi.nvim](https://github.com/mikavilpas/yazi.nvim): Neovim plugin for file manager integration
+- [blink-ripgrep.nvim](https://github.com/mikavilpas/blink-ripgrep.nvim): Neovim plugin for
+  [ripgrep](https://github.com/BurntSushi/ripgrep) search results

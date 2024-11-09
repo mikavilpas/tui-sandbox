@@ -22,11 +22,10 @@ export default [
       "eslint.config.mjs",
       "packages/integration-tests/cypress.config.ts",
       "packages/integration-tests/test-environment/**/*",
-      "packages/integration-tests/vite.config.js",
       "vitest.workspace.js",
       "packages/integration-tests/dist/",
       "packages/library/dist/",
-      "packages/library/vitest.config.ts",
+      "packages/library/vite.config.js",
     ],
   },
   ...compat.extends(
@@ -45,11 +44,7 @@ export default [
       ecmaVersion: "latest",
       sourceType: "module",
       parserOptions: {
-        project: [
-          //
-          "packages/integration-tests/tsconfig.json",
-          "packages/library/tsconfig.json",
-        ],
+        project: true,
       },
     },
 

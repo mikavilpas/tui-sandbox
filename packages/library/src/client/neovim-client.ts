@@ -20,10 +20,10 @@ export class NeovimClient {
         splitLink({
           condition: operation => operation.type === "subscription",
           true: unstable_httpSubscriptionLink({
-            url: "http://localhost:3000",
+            url: "/trpc",
           }),
           false: httpBatchLink({
-            url: "http://localhost:3000",
+            url: "/trpc",
           }),
         }),
       ],
@@ -69,7 +69,7 @@ export class NeovimClient {
   public async startNeovim(args: Except<StartNeovimGenericArguments, "terminalDimensions">): Promise<TestDirectory> {
     await this.ready
 
-    const neovim = await this.trpc.neovim.start.mutate({
+    const testDirectory = await this.trpc.neovim.start.mutate({
       startNeovimArguments: {
         ...args,
         terminalDimensions: {
@@ -80,6 +80,6 @@ export class NeovimClient {
       tabId: this.tabId,
     })
 
-    return neovim
+    return testDirectory
   }
 }

@@ -1,7 +1,6 @@
-import "core-js/proposals/async-explicit-resource-management"
-
 // This is the public server api. Semantic versioning will be applied to this.
 
-export { startTestServer } from "./server"
-export { updateTestdirectorySchemaFile } from "./updateTestdirectorySchemaFile"
-export type { TestServerConfig } from "./updateTestdirectorySchemaFile"
+export { startTestServer } from "./server.js"
+export { updateTestdirectorySchemaFile } from "./updateTestdirectorySchemaFile.js"
+export type { TestServerConfig } from "./updateTestdirectorySchemaFile.js"
+import "core-js/proposals/async-explicit-resource-management.js"

@@ -1,4 +1,4 @@
-import { applicationAvailable } from "./applicationAvailable"
+import { applicationAvailable } from "./applicationAvailable.js"
 
 describe("sanity checks for mocking", () => {
   // because it makes no sense to mock the actual implementation if we don't

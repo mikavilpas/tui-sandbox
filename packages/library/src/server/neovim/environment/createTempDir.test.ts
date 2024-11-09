@@ -1,8 +1,8 @@
 import fs, { rmdirSync } from "fs"
 import nodePath from "path"
 import { expect, it } from "vitest"
-import type { TestDirsPath } from "./createTempDir"
-import { createTempDir } from "./createTempDir"
+import type { TestDirsPath } from "./createTempDir.js"
+import { createTempDir } from "./createTempDir.js"
 
 vi.spyOn(console, "log").mockImplementation(vi.fn())
 

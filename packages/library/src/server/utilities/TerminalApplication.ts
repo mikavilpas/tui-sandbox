@@ -4,7 +4,7 @@ import { createLogger, format, transports } from "winston"
 import type { ITerminalDimensions } from "@xterm/addon-fit"
 import type { IPty } from "node-pty"
 import pty from "node-pty"
-import type { StartableApplication } from "./DisposableSingleApplication"
+import type { StartableApplication } from "./DisposableSingleApplication.js"
 
 // NOTE separating stdout and stderr is not supported by node-pty
 // https://github.com/microsoft/node-pty/issues/71

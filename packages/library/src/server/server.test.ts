@@ -1,5 +1,5 @@
-import { createAppRouter } from "./server"
-import { applicationAvailable } from "./utilities/applicationAvailable"
+import { createAppRouter } from "./server.js"
+import { applicationAvailable } from "./utilities/applicationAvailable.js"
 
 vi.mock("./utilities/applicationAvailable")
 

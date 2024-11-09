@@ -1,6 +1,5 @@
-import "core-js/proposals/async-explicit-resource-management"
 import { readFileSync, writeFileSync } from "fs"
-import { buildTestDirectorySchema } from "./dirtree"
+import { buildTestDirectorySchema } from "./dirtree/index.js"
 
 export type TestServerConfig = {
   testEnvironmentPath: string

@@ -9,8 +9,8 @@
   },
   "dependencies": {
     "@catppuccin/palette": "1.7.1",
-    "@trpc/client": "11.0.0-rc.621",
-    "@trpc/server": "11.0.0-rc.621",
+    "@trpc/client": "11.0.0-rc.630",
+    "@trpc/server": "11.0.0-rc.630",
     "@xterm/addon-attach": "0.11.0",
     "@xterm/addon-fit": "0.10.0",
     "@xterm/xterm": "5.5.0",
@@ -22,7 +22,7 @@
     "node-pty": "1.0.0",
     "prettier": "3.3.3",
     "type-fest": "4.26.1",
-    "winston": "3.16.0",
+    "winston": "3.17.0",
     "zod": "3.23.8"
   },
   "devDependencies": {

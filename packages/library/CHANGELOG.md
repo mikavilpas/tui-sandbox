@@ -1,5 +1,16 @@
 # Changelog
 
+## [4.0.0](https://github.com/mikavilpas/tui-sandbox/compare/library-v3.0.0...library-v4.0.0) (2024-11-12)
+
+
+### ⚠ BREAKING CHANGES
+
+* allow starting the server using `tui start` ([#118](https://github.com/mikavilpas/tui-sandbox/issues/118))
+
+### Features
+
+* allow starting the server using `tui start` ([#118](https://github.com/mikavilpas/tui-sandbox/issues/118)) ([7ac4e59](https://github.com/mikavilpas/tui-sandbox/commit/7ac4e59d5ad2fa5bf07a9fc132a92b96587ac227))
+
 ## [3.0.0](https://github.com/mikavilpas/tui-sandbox/compare/library-v2.3.0...library-v3.0.0) (2024-11-08)
 
 

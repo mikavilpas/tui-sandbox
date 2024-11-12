@@ -1,11 +1,11 @@
 import assert from "assert"
-import type { TestDirectory } from "../types"
-import type { TestServerConfig } from "../updateTestdirectorySchemaFile"
-import { convertEventEmitterToAsyncGenerator } from "../utilities/generator"
-import type { TabId } from "../utilities/tabId"
-import { createTempDir } from "./environment/createTempDir"
-import type { StartNeovimGenericArguments } from "./NeovimApplication"
-import { NeovimApplication } from "./NeovimApplication"
+import type { TestDirectory } from "../types.js"
+import type { TestServerConfig } from "../updateTestdirectorySchemaFile.js"
+import { convertEventEmitterToAsyncGenerator } from "../utilities/generator.js"
+import type { TabId } from "../utilities/tabId.js"
+import { createTempDir } from "./environment/createTempDir.js"
+import type { StartNeovimGenericArguments } from "./NeovimApplication.js"
+import { NeovimApplication } from "./NeovimApplication.js"
 
 const neovims = new Map<TabId["tabId"], NeovimApplication>()
 

@@ -1,7 +1,7 @@
 import { access } from "fs/promises"
 import { attach } from "neovim"
-import type { PollingInterval } from "./NeovimJavascriptApiClient"
-import { connectNeovimApi } from "./NeovimJavascriptApiClient"
+import type { PollingInterval } from "./NeovimJavascriptApiClient.js"
+import { connectNeovimApi } from "./NeovimJavascriptApiClient.js"
 
 vi.mock("neovim")
 vi.mock("fs/promises")

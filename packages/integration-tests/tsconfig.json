@@ -22,6 +22,12 @@
     "noFallthroughCasesInSwitch": true
   },
 
-  "include": ["./library", "./client", "./server", "./cypress", "./eslint.config.mjs", "./MyTestDirectory.ts"],
+  "include": [
+    //
+    "./cypress",
+    "./eslint.config.mjs",
+    "./MyTestDirectory.ts",
+    "../library/src/scripts/server.ts"
+  ],
   "references": [{ "path": "../library/tsconfig.json" }]
 }

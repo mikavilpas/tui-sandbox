@@ -1,14 +1,15 @@
 {
   "compilerOptions": {
     "skipLibCheck": true,
-    "module": "ESNext",
+    "module": "NodeNext",
     "noImplicitOverride": true,
     "noPropertyAccessFromIndexSignature": true,
     "noUncheckedIndexedAccess": true,
-    "moduleResolution": "Bundler",
-    "target": "ESNext",
+    "moduleResolution": "NodeNext",
+    "target": "ES2022",
     "isolatedModules": true,
     "esModuleInterop": true,
+    "allowJs": true,
     "outDir": "dist",
     "lib": ["ES2023", "ESNext.Disposable"],
     "types": ["node", "vitest/globals"],
@@ -21,5 +22,10 @@
     "noFallthroughCasesInSwitch": true
   },
 
-  "include": ["./src/", "./vitest.config.ts"]
+  "include": [
+    //
+    "./src/",
+    "src/scripts/tui.ts",
+    "./src/scripts/server.ts"
+  ]
 }

@@ -5,11 +5,11 @@ import { access } from "fs/promises"
 import type { NeovimClient as NeovimApiClient } from "neovim"
 import { tmpdir } from "os"
 import path from "path"
-import type { TestDirectory } from "../types"
-import { DisposableSingleApplication } from "../utilities/DisposableSingleApplication"
-import type { Lazy } from "../utilities/Lazy"
-import { TerminalApplication } from "../utilities/TerminalApplication"
-import { connectNeovimApi } from "./NeovimJavascriptApiClient"
+import type { TestDirectory } from "../types.js"
+import { DisposableSingleApplication } from "../utilities/DisposableSingleApplication.js"
+import type { Lazy } from "../utilities/Lazy.js"
+import { TerminalApplication } from "../utilities/TerminalApplication.js"
+import { connectNeovimApi } from "./NeovimJavascriptApiClient.js"
 
 /*
 

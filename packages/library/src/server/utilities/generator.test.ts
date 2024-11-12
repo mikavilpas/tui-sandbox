@@ -1,5 +1,5 @@
 import { EventEmitter } from "stream"
-import { convertEventEmitterToAsyncGenerator } from "./generator"
+import { convertEventEmitterToAsyncGenerator } from "./generator.js"
 
 describe("when a listener is attached", () => {
   it("forwards events from an EventEmitter to an async generator", async () => {

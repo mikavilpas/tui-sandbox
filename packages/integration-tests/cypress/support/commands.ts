@@ -1,13 +1,28 @@
 /* eslint-disable @typescript-eslint/no-namespace */
 /// <reference types="cypress" />
 
-import "../../client/__global.ts"
-import type { NeovimContext } from "../../client/__global.ts"
-import type { MyStartNeovimServerArguments } from "../../client/neovim-client.ts"
+import type { MyTestDirectory, MyTestDirectoryFile } from "../../MyTestDirectory"
+
+export type NeovimContext = {
+  contents: MyTestDirectory
+  rootPathAbsolute: string
+}
+
+declare global {
+  interface Window {
+    // keep in sync with ../../../library/src/browser/neovim-client.ts
+    startNeovim(startArguments?: MyStartNeovimServerArguments): Promise<NeovimContext>
+  }
+}
+
+type MyStartNeovimServerArguments = {
+  filename?: MyTestDirectoryFile | { openInVerticalSplits: MyTestDirectoryFile[] }
+  startupScriptModifications?: Array<keyof MyTestDirectory["config-modifications"]["contents"]>
+}
 
 Cypress.Commands.add("startNeovim", (startArguments?: MyStartNeovimServerArguments) => {
-  cy.window().then(win => {
-    return win.startNeovim(startArguments)
+  cy.window().then(async win => {
+    return await win.startNeovim(startArguments)
   })
 })
 

@@ -1,5 +1,5 @@
 import assert from "assert"
-import type { TerminalApplication } from "./TerminalApplication"
+import type { TerminalApplication } from "./TerminalApplication.js"
 
 export type StartableApplication = Pick<TerminalApplication, "write" | "processId" | "killAndWait">
 

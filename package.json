@@ -7,8 +7,8 @@
   "scripts": {
     "build": "pnpm --recursive build",
     "clean-install:all": "pnpm ci",
-    "cy:run": "pnpm --filter ./packages/integration-tests cy:run",
-    "dev": "pnpm --filter ./packages/integration-tests/ dev",
+    "cy:run": "pnpm --filter=library build && pnpm --filter integration-tests cy:run",
+    "dev": "pnpm --filter integration-tests dev",
     "eslint": "eslint --max-warnings=0 .",
     "preinstall": "npx only-allow pnpm",
     "markdownlint": "markdownlint-cli2 README.md",

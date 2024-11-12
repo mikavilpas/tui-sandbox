@@ -4,10 +4,10 @@ import { Type } from "dree"
 import { constants, readdirSync } from "fs"
 import { access, mkdir, mkdtemp } from "fs/promises"
 import path from "path"
-import { convertDree, getDirectoryTree } from "../../dirtree"
-import type { TestDirectory } from "../../types"
-import type { TestServerConfig } from "../../updateTestdirectorySchemaFile"
-import { updateTestdirectorySchemaFile } from "../../updateTestdirectorySchemaFile"
+import { convertDree, getDirectoryTree } from "../../dirtree/index.js"
+import type { TestDirectory } from "../../types.js"
+import type { TestServerConfig } from "../../updateTestdirectorySchemaFile.js"
+import { updateTestdirectorySchemaFile } from "../../updateTestdirectorySchemaFile.js"
 
 export async function createTempDir(config: TestServerConfig): Promise<TestDirectory> {
   try {

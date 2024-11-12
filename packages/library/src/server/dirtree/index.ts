@@ -3,7 +3,7 @@ import type { Dree } from "dree"
 import { scan, Type } from "dree"
 import { format, resolveConfig } from "prettier"
 import { fileURLToPath } from "url"
-import { jsonToZod } from "./json-to-zod"
+import { jsonToZod } from "./json-to-zod.js"
 
 type TreeResult = { dree: Dree; allFiles: Dree[] }
 

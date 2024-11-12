@@ -1,8 +1,8 @@
 import assert from "assert"
 import path from "path"
 import { describe, expect, it } from "vitest"
-import { buildSchemaForDirectoryTree, getDirectoryTree } from "."
-import { Lazy } from "../utilities/Lazy"
+import { Lazy } from "../utilities/Lazy.js"
+import { buildSchemaForDirectoryTree, getDirectoryTree } from "./index.js"
 
 describe("dirtree", () => {
   const output = new Lazy(() =>

@@ -5,7 +5,7 @@ import "@xterm/xterm/css/xterm.css"
 import z from "zod"
 import type { TabId } from "../server/utilities/tabId.ts"
 import "./style.css"
-import { validateMouseEvent } from "./validateMouseEvent"
+import { validateMouseEvent } from "./validateMouseEvent.js"
 
 export type StartTerminalOptions = {
   onMouseEvent: (data: string) => void

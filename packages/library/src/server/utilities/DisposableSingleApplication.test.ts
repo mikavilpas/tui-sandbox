@@ -1,5 +1,5 @@
-import type { StartableApplication } from "./DisposableSingleApplication"
-import { DisposableSingleApplication } from "./DisposableSingleApplication"
+import type { StartableApplication } from "./DisposableSingleApplication.js"
+import { DisposableSingleApplication } from "./DisposableSingleApplication.js"
 
 vi.spyOn(console, "log").mockImplementation(vi.fn())
 

@@ -1,11 +1,12 @@
 import type { inferRouterInputs } from "@trpc/server"
+import "core-js/proposals/async-explicit-resource-management.js"
 import { z } from "zod"
-import { trpc } from "./connection/trpc"
-import * as neovim from "./neovim"
-import { TestServer } from "./TestServer"
-import type { TestServerConfig } from "./updateTestdirectorySchemaFile"
-import { applicationAvailable } from "./utilities/applicationAvailable"
-import { tabIdSchema } from "./utilities/tabId"
+import { trpc } from "./connection/trpc.js"
+import * as neovim from "./neovim/index.js"
+import { TestServer } from "./TestServer.js"
+import type { TestServerConfig } from "./updateTestdirectorySchemaFile.js"
+import { applicationAvailable } from "./utilities/applicationAvailable.js"
+import { tabIdSchema } from "./utilities/tabId.js"
 
 /** Stack for managing resources that need to be disposed of when the server
  * shuts down */
@@ -62,7 +63,9 @@ export type AppRouter = Awaited<ReturnType<typeof createAppRouter>>
 export type RouterInput = inferRouterInputs<AppRouter>
 
 export async function startTestServer(config: TestServerConfig): Promise<TestServer> {
-  const testServer = new TestServer(3000)
+  const testServer = new TestServer({
+    port: 3000,
+  })
   const appRouter = await createAppRouter(config)
   await testServer.startAndRun(appRouter, config)
 

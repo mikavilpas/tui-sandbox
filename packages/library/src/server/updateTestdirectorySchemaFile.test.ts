@@ -1,7 +1,7 @@
 import { readFileSync, writeFileSync } from "fs"
-import { buildTestDirectorySchema } from "./dirtree"
-import type { UpdateTestdirectorySchemaFileResult } from "./updateTestdirectorySchemaFile"
-import { updateTestdirectorySchemaFile } from "./updateTestdirectorySchemaFile"
+import { buildTestDirectorySchema } from "./dirtree/index.js"
+import type { UpdateTestdirectorySchemaFileResult } from "./updateTestdirectorySchemaFile.js"
+import { updateTestdirectorySchemaFile } from "./updateTestdirectorySchemaFile.js"
 
 vi.mock("fs")
 vi.mock("./dirtree")

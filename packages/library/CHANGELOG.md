@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.1.0](https://github.com/mikavilpas/tui-sandbox/compare/library-v4.0.0...library-v4.1.0) (2024-11-12)
+
+
+### Features
+
+* add rgbify function to convert catppuccin colors to CSS colors ([#121](https://github.com/mikavilpas/tui-sandbox/issues/121)) ([64bc422](https://github.com/mikavilpas/tui-sandbox/commit/64bc42227e5784ecd326929e6f301124f1c0a712))
+
 ## [4.0.0](https://github.com/mikavilpas/tui-sandbox/compare/library-v3.0.0...library-v4.0.0) (2024-11-12)
 
 

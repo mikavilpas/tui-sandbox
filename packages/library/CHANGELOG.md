@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.2.0](https://github.com/mikavilpas/tui-sandbox/compare/library-v4.1.0...library-v4.2.0) (2024-11-14)
+
+
+### Features
+
+* can pass environment variables to neovim from cypress tests ([#124](https://github.com/mikavilpas/tui-sandbox/issues/124)) ([1399c2e](https://github.com/mikavilpas/tui-sandbox/commit/1399c2eefd89fe7ac1fc7d17f469130a3ef7886b))
+
 ## [4.1.0](https://github.com/mikavilpas/tui-sandbox/compare/library-v4.0.0...library-v4.1.0) (2024-11-12)
 
 

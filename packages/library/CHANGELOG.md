@@ -1,5 +1,16 @@
 # Changelog
 
+## [5.0.0](https://github.com/mikavilpas/tui-sandbox/compare/library-v4.2.0...library-v5.0.0) (2024-11-14)
+
+
+### ⚠ BREAKING CHANGES
+
+* using the `test-setup.lua` file has been moved to `~/.config/nvim/init.lua` in favor of `init.lua`.
+
+### Features
+
+* Neovim supports the .config directory for user configuration ([#127](https://github.com/mikavilpas/tui-sandbox/issues/127)) ([d4cd7bc](https://github.com/mikavilpas/tui-sandbox/commit/d4cd7bce50e80c80ab7f1d6d786e069a173aa1d6))
+
 ## [4.2.0](https://github.com/mikavilpas/tui-sandbox/compare/library-v4.1.0...library-v4.2.0) (2024-11-14)
 
 

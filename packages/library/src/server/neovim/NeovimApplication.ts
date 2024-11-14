@@ -4,7 +4,7 @@ import EventEmitter from "events"
 import { access } from "fs/promises"
 import type { NeovimClient as NeovimApiClient } from "neovim"
 import { tmpdir } from "os"
-import path from "path"
+import path, { join } from "path"
 import type { TestDirectory } from "../types.js"
 import { DisposableSingleApplication } from "../utilities/DisposableSingleApplication.js"
 import type { Lazy } from "../utilities/Lazy.js"
@@ -100,7 +100,7 @@ export class NeovimApplication {
       "NeovimApplication state should be undefined after disposing so that no previous state is reused."
     )
 
-    const neovimArguments = ["-u", "test-setup.lua"]
+    const neovimArguments: string[] = []
 
     if (startArgs.startupScriptModifications) {
       for (const modification of startArgs.startupScriptModifications) {
@@ -135,7 +135,20 @@ export class NeovimApplication {
     const stdout = this.events
 
     await this.application.startNextAndKillCurrent(async () => {
-      const env = { ...process.env, ...startArgs.additionalEnvironmentVariables }
+      const env = {
+        ...process.env,
+        HOME: testDirectory.rootPathAbsolute,
+
+        // this is needed so that neovim can load its configuration, emulating
+        // a common setup real neovim users have
+        XDG_CONFIG_HOME: join(testDirectory.rootPathAbsolute, ".config"),
+        // the data directory is where lazy.nvim stores its plugins. To prevent
+        // downloading a new set of plugins for each test, share the data
+        // directory.
+        XDG_DATA_HOME: join(testDirectory.testEnvironmentPath, ".repro", "data"),
+
+        ...startArgs.additionalEnvironmentVariables,
+      }
       return TerminalApplication.start({
         command: "nvim",
         args: neovimArguments,

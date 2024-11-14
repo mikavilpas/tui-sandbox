@@ -39,6 +39,30 @@ describe("dirtree", () => {
         name: z.literal("test-environment/"),
         type: z.literal("directory"),
         contents: z.object({
+          ".config": z.object({
+            name: z.literal(".config/"),
+            type: z.literal("directory"),
+            contents: z.object({
+              ".gitkeep": z.object({
+                name: z.literal(".gitkeep"),
+                type: z.literal("file"),
+                extension: z.literal(""),
+                stem: z.literal(".gitkeep"),
+              }),
+              nvim: z.object({
+                name: z.literal("nvim/"),
+                type: z.literal("directory"),
+                contents: z.object({
+                  "init.lua": z.object({
+                    name: z.literal("init.lua"),
+                    type: z.literal("file"),
+                    extension: z.literal("lua"),
+                    stem: z.literal("init."),
+                  }),
+                }),
+              }),
+            }),
+          }),
           "config-modifications": z.object({
             name: z.literal("config-modifications/"),
             type: z.literal("directory"),
@@ -135,12 +159,6 @@ describe("dirtree", () => {
               }),
             }),
           }),
-          "test-setup.lua": z.object({
-            name: z.literal("test-setup.lua"),
-            type: z.literal("file"),
-            extension: z.literal("lua"),
-            stem: z.literal("test-setup."),
-          }),
         }),
       })
 
@@ -150,6 +168,10 @@ describe("dirtree", () => {
       export type MyDirectoryTree = MyDirectoryTreeContentsSchemaType["contents"]
 
       export const testDirectoryFiles = z.enum([
+        ".config/.gitkeep",
+        ".config/nvim/init.lua",
+        ".config/nvim",
+        ".config",
         "config-modifications/add_command_to_count_open_buffers.lua",
         "config-modifications",
         "dir with spaces/file1.txt",
@@ -166,7 +188,6 @@ describe("dirtree", () => {
         "routes",
         "subdirectory/subdirectory-file.txt",
         "subdirectory",
-        "test-setup.lua",
         "."
       ])
       export type MyTestDirectoryFile = z.infer<typeof testDirectoryFiles>"

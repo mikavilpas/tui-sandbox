@@ -12,6 +12,7 @@ const client = new NeovimClient(app)
 /** Entrypoint for the test runner (cypress) */
 window.startNeovim = async function (startArgs?: StartNeovimGenericArguments): Promise<TestDirectory> {
   const testDirectory = await client.startNeovim({
+    additionalEnvironmentVariables: startArgs?.additionalEnvironmentVariables,
     filename: startArgs?.filename ?? "initial-file.txt",
     startupScriptModifications: startArgs?.startupScriptModifications ?? [],
   })

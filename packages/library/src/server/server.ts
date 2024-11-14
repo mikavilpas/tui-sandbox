@@ -41,11 +41,17 @@ export async function createAppRouter(config: TestServerConfig) {
                 cols: z.number(),
                 rows: z.number(),
               }),
+              additionalEnvironmentVariables: z.record(z.string()).optional(),
             }),
           })
         )
         .mutation(options => {
-          return neovim.start(options.input.startNeovimArguments, options.input.tabId, config)
+          return neovim.start(
+            options.input.startNeovimArguments,
+            options.input.startNeovimArguments.terminalDimensions,
+            options.input.tabId,
+            config
+          )
         }),
       onStdout: trpc.procedure.input(z.object({ client: tabIdSchema })).subscription(options => {
         return neovim.onStdout(options.input, options.signal, config.testEnvironmentPath)

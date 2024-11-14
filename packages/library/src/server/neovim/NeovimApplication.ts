@@ -59,10 +59,15 @@ Run "nvim -V1 -v" for more info
 export type StdoutMessage = "stdout"
 
 export type StartNeovimGenericArguments = {
-  terminalDimensions: { cols: number; rows: number }
   filename: string | { openInVerticalSplits: string[] }
   startupScriptModifications?: string[]
+
+  /** Additions to the environment variables for the Neovim process. These
+   * override any already existing environment variables. */
+  additionalEnvironmentVariables?: Record<string, string> | undefined
 }
+
+export type TerminalDimensions = { cols: number; rows: number }
 
 type ResettableState = {
   testDirectory: TestDirectory
@@ -86,7 +91,8 @@ export class NeovimApplication {
    */
   public async startNextAndKillCurrent(
     testDirectory: TestDirectory,
-    startArgs: StartNeovimGenericArguments
+    startArgs: StartNeovimGenericArguments,
+    terminalDimensions: TerminalDimensions
   ): Promise<void> {
     await this[Symbol.asyncDispose]()
     assert(
@@ -129,13 +135,14 @@ export class NeovimApplication {
     const stdout = this.events
 
     await this.application.startNextAndKillCurrent(async () => {
+      const env = { ...process.env, ...startArgs.additionalEnvironmentVariables }
       return TerminalApplication.start({
         command: "nvim",
         args: neovimArguments,
 
         cwd: this.testEnvironmentPath,
-        env: process.env,
-        dimensions: startArgs.terminalDimensions,
+        env: env,
+        dimensions: terminalDimensions,
 
         onStdoutOrStderr(data) {
           data satisfies string

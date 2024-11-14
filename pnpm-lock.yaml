@@ -67,6 +67,9 @@ importers:
 
   packages/integration-tests:
     dependencies:
+      '@catppuccin/palette':
+        specifier: 1.7.1
+        version: 1.7.1
       '@tui-sandbox/library':
         specifier: workspace:*
         version: link:../library

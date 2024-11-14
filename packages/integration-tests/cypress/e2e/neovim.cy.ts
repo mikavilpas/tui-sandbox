@@ -1,3 +1,5 @@
+import { flavors } from "@catppuccin/palette"
+import { rgbify } from "../../../library/src/client/color-utilities"
 import type { MyTestDirectoryFile } from "../../MyTestDirectory"
 
 describe("neovim features", () => {
@@ -32,6 +34,27 @@ describe("neovim features", () => {
 
       cy.typeIntoTerminal(":=vim.uv.os_environ().hello{enter}", { delay: 0 })
       cy.contains("my-variable-value")
+    })
+  })
+
+  it("can load plugins that are defined in the neovim configuration", () => {
+    cy.visit("/")
+    cy.startNeovim().then(() => {
+      // wait until text on the start screen is visible
+      cy.contains("f you see this text, Neovim is ready!").should(
+        "have.css",
+        "background-color",
+        rgbify(flavors.macchiato.colors.base.rgb)
+      )
+
+      // to make sure the catppuccin/nvim plugin is loaded, let's change the
+      // color scheme and make sure the new color is visible
+      cy.typeIntoTerminal(":Catppuccin latte{enter}", { delay: 0 })
+      cy.contains("f you see this text, Neovim is ready!").should(
+        "have.css",
+        "background-color",
+        rgbify(flavors.latte.colors.base.rgb)
+      )
     })
   })
 })

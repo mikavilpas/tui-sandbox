@@ -12,7 +12,7 @@ describe("neovim features", () => {
       cy.contains("If you see this text, Neovim is ready!")
 
       const fpath = "subdirectory/subdirectory-file.txt" satisfies MyTestDirectoryFile
-      cy.typeIntoTerminal(`:edit ${fpath}{enter}`, { delay: 0 })
+      cy.typeIntoTerminal(`:edit ${fpath}{enter}`)
 
       cy.contains("Hello from the subdirectory!")
     })
@@ -32,7 +32,7 @@ describe("neovim features", () => {
       // wait until text on the start screen is visible
       cy.contains("If you see this text, Neovim is ready!")
 
-      cy.typeIntoTerminal(":=vim.uv.os_environ().hello{enter}", { delay: 0 })
+      cy.typeIntoTerminal(":=vim.uv.os_environ().hello{enter}")
       cy.contains("my-variable-value")
     })
   })
@@ -49,7 +49,7 @@ describe("neovim features", () => {
 
       // to make sure the catppuccin/nvim plugin is loaded, let's change the
       // color scheme and make sure the new color is visible
-      cy.typeIntoTerminal(":Catppuccin latte{enter}", { delay: 0 })
+      cy.typeIntoTerminal(":Catppuccin latte{enter}")
       cy.contains("f you see this text, Neovim is ready!").should(
         "have.css",
         "background-color",

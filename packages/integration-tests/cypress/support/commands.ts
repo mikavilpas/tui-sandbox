@@ -1,6 +1,8 @@
 /* eslint-disable @typescript-eslint/no-namespace */
 /// <reference types="cypress" />
 
+import type { OverrideProperties } from "type-fest"
+import type { StartNeovimGenericArguments } from "../../../library/src/server/neovim/NeovimApplication.ts"
 import type { MyTestDirectory, MyTestDirectoryFile } from "../../MyTestDirectory"
 
 export type NeovimContext = {
@@ -15,10 +17,13 @@ declare global {
   }
 }
 
-type MyStartNeovimServerArguments = {
-  filename?: MyTestDirectoryFile | { openInVerticalSplits: MyTestDirectoryFile[] }
-  startupScriptModifications?: Array<keyof MyTestDirectory["config-modifications"]["contents"]>
-}
+type MyStartNeovimServerArguments = OverrideProperties<
+  StartNeovimGenericArguments,
+  {
+    filename?: MyTestDirectoryFile | { openInVerticalSplits: MyTestDirectoryFile[] }
+    startupScriptModifications?: Array<keyof MyTestDirectory["config-modifications"]["contents"]>
+  }
+>
 
 Cypress.Commands.add("startNeovim", (startArguments?: MyStartNeovimServerArguments) => {
   cy.window().then(async win => {

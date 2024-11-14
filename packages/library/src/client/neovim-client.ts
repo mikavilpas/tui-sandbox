@@ -1,7 +1,6 @@
 import { createTRPCClient, httpBatchLink, splitLink, unstable_httpSubscriptionLink } from "@trpc/client"
 import type { Terminal } from "@xterm/xterm"
 import "@xterm/xterm/css/xterm.css"
-import type { Except } from "type-fest"
 import type { StartNeovimGenericArguments } from "../server/neovim/NeovimApplication.ts"
 import type { AppRouter } from "../server/server.ts"
 import type { TestDirectory } from "../server/types.ts"
@@ -66,12 +65,13 @@ export class NeovimClient {
     })
   }
 
-  public async startNeovim(args: Except<StartNeovimGenericArguments, "terminalDimensions">): Promise<TestDirectory> {
+  public async startNeovim(args: StartNeovimGenericArguments): Promise<TestDirectory> {
     await this.ready
 
     const testDirectory = await this.trpc.neovim.start.mutate({
       startNeovimArguments: {
-        ...args,
+        filename: args.filename,
+        additionalEnvironmentVariables: args.additionalEnvironmentVariables,
         terminalDimensions: {
           cols: this.terminal.cols,
           rows: this.terminal.rows,

@@ -4,7 +4,7 @@ import type { TestServerConfig } from "../updateTestdirectorySchemaFile.js"
 import { convertEventEmitterToAsyncGenerator } from "../utilities/generator.js"
 import type { TabId } from "../utilities/tabId.js"
 import { createTempDir } from "./environment/createTempDir.js"
-import type { StartNeovimGenericArguments } from "./NeovimApplication.js"
+import type { StartNeovimGenericArguments, TerminalDimensions } from "./NeovimApplication.js"
 import { NeovimApplication } from "./NeovimApplication.js"
 
 const neovims = new Map<TabId["tabId"], NeovimApplication>()
@@ -34,6 +34,7 @@ export async function onStdout(
 
 export async function start(
   options: StartNeovimGenericArguments,
+  terminalDimensions: TerminalDimensions,
   tabId: TabId,
   config: TestServerConfig
 ): Promise<TestDirectory> {
@@ -41,7 +42,7 @@ export async function start(
   assert(neovim, `Neovim instance not found for client id ${tabId.tabId}`)
 
   const testDirectory = await createTempDir(config)
-  await neovim.startNextAndKillCurrent(testDirectory, options)
+  await neovim.startNextAndKillCurrent(testDirectory, options, terminalDimensions)
 
   return testDirectory
 }

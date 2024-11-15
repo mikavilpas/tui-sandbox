@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.1.2](https://github.com/mikavilpas/tui-sandbox/compare/library-v5.1.1...library-v5.1.2) (2024-11-15)
+
+
+### Bug Fixes
+
+* startupScriptModifications were ignored entirely ([#133](https://github.com/mikavilpas/tui-sandbox/issues/133)) ([27d305a](https://github.com/mikavilpas/tui-sandbox/commit/27d305af63a9880a45900df241a8b6bf42185920))
+
 ## [5.1.1](https://github.com/mikavilpas/tui-sandbox/compare/library-v5.1.0...library-v5.1.1) (2024-11-15)
 
 

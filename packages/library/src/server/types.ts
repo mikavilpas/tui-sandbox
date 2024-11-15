@@ -28,3 +28,5 @@ export type TestDirectory = {
 
   contents: object
 }
+
+export type { StartNeovimGenericArguments } from "../server/neovim/NeovimApplication.js"

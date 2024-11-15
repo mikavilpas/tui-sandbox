@@ -1,6 +1,5 @@
 import { NeovimClient } from "../client/index.js"
-import type { StartNeovimGenericArguments } from "../server/neovim/NeovimApplication.js"
-import type { TestDirectory } from "../server/types.js"
+import type { StartNeovimGenericArguments, TestDirectory } from "../server/types.js"
 
 const app = document.querySelector<HTMLElement>("#app")
 if (!app) {

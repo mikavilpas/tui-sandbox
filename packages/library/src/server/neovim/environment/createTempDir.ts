@@ -53,7 +53,11 @@ async function createUniqueDirectory(testEnvironmentPath: string): Promise<strin
 }
 
 export async function removeTestDirectories(testEnvironmentPath: string): Promise<void> {
-  const testdirs = path.join(testEnvironmentPath, "testdirs" satisfies TestDirsPath)
-  await access(testdirs, constants.F_OK)
-  execSync(`rm -rf ${testdirs}/*`)
+  try {
+    const testdirs = path.join(testEnvironmentPath, "testdirs" satisfies TestDirsPath)
+    await access(testdirs, constants.F_OK)
+    execSync(`rm -rf ${testdirs}/*`)
+  } catch (e) {
+    console.log("Could not remove test directories, maybe they don't exist yet", e)
+  }
 }

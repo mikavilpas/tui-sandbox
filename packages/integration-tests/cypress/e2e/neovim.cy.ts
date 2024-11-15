@@ -26,6 +26,9 @@ describe("neovim features", () => {
       cy.typeIntoTerminal(`:edit ${fpath}{enter}`)
 
       cy.contains("Hello from the subdirectory!")
+
+      cy.typeIntoTerminal(":CountBuffers{enter}")
+      cy.contains("Number of open buffers: 2")
     })
   })
 

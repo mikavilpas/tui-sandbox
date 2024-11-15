@@ -71,6 +71,7 @@ export class NeovimClient {
       startNeovimArguments: {
         filename: args.filename,
         additionalEnvironmentVariables: args.additionalEnvironmentVariables,
+        startupScriptModifications: args.startupScriptModifications,
         terminalDimensions: {
           cols: this.terminal.cols,
           rows: this.terminal.rows,

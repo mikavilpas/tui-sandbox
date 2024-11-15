@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.1.0](https://github.com/mikavilpas/tui-sandbox/compare/library-v5.0.0...library-v5.1.0) (2024-11-15)
+
+
+### Features
+
+* clean `testdirs/*` on startup ([#129](https://github.com/mikavilpas/tui-sandbox/issues/129)) ([65b3750](https://github.com/mikavilpas/tui-sandbox/commit/65b3750079118ac4dc70e05d49de02f729d6b5e1))
+
 ## [5.0.0](https://github.com/mikavilpas/tui-sandbox/compare/library-v4.2.0...library-v5.0.0) (2024-11-14)
 
 

@@ -1,9 +1,8 @@
 import { createTRPCClient, httpBatchLink, splitLink, unstable_httpSubscriptionLink } from "@trpc/client"
 import type { Terminal } from "@xterm/xterm"
 import "@xterm/xterm/css/xterm.css"
-import type { StartNeovimGenericArguments } from "../server/neovim/NeovimApplication.ts"
 import type { AppRouter } from "../server/server.ts"
-import type { TestDirectory } from "../server/types.ts"
+import type { StartNeovimGenericArguments, TestDirectory } from "../server/types.js"
 import "./style.css"
 import { getTabId, startTerminal } from "./websocket-client.js"
 

@@ -2,7 +2,7 @@
 /// <reference types="cypress" />
 
 import type { OverrideProperties } from "type-fest"
-import type { StartNeovimGenericArguments } from "../../../library/src/server/neovim/NeovimApplication.ts"
+import type { StartNeovimGenericArguments } from "../../../library/src/server/types.ts"
 import type { MyTestDirectory, MyTestDirectoryFile } from "../../MyTestDirectory"
 
 export type NeovimContext = {

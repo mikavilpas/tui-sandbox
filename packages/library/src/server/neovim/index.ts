@@ -3,7 +3,7 @@ import type { TestDirectory } from "../types.js"
 import type { TestServerConfig } from "../updateTestdirectorySchemaFile.js"
 import { convertEventEmitterToAsyncGenerator } from "../utilities/generator.js"
 import type { TabId } from "../utilities/tabId.js"
-import { createTempDir } from "./environment/createTempDir.js"
+import { createTempDir, removeTestDirectories } from "./environment/createTempDir.js"
 import type { StartNeovimGenericArguments, TerminalDimensions } from "./NeovimApplication.js"
 import { NeovimApplication } from "./NeovimApplication.js"
 
@@ -41,6 +41,7 @@ export async function start(
   const neovim = neovims.get(tabId.tabId)
   assert(neovim, `Neovim instance not found for client id ${tabId.tabId}`)
 
+  await removeTestDirectories(config.testEnvironmentPath)
   const testDirectory = await createTempDir(config)
   await neovim.startNextAndKillCurrent(testDirectory, options, terminalDimensions)
 

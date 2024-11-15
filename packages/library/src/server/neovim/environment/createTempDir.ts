@@ -51,3 +51,9 @@ async function createUniqueDirectory(testEnvironmentPath: string): Promise<strin
 
   return dir
 }
+
+export async function removeTestDirectories(testEnvironmentPath: string): Promise<void> {
+  const testdirs = path.join(testEnvironmentPath, "testdirs" satisfies TestDirsPath)
+  await access(testdirs, constants.F_OK)
+  execSync(`rm -rf ${testdirs}/*`)
+}

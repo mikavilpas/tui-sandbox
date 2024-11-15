@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.1.1](https://github.com/mikavilpas/tui-sandbox/compare/library-v5.1.0...library-v5.1.1) (2024-11-15)
+
+
+### Bug Fixes
+
+* publish StartNeovimGenericArguments from types.ts ([#131](https://github.com/mikavilpas/tui-sandbox/issues/131)) ([d3ca31b](https://github.com/mikavilpas/tui-sandbox/commit/d3ca31bdd6eec9481840339209ec2fbc44a0f3b8))
+
 ## [5.1.0](https://github.com/mikavilpas/tui-sandbox/compare/library-v5.0.0...library-v5.1.0) (2024-11-15)
 
 

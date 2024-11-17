@@ -1,5 +1,12 @@
 # Changelog
 
+## [6.0.1](https://github.com/mikavilpas/tui-sandbox/compare/library-v6.0.0...library-v6.0.1) (2024-11-17)
+
+
+### Bug Fixes
+
+* disable verbose cypress logging related to kbd&mouse input ([#141](https://github.com/mikavilpas/tui-sandbox/issues/141)) ([c170da2](https://github.com/mikavilpas/tui-sandbox/commit/c170da27053a292288cd915b02069e48b556caf1))
+
 ## [6.0.0](https://github.com/mikavilpas/tui-sandbox/compare/library-v5.1.2...library-v6.0.0) (2024-11-17)
 
 

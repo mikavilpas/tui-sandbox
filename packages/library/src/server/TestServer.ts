@@ -6,8 +6,6 @@ import express from "express"
 import { accessSync } from "fs"
 import path from "path"
 import { fileURLToPath } from "url"
-import type { TestServerConfig } from "./updateTestdirectorySchemaFile.js"
-import { updateTestdirectorySchemaFile } from "./updateTestdirectorySchemaFile.js"
 
 export type TestServerSettings = {
   port: number
@@ -19,10 +17,8 @@ const __dirname = path.dirname(__filename)
 export class TestServer {
   public constructor(private readonly settings: TestServerSettings) {}
 
-  public async startAndRun(appRouter: AnyTRPCRouter, config: TestServerConfig): Promise<void> {
+  public async startAndRun(appRouter: AnyTRPCRouter): Promise<void> {
     console.log("🚀 Server starting")
-
-    await updateTestdirectorySchemaFile(config)
 
     const app = express()
     app.use(

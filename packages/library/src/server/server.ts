@@ -73,7 +73,7 @@ export async function startTestServer(config: TestServerConfig): Promise<TestSer
     port: 3000,
   })
   const appRouter = await createAppRouter(config)
-  await testServer.startAndRun(appRouter, config)
+  await testServer.startAndRun(appRouter)
 
   return testServer
 }

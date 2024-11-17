@@ -13,8 +13,8 @@
 // https://on.cypress.io/configuration
 // ***********************************************************
 
-// Import commands.js using ES2015 syntax:
-import "./commands.ts"
+/// <reference types="cypress" />
+import "./tui-sandbox.ts"
 
 Cypress.Keyboard.defaults({
   keystrokeDelay: 0,

@@ -26,6 +26,7 @@ export default [
       "packages/integration-tests/dist/",
       "packages/library/dist/",
       "packages/library/vite.config.js",
+      "packages/integration-tests/cypress/support/tui-sandbox.ts",
     ],
   },
   ...compat.extends(

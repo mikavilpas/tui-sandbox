@@ -14,3 +14,4 @@ packages/integration-tests/cypress/screenshots
 packages/integration-tests/test-environment/testdirs
 packages/library/dist
 packages/library/vite.config.js.timestamp*
+packages/integration-tests/dist/tsconfig.tsbuildinfo

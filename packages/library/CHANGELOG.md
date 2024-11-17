@@ -1,5 +1,16 @@
 # Changelog
 
+## [6.0.0](https://github.com/mikavilpas/tui-sandbox/compare/library-v5.1.2...library-v6.0.0) (2024-11-17)
+
+
+### ⚠ BREAKING CHANGES
+
+* this changes the way that cypress support bindings are generated. Previously, you had to manually create a file in your cypress/support directory. Now, the file is automatically generated for you when you run `tui start`.
+
+### Features
+
+* automatically generate cypress support bindings on startup ([48cc416](https://github.com/mikavilpas/tui-sandbox/commit/48cc416dff628edbc850be4f31e7317c8a686217))
+
 ## [5.1.2](https://github.com/mikavilpas/tui-sandbox/compare/library-v5.1.1...library-v5.1.2) (2024-11-15)
 
 

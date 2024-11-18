@@ -1,5 +1,6 @@
 import type { inferRouterInputs } from "@trpc/server"
 import "core-js/proposals/async-explicit-resource-management.js"
+import type { Except } from "type-fest"
 import { z } from "zod"
 import { trpc } from "./connection/trpc.js"
 import * as neovim from "./neovim/index.js"
@@ -8,13 +9,20 @@ import type { TestServerConfig } from "./updateTestdirectorySchemaFile.js"
 import { applicationAvailable } from "./utilities/applicationAvailable.js"
 import { tabIdSchema } from "./utilities/tabId.js"
 
-/** Stack for managing resources that need to be disposed of when the server
- * shuts down */
-await using autocleanup = new AsyncDisposableStack()
-autocleanup.defer(() => {
-  console.log("Closing any open test applications")
+const blockingCommandInputSchema = z.object({
+  command: z.string(),
+  shell: z.string().optional(),
+  tabId: tabIdSchema,
+
+  // child_process.ProcessEnvOptions
+  uid: z.number().optional(),
+  gid: z.number().optional(),
+  cwd: z.string().optional(),
+  envOverrides: z.record(z.string()).optional(),
 })
-export { autocleanup }
+
+export type BlockingCommandClientInput = Except<BlockingCommandInput, "tabId">
+export type BlockingCommandInput = z.infer<typeof blockingCommandInputSchema>
 
 /** @private */
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
@@ -58,6 +66,10 @@ export async function createAppRouter(config: TestServerConfig) {
       }),
       sendStdin: trpc.procedure.input(z.object({ tabId: tabIdSchema, data: z.string() })).mutation(options => {
         return neovim.sendStdin(options.input)
+      }),
+
+      runBlockingShellCommand: trpc.procedure.input(blockingCommandInputSchema).mutation(async options => {
+        return neovim.runBlockingShellCommand(options.signal, options.input)
       }),
     }),
   })

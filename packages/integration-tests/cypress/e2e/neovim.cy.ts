@@ -1,4 +1,5 @@
 import { flavors } from "@catppuccin/palette"
+import assert from "assert"
 import { rgbify } from "../../../library/src/client/color-utilities"
 import type { MyTestDirectoryFile } from "../../MyTestDirectory"
 
@@ -69,6 +70,35 @@ describe("neovim features", () => {
         "background-color",
         rgbify(flavors.latte.colors.base.rgb)
       )
+    })
+  })
+
+  it("can execute shell commands", () => {
+    cy.visit("/")
+    cy.startNeovim().then(() => {
+      // successful command (stdout)
+      cy.runBlockingShellCommand({ command: `echo HOME directory is $HOME` }).then(output => {
+        // environment variables are supported
+        assert(output.type === "success")
+        expect(output.stdout).to.match(/HOME directory is .+?integration-tests\/test-environment\/testdirs\/dir-.*?/)
+        expect(output.stderr).to.equal("")
+      })
+
+      cy.runBlockingShellCommand({ command: "echo file-contents > $HOME/somefile.txt" })
+      cy.typeIntoTerminal(":e $HOME/somefile.txt{enter}", { delay: 0 })
+      cy.contains("file-contents")
+
+      // failing command (stderr)
+      cy.runBlockingShellCommand({ command: "echo 'hello from the shell' >&2" }).then(output => {
+        assert(output.type === "success")
+        expect(output.stdout).to.equal("")
+        expect(output.stderr).to.equal("hello from the shell\n")
+      })
+
+      // command not found
+      cy.runBlockingShellCommand({ command: "commandnotfoundreallynotfound" }).then(output => {
+        assert(output.type === "failed")
+      })
     })
   })
 })

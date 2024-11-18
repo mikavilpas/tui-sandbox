@@ -30,3 +30,15 @@ export type TestDirectory = {
 }
 
 export type { StartNeovimGenericArguments } from "../server/neovim/NeovimApplication.js"
+
+export type BlockingShellCommandOutput =
+  | {
+      type: "success"
+      stdout: string
+      stderr: string
+    }
+  | {
+      type: "failed"
+      // for now we log the error to the server's console output. It will be
+      // visible when running the tests.
+    }

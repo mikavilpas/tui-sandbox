@@ -1,12 +1,14 @@
 import { createTRPCClient, httpBatchLink, splitLink, unstable_httpSubscriptionLink } from "@trpc/client"
 import type { Terminal } from "@xterm/xterm"
 import "@xterm/xterm/css/xterm.css"
-import type { AppRouter } from "../server/server.ts"
-import type { StartNeovimGenericArguments, TestDirectory } from "../server/types.js"
+import type { AppRouter, BlockingCommandClientInput } from "../server/server.js"
+import type { BlockingShellCommandOutput, StartNeovimGenericArguments, TestDirectory } from "../server/types.js"
 import "./style.css"
 import { getTabId, startTerminal } from "./websocket-client.js"
 
-export class NeovimClient {
+/** Manages the terminal state in the browser as well as the (browser's)
+ * connection to the server side terminal application api. */
+export class TerminalClient {
   private readonly ready: Promise<void>
   private readonly tabId: { tabId: string }
   private readonly terminal: Terminal
@@ -81,5 +83,13 @@ export class NeovimClient {
     })
 
     return testDirectory
+  }
+
+  public async runBlockingShellCommand(input: BlockingCommandClientInput): Promise<BlockingShellCommandOutput> {
+    await this.ready
+    return this.trpc.neovim.runBlockingShellCommand.mutate({
+      ...input,
+      tabId: this.tabId,
+    })
   }
 }

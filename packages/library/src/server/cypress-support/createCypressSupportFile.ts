@@ -25,13 +25,14 @@ export async function createCypressSupportFile({
   try {
     oldSchema = readFileSync(outputFilePath, "utf-8")
   } catch (error) {
-    console.log(`No existing cypress support file found at ${outputFilePath}, creating a new one`)
+    console.log(`No existing cypress support file found at ${outputFilePath}`)
   }
 
   if (oldSchema !== text) {
     // it's important to not write the file if the schema hasn't changed
     // because file watchers will trigger on file changes and we don't want to
     // trigger a build if the schema hasn't changed
+    console.log(`🪛 Writing cypress support file to ${outputFilePath}`)
     writeFileSync(outputFilePath, text)
     return "updated"
   } else {

@@ -76,7 +76,7 @@ type ResettableState = {
 }
 
 export class NeovimApplication {
-  private state: ResettableState | undefined
+  public state: ResettableState | undefined
   public readonly events: EventEmitter
 
   public constructor(
@@ -135,20 +135,7 @@ export class NeovimApplication {
     const stdout = this.events
 
     await this.application.startNextAndKillCurrent(async () => {
-      const env = {
-        ...process.env,
-        HOME: testDirectory.rootPathAbsolute,
-
-        // this is needed so that neovim can load its configuration, emulating
-        // a common setup real neovim users have
-        XDG_CONFIG_HOME: join(testDirectory.rootPathAbsolute, ".config"),
-        // the data directory is where lazy.nvim stores its plugins. To prevent
-        // downloading a new set of plugins for each test, share the data
-        // directory.
-        XDG_DATA_HOME: join(testDirectory.testEnvironmentPath, ".repro", "data"),
-
-        ...startArgs.additionalEnvironmentVariables,
-      }
+      const env = this.getEnvironmentVariables(testDirectory, startArgs.additionalEnvironmentVariables)
       return TerminalApplication.start({
         command: "nvim",
         args: neovimArguments,
@@ -174,6 +161,26 @@ export class NeovimApplication {
     }
 
     console.log(`🚀 Started Neovim instance ${processId}`)
+  }
+
+  public getEnvironmentVariables(
+    testDirectory: TestDirectory,
+    additionalEnvironmentVariables?: Record<string, string>
+  ): NodeJS.ProcessEnv {
+    return {
+      ...process.env,
+      HOME: testDirectory.rootPathAbsolute,
+
+      // this is needed so that neovim can load its configuration, emulating
+      // a common setup real neovim users have
+      XDG_CONFIG_HOME: join(testDirectory.rootPathAbsolute, ".config"),
+      // the data directory is where lazy.nvim stores its plugins. To prevent
+      // downloading a new set of plugins for each test, share the data
+      // directory.
+      XDG_DATA_HOME: join(testDirectory.testEnvironmentPath, ".repro", "data"),
+
+      ...additionalEnvironmentVariables,
+    }
   }
 
   async [Symbol.asyncDispose](): Promise<void> {

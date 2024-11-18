@@ -1,5 +1,12 @@
 # Changelog
 
+## [6.0.2](https://github.com/mikavilpas/tui-sandbox/compare/library-v6.0.1...library-v6.0.2) (2024-11-18)
+
+
+### Bug Fixes
+
+* add prettier peer dependency to library package.json ([#143](https://github.com/mikavilpas/tui-sandbox/issues/143)) ([0f0bfff](https://github.com/mikavilpas/tui-sandbox/commit/0f0bfffc90d671acfe62a261b1c6f30bf1d4b36d))
+
 ## [6.0.1](https://github.com/mikavilpas/tui-sandbox/compare/library-v6.0.0...library-v6.0.1) (2024-11-17)
 
 

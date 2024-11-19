@@ -1,5 +1,12 @@
 # Changelog
 
+## [6.1.0](https://github.com/mikavilpas/tui-sandbox/compare/library-v6.0.2...library-v6.1.0) (2024-11-19)
+
+
+### Features
+
+* neovim-client can run shell commands ([d5ae2b7](https://github.com/mikavilpas/tui-sandbox/commit/d5ae2b7be654f9e3d9b3c3e4788c292293f46bac))
+
 ## [6.0.2](https://github.com/mikavilpas/tui-sandbox/compare/library-v6.0.1...library-v6.0.2) (2024-11-18)
 
 

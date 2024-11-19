@@ -23,7 +23,7 @@ class TempDirectory implements Disposable {
 
 it("should create a temp dir with no contents", async () => {
   // typically the user will want to have contents, but this should not be an error
-  await using dir = TempDirectory.create()
+  using dir = TempDirectory.create()
   const result = await createTempDir({
     testEnvironmentPath: dir.path,
     outputFilePath: nodePath.join(dir.path, "MyTestDirectory.ts"),

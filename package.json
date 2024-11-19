@@ -35,7 +35,7 @@
     "vitest": "2.1.5",
     "wait-on": "8.0.1"
   },
-  "packageManager": "pnpm@9.12.2",
+  "packageManager": "pnpm@9.13.2+sha256.ccce81bf7498c5f0f80e31749c1f8f03baba99d168f64590fc7e13fad3ea1938",
   "pnpm": {
     "packageExtensions": {
       "node-pty": {

@@ -79,13 +79,14 @@ export async function runBlockingShellCommand(
   assert(testDirectory, `Test directory not found for client id ${input.tabId.tabId}. Maybe neovim's not started yet?`)
 
   const execPromise = util.promisify(exec)
+  const env = neovim.getEnvironmentVariables(testDirectory, input.envOverrides)
   const processPromise = execPromise(input.command, {
     signal: signal,
     shell: input.shell,
     uid: input.uid,
     gid: input.gid,
-    cwd: input.cwd,
-    env: neovim.getEnvironmentVariables(testDirectory, input.envOverrides),
+    cwd: input.cwd ?? env["HOME"],
+    env,
   })
 
   try {

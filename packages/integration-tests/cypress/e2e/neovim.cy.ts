@@ -99,6 +99,26 @@ describe("neovim features", () => {
       cy.runBlockingShellCommand({ command: "commandnotfoundreallynotfound" }).then(output => {
         assert(output.type === "failed")
       })
+
+      // setting the cwd
+      cy.runBlockingShellCommand({ command: "pwd", cwd: "/" }).then(output => {
+        assert(output.type === "success")
+        expect(output.stdout).to.equal("/\n")
+      })
+
+      // by default, the cwd is the home directory, which is the root of the
+      // unique test environment
+      cy.runBlockingShellCommand({ command: "pwd" }).then(output => {
+        assert(output.type === "success")
+        expect(output.stdout).to.match(/integration-tests\/test-environment\/testdirs\/dir-.*?\n/)
+      })
+
+      // it's possible to use `cd` to change the cwd to a directory defined by
+      // an environment variable
+      cy.runBlockingShellCommand({ command: "cd $XDG_CONFIG_HOME; pwd" }).then(output => {
+        assert(output.type === "success")
+        expect(output.stdout).to.match(/integration-tests\/test-environment\/testdirs\/dir-.*?\/.config\n/)
+      })
     })
   })
 })

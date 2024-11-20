@@ -95,8 +95,8 @@ describe("neovim features", () => {
         expect(output.stderr).to.equal("hello from the shell\n")
       })
 
-      // command not found
-      cy.runBlockingShellCommand({ command: "commandnotfoundreallynotfound" }).then(output => {
+      // command not found, allowFailure=true
+      cy.runBlockingShellCommand({ command: "commandnotfoundreallynotfound", allowFailure: true }).then(output => {
         assert(output.type === "failed")
       })
 

@@ -68,7 +68,8 @@ export async function sendStdin(options: { tabId: TabId; data: string }): Promis
 
 export async function runBlockingShellCommand(
   signal: AbortSignal | undefined,
-  input: BlockingCommandInput
+  input: BlockingCommandInput,
+  allowFailure: boolean
 ): Promise<BlockingShellCommandOutput> {
   const neovim = neovims.get(input.tabId.tabId)
   assert(
@@ -101,8 +102,11 @@ export async function runBlockingShellCommand(
     } satisfies BlockingShellCommandOutput
   } catch (e) {
     console.warn(`Error running shell blockingCommand (${input.command})`, e)
-    return {
-      type: "failed",
+    if (allowFailure) {
+      return {
+        type: "failed",
+      }
     }
+    throw new Error(`Error running shell blockingCommand (${input.command})`, { cause: e })
   }
 }

@@ -1,5 +1,12 @@
 # Changelog
 
+## [7.0.1](https://github.com/mikavilpas/tui-sandbox/compare/library-v7.0.0...library-v7.0.1) (2024-11-20)
+
+
+### Bug Fixes
+
+* abort test execution when shell commands fail by default ([#152](https://github.com/mikavilpas/tui-sandbox/issues/152)) ([cd8f97e](https://github.com/mikavilpas/tui-sandbox/commit/cd8f97ed2872328cc0c201d50400b4e5e81072cc))
+
 ## [7.0.0](https://github.com/mikavilpas/tui-sandbox/compare/library-v6.1.0...library-v7.0.0) (2024-11-20)
 
 

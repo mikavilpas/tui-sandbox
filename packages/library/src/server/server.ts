@@ -13,6 +13,7 @@ const blockingCommandInputSchema = z.object({
   command: z.string(),
   shell: z.string().optional(),
   tabId: tabIdSchema,
+  allowFailure: z.boolean().optional(),
 
   // child_process.ProcessEnvOptions
   uid: z.number().optional(),
@@ -69,7 +70,7 @@ export async function createAppRouter(config: TestServerConfig) {
       }),
 
       runBlockingShellCommand: trpc.procedure.input(blockingCommandInputSchema).mutation(async options => {
-        return neovim.runBlockingShellCommand(options.signal, options.input)
+        return neovim.runBlockingShellCommand(options.signal, options.input, options.input.allowFailure ?? false)
       }),
     }),
   })

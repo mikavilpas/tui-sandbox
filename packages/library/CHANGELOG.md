@@ -1,5 +1,16 @@
 # Changelog
 
+## [7.0.0](https://github.com/mikavilpas/tui-sandbox/compare/library-v6.1.0...library-v7.0.0) (2024-11-20)
+
+
+### ⚠ BREAKING CHANGES
+
+* it used to be the root of the test-environment, but this does not make much sense. Usually we want to operate within the unique test directory only.
+
+### Features
+
+* the default cwd for shell commands is the test directory ([#150](https://github.com/mikavilpas/tui-sandbox/issues/150)) ([9d8ec59](https://github.com/mikavilpas/tui-sandbox/commit/9d8ec59751bbbb831d188a26f9628b0f01bb65ed))
+
 ## [6.1.0](https://github.com/mikavilpas/tui-sandbox/compare/library-v6.0.2...library-v6.1.0) (2024-11-19)
 
 

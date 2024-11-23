@@ -30,6 +30,9 @@ jobs:
       - run: pnpm prettier
       - run: pnpm test
 
+      # need to work around https://github.com/cypress-io/github-action/issues/1246
+      - run: pnpm --filter integration-tests exec cypress install
+
       - name: Cypress run
         uses: cypress-io/github-action@v6.7.7
         with:

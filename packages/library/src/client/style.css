@@ -20,7 +20,13 @@
   font-family: "DejaVuSansMNerdFontMono", monospace;
 }
 
+.xterm .xterm-viewport {
+  /* hide the scrollbar */
+  overflow-y: hidden;
+}
+
 body {
   overflow-y: hidden;
   overflow-x: hidden;
+  margin: 0;
 }

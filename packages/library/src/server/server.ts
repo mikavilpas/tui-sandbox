@@ -25,6 +25,10 @@ const blockingCommandInputSchema = z.object({
 export type BlockingCommandClientInput = Except<BlockingCommandInput, "tabId">
 export type BlockingCommandInput = z.infer<typeof blockingCommandInputSchema>
 
+const luaCodeInputSchema = z.object({ tabId: tabIdSchema, luaCode: z.string() })
+export type LuaCodeClientInput = Except<LuaCodeInput, "tabId">
+export type LuaCodeInput = z.infer<typeof luaCodeInputSchema>
+
 /** @private */
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export async function createAppRouter(config: TestServerConfig) {
@@ -71,6 +75,10 @@ export async function createAppRouter(config: TestServerConfig) {
 
       runBlockingShellCommand: trpc.procedure.input(blockingCommandInputSchema).mutation(async options => {
         return neovim.runBlockingShellCommand(options.signal, options.input, options.input.allowFailure ?? false)
+      }),
+
+      runLuaCode: trpc.procedure.input(luaCodeInputSchema).mutation(options => {
+        return neovim.runLuaCode(options.input)
       }),
     }),
   })

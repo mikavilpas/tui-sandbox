@@ -120,4 +120,55 @@ describe("neovim features", () => {
       })
     })
   })
+
+  it("can run lua code and get its result", () => {
+    cy.visit("/")
+    cy.startNeovim().then(() => {
+      // wait until text on the start screen is visible
+      cy.contains("If you see this text, Neovim is ready!")
+
+      // can do math
+      cy.runLuaCode({ luaCode: "return 40 + 2" }).then(result => {
+        expect(result.value).to.equal(42)
+      })
+
+      // can return strings
+      cy.runLuaCode({ luaCode: "return 'hello from lua'" }).then(result => {
+        expect(result.value).to.equal("hello from lua")
+      })
+
+      // can use nvim apis
+      cy.runLuaCode({ luaCode: "return vim.api.nvim_get_current_win()" }).then(result => {
+        expect(result.value).to.equal(1000)
+      })
+
+      // does not return anything if the lua code does not return anything.
+      // But side effects are visible in the neovim instance.
+      cy.runLuaCode({ luaCode: `vim.api.nvim_command('echo "hello from lua"')` }).then(result => {
+        expect(result.value).to.equal(null)
+      })
+      cy.contains("hello from lua")
+
+      // can programmatically manipulate the buffer
+      cy.runLuaCode({
+        luaCode: `
+        vim.api.nvim_buf_set_lines(0, 0, -1, false, {'hello', 'from', 'lua'})
+      `,
+      })
+      cy.contains("If you see this text, Neovim is ready!").should("not.exist")
+      cy.contains("hello")
+      cy.contains("from")
+      cy.contains("lua")
+
+      // can return tables
+      cy.runLuaCode({ luaCode: "return {1, 2, 3}" }).then(result => {
+        expect(result.value).to.deep.equal([1, 2, 3])
+      })
+
+      // can return nested tables
+      cy.runLuaCode({ luaCode: "return {1, {2, 3}, 4}" }).then(result => {
+        expect(result.value).to.deep.equal([1, [2, 3], 4])
+      })
+    })
+  })
 })

@@ -25,7 +25,6 @@
   "include": [
     //
     "./src/",
-    "src/scripts/tui.ts",
-    "./src/scripts/server.ts"
+    "src/scripts/tui.ts"
   ]
 }

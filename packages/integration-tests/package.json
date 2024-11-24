@@ -4,7 +4,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "cy:run": "pnpm i && concurrently --prefix-colors blue,yellow --names server,cypress 'pnpm exec tui start' 'wait-on --timeout 60000 http-get://127.0.0.1:3000/ping && pnpm exec cypress run --config baseUrl=http://127.0.0.1:3000' --kill-others --success command-cypress",
+    "cy:run": "pnpm i && concurrently --prefix-colors blue,yellow --names server,cypress 'pnpm exec tui start' 'wait-on --timeout 60000 http-get://127.0.0.1:3000/ping && pnpm exec cypress run --config baseUrl=http://127.0.0.1:3000 --quiet' --kill-others --success command-cypress",
     "dev": "concurrently --prefix-colors blue,yellow --names 'server,cypress' 'pnpm --filter library dev' 'pnpm cypress open --e2e --browser=electron' --kill-others"
   },
   "dependencies": {

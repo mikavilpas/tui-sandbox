@@ -1,5 +1,17 @@
 # Changelog
 
+## [7.1.0](https://github.com/mikavilpas/tui-sandbox/compare/library-v7.0.1...library-v7.1.0) (2024-11-24)
+
+
+### Features
+
+* add `cy.runLuaCode()` for executing lua in the neovim instance ([#159](https://github.com/mikavilpas/tui-sandbox/issues/159)) ([04ac8eb](https://github.com/mikavilpas/tui-sandbox/commit/04ac8ebc0d95628da2ce601e361183b57804cb50))
+
+
+### Bug Fixes
+
+* remove black margins around the terminal ([ccc4ea3](https://github.com/mikavilpas/tui-sandbox/commit/ccc4ea30a5402e7c296eac9e242ba162b2e17952))
+
 ## [7.0.1](https://github.com/mikavilpas/tui-sandbox/compare/library-v7.0.0...library-v7.0.1) (2024-11-20)
 
 

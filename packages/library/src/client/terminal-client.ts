@@ -1,9 +1,15 @@
 import { createTRPCClient, httpBatchLink, splitLink, unstable_httpSubscriptionLink } from "@trpc/client"
 import type { Terminal } from "@xterm/xterm"
 import "@xterm/xterm/css/xterm.css"
-import type { AppRouter, BlockingCommandClientInput, LuaCodeClientInput } from "../server/server.js"
+import type {
+  AppRouter,
+  BlockingCommandClientInput,
+  ExCommandClientInput,
+  LuaCodeClientInput,
+} from "../server/server.js"
 import type {
   BlockingShellCommandOutput,
+  RunExCommandOutput,
   RunLuaCodeOutput,
   StartNeovimGenericArguments,
   TestDirectory,
@@ -102,6 +108,14 @@ export class TerminalClient {
     await this.ready
     return this.trpc.neovim.runLuaCode.mutate({
       luaCode: input.luaCode,
+      tabId: this.tabId,
+    })
+  }
+
+  public async runExCommand(input: ExCommandClientInput): Promise<RunExCommandOutput> {
+    await this.ready
+    return this.trpc.neovim.runExCommand.mutate({
+      command: input.command,
       tabId: this.tabId,
     })
   }

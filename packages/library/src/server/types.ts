@@ -49,3 +49,5 @@ export type RunLuaCodeOutput = {
   value?: VimValue
   // to catch errors, use pcall() in the Lua code
 }
+
+export type RunExCommandOutput = { value?: string }

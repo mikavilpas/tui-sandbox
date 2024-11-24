@@ -29,6 +29,10 @@ const luaCodeInputSchema = z.object({ tabId: tabIdSchema, luaCode: z.string() })
 export type LuaCodeClientInput = Except<LuaCodeInput, "tabId">
 export type LuaCodeInput = z.infer<typeof luaCodeInputSchema>
 
+const exCommandInputSchema = z.object({ tabId: tabIdSchema, command: z.string() })
+export type ExCommandClientInput = Except<ExCommandInput, "tabId">
+export type ExCommandInput = z.infer<typeof exCommandInputSchema>
+
 /** @private */
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export async function createAppRouter(config: TestServerConfig) {
@@ -79,6 +83,10 @@ export async function createAppRouter(config: TestServerConfig) {
 
       runLuaCode: trpc.procedure.input(luaCodeInputSchema).mutation(options => {
         return neovim.runLuaCode(options.input)
+      }),
+
+      runExCommand: trpc.procedure.input(exCommandInputSchema).mutation(options => {
+        return neovim.runExCommand(options.input)
       }),
     }),
   })

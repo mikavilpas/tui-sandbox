@@ -171,4 +171,24 @@ describe("neovim features", () => {
       })
     })
   })
+
+  it("can runExCommand and get its result", () => {
+    cy.visit("/")
+    cy.startNeovim().then(() => {
+      // wait until text on the start screen is visible
+      cy.contains("If you see this text, Neovim is ready!")
+
+      cy.runExCommand({ command: "echo 'hello from ex command'" }).then(result => {
+        expect(result.value).to.equal("hello from ex command")
+      })
+
+      cy.contains("Hello from the subdirectory!").should("not.exist")
+      cy.runExCommand({ command: `vsplit ${"subdirectory/subdirectory-file.txt" satisfies MyTestDirectoryFile}` }).then(
+        result => {
+          expect(result.value).to.equal("")
+        }
+      )
+      cy.contains("Hello from the subdirectory!")
+    })
+  })
 })

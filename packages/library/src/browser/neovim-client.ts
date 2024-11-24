@@ -1,7 +1,8 @@
 import { TerminalClient } from "../client/index.js"
-import type { BlockingCommandClientInput, LuaCodeClientInput } from "../server/server.js"
+import type { BlockingCommandClientInput, ExCommandClientInput, LuaCodeClientInput } from "../server/server.js"
 import type {
   BlockingShellCommandOutput,
+  RunExCommandOutput,
   RunLuaCodeOutput,
   StartNeovimGenericArguments,
   TestDirectory,
@@ -35,10 +36,15 @@ window.runLuaCode = async function (input: LuaCodeClientInput): Promise<RunLuaCo
   return client.runLuaCode(input)
 }
 
+window.runExCommand = async function (input: ExCommandClientInput): Promise<RunExCommandOutput> {
+  return client.runExCommand(input)
+}
+
 declare global {
   interface Window {
     startNeovim(startArguments?: StartNeovimGenericArguments): Promise<TestDirectory>
     runBlockingShellCommand(input: BlockingCommandClientInput): Promise<BlockingShellCommandOutput>
     runLuaCode(input: LuaCodeClientInput): Promise<RunLuaCodeOutput>
+    runExCommand(input: ExCommandClientInput): Promise<RunExCommandOutput>
   }
 }

@@ -1,3 +1,5 @@
+import type { VimValue } from "neovim/lib/types/VimValue.js"
+
 /** Describes the contents of the test directory, which is a blueprint for
  * files and directories. Tests can create a unique, safe environment for
  * interacting with the contents of such a directory.
@@ -42,3 +44,8 @@ export type BlockingShellCommandOutput =
       // for now we log the error to the server's console output. It will be
       // visible when running the tests.
     }
+
+export type RunLuaCodeOutput = {
+  value?: VimValue
+  // to catch errors, use pcall() in the Lua code
+}

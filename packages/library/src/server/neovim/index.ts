@@ -2,8 +2,13 @@ import assert from "assert"
 import { exec } from "child_process"
 import "core-js/proposals/async-explicit-resource-management.js"
 import util from "util"
-import type { BlockingCommandInput } from "../server.js"
-import type { BlockingShellCommandOutput, StartNeovimGenericArguments, TestDirectory } from "../types.js"
+import type { BlockingCommandInput, LuaCodeInput } from "../server.js"
+import type {
+  BlockingShellCommandOutput,
+  RunLuaCodeOutput,
+  StartNeovimGenericArguments,
+  TestDirectory,
+} from "../types.js"
 import type { TestServerConfig } from "../updateTestdirectorySchemaFile.js"
 import { convertEventEmitterToAsyncGenerator } from "../utilities/generator.js"
 import type { TabId } from "../utilities/tabId.js"
@@ -108,5 +113,31 @@ export async function runBlockingShellCommand(
       }
     }
     throw new Error(`Error running shell blockingCommand (${input.command})`, { cause: e })
+  }
+}
+
+export async function runLuaCode(options: LuaCodeInput): Promise<RunLuaCodeOutput> {
+  const neovim = neovims.get(options.tabId.tabId)
+  assert(
+    neovim !== undefined,
+    `Neovim instance for clientId not found - cannot run Lua code. Maybe neovim's not started yet?`
+  )
+  assert(
+    neovim.application,
+    `Neovim application not found for client id ${options.tabId.tabId}. Maybe it's not started yet?`
+  )
+
+  const api = await neovim.state?.client.get()
+  if (!api) {
+    throw new Error(`Neovim API not available for client id ${options.tabId.tabId}. Maybe it's not started yet?`)
+  }
+
+  console.log(`Neovim ${neovim.application.processId()} running Lua code: ${options.luaCode}`)
+  try {
+    const value = await api.lua(options.luaCode)
+    return { value }
+  } catch (e) {
+    console.warn(`Error running Lua code: ${options.luaCode}`, e)
+    throw new Error(`Error running Lua code: ${options.luaCode}`, { cause: e })
   }
 }

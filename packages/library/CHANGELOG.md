@@ -1,5 +1,12 @@
 # Changelog
 
+## [7.2.0](https://github.com/mikavilpas/tui-sandbox/compare/library-v7.1.0...library-v7.2.0) (2024-11-24)
+
+
+### Features
+
+* add `cy.runExCommand()` to run Ex commands in Neovim ([#160](https://github.com/mikavilpas/tui-sandbox/issues/160)) ([1140f04](https://github.com/mikavilpas/tui-sandbox/commit/1140f04fcc86bd8bc90301a3505aef922c1a1f89))
+
 ## [7.1.0](https://github.com/mikavilpas/tui-sandbox/compare/library-v7.0.1...library-v7.1.0) (2024-11-24)
 
 

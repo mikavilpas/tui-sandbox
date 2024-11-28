@@ -13,7 +13,7 @@
     "zod": "3.23.8"
   },
   "devDependencies": {
-    "@types/node": "22.10.0",
+    "@types/node": "22.10.1",
     "concurrently": "9.1.0",
     "nodemon": "3.1.7",
     "type-fest": "4.29.0"

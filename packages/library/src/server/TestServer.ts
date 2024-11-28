@@ -39,7 +39,9 @@ export class TestServer {
       } catch (e) {
         // This is normal when developing the tui-sandbox library locally. It
         // should always exist when using it as an npm package, however.
-        console.log(`⚠️ Warning: the tui-sandbox root contents directory is not accessible at: ${publicPath}`)
+        console.log(
+          `⚠️ Warning: Looks like the tui-sandbox root contents directory is not accessible at: ${publicPath}`
+        )
       }
 
       // eslint-disable-next-line import-x/no-named-as-default-member
@@ -47,24 +49,24 @@ export class TestServer {
     }
 
     app.use("/ping", (_, res) => {
-      console.log("🏓 received /ping")
+      // console.log("🏓 received /ping")
       res.send("pong")
     })
 
     const server = app.listen(this.settings.port, "0.0.0.0")
 
     server.on("connection", socket => {
-      const connectionInfo = `${socket.remoteAddress}:${socket.remotePort}`
-      console.log(`➕➕ Connection from ${connectionInfo}`)
+      // const connectionInfo = `${socket.remoteAddress}:${socket.remotePort}`
+      // console.log(`➕➕ Connection from ${connectionInfo}`)
       socket.once("close", () => {
-        console.log(`➖➖ Connection from ${connectionInfo}`)
+        // console.log(`➖➖ Connection from ${connectionInfo}`)
       })
     })
 
     console.log(`✅ Server listening on port ${this.settings.port}`)
 
     await Promise.race([once(process, "SIGTERM"), once(process, "SIGINT")])
-    console.log("Shutting down...")
+    console.log("😴 Shutting down...")
     server.close(error => {
       if (error) {
         console.error("Error closing server", error)

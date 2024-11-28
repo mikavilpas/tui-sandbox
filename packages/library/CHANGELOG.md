@@ -1,5 +1,12 @@
 # Changelog
 
+## [7.2.1](https://github.com/mikavilpas/tui-sandbox/compare/library-v7.2.0...library-v7.2.1) (2024-11-28)
+
+
+### Bug Fixes
+
+* annoying dev output when starting the server ([729d43d](https://github.com/mikavilpas/tui-sandbox/commit/729d43d5c773c3e856690ae5896fea56e138a4b9))
+
 ## [7.2.0](https://github.com/mikavilpas/tui-sandbox/compare/library-v7.1.0...library-v7.2.0) (2024-11-24)
 
 

@@ -12,14 +12,18 @@ import type {
 } from "../types.js"
 import type { TestServerConfig } from "../updateTestdirectorySchemaFile.js"
 import { convertEventEmitterToAsyncGenerator } from "../utilities/generator.js"
+import { Lazy } from "../utilities/Lazy.js"
 import type { TabId } from "../utilities/tabId.js"
 import { createTempDir, removeTestDirectories } from "./environment/createTempDir.js"
 import type { TerminalDimensions } from "./NeovimApplication.js"
 import { NeovimApplication } from "./NeovimApplication.js"
 
 const neovims = new Map<TabId["tabId"], NeovimApplication>()
+export const resources: Lazy<AsyncDisposableStack> = new Lazy(() => {
+  return new AsyncDisposableStack()
+})
 
-export async function onStdout(
+export async function initializeStdout(
   options: { client: TabId },
   signal: AbortSignal | undefined,
   testEnvironmentPath: string
@@ -28,6 +32,9 @@ export async function onStdout(
   const neovim = neovims.get(tabId) ?? new NeovimApplication(testEnvironmentPath)
   if (neovims.get(tabId) === undefined) {
     neovims.set(tabId, neovim)
+    resources.get().adopt(neovim, async n => {
+      await n[Symbol.asyncDispose]()
+    })
   }
 
   const stdout = convertEventEmitterToAsyncGenerator(neovim.events, "stdout")
@@ -51,10 +58,15 @@ export async function start(
   const neovim = neovims.get(tabId.tabId)
   assert(neovim, `Neovim instance not found for client id ${tabId.tabId}`)
 
-  await removeTestDirectories(config.testEnvironmentPath)
-  const testDirectory = await createTempDir(config)
+  const testDirectory = await prepareNewTestDirectory(config)
   await neovim.startNextAndKillCurrent(testDirectory, options, terminalDimensions)
 
+  return testDirectory
+}
+
+export async function prepareNewTestDirectory(config: TestServerConfig): Promise<TestDirectory> {
+  await removeTestDirectories(config.testEnvironmentPath)
+  const testDirectory = await createTempDir(config)
   return testDirectory
 }
 

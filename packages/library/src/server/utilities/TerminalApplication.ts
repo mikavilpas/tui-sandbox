@@ -6,6 +6,8 @@ import type { IPty } from "node-pty"
 import pty from "node-pty"
 import type { StartableApplication } from "./DisposableSingleApplication.js"
 
+export type ExitInfo = { exitCode: number; signal: number | undefined }
+
 // NOTE separating stdout and stderr is not supported by node-pty
 // https://github.com/microsoft/node-pty/issues/71
 export class TerminalApplication implements StartableApplication {
@@ -15,7 +17,8 @@ export class TerminalApplication implements StartableApplication {
 
   private constructor(
     private readonly subProcess: IPty,
-    public readonly onStdoutOrStderr: (data: string) => void
+    public readonly onStdoutOrStderr: (data: string) => void,
+    public readonly untilExit: Promise<ExitInfo>
   ) {
     this.processId = subProcess.pid
 
@@ -60,14 +63,23 @@ export class TerminalApplication implements StartableApplication {
       cols: dimensions.cols,
       rows: dimensions.rows,
     })
+    ptyProcess.onExit(({ exitCode, signal }) => {
+      console.log(`Child process exited with code ${exitCode} and signal ${signal}`)
+    })
 
     const processId = ptyProcess.pid
 
     if (!processId) {
       throw new Error("Failed to spawn child process")
     }
+    const untilExit = new Promise<ExitInfo>(resolve => {
+      ptyProcess.onExit(({ exitCode, signal }) => {
+        // console.log(`Child process ${processId} exited with code ${exitCode} and signal ${signal}`)
+        resolve({ exitCode, signal })
+      })
+    })
 
-    return new TerminalApplication(ptyProcess, onStdoutOrStderr)
+    return new TerminalApplication(ptyProcess, onStdoutOrStderr, untilExit)
   }
 
   /** Write to the terminal's stdin. */

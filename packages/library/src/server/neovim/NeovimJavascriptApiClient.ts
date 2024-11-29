@@ -14,10 +14,10 @@ export function connectNeovimApi(socketPath: string): Lazy<Promise<NeovimJavascr
     for (let i = 0; i < 100; i++) {
       try {
         await access(socketPath)
-        console.log(`socket file ${socketPath} created after at attempt ${i + 1}`)
+        // console.log(`socket file ${socketPath} created after at attempt ${i + 1}`)
         break
       } catch (e) {
-        console.log(`polling for socket file ${socketPath} to be created (attempt ${i + 1})`)
+        // console.log(`polling for socket file ${socketPath} to be created (attempt ${i + 1})`)
         await new Promise(resolve => setTimeout(resolve, 100 satisfies PollingInterval))
       }
     }

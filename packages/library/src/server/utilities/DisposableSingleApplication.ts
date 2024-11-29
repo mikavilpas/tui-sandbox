@@ -1,7 +1,7 @@
 import assert from "assert"
-import type { TerminalApplication } from "./TerminalApplication.js"
+import type { ExitInfo, TerminalApplication } from "./TerminalApplication.js"
 
-export type StartableApplication = Pick<TerminalApplication, "write" | "processId" | "killAndWait">
+export type StartableApplication = Pick<TerminalApplication, "write" | "processId" | "killAndWait" | "untilExit">
 
 /** A testable application that can be started, killed, and given input. For a
  * single instance of this interface, only a single instance can be running at
@@ -13,6 +13,14 @@ export class DisposableSingleApplication implements AsyncDisposable {
   public async startNextAndKillCurrent(startNext: () => Promise<StartableApplication>): Promise<void> {
     await this[Symbol.asyncDispose]()
     this.application = await startNext()
+  }
+
+  public async untilExit(): Promise<ExitInfo> {
+    assert(
+      this.application,
+      "The application not started yet. It makes no sense to wait for it to exit, so this looks like a bug."
+    )
+    return this.application.untilExit
   }
 
   public async write(input: string): Promise<void> {

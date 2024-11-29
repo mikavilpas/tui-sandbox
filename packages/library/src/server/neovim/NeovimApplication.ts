@@ -56,11 +56,14 @@ Run "nvim -V1 -v" for more info
 
 */
 
-export type StdoutMessage = "stdout"
+export type StdoutOrStderrMessage = "stdout"
 
 export type StartNeovimGenericArguments = {
   filename: string | { openInVerticalSplits: string[] }
   startupScriptModifications?: string[]
+
+  /** Executes the given command with --headless -c <command> -c qa */
+  headlessCmd?: string
 
   /** Additions to the environment variables for the Neovim process. These
    * override any already existing environment variables. */
@@ -128,6 +131,13 @@ export class NeovimApplication {
       }
     }
 
+    if (startArgs.headlessCmd) {
+      // NOTE: update the doc comment above if this changes
+      neovimArguments.push("--headless")
+      neovimArguments.push("-c", startArgs.headlessCmd)
+      neovimArguments.push("-c", "qa")
+    }
+
     const id = Math.random().toString().slice(2, 8)
     const socketPath = `${tmpdir()}/tui-sandbox-nvim-socket-${id}`
     neovimArguments.push("--listen", socketPath)
@@ -146,7 +156,7 @@ export class NeovimApplication {
 
         onStdoutOrStderr(data) {
           data satisfies string
-          stdout.emit("stdout" satisfies StdoutMessage, data)
+          stdout.emit("stdout" satisfies StdoutOrStderrMessage, data)
         },
       })
     })

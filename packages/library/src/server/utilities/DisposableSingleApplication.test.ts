@@ -1,5 +1,6 @@
 import type { StartableApplication } from "./DisposableSingleApplication.js"
 import { DisposableSingleApplication } from "./DisposableSingleApplication.js"
+import type { ExitInfo } from "./TerminalApplication.js"
 
 vi.spyOn(console, "log").mockImplementation(vi.fn())
 
@@ -9,11 +10,12 @@ class TestDisposableSingleApplication extends DisposableSingleApplication {
   }
 }
 
-const fakeApp: StartableApplication = {
+const fakeApp = {
   processId: 123,
   write: vi.fn(),
   killAndWait: vi.fn(),
-}
+  untilExit: Promise.resolve<ExitInfo>({ exitCode: 0, signal: undefined }),
+} satisfies StartableApplication
 
 describe("DisposableSingleApplication", () => {
   it("has no application when created", () => {
@@ -43,6 +45,25 @@ describe("DisposableSingleApplication", () => {
     await expect(app.write("hello")).rejects.toThrowErrorMatchingInlineSnapshot(
       `[AssertionError: The application not started yet. It makes no sense to write to it, so this looks like a bug.]`
     )
+  })
+
+  describe("untilExit allows waiting for the application to exit", () => {
+    it("successful exit works", async () => {
+      const app = new TestDisposableSingleApplication()
+      await app.startNextAndKillCurrent(async () => fakeApp)
+      fakeApp.untilExit = Promise.resolve({ exitCode: 1, signal: 9 })
+      await expect(app.untilExit()).resolves.toStrictEqual({
+        exitCode: 1,
+        signal: 9,
+      } satisfies ExitInfo)
+    })
+
+    it("when the application throws an error, the error is propagated", async () => {
+      const app = new TestDisposableSingleApplication()
+      await app.startNextAndKillCurrent(async () => fakeApp)
+      fakeApp.untilExit = Promise.reject(new Error("fake error"))
+      await expect(app.untilExit()).rejects.toThrowError(new Error("fake error"))
+    })
   })
 
   describe("disposing", () => {

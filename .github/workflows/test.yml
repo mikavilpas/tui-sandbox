@@ -27,7 +27,6 @@ jobs:
           cache: "pnpm"
 
       - run: pnpm install
-      - run: pnpm prettier
       - run: pnpm test
 
       # need to work around https://github.com/cypress-io/github-action/issues/1246

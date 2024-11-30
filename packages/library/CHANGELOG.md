@@ -1,5 +1,12 @@
 # Changelog
 
+## [7.3.0](https://github.com/mikavilpas/tui-sandbox/compare/library-v7.2.1...library-v7.3.0) (2024-11-30)
+
+
+### Features
+
+* can run a headless neovim ex-command before tests ([700d83c](https://github.com/mikavilpas/tui-sandbox/commit/700d83c6b19875e946b38ef382b9eb48e22cb5f6))
+
 ## [7.2.1](https://github.com/mikavilpas/tui-sandbox/compare/library-v7.2.0...library-v7.2.1) (2024-11-28)
 
 

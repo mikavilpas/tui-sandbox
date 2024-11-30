@@ -96,6 +96,9 @@ it("should return the expected contents", async () => {
 
           runLuaCode(input: LuaCodeClientInput): Chainable<RunLuaCodeOutput>
 
+          /** Run an ex command in neovim.
+           * @example "echo expand('%:.')" current file, relative to the cwd
+           */
           runExCommand(input: ExCommandClientInput): Chainable<RunExCommandOutput>
         }
       }

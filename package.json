@@ -13,7 +13,8 @@
     "preinstall": "npx only-allow pnpm",
     "markdownlint": "markdownlint-cli2 README.md",
     "prettier": "prettier --check .",
-    "test": "vitest run"
+    "test": "vitest run",
+    "tui": "pnpm --filter=library build && pnpm --filter integration-tests exec tui"
   },
   "devDependencies": {
     "@eslint/js": "9.16.0",

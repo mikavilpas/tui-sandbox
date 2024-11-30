@@ -99,6 +99,9 @@ declare global {
 
       runLuaCode(input: LuaCodeClientInput): Chainable<RunLuaCodeOutput>
 
+      /** Run an ex command in neovim.
+       * @example "echo expand('%:.')" current file, relative to the cwd
+       */
       runExCommand(input: ExCommandClientInput): Chainable<RunExCommandOutput>
     }
   }

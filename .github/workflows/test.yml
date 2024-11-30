@@ -26,11 +26,18 @@ jobs:
           node-version-file: .nvmrc
           cache: "pnpm"
 
-      - run: pnpm install
-      - run: pnpm test
+      - run: |
+          # install dependencies so we can build the project
+          pnpm install
+          pnpm build
+          # install the "tui" command so it's available for the next steps
+          pnpm install
 
+      - run: pnpm test
       # need to work around https://github.com/cypress-io/github-action/issues/1246
       - run: pnpm --filter integration-tests exec cypress install
+      - name: Preinstall neovim plugins
+        run: pnpm tui neovim exec "Lazy! sync"
 
       - name: Cypress run
         uses: cypress-io/github-action@v6.7.7

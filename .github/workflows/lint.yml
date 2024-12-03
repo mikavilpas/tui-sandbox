@@ -24,7 +24,7 @@ jobs:
           cache: "pnpm"
       - run: pnpm install
       - run: pnpm build
-      - uses: reviewdog/action-eslint@v1.32.0
+      - uses: reviewdog/action-eslint@v1.33.0
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           reporter: github-pr-review # Change reporter.

@@ -10,7 +10,7 @@ import type {
   StartNeovimGenericArguments,
   TestDirectory,
 } from "../types.js"
-import type { TestServerConfig } from "../updateTestdirectorySchemaFile.js"
+import type { DirectoriesConfig } from "../updateTestdirectorySchemaFile.js"
 import { convertEventEmitterToAsyncGenerator } from "../utilities/generator.js"
 import { Lazy } from "../utilities/Lazy.js"
 import type { TabId } from "../utilities/tabId.js"
@@ -53,7 +53,7 @@ export async function start(
   options: StartNeovimGenericArguments,
   terminalDimensions: TerminalDimensions,
   tabId: TabId,
-  config: TestServerConfig
+  config: DirectoriesConfig
 ): Promise<TestDirectory> {
   const neovim = neovims.get(tabId.tabId)
   assert(neovim, `Neovim instance not found for client id ${tabId.tabId}`)
@@ -64,7 +64,7 @@ export async function start(
   return testDirectory
 }
 
-export async function prepareNewTestDirectory(config: TestServerConfig): Promise<TestDirectory> {
+export async function prepareNewTestDirectory(config: DirectoriesConfig): Promise<TestDirectory> {
   await removeTestDirectories(config.testEnvironmentPath)
   const testDirectory = await createTempDir(config)
   return testDirectory

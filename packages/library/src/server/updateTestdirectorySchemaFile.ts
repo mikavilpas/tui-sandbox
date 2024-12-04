@@ -1,9 +1,14 @@
 import { readFileSync, writeFileSync } from "fs"
 import { buildTestDirectorySchema } from "./dirtree/index.js"
 
-export type TestServerConfig = {
+export type DirectoriesConfig = {
   testEnvironmentPath: string
   outputFilePath: string
+}
+
+export type TestServerConfig = {
+  directories: DirectoriesConfig
+  port: number
 }
 
 export type UpdateTestdirectorySchemaFileResult = "updated" | "did-nothing"
@@ -11,7 +16,7 @@ export type UpdateTestdirectorySchemaFileResult = "updated" | "did-nothing"
 export async function updateTestdirectorySchemaFile({
   testEnvironmentPath,
   outputFilePath,
-}: TestServerConfig): Promise<UpdateTestdirectorySchemaFileResult> {
+}: DirectoriesConfig): Promise<UpdateTestdirectorySchemaFileResult> {
   const newSchema: string = await buildTestDirectorySchema(testEnvironmentPath)
   let oldSchema = ""
 

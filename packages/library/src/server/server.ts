@@ -5,7 +5,7 @@ import { z } from "zod"
 import { trpc } from "./connection/trpc.js"
 import * as neovim from "./neovim/index.js"
 import { TestServer } from "./TestServer.js"
-import type { TestServerConfig } from "./updateTestdirectorySchemaFile.js"
+import type { DirectoriesConfig, TestServerConfig } from "./updateTestdirectorySchemaFile.js"
 import { applicationAvailable } from "./utilities/applicationAvailable.js"
 import { tabIdSchema } from "./utilities/tabId.js"
 
@@ -35,7 +35,7 @@ export type ExCommandInput = z.infer<typeof exCommandInputSchema>
 
 /** @private */
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-export async function createAppRouter(config: TestServerConfig) {
+export async function createAppRouter(config: DirectoriesConfig) {
   if (!(await applicationAvailable("nvim"))) {
     throw new Error("Neovim is not installed. Please install Neovim (nvim).")
   }
@@ -99,9 +99,9 @@ export type RouterInput = inferRouterInputs<AppRouter>
 
 export async function startTestServer(config: TestServerConfig): Promise<TestServer> {
   const testServer = new TestServer({
-    port: 3000,
+    port: config.port,
   })
-  const appRouter = await createAppRouter(config)
+  const appRouter = await createAppRouter(config.directories)
   await testServer.startAndRun(appRouter)
 
   return testServer

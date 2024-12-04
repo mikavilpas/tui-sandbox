@@ -6,10 +6,10 @@ import { access, mkdir, mkdtemp } from "fs/promises"
 import path from "path"
 import { convertDree, getDirectoryTree } from "../../dirtree/index.js"
 import type { TestDirectory } from "../../types.js"
-import type { TestServerConfig } from "../../updateTestdirectorySchemaFile.js"
+import type { DirectoriesConfig } from "../../updateTestdirectorySchemaFile.js"
 import { updateTestdirectorySchemaFile } from "../../updateTestdirectorySchemaFile.js"
 
-export async function createTempDir(config: TestServerConfig): Promise<TestDirectory> {
+export async function createTempDir(config: DirectoriesConfig): Promise<TestDirectory> {
   try {
     const dir = await createUniqueDirectory(config.testEnvironmentPath)
 

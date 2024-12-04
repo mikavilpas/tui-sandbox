@@ -18,8 +18,11 @@ const outputFileName = "MyTestDirectory.ts"
  * cwd of the script itself. */
 const cwd = process.cwd()
 const config = {
-  testEnvironmentPath: path.join(cwd, "test-environment/"),
-  outputFilePath: path.join(cwd, outputFileName),
+  directories: {
+    testEnvironmentPath: path.join(cwd, "test-environment/"),
+    outputFilePath: path.join(cwd, outputFileName),
+  },
+  port: process.env["PORT"] ? parseInt(process.env["PORT"]) : 3000,
 } satisfies TestServerConfig
 
 // the arguments passed to this script start at index 2
@@ -35,11 +38,11 @@ if (args[0] === "neovim") {
 
   {
     // automatically dispose of the neovim instance when done
-    await using app = new NeovimApplication(config.testEnvironmentPath)
+    await using app = new NeovimApplication(config.directories.testEnvironmentPath)
     app.events.on("stdout" satisfies StdoutOrStderrMessage, data => {
       console.log(`  neovim output: ${data}`)
     })
-    const testDirectory = await prepareNewTestDirectory(config)
+    const testDirectory = await prepareNewTestDirectory(config.directories)
     await app.startNextAndKillCurrent(
       testDirectory,
       { filename: "empty.txt", headlessCmd: command },
@@ -62,7 +65,7 @@ try {
     cypressSupportDirectoryPath: path.join(cwd, "cypress", "support"),
     supportFileName: "tui-sandbox.ts",
   })
-  await updateTestdirectorySchemaFile(config)
+  await updateTestdirectorySchemaFile(config.directories)
   await startTestServer(config)
 } catch (e) {
   console.error(e)

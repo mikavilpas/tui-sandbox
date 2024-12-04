@@ -1,5 +1,12 @@
 # Changelog
 
+## [7.4.0](https://github.com/mikavilpas/tui-sandbox/compare/library-v7.3.0...library-v7.4.0) (2024-12-04)
+
+
+### Features
+
+* allow customizing the PORT for the test server ([#176](https://github.com/mikavilpas/tui-sandbox/issues/176)) ([a07a1ae](https://github.com/mikavilpas/tui-sandbox/commit/a07a1ae52d4ae67b323305891c3f9b2019f01bd4))
+
 ## [7.3.0](https://github.com/mikavilpas/tui-sandbox/compare/library-v7.2.1...library-v7.3.0) (2024-11-30)
 
 

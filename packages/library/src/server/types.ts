@@ -8,7 +8,7 @@ import type { VimValue } from "neovim/lib/types/VimValue.js"
  * be written with confidence that the files and directories they expect are
  * actually found. Otherwise the tests are brittle and can break easily.
  */
-export type TestDirectory = {
+export type TestDirectory<TContents extends object = object> = {
   /** The path to the unique test directory (the root).
    *
    * @example /Users/mikavilpas/git/tui-sandbox/packages/integration-tests/test-environment/testdirs/dir-0199UZ
@@ -28,7 +28,7 @@ export type TestDirectory = {
    */
   testEnvironmentPathRelative: string
 
-  contents: object
+  contents: TContents
 }
 
 export type { StartNeovimGenericArguments } from "../server/neovim/NeovimApplication.js"

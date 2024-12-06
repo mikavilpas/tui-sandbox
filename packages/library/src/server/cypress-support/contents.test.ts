@@ -17,14 +17,12 @@ it("should return the expected contents", async () => {
       RunExCommandOutput,
       RunLuaCodeOutput,
       StartNeovimGenericArguments,
+      TestDirectory,
     } from "@tui-sandbox/library/dist/src/server/types"
     import type { OverrideProperties } from "type-fest"
     import type { MyTestDirectory, MyTestDirectoryFile } from "../../MyTestDirectory"
 
-    export type NeovimContext = {
-      contents: MyTestDirectory
-      rootPathAbsolute: string
-    }
+    export type NeovimContext = TestDirectory<MyTestDirectory>
 
     declare global {
       interface Window {

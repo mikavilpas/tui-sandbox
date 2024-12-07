@@ -72,6 +72,24 @@ describe("neovim features", () => {
     })
   })
 
+  it("can 'restart' neovim by starting a second instance after the first one", () => {
+    cy.visit("/")
+    cy.startNeovim().then(() => {
+      // wait until text on the start screen is visible
+      cy.contains("f you see this text, Neovim is ready!").should(
+        "have.css",
+        "background-color",
+        rgbify(flavors.macchiato.colors.base.rgb)
+      )
+    })
+
+    // Restart neovim by starting a new instance. This will kill the previous one.
+    cy.startNeovim({ filename: "routes/posts.$postId/adjacent-file.txt" }).then(() => {
+      // wait until text on the start screen is visible
+      cy.contains("this file is adjacent-file.txt")
+    })
+  })
+
   it("can execute shell commands", () => {
     cy.visit("/")
     cy.startNeovim().then(() => {

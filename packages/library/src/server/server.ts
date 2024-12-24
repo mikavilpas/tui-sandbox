@@ -29,7 +29,11 @@ const luaCodeInputSchema = z.object({ tabId: tabIdSchema, luaCode: z.string() })
 export type LuaCodeClientInput = Except<LuaCodeInput, "tabId">
 export type LuaCodeInput = z.infer<typeof luaCodeInputSchema>
 
-const exCommandInputSchema = z.object({ tabId: tabIdSchema, command: z.string() })
+const exCommandInputSchema = z.object({
+  tabId: tabIdSchema,
+  command: z.string(),
+  log: z.boolean().optional(),
+})
 export type ExCommandClientInput = Except<ExCommandInput, "tabId">
 export type ExCommandInput = z.infer<typeof exCommandInputSchema>
 

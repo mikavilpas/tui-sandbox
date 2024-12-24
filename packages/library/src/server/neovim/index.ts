@@ -174,6 +174,9 @@ export async function runExCommand(options: ExCommandInput): Promise<RunExComman
   console.log(`Neovim ${neovim.application.processId()} running Ex command: ${options.command}`)
   try {
     const output = await api.commandOutput(options.command)
+    if (options.log) {
+      console.log(`Ex command output: ${output}`)
+    }
     return { value: output }
   } catch (e) {
     console.warn(`Error running Ex command: ${options.command}`, e)

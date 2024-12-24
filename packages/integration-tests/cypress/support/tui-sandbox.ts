@@ -14,6 +14,7 @@ import type {
   StartNeovimGenericArguments,
   TestDirectory,
 } from "@tui-sandbox/library/dist/src/server/types"
+import assert from "assert"
 import type { OverrideProperties } from "type-fest"
 import type { MyTestDirectory, MyTestDirectoryFile } from "../../MyTestDirectory"
 
@@ -39,6 +40,7 @@ type MyStartNeovimServerArguments = OverrideProperties<
 
 Cypress.Commands.add("startNeovim", (startArguments?: MyStartNeovimServerArguments) => {
   cy.window().then(async win => {
+    testWindow = win
     return await win.startNeovim(startArguments)
   })
 })
@@ -65,6 +67,13 @@ Cypress.Commands.add("runExCommand", (input: ExCommandClientInput) => {
   cy.window().then(async win => {
     return await win.runExCommand(input)
   })
+})
+
+let testWindow: Window | undefined
+
+Cypress.on("fail", async () => {
+  assert(testWindow, "testWindow is not defined")
+  await testWindow.runExCommand({ command: "messages", log: true })
 })
 
 before(function () {

@@ -19,6 +19,7 @@ it("should return the expected contents", async () => {
       StartNeovimGenericArguments,
       TestDirectory,
     } from "@tui-sandbox/library/dist/src/server/types"
+    import assert from "assert"
     import type { OverrideProperties } from "type-fest"
     import type { MyTestDirectory, MyTestDirectoryFile } from "../../MyTestDirectory"
 
@@ -44,6 +45,7 @@ it("should return the expected contents", async () => {
 
     Cypress.Commands.add("startNeovim", (startArguments?: MyStartNeovimServerArguments) => {
       cy.window().then(async win => {
+        testWindow = win
         return await win.startNeovim(startArguments)
       })
     })
@@ -70,6 +72,13 @@ it("should return the expected contents", async () => {
       cy.window().then(async win => {
         return await win.runExCommand(input)
       })
+    })
+
+    let testWindow: Window | undefined
+
+    Cypress.on("fail", async () => {
+      assert(testWindow, "testWindow is not defined")
+      await testWindow.runExCommand({ command: "messages", log: true })
     })
 
     before(function () {

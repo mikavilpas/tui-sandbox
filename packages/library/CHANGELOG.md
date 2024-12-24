@@ -1,5 +1,12 @@
 # Changelog
 
+## [7.5.0](https://github.com/mikavilpas/tui-sandbox/compare/library-v7.4.0...library-v7.5.0) (2024-12-24)
+
+
+### Features
+
+* when a test fails, show :messages output in the terminal ([1729dff](https://github.com/mikavilpas/tui-sandbox/commit/1729dff10b7f8c3b320621856df569a6873411d4))
+
 ## [7.4.0](https://github.com/mikavilpas/tui-sandbox/compare/library-v7.3.0...library-v7.4.0) (2024-12-04)
 
 

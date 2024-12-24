@@ -98,25 +98,16 @@ export class TerminalClient {
 
   public async runBlockingShellCommand(input: BlockingCommandClientInput): Promise<BlockingShellCommandOutput> {
     await this.ready
-    return this.trpc.neovim.runBlockingShellCommand.mutate({
-      ...input,
-      tabId: this.tabId,
-    })
+    return this.trpc.neovim.runBlockingShellCommand.mutate({ ...input, tabId: this.tabId })
   }
 
   public async runLuaCode(input: LuaCodeClientInput): Promise<RunLuaCodeOutput> {
     await this.ready
-    return this.trpc.neovim.runLuaCode.mutate({
-      luaCode: input.luaCode,
-      tabId: this.tabId,
-    })
+    return this.trpc.neovim.runLuaCode.mutate({ ...input, tabId: this.tabId })
   }
 
   public async runExCommand(input: ExCommandClientInput): Promise<RunExCommandOutput> {
     await this.ready
-    return this.trpc.neovim.runExCommand.mutate({
-      command: input.command,
-      tabId: this.tabId,
-    })
+    return this.trpc.neovim.runExCommand.mutate({ ...input, tabId: this.tabId })
   }
 }

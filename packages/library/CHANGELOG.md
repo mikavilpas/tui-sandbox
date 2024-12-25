@@ -1,5 +1,12 @@
 # Changelog
 
+## [7.5.3](https://github.com/mikavilpas/tui-sandbox/compare/library-v7.5.2...library-v7.5.3) (2024-12-25)
+
+
+### Bug Fixes
+
+* not correctly failing tests ([2a6f737](https://github.com/mikavilpas/tui-sandbox/commit/2a6f737a5049f4f8adf8e322cc5e205b828e893a))
+
 ## [7.5.2](https://github.com/mikavilpas/tui-sandbox/compare/library-v7.5.1...library-v7.5.2) (2024-12-25)
 
 

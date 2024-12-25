@@ -175,7 +175,7 @@ export async function runExCommand(options: ExCommandInput): Promise<RunExComman
   try {
     const output = await api.commandOutput(options.command)
     if (options.log) {
-      console.log(`Ex command output: ${output}`)
+      console.log(`:${options.command} output: ${output}`)
     }
     return { value: output }
   } catch (e) {

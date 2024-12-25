@@ -22,6 +22,11 @@ export function connectNeovimApi(socketPath: string): Lazy<Promise<NeovimJavascr
       }
     }
 
+    // Prevent neovim node client from monkey patching console.log. It runs in
+    // a separate process entirely, so there doesn't seem to be any benefit to
+    // this.
+    process.env["ALLOW_CONSOLE"] = "1"
+
     return attach({ socket: socketPath })
   })
 }

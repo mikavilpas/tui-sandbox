@@ -111,7 +111,6 @@ declare global {
 
 afterEach(async () => {
   if (!testWindow) return
-debugger
   await testWindow.runExCommand({ command: "messages", log: true })
 })
 `

@@ -1,5 +1,12 @@
 # Changelog
 
+## [7.5.1](https://github.com/mikavilpas/tui-sandbox/compare/library-v7.5.0...library-v7.5.1) (2024-12-25)
+
+
+### Bug Fixes
+
+* throw error on Cypress fail ([bbfd118](https://github.com/mikavilpas/tui-sandbox/commit/bbfd118ce1508facba8e59b0434b2bc9c67b3f45))
+
 ## [7.5.0](https://github.com/mikavilpas/tui-sandbox/compare/library-v7.4.0...library-v7.5.0) (2024-12-24)
 
 

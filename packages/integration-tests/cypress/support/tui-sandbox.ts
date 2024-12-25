@@ -71,9 +71,10 @@ Cypress.Commands.add("runExCommand", (input: ExCommandClientInput) => {
 
 let testWindow: Window | undefined
 
-Cypress.on("fail", async () => {
+Cypress.on("fail", async error => {
   assert(testWindow, "testWindow is not defined")
   await testWindow.runExCommand({ command: "messages", log: true })
+  throw error
 })
 
 before(function () {

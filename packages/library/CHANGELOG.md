@@ -1,5 +1,12 @@
 # Changelog
 
+## [7.5.4](https://github.com/mikavilpas/tui-sandbox/compare/library-v7.5.3...library-v7.5.4) (2024-12-25)
+
+
+### Bug Fixes
+
+* remove debugger statement ([1c861a9](https://github.com/mikavilpas/tui-sandbox/commit/1c861a9f64a68f2d1776a4050d07ea4adf4fd293))
+
 ## [7.5.3](https://github.com/mikavilpas/tui-sandbox/compare/library-v7.5.2...library-v7.5.3) (2024-12-25)
 
 

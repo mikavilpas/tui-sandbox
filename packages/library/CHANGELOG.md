@@ -1,5 +1,12 @@
 # Changelog
 
+## [7.5.2](https://github.com/mikavilpas/tui-sandbox/compare/library-v7.5.1...library-v7.5.2) (2024-12-25)
+
+
+### Bug Fixes
+
+* not being able to throw error in Cypress.on("fail") handler ([5ec8596](https://github.com/mikavilpas/tui-sandbox/commit/5ec8596f4f13d0c3ad0bc684f66629311d5d057b))
+
 ## [7.5.1](https://github.com/mikavilpas/tui-sandbox/compare/library-v7.5.0...library-v7.5.1) (2024-12-25)
 
 

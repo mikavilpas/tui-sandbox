@@ -73,7 +73,7 @@ let testWindow: Window | undefined
 
 Cypress.on("fail", async error => {
   assert(testWindow, "testWindow is not defined")
-  await testWindow.runExCommand({ command: "messages", log: true })
+  void testWindow.runExCommand({ command: "messages", log: true })
   throw error
 })
 

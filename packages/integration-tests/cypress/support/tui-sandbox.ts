@@ -14,7 +14,6 @@ import type {
   StartNeovimGenericArguments,
   TestDirectory,
 } from "@tui-sandbox/library/dist/src/server/types"
-import assert from "assert"
 import type { OverrideProperties } from "type-fest"
 import type { MyTestDirectory, MyTestDirectoryFile } from "../../MyTestDirectory"
 
@@ -71,12 +70,6 @@ Cypress.Commands.add("runExCommand", (input: ExCommandClientInput) => {
 
 let testWindow: Window | undefined
 
-Cypress.on("fail", async error => {
-  assert(testWindow, "testWindow is not defined")
-  void testWindow.runExCommand({ command: "messages", log: true })
-  throw error
-})
-
 before(function () {
   // disable Cypress's default behavior of logging all XMLHttpRequests and
   // fetches to the Command Log
@@ -106,3 +99,9 @@ declare global {
     }
   }
 }
+
+afterEach(async () => {
+  if (!testWindow) return
+  debugger
+  await testWindow.runExCommand({ command: "messages", log: true })
+})

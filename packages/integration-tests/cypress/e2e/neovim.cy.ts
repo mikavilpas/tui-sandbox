@@ -190,6 +190,14 @@ describe("neovim features", () => {
     })
   })
 
+  it("can show messages after a test fails", () => {
+    cy.visit("/")
+    cy.startNeovim().then(() => {
+      cy.runLuaCode({ luaCode: `vim.api.nvim_echo({{"This is a message", "Normal"}}, true, {})` })
+      cy.runExCommand({ command: "echo 'test message'" })
+    })
+  })
+
   it("can runExCommand and get its result", () => {
     cy.visit("/")
     cy.startNeovim().then(() => {

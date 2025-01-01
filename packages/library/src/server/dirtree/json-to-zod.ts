@@ -8,7 +8,7 @@ export async function jsonToZod(object: unknown, name: string = "schema"): Promi
   const parse = (o: unknown, seen: object[]): string => {
     switch (typeof o) {
       case "string":
-        return `z.literal("${o}")`
+        return `z.literal("${o.replaceAll('"', `\\"`)}")`
       case "number":
         return "z.number()"
       case "bigint":
@@ -37,7 +37,10 @@ export async function jsonToZod(object: unknown, name: string = "schema"): Promi
           }
         }
         // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
-        return `z.object({${Object.entries(o).map(([k, v]) => `'${k}':${parse(v, seen)}`)}})`
+        return `z.object({${Object.entries(o).map(([k, v]) => {
+          const key = k.replaceAll("'", "\\'")
+          return `'${key}':${parse(v, seen)}`
+        })}})`
       case "undefined":
         return "z.undefined()"
       case "function":
@@ -47,7 +50,6 @@ export async function jsonToZod(object: unknown, name: string = "schema"): Promi
         return "z.unknown()"
     }
   }
-
   const prettierConfig = await resolveConfig(__filename)
 
   return format(`import {z} from "zod"\n\nexport const ${name}=${parse(object, [])}`, {

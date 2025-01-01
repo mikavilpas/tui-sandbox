@@ -73,6 +73,12 @@ describe("dirtree", () => {
                 extension: z.literal("lua"),
                 stem: z.literal("add_command_to_count_open_buffers."),
               }),
+              "don't_crash_when_modification_contains_unescaped_characters\\".lua": z.object({
+                name: z.literal("don't_crash_when_modification_contains_unescaped_characters\\".lua"),
+                type: z.literal("file"),
+                extension: z.literal("lua"),
+                stem: z.literal("don't_crash_when_modification_contains_unescaped_characters\\"."),
+              }),
             }),
           }),
           "dir with spaces": z.object({
@@ -173,6 +179,7 @@ describe("dirtree", () => {
         ".config/nvim",
         ".config",
         "config-modifications/add_command_to_count_open_buffers.lua",
+        "config-modifications/don't_crash_when_modification_contains_unescaped_characters\\".lua",
         "config-modifications",
         "dir with spaces/file1.txt",
         "dir with spaces/file2.txt",

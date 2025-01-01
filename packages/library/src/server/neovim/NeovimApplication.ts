@@ -107,13 +107,14 @@ export class NeovimApplication {
 
     if (startArgs.startupScriptModifications) {
       for (const modification of startArgs.startupScriptModifications) {
-        const file = path.join(testDirectory.rootPathAbsolute, "config-modifications", modification)
+        let file = path.join(testDirectory.rootPathAbsolute, "config-modifications", modification)
         try {
           await access(file)
         } catch (e) {
           throw new Error(`startupScriptModifications file does not exist: ${file}. Error: ${String(e)}`)
         }
 
+        file = file.replaceAll("'", "\\'")
         neovimArguments.push("-c", `lua dofile('${file}')`)
       }
     }

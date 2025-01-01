@@ -18,7 +18,10 @@ describe("neovim features", () => {
   it("can start with startupScriptModifications and open another file", () => {
     cy.visit("/")
     cy.startNeovim({
-      startupScriptModifications: ["add_command_to_count_open_buffers.lua"],
+      startupScriptModifications: [
+        "add_command_to_count_open_buffers.lua",
+        "don't_crash_when_modification_contains_unescaped_characters\".lua",
+      ],
     }).then(() => {
       // wait until text on the start screen is visible
       cy.contains("If you see this text, Neovim is ready!")

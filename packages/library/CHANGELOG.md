@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.5.5](https://github.com/mikavilpas/tui-sandbox/compare/library-v7.5.4...library-v7.5.5) (2025-01-01)
+
+
+### Bug Fixes
+
+* crash when using startupScriptModifications with `'` in the name ([bde5d06](https://github.com/mikavilpas/tui-sandbox/commit/bde5d06f37bc77c7276ac0db407640baeac87984))
+* directory schema generation failing with unescaped chars ([bb9b89b](https://github.com/mikavilpas/tui-sandbox/commit/bb9b89b9f047cc4cd5f8a39018045d639a4dc3d2))
+
 ## [7.5.4](https://github.com/mikavilpas/tui-sandbox/compare/library-v7.5.3...library-v7.5.4) (2024-12-25)
 
 

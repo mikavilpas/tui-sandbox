@@ -1,5 +1,12 @@
 # Changelog
 
+## [7.5.6](https://github.com/mikavilpas/tui-sandbox/compare/library-v7.5.5...library-v7.5.6) (2025-01-09)
+
+
+### Bug Fixes
+
+* waiting forever for :messages to finish when neovim is stuck ([#218](https://github.com/mikavilpas/tui-sandbox/issues/218)) ([e8ef89b](https://github.com/mikavilpas/tui-sandbox/commit/e8ef89baddf36f468900ed7211bf7339e4f9042a))
+
 ## [7.5.5](https://github.com/mikavilpas/tui-sandbox/compare/library-v7.5.4...library-v7.5.5) (2025-01-01)
 
 

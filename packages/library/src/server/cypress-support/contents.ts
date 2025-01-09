@@ -22,7 +22,6 @@ import type {
   StartNeovimGenericArguments,
   TestDirectory,
 } from "@tui-sandbox/library/dist/src/server/types"
-import assert from "assert"
 import type { OverrideProperties } from "type-fest"
 import type { MyTestDirectory, MyTestDirectoryFile } from "../../MyTestDirectory"
 
@@ -111,7 +110,14 @@ declare global {
 
 afterEach(async () => {
   if (!testWindow) return
-  await testWindow.runExCommand({ command: "messages", log: true })
+  const timeout = new Promise<void>((resolve, reject) =>
+    setTimeout(() => {
+      Cypress.log({ name: "timeout when waiting for :messages to finish. Neovim might be stuck." })
+      reject("timeout when waiting for :messages to finish. Neovim might be stuck.")
+    }, 5_000)
+  )
+
+  await Promise.race([timeout, testWindow.runExCommand({ command: "messages" })])
 })
 `
 

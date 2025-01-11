@@ -1,6 +1,8 @@
 import assert from "assert"
 import { exec } from "child_process"
 import "core-js/proposals/async-explicit-resource-management.js"
+import { access } from "fs/promises"
+import path from "path"
 import util from "util"
 import type { BlockingCommandInput, ExCommandInput, LuaCodeInput } from "../server.js"
 import type {
@@ -15,13 +17,39 @@ import { convertEventEmitterToAsyncGenerator } from "../utilities/generator.js"
 import { Lazy } from "../utilities/Lazy.js"
 import type { TabId } from "../utilities/tabId.js"
 import { createTempDir, removeTestDirectories } from "./environment/createTempDir.js"
-import type { TerminalDimensions } from "./NeovimApplication.js"
+import type { StdoutOrStderrMessage, TerminalDimensions } from "./NeovimApplication.js"
 import { NeovimApplication } from "./NeovimApplication.js"
 
 const neovims = new Map<TabId["tabId"], NeovimApplication>()
-export const resources: Lazy<AsyncDisposableStack> = new Lazy(() => {
+const resources: Lazy<AsyncDisposableStack> = new Lazy(() => {
   return new AsyncDisposableStack()
 })
+
+export async function installDependencies(testEnvironmentPath: string, config: DirectoriesConfig): Promise<void> {
+  await using app = new NeovimApplication(testEnvironmentPath)
+  const testDirectory = await prepareNewTestDirectory(config)
+  const prepareFilePath = path.join(testDirectory.rootPathAbsolute, ".config", "nvim", "prepare.lua")
+  try {
+    await access(prepareFilePath)
+  } catch (e) {
+    console.log(
+      `Neovim prepareFilePath does not exist: ${prepareFilePath}. If you want to run a prepare script before starting the tests, create it.`
+    )
+    return
+  }
+
+  console.log(`🚀 Running Neovim prepareFilePath ${prepareFilePath}...`)
+
+  app.events.on("stdout" satisfies StdoutOrStderrMessage, data => {
+    console.log(`  neovim output: ${data}`)
+  })
+  await app.startNextAndKillCurrent(
+    testDirectory,
+    { filename: "empty.txt", headlessCmd: `lua dofile("${prepareFilePath}")` },
+    { cols: 80, rows: 24 }
+  )
+  await app.application.untilExit()
+}
 
 export async function initializeStdout(
   options: { client: TabId },

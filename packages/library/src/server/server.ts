@@ -106,7 +106,12 @@ export async function startTestServer(config: TestServerConfig): Promise<TestSer
     port: config.port,
   })
   const appRouter = await createAppRouter(config.directories)
-  await testServer.startAndRun(appRouter)
+
+  await Promise.all([
+    // NOTE right now Neovim is always initialized
+    neovim.installDependencies(config.directories.testEnvironmentPath, config.directories),
+    testServer.startAndRun(appRouter),
+  ])
 
   return testServer
 }

@@ -36,8 +36,6 @@ jobs:
       - run: pnpm test
       # need to work around https://github.com/cypress-io/github-action/issues/1246
       - run: pnpm --filter integration-tests exec cypress install
-      - name: Preinstall neovim plugins
-        run: pnpm tui neovim exec "Lazy! sync"
 
       - name: Cypress run
         uses: cypress-io/github-action@v6.7.8

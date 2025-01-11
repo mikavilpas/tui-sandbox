@@ -34,6 +34,12 @@ export const MyTestDirectorySchema = z.object({
               extension: z.literal("lua"),
               stem: z.literal("init."),
             }),
+            "prepare.lua": z.object({
+              name: z.literal("prepare.lua"),
+              type: z.literal("file"),
+              extension: z.literal("lua"),
+              stem: z.literal("prepare."),
+            }),
           }),
         }),
       }),
@@ -151,6 +157,7 @@ export type MyTestDirectory = MyTestDirectoryContentsSchemaType["contents"]
 export const testDirectoryFiles = z.enum([
   ".config/.gitkeep",
   ".config/nvim/init.lua",
+  ".config/nvim/prepare.lua",
   ".config/nvim",
   ".config",
   "config-modifications/add_command_to_count_open_buffers.lua",

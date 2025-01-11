@@ -92,6 +92,24 @@ export const MyTestDirectorySchema = z.object({
       extension: z.literal("txt"),
       stem: z.literal("initial-file."),
     }),
+    "lua-project": z.object({
+      name: z.literal("lua-project/"),
+      type: z.literal("directory"),
+      contents: z.object({
+        "config.lua": z.object({
+          name: z.literal("config.lua"),
+          type: z.literal("file"),
+          extension: z.literal("lua"),
+          stem: z.literal("config."),
+        }),
+        "init.lua": z.object({
+          name: z.literal("init.lua"),
+          type: z.literal("file"),
+          extension: z.literal("lua"),
+          stem: z.literal("init."),
+        }),
+      }),
+    }),
     "other-subdirectory": z.object({
       name: z.literal("other-subdirectory/"),
       type: z.literal("directory"),
@@ -168,6 +186,9 @@ export const testDirectoryFiles = z.enum([
   "dir with spaces",
   "file.txt",
   "initial-file.txt",
+  "lua-project/config.lua",
+  "lua-project/init.lua",
+  "lua-project",
   "other-subdirectory/other-sub-file.txt",
   "other-subdirectory",
   "routes/posts.$postId/adjacent-file.txt",

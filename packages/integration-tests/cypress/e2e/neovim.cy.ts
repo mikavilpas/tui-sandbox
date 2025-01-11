@@ -220,4 +220,35 @@ describe("neovim features", () => {
       cy.contains("Hello from the subdirectory!")
     })
   })
+
+  describe("using an LSP server", () => {
+    it("can use a LSP server that's already installed", () => {
+      // in the test setup, the lua_ls server is installed in the file
+      // prepare.lua when the test environment is started
+      cy.visit("/")
+      cy.startNeovim({ filename: "lua-project/init.lua" }).then(() => {
+        // wait until text on the start screen is visible
+        cy.contains(`require("config")`)
+
+        // This is a pretty hacky way to know when the LSP server is ready. It
+        // shows an "unused" warning when it has started :)
+        //
+        // It takes a bit of time for the LSP server to start
+        cy.contains("Unused local `default`.", { timeout: 15_000 })
+        cy.typeIntoTerminal("/config.defaults/e{enter}")
+
+        // the final `s` is the cursor itself, and it has a different background-color
+        cy.contains("config.default").should("have.css", "background-color", rgbify(flavors.macchiato.colors.red.rgb))
+
+        cy.typeIntoTerminal("gd")
+
+        // should have navigated to the definition of `config.defaults`, which
+        // is another file
+        cy.contains("the default configuration")
+        cy.runExCommand({ command: `echo expand("%")` }).then(result => {
+          expect(result.value).to.match(new RegExp("lua-project/config.lua" satisfies MyTestDirectoryFile))
+        })
+      })
+    })
+  })
 })

@@ -1,5 +1,12 @@
 # Changelog
 
+## [7.6.0](https://github.com/mikavilpas/tui-sandbox/compare/library-v7.5.6...library-v7.6.0) (2025-01-11)
+
+
+### Features
+
+* can run a prepare script before starting the tests ([#225](https://github.com/mikavilpas/tui-sandbox/issues/225)) ([53d1a32](https://github.com/mikavilpas/tui-sandbox/commit/53d1a32ff292f9a931a90fddceb5ec36a8dad84a))
+
 ## [7.5.6](https://github.com/mikavilpas/tui-sandbox/compare/library-v7.5.5...library-v7.5.6) (2025-01-09)
 
 

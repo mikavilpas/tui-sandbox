@@ -1,4 +1,5 @@
 import { readFileSync, writeFileSync } from "fs"
+import { mkdir, stat } from "fs/promises"
 import path from "path"
 import { createCypressSupportFileContents } from "./contents.js"
 
@@ -18,6 +19,17 @@ export async function createCypressSupportFile({
   cypressSupportDirectoryPath,
   supportFileName,
 }: CreateCypressSupportFileArgs): Promise<CreateCypressSupportFileResult> {
+  // create config-modifications directory if it doesn't exist
+  const configModificationsDirectoryPath = path.join(cypressSupportDirectoryPath, "config-modifications")
+  try {
+    await stat(configModificationsDirectoryPath)
+  } catch (error) {
+    console.log(
+      `Creating config-modifications directory at ${configModificationsDirectoryPath}. You can put Neovim startup scripts into this directory, and load them when starting your Neovim test.`
+    )
+    await mkdir(configModificationsDirectoryPath)
+  }
+
   const text = await createCypressSupportFileContents()
 
   let oldSchema = ""

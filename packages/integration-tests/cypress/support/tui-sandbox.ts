@@ -15,17 +15,30 @@ import type {
   TestDirectory,
 } from "@tui-sandbox/library/dist/src/server/types"
 import type { OverrideProperties } from "type-fest"
+import type { GenericNeovimBrowserApi } from "../../../library/src/browser/neovim-client.ts"
 import type { MyTestDirectory, MyTestDirectoryFile } from "../../MyTestDirectory"
 
-export type NeovimContext = TestDirectory<MyTestDirectory>
+/** The api that can be used in tests after a Neovim instance has been started. */
+export type NeovimContext = {
+  /** Types text into the terminal, making the terminal application receive
+   * the keystrokes as input. Requires neovim to be running. */
+  typeIntoTerminal(text: string, options?: Partial<Cypress.TypeOptions>): void
 
-declare global {
-  interface Window {
-    startNeovim(startArguments?: MyStartNeovimServerArguments): Promise<NeovimContext>
-    runBlockingShellCommand(input: BlockingCommandClientInput): Promise<BlockingShellCommandOutput>
-    runLuaCode(input: LuaCodeClientInput): Promise<RunLuaCodeOutput>
-    runExCommand(input: ExCommandClientInput): Promise<RunExCommandOutput>
-  }
+  /** Runs a shell command in a blocking manner, waiting for the command to
+   * finish before returning. Requires neovim to be running. */
+  runBlockingShellCommand(input: BlockingCommandClientInput): Cypress.Chainable<BlockingShellCommandOutput>
+
+  /** Runs a shell command in a blocking manner, waiting for the command to
+   * finish before returning. Requires neovim to be running. */
+  runLuaCode(input: LuaCodeClientInput): Cypress.Chainable<RunLuaCodeOutput>
+
+  /** Run an ex command in neovim.
+   * @example "echo expand('%:.')" current file, relative to the cwd
+   */
+  runExCommand(input: ExCommandClientInput): Cypress.Chainable<RunExCommandOutput>
+
+  /** The test directory, providing type-safe access to its file and directory structure */
+  dir: TestDirectory<MyTestDirectory>
 }
 
 /** Arguments for starting the neovim server. They are built based on your test
@@ -34,21 +47,41 @@ type MyStartNeovimServerArguments = OverrideProperties<
   StartNeovimGenericArguments,
   {
     filename?: MyTestDirectoryFile | { openInVerticalSplits: MyTestDirectoryFile[] }
-    // NOTE: right now you need to make sure the config-modifications directory exists in your test directory
     startupScriptModifications?: Array<keyof MyTestDirectory["config-modifications"]["contents"]>
   }
 >
 
 Cypress.Commands.add("startNeovim", (startArguments?: MyStartNeovimServerArguments) => {
   cy.window().then(async win => {
-    testWindow = win
-    return await win.startNeovim(startArguments)
-  })
-})
+    const underlyingNeovim: GenericNeovimBrowserApi = await win.startNeovim(
+      startArguments as StartNeovimGenericArguments
+    )
+    testNeovim = underlyingNeovim
 
-Cypress.Commands.add("runBlockingShellCommand", (input: BlockingCommandClientInput) => {
-  cy.window().then(async win => {
-    return await win.runBlockingShellCommand(input)
+    // wrap everything so that Cypress can await all the commands
+    Cypress.Commands.addAll({
+      nvim_runBlockingShellCommand: underlyingNeovim.runBlockingShellCommand,
+      nvim_runExCommand: underlyingNeovim.runExCommand,
+      nvim_runLuaCode: underlyingNeovim.runLuaCode,
+    })
+
+    const api: NeovimContext = {
+      runBlockingShellCommand(input) {
+        return cy.nvim_runBlockingShellCommand(input)
+      },
+      runExCommand(input) {
+        return cy.nvim_runExCommand(input)
+      },
+      runLuaCode(input) {
+        return cy.nvim_runLuaCode(input)
+      },
+      typeIntoTerminal(text, options) {
+        cy.typeIntoTerminal(text, options)
+      },
+      dir: underlyingNeovim.dir as TestDirectory<MyTestDirectory>,
+    }
+
+    return api
   })
 })
 
@@ -58,19 +91,7 @@ Cypress.Commands.add("typeIntoTerminal", (text: string, options?: Partial<Cypres
   cy.get("textarea").focus().type(text, options)
 })
 
-Cypress.Commands.add("runLuaCode", (input: LuaCodeClientInput) => {
-  cy.window().then(async win => {
-    return await win.runLuaCode(input)
-  })
-})
-
-Cypress.Commands.add("runExCommand", (input: ExCommandClientInput) => {
-  cy.window().then(async win => {
-    return await win.runExCommand(input)
-  })
-})
-
-let testWindow: Window | undefined
+let testNeovim: GenericNeovimBrowserApi | undefined
 
 before(function () {
   // disable Cypress's default behavior of logging all XMLHttpRequests and
@@ -90,20 +111,20 @@ declare global {
 
       /** Runs a shell command in a blocking manner, waiting for the command to
        * finish before returning. Requires neovim to be running. */
-      runBlockingShellCommand(input: BlockingCommandClientInput): Chainable<BlockingShellCommandOutput>
+      nvim_runBlockingShellCommand(input: BlockingCommandClientInput): Chainable<BlockingShellCommandOutput>
 
-      runLuaCode(input: LuaCodeClientInput): Chainable<RunLuaCodeOutput>
+      nvim_runLuaCode(input: LuaCodeClientInput): Chainable<RunLuaCodeOutput>
 
       /** Run an ex command in neovim.
        * @example "echo expand('%:.')" current file, relative to the cwd
        */
-      runExCommand(input: ExCommandClientInput): Chainable<RunExCommandOutput>
+      nvim_runExCommand(input: ExCommandClientInput): Chainable<RunExCommandOutput>
     }
   }
 }
 
 afterEach(async () => {
-  if (!testWindow) return
+  if (!testNeovim) return
 
   let timeoutId: NodeJS.Timeout | undefined = undefined
   const timeout = new Promise<void>((_, reject) => {
@@ -114,7 +135,7 @@ afterEach(async () => {
   })
 
   try {
-    await Promise.race([timeout, testWindow.runExCommand({ command: "messages" })])
+    await Promise.race([timeout, testNeovim.runExCommand({ command: "messages" })])
   } finally {
     clearTimeout(timeoutId) // Ensure the timeout is cleared
   }

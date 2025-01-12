@@ -95,47 +95,47 @@ describe("neovim features", () => {
 
   it("can execute shell commands", () => {
     cy.visit("/")
-    cy.startNeovim().then(() => {
+    cy.startNeovim().then(nvim => {
       // successful command (stdout)
-      cy.runBlockingShellCommand({ command: `echo HOME directory is $HOME` }).then(output => {
+      nvim.runBlockingShellCommand({ command: `echo HOME directory is $HOME` }).then(output => {
         // environment variables are supported
         assert(output.type === "success")
         expect(output.stdout).to.match(/HOME directory is .+?integration-tests\/test-environment\/testdirs\/dir-.*?/)
         expect(output.stderr).to.equal("")
       })
 
-      cy.runBlockingShellCommand({ command: "echo file-contents > $HOME/somefile.txt" })
+      nvim.runBlockingShellCommand({ command: "echo file-contents > $HOME/somefile.txt" })
       cy.typeIntoTerminal(":e $HOME/somefile.txt{enter}", { delay: 0 })
       cy.contains("file-contents")
 
       // failing command (stderr)
-      cy.runBlockingShellCommand({ command: "echo 'hello from the shell' >&2" }).then(output => {
+      nvim.runBlockingShellCommand({ command: "echo 'hello from the shell' >&2" }).then(output => {
         assert(output.type === "success")
         expect(output.stdout).to.equal("")
         expect(output.stderr).to.equal("hello from the shell\n")
       })
 
       // command not found, allowFailure=true
-      cy.runBlockingShellCommand({ command: "commandnotfoundreallynotfound", allowFailure: true }).then(output => {
+      nvim.runBlockingShellCommand({ command: "commandnotfoundreallynotfound", allowFailure: true }).then(output => {
         assert(output.type === "failed")
       })
 
       // setting the cwd
-      cy.runBlockingShellCommand({ command: "pwd", cwd: "/" }).then(output => {
+      nvim.runBlockingShellCommand({ command: "pwd", cwd: "/" }).then(output => {
         assert(output.type === "success")
         expect(output.stdout).to.equal("/\n")
       })
 
       // by default, the cwd is the home directory, which is the root of the
       // unique test environment
-      cy.runBlockingShellCommand({ command: "pwd" }).then(output => {
+      nvim.runBlockingShellCommand({ command: "pwd" }).then(output => {
         assert(output.type === "success")
         expect(output.stdout).to.match(/integration-tests\/test-environment\/testdirs\/dir-.*?\n/)
       })
 
       // it's possible to use `cd` to change the cwd to a directory defined by
       // an environment variable
-      cy.runBlockingShellCommand({ command: "cd $XDG_CONFIG_HOME; pwd" }).then(output => {
+      nvim.runBlockingShellCommand({ command: "cd $XDG_CONFIG_HOME; pwd" }).then(output => {
         assert(output.type === "success")
         expect(output.stdout).to.match(/integration-tests\/test-environment\/testdirs\/dir-.*?\/.config\n/)
       })
@@ -144,34 +144,33 @@ describe("neovim features", () => {
 
   it("can run lua code and get its result", () => {
     cy.visit("/")
-    cy.startNeovim().then(() => {
+    cy.startNeovim().then(nvim => {
       // wait until text on the start screen is visible
       cy.contains("If you see this text, Neovim is ready!")
 
-      // can do math
-      cy.runLuaCode({ luaCode: "return 40 + 2" }).then(result => {
+      nvim.runLuaCode({ luaCode: "return 40 + 2" }).then(result => {
         expect(result.value).to.equal(42)
       })
 
       // can return strings
-      cy.runLuaCode({ luaCode: "return 'hello from lua'" }).then(result => {
+      nvim.runLuaCode({ luaCode: "return 'hello from lua'" }).then(result => {
         expect(result.value).to.equal("hello from lua")
       })
 
       // can use nvim apis
-      cy.runLuaCode({ luaCode: "return vim.api.nvim_get_current_win()" }).then(result => {
+      nvim.runLuaCode({ luaCode: "return vim.api.nvim_get_current_win()" }).then(result => {
         expect(result.value).to.equal(1000)
       })
 
       // does not return anything if the lua code does not return anything.
       // But side effects are visible in the neovim instance.
-      cy.runLuaCode({ luaCode: `vim.api.nvim_command('echo "hello from lua"')` }).then(result => {
+      nvim.runLuaCode({ luaCode: `vim.api.nvim_command('echo "hello from lua"')` }).then(result => {
         expect(result.value).to.equal(null)
       })
       cy.contains("hello from lua")
 
       // can programmatically manipulate the buffer
-      cy.runLuaCode({
+      nvim.runLuaCode({
         luaCode: `
         vim.api.nvim_buf_set_lines(0, 0, -1, false, {'hello', 'from', 'lua'})
       `,
@@ -182,12 +181,12 @@ describe("neovim features", () => {
       cy.contains("lua")
 
       // can return tables
-      cy.runLuaCode({ luaCode: "return {1, 2, 3}" }).then(result => {
+      nvim.runLuaCode({ luaCode: "return {1, 2, 3}" }).then(result => {
         expect(result.value).to.deep.equal([1, 2, 3])
       })
 
       // can return nested tables
-      cy.runLuaCode({ luaCode: "return {1, {2, 3}, 4}" }).then(result => {
+      nvim.runLuaCode({ luaCode: "return {1, {2, 3}, 4}" }).then(result => {
         expect(result.value).to.deep.equal([1, [2, 3], 4])
       })
     })
@@ -195,28 +194,28 @@ describe("neovim features", () => {
 
   it("can show messages after a test fails", () => {
     cy.visit("/")
-    cy.startNeovim().then(() => {
-      cy.runLuaCode({ luaCode: `vim.api.nvim_echo({{"This is a message", "Normal"}}, true, {})` })
-      cy.runExCommand({ command: "echo 'test message'" })
+    cy.startNeovim().then(nvim => {
+      nvim.runLuaCode({ luaCode: `vim.api.nvim_echo({{"This is a message", "Normal"}}, true, {})` })
+      nvim.runExCommand({ command: "echo 'test message'" })
     })
   })
 
   it("can runExCommand and get its result", () => {
     cy.visit("/")
-    cy.startNeovim().then(() => {
+    cy.startNeovim().then(nvim => {
       // wait until text on the start screen is visible
       cy.contains("If you see this text, Neovim is ready!")
 
-      cy.runExCommand({ command: "echo 'hello from ex command'" }).then(result => {
+      nvim.runExCommand({ command: "echo 'hello from ex command'" }).then(result => {
         expect(result.value).to.equal("hello from ex command")
       })
 
       cy.contains("Hello from the subdirectory!").should("not.exist")
-      cy.runExCommand({ command: `vsplit ${"subdirectory/subdirectory-file.txt" satisfies MyTestDirectoryFile}` }).then(
-        result => {
+      nvim
+        .runExCommand({ command: `vsplit ${"subdirectory/subdirectory-file.txt" satisfies MyTestDirectoryFile}` })
+        .then(result => {
           expect(result.value).to.equal("")
-        }
-      )
+        })
       cy.contains("Hello from the subdirectory!")
     })
   })
@@ -226,7 +225,7 @@ describe("neovim features", () => {
       // in the test setup, the lua_ls server is installed in the file
       // prepare.lua when the test environment is started
       cy.visit("/")
-      cy.startNeovim({ filename: "lua-project/init.lua" }).then(() => {
+      cy.startNeovim({ filename: "lua-project/init.lua" }).then(nvim => {
         // wait until text on the start screen is visible
         cy.contains(`require("config")`)
 
@@ -245,7 +244,7 @@ describe("neovim features", () => {
         // should have navigated to the definition of `config.defaults`, which
         // is another file
         cy.contains("the default configuration")
-        cy.runExCommand({ command: `echo expand("%")` }).then(result => {
+        nvim.runExCommand({ command: `echo expand("%")` }).then(result => {
           expect(result.value).to.match(new RegExp("lua-project/config.lua" satisfies MyTestDirectoryFile))
         })
       })

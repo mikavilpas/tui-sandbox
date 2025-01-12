@@ -1,5 +1,12 @@
 # Changelog
 
+## [7.7.1](https://github.com/mikavilpas/tui-sandbox/compare/library-v7.7.0...library-v7.7.1) (2025-01-12)
+
+
+### Bug Fixes
+
+* warning timeouts about Neovim messages firing on success ([#231](https://github.com/mikavilpas/tui-sandbox/issues/231)) ([6b8f8af](https://github.com/mikavilpas/tui-sandbox/commit/6b8f8af56cbc201eda4988ec54a3256ac64e9ca5))
+
 ## [7.7.0](https://github.com/mikavilpas/tui-sandbox/compare/library-v7.6.0...library-v7.7.0) (2025-01-12)
 
 

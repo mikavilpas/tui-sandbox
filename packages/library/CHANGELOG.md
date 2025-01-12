@@ -1,5 +1,12 @@
 # Changelog
 
+## [7.7.0](https://github.com/mikavilpas/tui-sandbox/compare/library-v7.6.0...library-v7.7.0) (2025-01-12)
+
+
+### Features
+
+* create config-modifications directory if it doesn't exist ([1688f88](https://github.com/mikavilpas/tui-sandbox/commit/1688f88db821c73b499c1b0cb2f2ebe0fe221741))
+
 ## [7.6.0](https://github.com/mikavilpas/tui-sandbox/compare/library-v7.5.6...library-v7.6.0) (2025-01-11)
 
 

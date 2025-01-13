@@ -15,36 +15,39 @@ if (!app) {
 
 const client = new TerminalClient(app)
 
+export type GenericNeovimBrowserApi = {
+  runBlockingShellCommand(input: BlockingCommandClientInput): Promise<BlockingShellCommandOutput>
+  runLuaCode(input: LuaCodeClientInput): Promise<RunLuaCodeOutput>
+  runExCommand(input: ExCommandClientInput): Promise<RunExCommandOutput>
+  dir: TestDirectory
+}
+
 /** Entrypoint for the test runner (cypress) */
-window.startNeovim = async function (startArgs?: StartNeovimGenericArguments): Promise<TestDirectory> {
+window.startNeovim = async function (startArgs?: StartNeovimGenericArguments): Promise<GenericNeovimBrowserApi> {
   const testDirectory = await client.startNeovim({
     additionalEnvironmentVariables: startArgs?.additionalEnvironmentVariables,
     filename: startArgs?.filename ?? "initial-file.txt",
     startupScriptModifications: startArgs?.startupScriptModifications ?? [],
   })
 
-  return testDirectory
-}
+  const neovimBrowserApi: GenericNeovimBrowserApi = {
+    runBlockingShellCommand(input: BlockingCommandClientInput): Promise<BlockingShellCommandOutput> {
+      return client.runBlockingShellCommand(input)
+    },
+    runLuaCode(input) {
+      return client.runLuaCode(input)
+    },
+    runExCommand(input) {
+      return client.runExCommand(input)
+    },
+    dir: testDirectory,
+  }
 
-window.runBlockingShellCommand = async function (
-  input: BlockingCommandClientInput
-): Promise<BlockingShellCommandOutput> {
-  return client.runBlockingShellCommand(input)
-}
-
-window.runLuaCode = async function (input: LuaCodeClientInput): Promise<RunLuaCodeOutput> {
-  return client.runLuaCode(input)
-}
-
-window.runExCommand = async function (input: ExCommandClientInput): Promise<RunExCommandOutput> {
-  return client.runExCommand(input)
+  return neovimBrowserApi
 }
 
 declare global {
   interface Window {
-    startNeovim(startArguments?: StartNeovimGenericArguments): Promise<TestDirectory>
-    runBlockingShellCommand(input: BlockingCommandClientInput): Promise<BlockingShellCommandOutput>
-    runLuaCode(input: LuaCodeClientInput): Promise<RunLuaCodeOutput>
-    runExCommand(input: ExCommandClientInput): Promise<RunExCommandOutput>
+    startNeovim(startArguments?: StartNeovimGenericArguments): Promise<GenericNeovimBrowserApi>
   }
 }

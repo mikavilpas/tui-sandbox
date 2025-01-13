@@ -116,8 +116,8 @@ afterEach(async () => {
   let timeoutId: NodeJS.Timeout | undefined = undefined
   const timeout = new Promise<void>((_, reject) => {
     timeoutId = setTimeout(() => {
-      Cypress.log({ name: "timeout when waiting for :messages to finish. Neovim might be stuck." })
-      reject(new Error("timeout when waiting for :messages to finish. Neovim might be stuck."))
+      Cypress.log({ name: "timeout when waiting for :messages to finish. Neovim might be stuck or showing a message." })
+      reject(new Error("timeout when waiting for :messages to finish. Neovim might be stuck or showing a message."))
     }, 5_000)
   })
 

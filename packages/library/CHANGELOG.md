@@ -1,5 +1,12 @@
 # Changelog
 
+## [8.0.1](https://github.com/mikavilpas/tui-sandbox/compare/library-v8.0.0...library-v8.0.1) (2025-01-13)
+
+
+### Bug Fixes
+
+* relative import in cypress-support files ([#239](https://github.com/mikavilpas/tui-sandbox/issues/239)) ([cab59eb](https://github.com/mikavilpas/tui-sandbox/commit/cab59eb82e5b01b1ff190987ac6c315b37e29f25))
+
 ## [8.0.0](https://github.com/mikavilpas/tui-sandbox/compare/library-v7.7.1...library-v8.0.0) (2025-01-13)
 
 

@@ -1,5 +1,21 @@
 # Changelog
 
+## [8.0.0](https://github.com/mikavilpas/tui-sandbox/compare/library-v7.7.1...library-v8.0.0) (2025-01-13)
+
+
+### ⚠ BREAKING CHANGES
+
+* When a Neovim instance is started, tui-sandbox used to return the TestDirectory instance, which is the type-safe representation of the test directory's paths. The TestDirectory can now be found in a `.dir` property.
+
+### Features
+
+* make it more difficult to accidentally call unsupported cmds ([#237](https://github.com/mikavilpas/tui-sandbox/issues/237)) ([d5ca4c9](https://github.com/mikavilpas/tui-sandbox/commit/d5ca4c9c48172cf5cd0fc075fd185757508b96fe))
+
+
+### Bug Fixes
+
+* confusing error message when waiting for :messages to finish ([abc22c0](https://github.com/mikavilpas/tui-sandbox/commit/abc22c052f54a0d56fbab06ca75ee10a6f0b182f))
+
 ## [7.7.1](https://github.com/mikavilpas/tui-sandbox/compare/library-v7.7.0...library-v7.7.1) (2025-01-12)
 
 

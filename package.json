@@ -22,7 +22,7 @@
     "@typescript-eslint/parser": "8.20.0",
     "@umbrelladocs/linkspector": "0.3.13",
     "concurrently": "9.1.2",
-    "cypress": "13.17.0",
+    "cypress": "14.0.0",
     "eslint-config-prettier": "10.0.1",
     "eslint-import-resolver-typescript": "3.7.0",
     "eslint-plugin-import-x": "4.6.1",
@@ -33,7 +33,7 @@
     "prettier-plugin-packagejson": "2.5.7",
     "tsx": "4.19.2",
     "typescript": "5.7.3",
-    "vitest": "2.1.8",
+    "vitest": "3.0.1",
     "wait-on": "8.0.2"
   },
   "packageManager": "pnpm@9.15.3+sha256.c1da43727ccbc1ed42aff4fd6bdb4b1e91e65a818e6efff5b240fbf070ba4eaf",

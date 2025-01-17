@@ -38,10 +38,10 @@
     "@types/command-exists": "1.2.3",
     "@types/cors": "2.8.17",
     "@types/express": "5.0.0",
-    "@types/node": "22.10.6",
+    "@types/node": "22.10.7",
     "nodemon": "3.1.9",
     "vite": "6.0.7",
-    "vitest": "2.1.8"
+    "vitest": "3.0.1"
   },
   "peerDependencies": {
     "cypress": "^13",

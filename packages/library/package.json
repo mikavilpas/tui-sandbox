@@ -41,7 +41,7 @@
     "@types/node": "22.10.7",
     "nodemon": "3.1.9",
     "vite": "6.0.7",
-    "vitest": "3.0.1"
+    "vitest": "3.0.2"
   },
   "peerDependencies": {
     "cypress": "^13 || ^14",

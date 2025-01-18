@@ -1,5 +1,12 @@
 # Changelog
 
+## [8.0.2](https://github.com/mikavilpas/tui-sandbox/compare/library-v8.0.1...library-v8.0.2) (2025-01-18)
+
+
+### Bug Fixes
+
+* officially support cypress-14 ([#245](https://github.com/mikavilpas/tui-sandbox/issues/245)) ([b623e14](https://github.com/mikavilpas/tui-sandbox/commit/b623e1467ab3c10332b421582d9fd323244e7da5))
+
 ## [8.0.1](https://github.com/mikavilpas/tui-sandbox/compare/library-v8.0.0...library-v8.0.1) (2025-01-13)
 
 

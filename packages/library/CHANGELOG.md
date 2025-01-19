@@ -1,5 +1,16 @@
 # Changelog
 
+## [9.0.0](https://github.com/mikavilpas/tui-sandbox/compare/library-v8.0.2...library-v9.0.0) (2025-01-19)
+
+
+### ⚠ BREAKING CHANGES
+
+* simplify the schema for MyTestDirectory ([#251](https://github.com/mikavilpas/tui-sandbox/issues/251))
+
+### Features
+
+* simplify the schema for MyTestDirectory ([#251](https://github.com/mikavilpas/tui-sandbox/issues/251)) ([98f0e4f](https://github.com/mikavilpas/tui-sandbox/commit/98f0e4f9d3324a421ab6db3c81b50e6f578c0358))
+
 ## [8.0.2](https://github.com/mikavilpas/tui-sandbox/compare/library-v8.0.1...library-v8.0.2) (2025-01-18)
 
 

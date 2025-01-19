@@ -1,4 +1,4 @@
-import fs, { rmdirSync } from "fs"
+import fs from "fs"
 import nodePath from "path"
 import { expect, it } from "vitest"
 import type { TestDirsPath } from "./createTempDir.js"
@@ -17,7 +17,8 @@ class TempDirectory implements Disposable {
   }
 
   [Symbol.dispose](): void {
-    rmdirSync(this.path, { recursive: true })
+    // eslint-disable-next-line no-empty-function
+    fs.rm(this.path, { recursive: true }, () => {})
   }
 }
 

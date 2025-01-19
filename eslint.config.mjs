@@ -7,6 +7,7 @@ import eslintPluginImportX from "eslint-plugin-import-x"
 import noOnlyTests from "eslint-plugin-no-only-tests"
 import path from "node:path"
 import { fileURLToPath } from "node:url"
+import tseslint from "typescript-eslint"
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
@@ -16,7 +17,7 @@ const compat = new FlatCompat({
   allConfig: js.configs.all,
 })
 
-export default [
+export default tseslint.config([
   {
     ignores: [
       "eslint.config.mjs",
@@ -26,7 +27,6 @@ export default [
       "packages/integration-tests/dist/",
       "packages/library/dist/",
       "packages/library/vite.config.js",
-      "packages/integration-tests/cypress/support/tui-sandbox.ts",
     ],
   },
   ...compat.extends(
@@ -36,6 +36,18 @@ export default [
   ),
   eslintPluginImportX.flatConfigs.recommended,
   eslintPluginImportX.flatConfigs.typescript,
+
+  {
+    files: ["packages/integration-tests/cypress/support/tui-sandbox.ts"],
+    rules: {
+      // it's important that no relative packages are imported in this file,
+      // because the end user does not have access to them in their own
+      // project.
+      "import-x/no-relative-packages": "error",
+      "@typescript-eslint/no-namespace": "off",
+      "@typescript-eslint/unbound-method": "off",
+    },
+  },
   {
     plugins: {
       "no-only-tests": noOnlyTests,
@@ -130,4 +142,4 @@ export default [
       ],
     },
   },
-]
+])

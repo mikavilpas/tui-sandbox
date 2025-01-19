@@ -233,7 +233,13 @@ describe("neovim features", () => {
         // shows an "unused" warning when it has started :)
         //
         // It takes a bit of time for the LSP server to start
-        cy.contains("Unused local `default`.", { timeout: 15_000 })
+        cy.contains("default", { timeout: 15_000 }).should(
+          "have.css",
+          "color",
+          // the color of the unused variable, effectively waiting for the LSP
+          // to report this after having started
+          rgbify(flavors.macchiato.colors.overlay2.rgb)
+        )
         cy.typeIntoTerminal("/config.defaults/e{enter}")
 
         // the final `s` is the cursor itself, and it has a different background-color

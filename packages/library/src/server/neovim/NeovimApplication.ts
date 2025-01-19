@@ -43,15 +43,14 @@ Options:
   --headless            Don't start a user interface
   --listen <address>    Serve RPC API from this address
   --remote[-subcommand] Execute commands remotely on a server
-  --server <address>    Specify RPC server to send commands to
+  --server <address>    Connect to this Nvim server
   --startuptime <file>  Write startup timing messages to <file>
 
 See ":help startup-options" for all options.
 
-$ nvim --version
-NVIM v0.11.0-dev-608+g9d74dc3ac
-Build type: Release
-LuaJIT 2.1.1720049189
+NVIM v0.11.0-dev-1589+g71507281fb
+Build type: RelWithDebInfo
+LuaJIT 2.1.1736781742
 Run "nvim -V1 -v" for more info
 
 */

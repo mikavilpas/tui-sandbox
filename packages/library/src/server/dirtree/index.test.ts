@@ -43,28 +43,13 @@ describe("dirtree", () => {
             name: z.literal(".config/"),
             type: z.literal("directory"),
             contents: z.object({
-              ".gitkeep": z.object({
-                name: z.literal(".gitkeep"),
-                type: z.literal("file"),
-                extension: z.literal(""),
-                stem: z.literal(".gitkeep"),
-              }),
+              ".gitkeep": z.object({ name: z.literal(".gitkeep"), type: z.literal("file") }),
               nvim: z.object({
                 name: z.literal("nvim/"),
                 type: z.literal("directory"),
                 contents: z.object({
-                  "init.lua": z.object({
-                    name: z.literal("init.lua"),
-                    type: z.literal("file"),
-                    extension: z.literal("lua"),
-                    stem: z.literal("init."),
-                  }),
-                  "prepare.lua": z.object({
-                    name: z.literal("prepare.lua"),
-                    type: z.literal("file"),
-                    extension: z.literal("lua"),
-                    stem: z.literal("prepare."),
-                  }),
+                  "init.lua": z.object({ name: z.literal("init.lua"), type: z.literal("file") }),
+                  "prepare.lua": z.object({ name: z.literal("prepare.lua"), type: z.literal("file") }),
                 }),
               }),
             }),
@@ -76,14 +61,10 @@ describe("dirtree", () => {
               "add_command_to_count_open_buffers.lua": z.object({
                 name: z.literal("add_command_to_count_open_buffers.lua"),
                 type: z.literal("file"),
-                extension: z.literal("lua"),
-                stem: z.literal("add_command_to_count_open_buffers."),
               }),
               "don't_crash_when_modification_contains_unescaped_characters\\".lua": z.object({
                 name: z.literal("don't_crash_when_modification_contains_unescaped_characters\\".lua"),
                 type: z.literal("file"),
-                extension: z.literal("lua"),
-                stem: z.literal("don't_crash_when_modification_contains_unescaped_characters\\"."),
               }),
             }),
           }),
@@ -91,60 +72,25 @@ describe("dirtree", () => {
             name: z.literal("dir with spaces/"),
             type: z.literal("directory"),
             contents: z.object({
-              "file1.txt": z.object({
-                name: z.literal("file1.txt"),
-                type: z.literal("file"),
-                extension: z.literal("txt"),
-                stem: z.literal("file1."),
-              }),
-              "file2.txt": z.object({
-                name: z.literal("file2.txt"),
-                type: z.literal("file"),
-                extension: z.literal("txt"),
-                stem: z.literal("file2."),
-              }),
+              "file1.txt": z.object({ name: z.literal("file1.txt"), type: z.literal("file") }),
+              "file2.txt": z.object({ name: z.literal("file2.txt"), type: z.literal("file") }),
             }),
           }),
-          "file.txt": z.object({
-            name: z.literal("file.txt"),
-            type: z.literal("file"),
-            extension: z.literal("txt"),
-            stem: z.literal("file."),
-          }),
-          "initial-file.txt": z.object({
-            name: z.literal("initial-file.txt"),
-            type: z.literal("file"),
-            extension: z.literal("txt"),
-            stem: z.literal("initial-file."),
-          }),
+          "file.txt": z.object({ name: z.literal("file.txt"), type: z.literal("file") }),
+          "initial-file.txt": z.object({ name: z.literal("initial-file.txt"), type: z.literal("file") }),
           "lua-project": z.object({
             name: z.literal("lua-project/"),
             type: z.literal("directory"),
             contents: z.object({
-              "config.lua": z.object({
-                name: z.literal("config.lua"),
-                type: z.literal("file"),
-                extension: z.literal("lua"),
-                stem: z.literal("config."),
-              }),
-              "init.lua": z.object({
-                name: z.literal("init.lua"),
-                type: z.literal("file"),
-                extension: z.literal("lua"),
-                stem: z.literal("init."),
-              }),
+              "config.lua": z.object({ name: z.literal("config.lua"), type: z.literal("file") }),
+              "init.lua": z.object({ name: z.literal("init.lua"), type: z.literal("file") }),
             }),
           }),
           "other-subdirectory": z.object({
             name: z.literal("other-subdirectory/"),
             type: z.literal("directory"),
             contents: z.object({
-              "other-sub-file.txt": z.object({
-                name: z.literal("other-sub-file.txt"),
-                type: z.literal("file"),
-                extension: z.literal("txt"),
-                stem: z.literal("other-sub-file."),
-              }),
+              "other-sub-file.txt": z.object({ name: z.literal("other-sub-file.txt"), type: z.literal("file") }),
             }),
           }),
           routes: z.object({
@@ -155,23 +101,11 @@ describe("dirtree", () => {
                 name: z.literal("posts.$postId/"),
                 type: z.literal("directory"),
                 contents: z.object({
-                  "adjacent-file.txt": z.object({
-                    name: z.literal("adjacent-file.txt"),
-                    type: z.literal("file"),
-                    extension: z.literal("txt"),
-                    stem: z.literal("adjacent-file."),
-                  }),
-                  "route.tsx": z.object({
-                    name: z.literal("route.tsx"),
-                    type: z.literal("file"),
-                    extension: z.literal("tsx"),
-                    stem: z.literal("route."),
-                  }),
+                  "adjacent-file.txt": z.object({ name: z.literal("adjacent-file.txt"), type: z.literal("file") }),
+                  "route.tsx": z.object({ name: z.literal("route.tsx"), type: z.literal("file") }),
                   "should-be-excluded-file.txt": z.object({
                     name: z.literal("should-be-excluded-file.txt"),
                     type: z.literal("file"),
-                    extension: z.literal("txt"),
-                    stem: z.literal("should-be-excluded-file."),
                   }),
                 }),
               }),
@@ -181,12 +115,7 @@ describe("dirtree", () => {
             name: z.literal("subdirectory/"),
             type: z.literal("directory"),
             contents: z.object({
-              "subdirectory-file.txt": z.object({
-                name: z.literal("subdirectory-file.txt"),
-                type: z.literal("file"),
-                extension: z.literal("txt"),
-                stem: z.literal("subdirectory-file."),
-              }),
+              "subdirectory-file.txt": z.object({ name: z.literal("subdirectory-file.txt"), type: z.literal("file") }),
             }),
           }),
         }),

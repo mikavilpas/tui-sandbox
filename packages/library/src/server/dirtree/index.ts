@@ -33,8 +33,6 @@ export function getDirectoryTree(path: string): TreeResult {
 type FileNode = {
   type: Type.FILE
   name: string
-  extension: string | undefined
-  stem: string
 }
 type DirectoryNode = {
   type: Type.DIRECTORY
@@ -49,8 +47,6 @@ export function convertDree(root: Dree): TreeNode {
     return {
       name: root.name,
       type: root.type,
-      extension: root.extension,
-      stem: root.extension ? root.name.slice(0, -root.extension.length) : root.name,
     }
   }
 

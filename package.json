@@ -35,7 +35,7 @@
     "tsx": "4.19.2",
     "typescript": "5.7.3",
     "typescript-eslint": "8.21.0",
-    "vitest": "3.0.3",
+    "vitest": "3.0.4",
     "wait-on": "8.0.2"
   },
   "packageManager": "pnpm@9.15.3+sha256.c1da43727ccbc1ed42aff4fd6bdb4b1e91e65a818e6efff5b240fbf070ba4eaf",

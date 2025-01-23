@@ -15,8 +15,8 @@
   },
   "dependencies": {
     "@catppuccin/palette": "1.7.1",
-    "@trpc/client": "11.0.0-rc.700",
-    "@trpc/server": "11.0.0-rc.700",
+    "@trpc/client": "11.0.0-rc.714",
+    "@trpc/server": "11.0.0-rc.714",
     "@xterm/addon-attach": "0.11.0",
     "@xterm/addon-fit": "0.10.0",
     "@xterm/xterm": "5.5.0",
@@ -29,7 +29,7 @@
     "node-pty": "1.0.0",
     "prettier": "3.4.2",
     "tsx": "4.19.2",
-    "type-fest": "4.32.0",
+    "type-fest": "4.33.0",
     "winston": "3.17.0",
     "zod": "3.24.1"
   },
@@ -40,8 +40,8 @@
     "@types/express": "5.0.0",
     "@types/node": "22.10.7",
     "nodemon": "3.1.9",
-    "vite": "6.0.7",
-    "vitest": "3.0.2"
+    "vite": "6.0.11",
+    "vitest": "3.0.3"
   },
   "peerDependencies": {
     "cypress": "^13 || ^14",

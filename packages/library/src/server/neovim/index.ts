@@ -40,8 +40,11 @@ export async function installDependencies(testEnvironmentPath: string, config: D
 
   console.log(`🚀 Running Neovim prepareFilePath ${prepareFilePath}...`)
 
+  let output = ""
   app.events.on("stdout" satisfies StdoutOrStderrMessage, data => {
-    console.log(`  neovim output: ${data}`)
+    assert(data)
+    assert(typeof data === "string")
+    output += data
   })
   await app.startNextAndKillCurrent(
     testDirectory,
@@ -49,6 +52,8 @@ export async function installDependencies(testEnvironmentPath: string, config: D
     { cols: 80, rows: 24 }
   )
   await app.application.untilExit()
+  console.log(`🚀 Neovim installDependencies output:`)
+  console.log(output)
 }
 
 export async function initializeStdout(

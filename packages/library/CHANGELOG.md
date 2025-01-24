@@ -1,5 +1,12 @@
 # Changelog
 
+## [9.0.1](https://github.com/mikavilpas/tui-sandbox/compare/library-v9.0.0...library-v9.0.1) (2025-01-24)
+
+
+### Bug Fixes
+
+* interlaced installDependencies output ([b255bcc](https://github.com/mikavilpas/tui-sandbox/commit/b255bcc24d3da7a2b55bac1b1c2473e3f7c5ea23))
+
 ## [9.0.0](https://github.com/mikavilpas/tui-sandbox/compare/library-v8.0.2...library-v9.0.0) (2025-01-19)
 
 

@@ -31,6 +31,19 @@ export type TestDirectory<TContents extends object = object> = {
   contents: TContents
 }
 
+export type TestEnvironmentCommonEnvironmentVariables = {
+  HOME: string
+
+  // this is needed so that the application being tested can load its
+  // configuration, emulating a common setup real users have
+  XDG_CONFIG_HOME: string
+
+  // the data directory is where the application stores its data. To prevent
+  // downloading a new set of plugins/whatever for each test, share the data
+  // directory.
+  XDG_DATA_HOME: string
+}
+
 export type { StartNeovimGenericArguments } from "../server/neovim/NeovimApplication.js"
 
 export type BlockingShellCommandOutput =

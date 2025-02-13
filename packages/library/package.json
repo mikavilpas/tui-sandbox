@@ -15,8 +15,8 @@
   },
   "dependencies": {
     "@catppuccin/palette": "1.7.1",
-    "@trpc/client": "11.0.0-rc.764",
-    "@trpc/server": "11.0.0-rc.764",
+    "@trpc/client": "11.0.0-rc.768",
+    "@trpc/server": "11.0.0-rc.768",
     "@xterm/addon-attach": "0.11.0",
     "@xterm/addon-fit": "0.10.0",
     "@xterm/xterm": "5.5.0",
@@ -27,7 +27,7 @@
     "express": "4.21.2",
     "neovim": "5.3.0",
     "node-pty": "1.0.0",
-    "prettier": "3.5.0",
+    "prettier": "3.5.1",
     "tsx": "4.19.2",
     "type-fest": "4.34.1",
     "winston": "3.17.0",
@@ -38,7 +38,7 @@
     "@types/command-exists": "1.2.3",
     "@types/cors": "2.8.17",
     "@types/express": "5.0.0",
-    "@types/node": "22.13.1",
+    "@types/node": "22.13.4",
     "nodemon": "3.1.9",
     "vite": "6.1.0",
     "vitest": "3.0.5"

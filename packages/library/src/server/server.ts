@@ -4,6 +4,7 @@ import type { Except } from "type-fest"
 import { z } from "zod"
 import { trpc } from "./connection/trpc.js"
 import * as neovim from "./neovim/index.js"
+import * as terminal from "./terminal/index.js"
 import { TestServer } from "./TestServer.js"
 import type { DirectoriesConfig, TestServerConfig } from "./updateTestdirectorySchemaFile.js"
 import { applicationAvailable } from "./utilities/applicationAvailable.js"
@@ -45,6 +46,39 @@ export async function createAppRouter(config: DirectoriesConfig) {
   }
 
   const appRouter = trpc.router({
+    terminal: trpc.router({
+      onStdout: trpc.procedure.input(z.object({ client: tabIdSchema })).subscription(options => {
+        return terminal.initializeStdout(options.input, options.signal, config.testEnvironmentPath)
+      }),
+
+      start: trpc.procedure
+        .input(
+          z.object({
+            tabId: tabIdSchema,
+            startTerminalArguments: z.object({
+              commandToRun: z.array(z.string()),
+              additionalEnvironmentVariables: z.record(z.string()).optional(),
+              terminalDimensions: z.object({
+                cols: z.number(),
+                rows: z.number(),
+              }),
+            }),
+          })
+        )
+        .mutation(options => {
+          return terminal.start(
+            options.input.startTerminalArguments.terminalDimensions,
+            options.input.startTerminalArguments.commandToRun,
+            options.input.tabId,
+            config
+          )
+        }),
+
+      sendStdin: trpc.procedure.input(z.object({ tabId: tabIdSchema, data: z.string() })).mutation(options => {
+        return terminal.sendStdin(options.input)
+      }),
+    }),
+
     neovim: trpc.router({
       start: trpc.procedure
         .input(

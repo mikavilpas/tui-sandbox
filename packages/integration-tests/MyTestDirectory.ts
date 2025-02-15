@@ -14,6 +14,7 @@ export const MyTestDirectorySchema = z.object({
   name: z.literal("test-environment/"),
   type: z.literal("directory"),
   contents: z.object({
+    ".bashrc": z.object({ name: z.literal(".bashrc"), type: z.literal("file") }),
     ".config": z.object({
       name: z.literal(".config/"),
       type: z.literal("directory"),
@@ -102,6 +103,7 @@ export type MyTestDirectoryContentsSchemaType = z.infer<typeof MyTestDirectorySc
 export type MyTestDirectory = MyTestDirectoryContentsSchemaType["contents"]
 
 export const testDirectoryFiles = z.enum([
+  ".bashrc",
   ".config/.gitkeep",
   ".config/nvim/init.lua",
   ".config/nvim/prepare.lua",

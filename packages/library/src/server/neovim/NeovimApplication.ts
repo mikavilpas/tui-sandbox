@@ -5,7 +5,7 @@ import { access } from "fs/promises"
 import type { NeovimClient as NeovimApiClient } from "neovim"
 import { tmpdir } from "os"
 import path, { join } from "path"
-import type { TestDirectory } from "../types.js"
+import type { TestDirectory, TestEnvironmentCommonEnvironmentVariables } from "../types.js"
 import { DisposableSingleApplication } from "../utilities/DisposableSingleApplication.js"
 import type { Lazy } from "../utilities/Lazy.js"
 import { TerminalApplication } from "../utilities/TerminalApplication.js"
@@ -77,7 +77,7 @@ type ResettableState = {
   client: Lazy<Promise<NeovimApiClient>>
 }
 
-export class NeovimApplication {
+export class NeovimApplication implements AsyncDisposable {
   public state: ResettableState | undefined
   public readonly events: EventEmitter
 
@@ -190,7 +190,7 @@ export class NeovimApplication {
       XDG_DATA_HOME: join(testDirectory.testEnvironmentPath, ".repro", "data"),
 
       ...additionalEnvironmentVariables,
-    }
+    } satisfies TestEnvironmentCommonEnvironmentVariables
   }
 
   async [Symbol.asyncDispose](): Promise<void> {

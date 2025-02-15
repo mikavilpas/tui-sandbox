@@ -18,7 +18,8 @@ export class TerminalApplication implements StartableApplication {
   private constructor(
     private readonly subProcess: IPty,
     public readonly onStdoutOrStderr: (data: string) => void,
-    public readonly untilExit: Promise<ExitInfo>
+    public readonly untilExit: Promise<ExitInfo>,
+    public readonly name: string
   ) {
     this.processId = subProcess.pid
 
@@ -30,12 +31,11 @@ export class TerminalApplication implements StartableApplication {
 
     this.logger.debug(`started`)
 
-    subProcess.onData(this.onStdoutOrStderr)
-
     subProcess.onExit(({ exitCode, signal }) => {
-      this.logger.debug(
-        `Child process ${this.processId} exited with code ${String(exitCode)} and signal ${String(signal)}`
-      )
+      signal satisfies number | undefined
+      const msg = `Child process ${this.processId} (${this.name}) exited with code ${String(exitCode)} and signal ${String(signal)}`
+      this.onStdoutOrStderr(msg)
+      this.logger.debug(msg)
     })
   }
 
@@ -55,7 +55,8 @@ export class TerminalApplication implements StartableApplication {
     env?: NodeJS.ProcessEnv
     dimensions: ITerminalDimensions
   }): TerminalApplication {
-    console.log(`Starting '${command} ${args.join(" ")}' in cwd '${cwd}'`)
+    console.log(`Starting '${command}' with args '${args.join(" ")}' in cwd '${cwd}'`)
+
     const ptyProcess = pty.spawn(command, args, {
       name: "xterm-color",
       cwd,
@@ -63,6 +64,7 @@ export class TerminalApplication implements StartableApplication {
       cols: dimensions.cols,
       rows: dimensions.rows,
     })
+    ptyProcess.onData(onStdoutOrStderr)
     ptyProcess.onExit(({ exitCode, signal }) => {
       console.log(`Child process exited with code ${exitCode} and signal ${signal}`)
     })
@@ -79,7 +81,7 @@ export class TerminalApplication implements StartableApplication {
       })
     })
 
-    return new TerminalApplication(ptyProcess, onStdoutOrStderr, untilExit)
+    return new TerminalApplication(ptyProcess, onStdoutOrStderr, untilExit, ptyProcess.process satisfies string)
   }
 
   /** Write to the terminal's stdin. */

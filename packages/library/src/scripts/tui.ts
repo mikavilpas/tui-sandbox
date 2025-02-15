@@ -5,7 +5,7 @@ import type { TestServerConfig } from "../server/index.js"
 import { startTestServer, updateTestdirectorySchemaFile } from "../server/index.js"
 import type { StdoutOrStderrMessage } from "../server/neovim/NeovimApplication.js"
 import { NeovimApplication } from "../server/neovim/NeovimApplication.js"
-import { prepareNewTestDirectory } from "../server/neovim/index.js"
+import { prepareNewTestDirectory } from "../server/neovim/prepareNewTestDirectory.js"
 
 //
 // This is the main entrypoint to tui-sandbox

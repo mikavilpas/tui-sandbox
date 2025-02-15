@@ -16,9 +16,9 @@ import type { DirectoriesConfig } from "../updateTestdirectorySchemaFile.js"
 import { convertEventEmitterToAsyncGenerator } from "../utilities/generator.js"
 import { Lazy } from "../utilities/Lazy.js"
 import type { TabId } from "../utilities/tabId.js"
-import { createTempDir, removeTestDirectories } from "./environment/createTempDir.js"
 import type { StdoutOrStderrMessage, TerminalDimensions } from "./NeovimApplication.js"
 import { NeovimApplication } from "./NeovimApplication.js"
+import { prepareNewTestDirectory } from "./prepareNewTestDirectory.js"
 
 const neovims = new Map<TabId["tabId"], NeovimApplication>()
 const resources: Lazy<AsyncDisposableStack> = new Lazy(() => {
@@ -94,12 +94,6 @@ export async function start(
   const testDirectory = await prepareNewTestDirectory(config)
   await neovim.startNextAndKillCurrent(testDirectory, options, terminalDimensions)
 
-  return testDirectory
-}
-
-export async function prepareNewTestDirectory(config: DirectoriesConfig): Promise<TestDirectory> {
-  await removeTestDirectories(config.testEnvironmentPath)
-  const testDirectory = await createTempDir(config)
   return testDirectory
 }
 

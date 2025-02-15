@@ -1,7 +1,7 @@
 import assert from "assert"
 import "core-js/proposals/async-explicit-resource-management.js"
-import { prepareNewTestDirectory } from "../neovim/index.js"
 import type { TerminalDimensions } from "../neovim/NeovimApplication.js"
+import { prepareNewTestDirectory } from "../neovim/prepareNewTestDirectory.js"
 import type { DirectoriesConfig } from "../updateTestdirectorySchemaFile.js"
 import { convertEventEmitterToAsyncGenerator } from "../utilities/generator.js"
 import { Lazy } from "../utilities/Lazy.js"

@@ -1,7 +1,7 @@
 import assert from "assert"
 import { execSync } from "child_process"
 import { Type } from "dree"
-import { constants, readdirSync } from "fs"
+import { constants, readdirSync, statSync } from "fs"
 import { access, mkdir, mkdtemp } from "fs/promises"
 import path from "path"
 import { convertDree, getDirectoryTree } from "../../dirtree/index.js"
@@ -11,6 +11,8 @@ import { updateTestdirectorySchemaFile } from "../../updateTestdirectorySchemaFi
 
 export async function createTempDir(config: DirectoriesConfig): Promise<TestDirectory> {
   try {
+    // before calling this function, the testEnvironmentPath should already exist
+    statSync(config.testEnvironmentPath)
     const dir = await createUniqueDirectory(config.testEnvironmentPath)
 
     readdirSync(config.testEnvironmentPath).forEach(entry => {
@@ -58,6 +60,6 @@ export async function removeTestDirectories(testEnvironmentPath: string): Promis
     await access(testdirs, constants.F_OK)
     execSync(`rm -rf ${testdirs}/*`)
   } catch (e) {
-    console.log("Could not remove test directories, maybe they don't exist yet", e)
+    console.debug("Could not remove test directories, maybe they don't exist yet", e)
   }
 }

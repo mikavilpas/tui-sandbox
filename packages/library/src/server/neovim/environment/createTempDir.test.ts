@@ -13,12 +13,12 @@ class TempDirectory implements Disposable {
 
   public static create(): TempDirectory {
     const tmp = fs.mkdtempSync("test-temp-dir-" satisfies TestTempDirPrefix)
-    return new TempDirectory(tmp)
+    const absolutePath = nodePath.resolve(tmp)
+    return new TempDirectory(absolutePath)
   }
 
   [Symbol.dispose](): void {
-    // eslint-disable-next-line no-empty-function
-    fs.rm(this.path, { recursive: true }, () => {})
+    fs.rmdirSync(this.path, { recursive: true, maxRetries: 5 })
   }
 }
 
@@ -32,6 +32,6 @@ it("should create a temp dir with no contents", async () => {
 
   expect(result.contents).toEqual({})
   expect(result.testEnvironmentPath).toEqual(dir.path)
-  expect(result.testEnvironmentPath.startsWith("test-temp-dir-" satisfies TestTempDirPrefix)).toBeTruthy()
-  expect(result.testEnvironmentPathRelative.startsWith("testdirs" satisfies TestDirsPath)).toBeTruthy()
+  expect(result.testEnvironmentPath.includes("test-temp-dir-" satisfies TestTempDirPrefix)).toBeTruthy()
+  expect(result.testEnvironmentPathRelative.includes("testdirs" satisfies TestDirsPath)).toBeTruthy()
 })

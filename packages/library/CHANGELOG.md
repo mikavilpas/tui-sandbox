@@ -1,5 +1,12 @@
 # Changelog
 
+## [9.1.4](https://github.com/mikavilpas/tui-sandbox/compare/library-v9.1.3...library-v9.1.4) (2025-02-15)
+
+
+### Bug Fixes
+
+* build an empty schema when trying to scan a nonexistent directory ([#290](https://github.com/mikavilpas/tui-sandbox/issues/290)) ([c04901f](https://github.com/mikavilpas/tui-sandbox/commit/c04901f66ed2fbe7b103ff46af59a15cec6d4df3))
+
 ## [9.1.3](https://github.com/mikavilpas/tui-sandbox/compare/library-v9.1.2...library-v9.1.3) (2025-02-15)
 
 

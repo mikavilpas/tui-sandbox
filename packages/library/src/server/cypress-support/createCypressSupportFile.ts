@@ -27,7 +27,7 @@ export async function createCypressSupportFile({
     console.log(
       `Creating config-modifications directory at ${configModificationsDirectoryPath}. You can put Neovim startup scripts into this directory, and load them when starting your Neovim test.`
     )
-    await mkdir(configModificationsDirectoryPath)
+    await mkdir(configModificationsDirectoryPath, { recursive: true })
   }
 
   const text = await createCypressSupportFileContents()

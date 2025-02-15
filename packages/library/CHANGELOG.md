@@ -1,5 +1,12 @@
 # Changelog
 
+## [9.1.0](https://github.com/mikavilpas/tui-sandbox/compare/library-v9.0.1...library-v9.1.0) (2025-02-15)
+
+
+### Features
+
+* allow testing any terminal application, not just neovim ([#279](https://github.com/mikavilpas/tui-sandbox/issues/279)) ([e8e3654](https://github.com/mikavilpas/tui-sandbox/commit/e8e365419d80f6c93f36a9ff032299ce6dca0375))
+
 ## [9.0.1](https://github.com/mikavilpas/tui-sandbox/compare/library-v9.0.0...library-v9.0.1) (2025-01-24)
 
 

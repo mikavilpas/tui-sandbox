@@ -62,7 +62,7 @@ describe("createCypressSupportFileContents", () => {
     })
 
     expect(result).toBe("updated" satisfies CreateCypressSupportFileResult)
-    expect(mocked.mkdir).toHaveBeenCalledWith("cypress/support/config-modifications")
+    expect(mocked.mkdir).toHaveBeenCalledWith("cypress/support/config-modifications", { recursive: true })
     expect(mocked.mkdir).toHaveBeenCalledTimes(1)
   })
 })

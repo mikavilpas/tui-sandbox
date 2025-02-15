@@ -35,10 +35,7 @@ jobs:
 
       - run: pnpm test
       # need to work around https://github.com/cypress-io/github-action/issues/1246
-      - run: |
-          sudo apt-get install zsh
-          zsh -c "echo 'zsh works' && return 0"
-          pnpm --filter integration-tests exec cypress install
+      - run: pnpm --filter integration-tests exec cypress install
 
       - name: Cypress run
         uses: cypress-io/github-action@v6.7.11

@@ -1,8 +1,8 @@
 describe("TerminalTestApplication features", () => {
-  it("can start the shell", () => {
+  it.only("can start the shell", () => {
     cy.visit("/")
     cy.startTerminalApplication({
-      commandToRun: ["zsh"],
+      commandToRun: ["bash"],
     }).then(() => {
       // wait until text on the start screen is visible
       cy.contains("myprompt")

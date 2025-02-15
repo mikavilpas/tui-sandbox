@@ -57,7 +57,8 @@ export class TerminalApplication implements StartableApplication {
     env?: NodeJS.ProcessEnv
     dimensions: ITerminalDimensions
   }): TerminalApplication {
-    console.log(`Starting '${command} ${args.join(" ")}' in cwd '${cwd}'`)
+    console.log(`Starting '${command}' with args '${args.join(" ")}' in cwd '${cwd}'`)
+
     const ptyProcess = pty.spawn(command, args, {
       name: "xterm-color",
       cwd,

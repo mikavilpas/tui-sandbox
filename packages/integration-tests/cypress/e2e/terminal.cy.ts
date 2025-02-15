@@ -1,5 +1,5 @@
 describe("TerminalTestApplication features", () => {
-  it.only("can start the shell", () => {
+  it("can start the shell", () => {
     cy.visit("/")
     cy.startTerminalApplication({
       commandToRun: ["bash"],

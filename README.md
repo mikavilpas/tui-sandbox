@@ -5,7 +5,7 @@
 ![Neovim](https://img.shields.io/badge/Neovim-57A143?logo=neovim&logoColor=fff)
 
 tui-sandbox is a framework for using the [cypress](https://www.cypress.io/) browser testing tool to run tests against
-terminal applications. Currently only [Neovim](https://github.com/neovim/neovim) is supported.
+terminal applications.
 
 ![example of tui-sandbox being used in [yazi.nvim](https://github.com/mikavilpas/yazi.nvim) tests](documentation/images/yazi-example.webp)
 
@@ -27,17 +27,16 @@ tui-sandbox can solve these issues:
 
 ### Develop terminal applications in a live environment
 
-The preview is fully interactive. You can use Neovim exactly as you would normally, including mouse clicks.
-
-You can run Neovim inside tui-sandbox and see the changes in your plugin code reflected in the running Neovim instance.
+The preview is fully interactive. You can use your application exactly as you would normally, including mouse clicks.
 When you update your test, the tests automatically rerun with the latest changes.
 
 You can also isolate the development and testing from your own config
 
-- your own Neovim setup is kept separate from the test environment
-- each test has its own Neovim instance
-- each test has its own mini directory structure that is type safe. This makes the tests more maintainable and
-  discoverable.
+- your own development setup is kept separate from the test environment
+- each test has its own instance of the application
+- each test has its own mini directory structure. This makes the tests more maintainable and discoverable.
+  - The directory structure is also available as a TypeScript type, so you get completions and type errors in your
+    tests.
 
 ![example of a type-safe test environment in tui-sandbox](documentation/images/type-safe-test-environment-example.webp)
 

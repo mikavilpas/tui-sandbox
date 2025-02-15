@@ -39,6 +39,7 @@ describe("dirtree", () => {
         name: z.literal("test-environment/"),
         type: z.literal("directory"),
         contents: z.object({
+          ".bashrc": z.object({ name: z.literal(".bashrc"), type: z.literal("file") }),
           ".config": z.object({
             name: z.literal(".config/"),
             type: z.literal("directory"),
@@ -54,7 +55,6 @@ describe("dirtree", () => {
               }),
             }),
           }),
-          ".zshrc": z.object({ name: z.literal(".zshrc"), type: z.literal("file") }),
           "config-modifications": z.object({
             name: z.literal("config-modifications/"),
             type: z.literal("directory"),
@@ -128,12 +128,12 @@ describe("dirtree", () => {
       export type MyDirectoryTree = MyDirectoryTreeContentsSchemaType["contents"]
 
       export const testDirectoryFiles = z.enum([
+        ".bashrc",
         ".config/.gitkeep",
         ".config/nvim/init.lua",
         ".config/nvim/prepare.lua",
         ".config/nvim",
         ".config",
-        ".zshrc",
         "config-modifications/add_command_to_count_open_buffers.lua",
         "config-modifications/don't_crash_when_modification_contains_unescaped_characters\\".lua",
         "config-modifications",

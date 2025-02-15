@@ -1,5 +1,12 @@
 # Changelog
 
+## [9.1.2](https://github.com/mikavilpas/tui-sandbox/compare/library-v9.1.1...library-v9.1.2) (2025-02-15)
+
+
+### Bug Fixes
+
+* create cypress/support directory if it doesn't exist ([#286](https://github.com/mikavilpas/tui-sandbox/issues/286)) ([46a96b2](https://github.com/mikavilpas/tui-sandbox/commit/46a96b2df3b3495d6f074783de6fceec796b0537))
+
 ## [9.1.1](https://github.com/mikavilpas/tui-sandbox/compare/library-v9.1.0...library-v9.1.1) (2025-02-15)
 
 

@@ -1,5 +1,12 @@
 # Changelog
 
+## [9.1.1](https://github.com/mikavilpas/tui-sandbox/compare/library-v9.1.0...library-v9.1.1) (2025-02-15)
+
+
+### Bug Fixes
+
+* don't needlessly require `MyTestDirectory.ts` to exist ([#284](https://github.com/mikavilpas/tui-sandbox/issues/284)) ([34a69ef](https://github.com/mikavilpas/tui-sandbox/commit/34a69ef4e67b8ee7d0d1da6b1b8baf7d3dbe367f))
+
 ## [9.1.0](https://github.com/mikavilpas/tui-sandbox/compare/library-v9.0.1...library-v9.1.0) (2025-02-15)
 
 

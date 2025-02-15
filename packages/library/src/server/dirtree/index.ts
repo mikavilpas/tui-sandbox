@@ -1,4 +1,3 @@
-import assert from "assert"
 import type { Dree } from "dree"
 import { scan, Type } from "dree"
 import { format, resolveConfig } from "prettier"
@@ -42,7 +41,11 @@ type DirectoryNode = {
 
 type TreeNode = FileNode | DirectoryNode
 
-export function convertDree(root: Dree): TreeNode {
+export function convertDree(root: Dree | undefined): TreeNode {
+  if (!root) {
+    return { type: Type.DIRECTORY, name: "root", contents: {} }
+  }
+
   if (root.type === Type.FILE) {
     return {
       name: root.name,
@@ -63,14 +66,8 @@ export function convertDree(root: Dree): TreeNode {
 }
 
 export async function buildSchemaForDirectoryTree(result: TreeResult, name: string): Promise<string> {
-  let root: TreeNode
-  if (result.dree) {
-    assert(result.dree.type === Type.DIRECTORY)
-    root = convertDree(result.dree)
-  } else {
-    // directory does not exist, or some other problem scanning it
-    root = { type: Type.DIRECTORY, name: "root", contents: {} }
-  }
+  const root = convertDree(result.dree)
+
   const schema = (await jsonToZod(root, `${name}Schema`)).split("\n")
 
   const lines = `

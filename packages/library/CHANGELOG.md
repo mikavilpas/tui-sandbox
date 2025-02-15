@@ -1,5 +1,12 @@
 # Changelog
 
+## [9.1.3](https://github.com/mikavilpas/tui-sandbox/compare/library-v9.1.2...library-v9.1.3) (2025-02-15)
+
+
+### Bug Fixes
+
+* publish sourceMaps so errors errors can be traced easily ([#288](https://github.com/mikavilpas/tui-sandbox/issues/288)) ([a98ac36](https://github.com/mikavilpas/tui-sandbox/commit/a98ac36ef5d0b0f072552d3f7105abb5c6636be8))
+
 ## [9.1.2](https://github.com/mikavilpas/tui-sandbox/compare/library-v9.1.1...library-v9.1.2) (2025-02-15)
 
 

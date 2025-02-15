@@ -31,8 +31,6 @@ export class TerminalApplication implements StartableApplication {
 
     this.logger.debug(`started`)
 
-    subProcess.onData(this.onStdoutOrStderr)
-
     subProcess.onExit(({ exitCode, signal }) => {
       signal satisfies number | undefined
       const msg = `Child process ${this.processId} (${this.name}) exited with code ${String(exitCode)} and signal ${String(signal)}`
@@ -66,6 +64,7 @@ export class TerminalApplication implements StartableApplication {
       cols: dimensions.cols,
       rows: dimensions.rows,
     })
+    ptyProcess.onData(onStdoutOrStderr)
     ptyProcess.onExit(({ exitCode, signal }) => {
       console.log(`Child process exited with code ${exitCode} and signal ${signal}`)
     })

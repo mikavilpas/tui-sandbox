@@ -1,5 +1,4 @@
 import assert from "node:assert"
-import { stat } from "node:fs/promises"
 import path from "node:path"
 import { createCypressSupportFile } from "../server/cypress-support/createCypressSupportFile.js"
 import type { TestServerConfig } from "../server/index.js"
@@ -58,7 +57,6 @@ if (args[0] !== "start") {
   showUsageAndExit()
 }
 console.log(`🚀 Starting test server in ${cwd} - this should be the root of your integration-tests directory 🤞🏻`)
-await stat(path.join(cwd, outputFileName))
 
 try {
   await createCypressSupportFile({

@@ -1,5 +1,12 @@
 # Changelog
 
+## [9.1.5](https://github.com/mikavilpas/tui-sandbox/compare/library-v9.1.4...library-v9.1.5) (2025-02-15)
+
+
+### Bug Fixes
+
+* not being able to create a new test directory in a new project ([#292](https://github.com/mikavilpas/tui-sandbox/issues/292)) ([7cfadad](https://github.com/mikavilpas/tui-sandbox/commit/7cfadad4bc2a10fc3992d59db98a627fbd2ca3de))
+
 ## [9.1.4](https://github.com/mikavilpas/tui-sandbox/compare/library-v9.1.3...library-v9.1.4) (2025-02-15)
 
 

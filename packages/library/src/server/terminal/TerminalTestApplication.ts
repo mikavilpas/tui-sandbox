@@ -51,7 +51,7 @@ export default class TerminalTestApplication implements AsyncDisposable {
         command,
         args: terminalArguments,
 
-        cwd: this.testEnvironmentPath,
+        cwd: testDirectory.rootPathAbsolute,
         env: env,
         dimensions: terminalDimensions,
 

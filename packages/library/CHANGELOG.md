@@ -1,5 +1,12 @@
 # Changelog
 
+## [9.1.6](https://github.com/mikavilpas/tui-sandbox/compare/library-v9.1.5...library-v9.1.6) (2025-02-16)
+
+
+### Bug Fixes
+
+* terminal starting in the blueprint directory ([570d192](https://github.com/mikavilpas/tui-sandbox/commit/570d1926d1474e92b56156129b4e998dcf5b573c))
+
 ## [9.1.5](https://github.com/mikavilpas/tui-sandbox/compare/library-v9.1.4...library-v9.1.5) (2025-02-15)
 
 

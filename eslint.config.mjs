@@ -1,21 +1,7 @@
-/* eslint-disable @typescript-eslint/no-unsafe-member-access */
-/* eslint-disable @typescript-eslint/no-unsafe-call */
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
-import { FlatCompat } from "@eslint/eslintrc"
-import js from "@eslint/js"
+import eslintConfigPrettier from "eslint-config-prettier"
 import eslintPluginImportX from "eslint-plugin-import-x"
 import noOnlyTests from "eslint-plugin-no-only-tests"
-import path from "node:path"
-import { fileURLToPath } from "node:url"
 import tseslint from "typescript-eslint"
-
-const __filename = fileURLToPath(import.meta.url)
-const __dirname = path.dirname(__filename)
-const compat = new FlatCompat({
-  baseDirectory: __dirname,
-  recommendedConfig: js.configs.recommended,
-  allConfig: js.configs.all,
-})
 
 export default tseslint.config([
   {
@@ -29,11 +15,9 @@ export default tseslint.config([
       "packages/library/vite.config.js",
     ],
   },
-  ...compat.extends(
-    "plugin:@typescript-eslint/recommended",
-    "plugin:@typescript-eslint/strict-type-checked",
-    "prettier"
-  ),
+
+  tseslint.configs.recommended,
+  tseslint.configs.strictTypeChecked,
   eslintPluginImportX.flatConfigs.recommended,
   eslintPluginImportX.flatConfigs.typescript,
 
@@ -142,4 +126,7 @@ export default tseslint.config([
       ],
     },
   },
+
+  // should be the last item, https://github.com/prettier/eslint-config-prettier?tab=readme-ov-file#installation
+  eslintConfigPrettier,
 ])

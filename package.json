@@ -38,8 +38,16 @@
     "vitest": "3.0.5",
     "wait-on": "8.0.2"
   },
-  "packageManager": "pnpm@9.15.3+sha256.c1da43727ccbc1ed42aff4fd6bdb4b1e91e65a818e6efff5b240fbf070ba4eaf",
+  "packageManager": "pnpm@10.4.0+sha512.6b849d0787d97f8f4e1f03a9b8ff8f038e79e153d6f11ae539ae7c435ff9e796df6a862c991502695c7f9e8fac8aeafc1ac5a8dab47e36148d183832d886dd52",
   "pnpm": {
+    "onlyBuiltDependencies": [
+      "core-js",
+      "cypress",
+      "es5-ext",
+      "esbuild",
+      "node-pty",
+      "puppeteer"
+    ],
     "packageExtensions": {
       "node-pty": {
         "optionalDependencies": {

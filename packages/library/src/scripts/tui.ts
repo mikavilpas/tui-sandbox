@@ -63,10 +63,20 @@ try {
     cypressSupportDirectoryPath: path.join(cwd, "cypress", "support"),
     supportFileName: "tui-sandbox.ts",
   })
+} catch (e) {
+  console.error("Failed to createCypressSupportFile", e)
+}
+
+try {
   await updateTestdirectorySchemaFile(config.directories)
+} catch (e) {
+  console.error("Failed to updateTestdirectorySchemaFile", e)
+}
+
+try {
   await startTestServer(config)
 } catch (e) {
-  console.error(e)
+  console.error("Failed to startTestServer", e)
 }
 
 function showUsageAndExit() {

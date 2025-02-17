@@ -1,4 +1,5 @@
 import type { TestDirsPath } from "@tui-sandbox/library/src/server/neovim/environment/createTempDir"
+import assert from "assert"
 
 describe("TerminalTestApplication features", () => {
   it("can start the shell", () => {
@@ -29,6 +30,39 @@ describe("TerminalTestApplication features", () => {
       // the error message is not very informative, but the tester should be
       // able to see more details in the test output
       cy.contains(/Child process \d+? \(thisdoesnotexist\) exited with code 1/)
+    })
+  })
+
+  it("can runBlockingShellCommand", () => {
+    cy.visit("/")
+    cy.startTerminalApplication({
+      commandToRun: ["bash"],
+    }).then(term => {
+      // successful command should work
+      term.runBlockingShellCommand({ command: "ls -al" }).then(output => {
+        assert(output.type === "success")
+        assert(output.stdout.includes(".bashrc"))
+      })
+
+      // failing command should work
+      term
+        .runBlockingShellCommand({
+          command: "thisdoesnotexist",
+          allowFailure: true,
+        })
+        .then(output => {
+          assert(output.type === "failed")
+        })
+
+      // piping should work
+      term
+        .runBlockingShellCommand({
+          command: "echo '42 + 1' | bc",
+        })
+        .then(output => {
+          assert(output.type === "success")
+          assert(output.stdout.includes("43"))
+        })
     })
   })
 })

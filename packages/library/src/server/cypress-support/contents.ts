@@ -168,6 +168,7 @@ afterEach(async () => {
     await Promise.race([timeout, testNeovim.runExCommand({ command: "messages" })])
   } finally {
     clearTimeout(timeoutId) // Ensure the timeout is cleared
+    testNeovim = undefined
   }
 })
 `

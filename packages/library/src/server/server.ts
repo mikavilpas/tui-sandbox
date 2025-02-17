@@ -147,7 +147,12 @@ export async function startTestServer(config: TestServerConfig): Promise<TestSer
       console.error("Error installing neovim dependencies", err)
     })
 
-  await Promise.all([neovimTask, testServer.startAndRun(appRouter)])
+  const startServerTask = testServer.startAndRun(appRouter)
+
+  await Promise.all([neovimTask, startServerTask]).catch((err: unknown) => {
+    console.error("Error starting test server", err)
+    throw err
+  })
 
   return testServer
 }

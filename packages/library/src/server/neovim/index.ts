@@ -1,10 +1,9 @@
 import assert from "assert"
-import { exec } from "child_process"
 import "core-js/proposals/async-explicit-resource-management.js"
 import { access } from "fs/promises"
 import path from "path"
-import util from "util"
 import type { BlockingCommandInput, ExCommandInput, LuaCodeInput } from "../server.js"
+import { executeBlockingShellCommand } from "../terminal/runBlockingShellCommand.js"
 import type {
   BlockingShellCommandOutput,
   RunExCommandOutput,
@@ -124,36 +123,8 @@ export async function runBlockingShellCommand(
   const testDirectory = neovim.state?.testDirectory
   assert(testDirectory, `Test directory not found for client id ${input.tabId.tabId}. Maybe neovim's not started yet?`)
 
-  const execPromise = util.promisify(exec)
   const env = neovim.getEnvironmentVariables(testDirectory, input.envOverrides)
-  const processPromise = execPromise(input.command, {
-    signal: signal,
-    shell: input.shell,
-    uid: input.uid,
-    gid: input.gid,
-    cwd: input.cwd ?? env["HOME"],
-    env,
-  })
-
-  try {
-    const result = await processPromise
-    console.log(
-      `Successfully ran shell blockingCommand (${input.command}) with stdout: ${result.stdout}, stderr: ${result.stderr}`
-    )
-    return {
-      type: "success",
-      stdout: result.stdout,
-      stderr: result.stderr,
-    } satisfies BlockingShellCommandOutput
-  } catch (e) {
-    console.warn(`Error running shell blockingCommand (${input.command})`, e)
-    if (allowFailure) {
-      return {
-        type: "failed",
-      }
-    }
-    throw new Error(`Error running shell blockingCommand (${input.command})`, { cause: e })
-  }
+  return executeBlockingShellCommand(input, signal, allowFailure, env)
 }
 
 export async function runLuaCode(options: LuaCodeInput): Promise<RunLuaCodeOutput> {

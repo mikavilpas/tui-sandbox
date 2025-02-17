@@ -72,6 +72,10 @@ export async function createAppRouter(config: DirectoriesConfig) {
       sendStdin: trpc.procedure.input(z.object({ tabId: tabIdSchema, data: z.string() })).mutation(options => {
         return terminal.sendStdin(options.input)
       }),
+
+      runBlockingShellCommand: trpc.procedure.input(blockingCommandInputSchema).mutation(async options => {
+        return terminal.runBlockingShellCommand(options.signal, options.input, options.input.allowFailure ?? false)
+      }),
     }),
 
     neovim: trpc.router({

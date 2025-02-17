@@ -2,10 +2,13 @@ import assert from "assert"
 import "core-js/proposals/async-explicit-resource-management.js"
 import type { TerminalDimensions } from "../neovim/NeovimApplication.js"
 import { prepareNewTestDirectory } from "../neovim/prepareNewTestDirectory.js"
+import type { BlockingCommandInput } from "../server.js"
+import type { BlockingShellCommandOutput } from "../types.js"
 import type { DirectoriesConfig } from "../updateTestdirectorySchemaFile.js"
 import { convertEventEmitterToAsyncGenerator } from "../utilities/generator.js"
 import { Lazy } from "../utilities/Lazy.js"
 import type { TabId } from "../utilities/tabId.js"
+import { executeBlockingShellCommand } from "./runBlockingShellCommand.js"
 import TerminalTestApplication from "./TerminalTestApplication.js"
 
 const terminals = new Map<TabId["tabId"], TerminalTestApplication>()
@@ -59,4 +62,24 @@ export async function sendStdin(options: { tabId: TabId; data: string }): Promis
   )
 
   await app.application.write(options.data)
+}
+
+export async function runBlockingShellCommand(
+  signal: AbortSignal | undefined,
+  input: BlockingCommandInput,
+  allowFailure: boolean
+): Promise<BlockingShellCommandOutput> {
+  const tabId = input.tabId.tabId
+  const app = terminals.get(tabId)
+  assert(app !== undefined, `Terminal instance for clientId not found - cannot send stdin. Maybe it's not started yet?`)
+  assert(
+    app.application,
+    `Terminal application not found for client id ${input.tabId.tabId}. Maybe it's not started yet?`
+  )
+
+  const testDirectory = app.state?.testDirectory
+  assert(testDirectory, `Test directory not found for client id ${input.tabId.tabId}. Maybe neovim's not started yet?`)
+
+  const env = app.getEnvironmentVariables(testDirectory, input.envOverrides)
+  return executeBlockingShellCommand(input, signal, allowFailure, env)
 }

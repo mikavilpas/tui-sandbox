@@ -1,0 +1,45 @@
+import { exec } from "child_process"
+import "core-js/proposals/async-explicit-resource-management.js"
+import util from "util"
+import type { BlockingCommandInput } from "../server.js"
+import type { BlockingShellCommandOutput } from "../types.js"
+
+export async function executeBlockingShellCommand(
+  input: BlockingCommandInput,
+  signal: AbortSignal | undefined,
+  allowFailure: boolean,
+  env: NodeJS.ProcessEnv
+): Promise<BlockingShellCommandOutput> {
+  const execPromise = util.promisify(exec)
+
+  const cwd = input.cwd ?? env["HOME"]
+
+  const processPromise = execPromise(input.command, {
+    signal: signal,
+    shell: input.shell,
+    uid: input.uid,
+    gid: input.gid,
+    cwd: cwd,
+    env,
+  })
+
+  try {
+    const result = await processPromise
+    console.log(
+      `Successfully ran shell blockingCommand (${input.command}) with stdout: ${result.stdout}, stderr: ${result.stderr}`
+    )
+    return {
+      type: "success",
+      stdout: result.stdout,
+      stderr: result.stderr,
+    } satisfies BlockingShellCommandOutput
+  } catch (e) {
+    console.warn(`Error running shell blockingCommand (${input.command})`, e)
+    if (allowFailure) {
+      return {
+        type: "failed",
+      }
+    }
+    throw new Error(`Error running shell blockingCommand (${input.command})`, { cause: e })
+  }
+}

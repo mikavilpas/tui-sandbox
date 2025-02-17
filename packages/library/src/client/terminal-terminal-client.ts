@@ -1,9 +1,9 @@
 import { createTRPCClient, httpBatchLink, splitLink, unstable_httpSubscriptionLink } from "@trpc/client"
 import type { Terminal } from "@xterm/xterm"
 import "@xterm/xterm/css/xterm.css"
-import type { AppRouter } from "../server/server.js"
+import type { AppRouter, BlockingCommandClientInput } from "../server/server.js"
 import type { StartTerminalGenericArguments } from "../server/terminal/TerminalTestApplication.js"
-import type { TestDirectory } from "../server/types.js"
+import type { BlockingShellCommandOutput, TestDirectory } from "../server/types.js"
 import "./style.css"
 import { getTabId, startTerminal } from "./websocket-client.js"
 
@@ -82,5 +82,10 @@ export class TerminalTerminalClient {
     })
 
     return testDirectory
+  }
+
+  public async runBlockingShellCommand(input: BlockingCommandClientInput): Promise<BlockingShellCommandOutput> {
+    await this.ready
+    return this.trpc.terminal.runBlockingShellCommand.mutate({ ...input, tabId: this.tabId })
   }
 }

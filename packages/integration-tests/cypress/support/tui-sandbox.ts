@@ -27,6 +27,10 @@ export type TerminalTestApplicationContext = {
    * keystrokes as input. Requires the application to be running. */
   typeIntoTerminal(text: string, options?: Partial<Cypress.TypeOptions>): void
 
+  /** Runs a shell command in a blocking manner, waiting for the command to
+   * finish before returning. Requires the terminal to be running. */
+  runBlockingShellCommand(input: BlockingCommandClientInput): Cypress.Chainable<BlockingShellCommandOutput>
+
   /** The test directory, providing type-safe access to its file and directory structure */
   dir: TestDirectory<MyTestDirectory>
 }

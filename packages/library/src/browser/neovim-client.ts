@@ -61,6 +61,7 @@ declare global {
 
 export type GenericTerminalBrowserApi = {
   dir: TestDirectory
+  runBlockingShellCommand(input: BlockingCommandClientInput): Promise<BlockingShellCommandOutput>
 }
 
 /** Entrypoint for the test runner (cypress) */
@@ -69,5 +70,10 @@ window.startTerminalApplication = async function (
 ): Promise<GenericTerminalBrowserApi> {
   const terminal = terminalClient.get()
   const testDirectory = await terminal.startTerminalApplication(args)
-  return { dir: testDirectory }
+  return {
+    dir: testDirectory,
+    runBlockingShellCommand(input) {
+      return terminal.runBlockingShellCommand(input)
+    },
+  }
 }

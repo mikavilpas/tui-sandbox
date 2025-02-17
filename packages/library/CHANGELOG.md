@@ -1,5 +1,12 @@
 # Changelog
 
+## [9.1.9](https://github.com/mikavilpas/tui-sandbox/compare/library-v9.1.8...library-v9.1.9) (2025-02-17)
+
+
+### Bug Fixes
+
+* explicitly log startup errors ([1c1ac35](https://github.com/mikavilpas/tui-sandbox/commit/1c1ac35a12e69ed6e3f2fc9f0bb30e5c6a284fa4))
+
 ## [9.1.8](https://github.com/mikavilpas/tui-sandbox/compare/library-v9.1.7...library-v9.1.8) (2025-02-17)
 
 

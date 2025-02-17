@@ -1,5 +1,12 @@
 # Changelog
 
+## [9.1.8](https://github.com/mikavilpas/tui-sandbox/compare/library-v9.1.7...library-v9.1.8) (2025-02-17)
+
+
+### Bug Fixes
+
+* don't require neovim to be installed when starting ([d3b98a6](https://github.com/mikavilpas/tui-sandbox/commit/d3b98a658097e8a74f8ceb5ecba5b1c5767524f5))
+
 ## [9.1.7](https://github.com/mikavilpas/tui-sandbox/compare/library-v9.1.6...library-v9.1.7) (2025-02-17)
 
 

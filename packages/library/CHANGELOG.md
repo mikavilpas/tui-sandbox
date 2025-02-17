@@ -1,5 +1,13 @@
 # Changelog
 
+## [9.1.10](https://github.com/mikavilpas/tui-sandbox/compare/library-v9.1.9...library-v9.1.10) (2025-02-17)
+
+
+### Bug Fixes
+
+* don't crash if neovim is not installed ([709140a](https://github.com/mikavilpas/tui-sandbox/commit/709140aadaa3943c38e8778fcb80bef8df0a2996))
+* explicitly log startup errors part 2 ([f878916](https://github.com/mikavilpas/tui-sandbox/commit/f87891637505e0f160e566eba5d359e6c62bf7e4))
+
 ## [9.1.9](https://github.com/mikavilpas/tui-sandbox/compare/library-v9.1.8...library-v9.1.9) (2025-02-17)
 
 

@@ -1,5 +1,17 @@
 # Changelog
 
+## [9.2.0](https://github.com/mikavilpas/tui-sandbox/compare/library-v9.1.10...library-v9.2.0) (2025-02-17)
+
+
+### Features
+
+* allow runBlockingShellCommand for terminal applications ([0ec2b7f](https://github.com/mikavilpas/tui-sandbox/commit/0ec2b7fa6e32e7ffec018c2de0ef6c7f3617bebe))
+
+
+### Bug Fixes
+
+* trying to get neovim messages in a terminal test ([a07176c](https://github.com/mikavilpas/tui-sandbox/commit/a07176c996f74efa65cc6a70a897e8d1f9f8a4e7))
+
 ## [9.1.10](https://github.com/mikavilpas/tui-sandbox/compare/library-v9.1.9...library-v9.1.10) (2025-02-17)
 
 

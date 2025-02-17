@@ -7,7 +7,6 @@ import * as neovim from "./neovim/index.js"
 import * as terminal from "./terminal/index.js"
 import { TestServer } from "./TestServer.js"
 import type { DirectoriesConfig, TestServerConfig } from "./updateTestdirectorySchemaFile.js"
-import { applicationAvailable } from "./utilities/applicationAvailable.js"
 import { tabIdSchema } from "./utilities/tabId.js"
 
 const blockingCommandInputSchema = z.object({
@@ -41,10 +40,6 @@ export type ExCommandInput = z.infer<typeof exCommandInputSchema>
 /** @private */
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export async function createAppRouter(config: DirectoriesConfig) {
-  if (!(await applicationAvailable("nvim"))) {
-    throw new Error("Neovim is not installed. Please install Neovim (nvim).")
-  }
-
   const appRouter = trpc.router({
     terminal: trpc.router({
       onStdout: trpc.procedure.input(z.object({ client: tabIdSchema })).subscription(options => {

@@ -1,5 +1,12 @@
 # Changelog
 
+## [9.2.1](https://github.com/mikavilpas/tui-sandbox/compare/library-v9.2.0...library-v9.2.1) (2025-02-17)
+
+
+### Bug Fixes
+
+* terminal runBlockingShellCommand not waiting for assertions ([9468716](https://github.com/mikavilpas/tui-sandbox/commit/94687169e57a33a3b0b04552b50f6be11d5157d9))
+
 ## [9.2.0](https://github.com/mikavilpas/tui-sandbox/compare/library-v9.1.10...library-v9.2.0) (2025-02-17)
 
 

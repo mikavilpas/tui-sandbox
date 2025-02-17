@@ -112,7 +112,21 @@ Cypress.Commands.add("startNeovim", (startArguments?: MyStartNeovimServerArgumen
 
 Cypress.Commands.add("startTerminalApplication", (args: StartTerminalGenericArguments) => {
   cy.window().then(async win => {
-    const api: GenericTerminalBrowserApi = await win.startTerminalApplication(args)
+    const terminal: GenericTerminalBrowserApi = await win.startTerminalApplication(args)
+
+    Cypress.Commands.addAll({
+      terminal_runBlockingShellCommand: terminal.runBlockingShellCommand,
+    })
+
+    const api: TerminalTestApplicationContext = {
+      dir: terminal.dir as TestDirectory<MyTestDirectory>,
+      runBlockingShellCommand(input) {
+        return cy.terminal_runBlockingShellCommand(input)
+      },
+      typeIntoTerminal(text, options) {
+        cy.typeIntoTerminal(text, options)
+      },
+    }
 
     return api
   })
@@ -153,6 +167,8 @@ declare global {
        * @example "echo expand('%:.')" current file, relative to the cwd
        */
       nvim_runExCommand(input: ExCommandClientInput): Chainable<RunExCommandOutput>
+
+      terminal_runBlockingShellCommand(input: BlockingCommandClientInput): Chainable<BlockingShellCommandOutput>
     }
   }
 }

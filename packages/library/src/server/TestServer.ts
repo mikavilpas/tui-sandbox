@@ -49,19 +49,11 @@ export class TestServer {
     }
 
     app.use("/ping", (_, res) => {
-      // console.log("🏓 received /ping")
+      // used by the command-line test runner to see when the server is ready
       res.send("pong")
     })
 
     const server = app.listen(this.settings.port, "0.0.0.0")
-
-    server.on("connection", socket => {
-      // const connectionInfo = `${socket.remoteAddress}:${socket.remotePort}`
-      // console.log(`➕➕ Connection from ${connectionInfo}`)
-      socket.once("close", () => {
-        // console.log(`➖➖ Connection from ${connectionInfo}`)
-      })
-    })
 
     console.log(`✅ Server listening on port ${this.settings.port}`)
 

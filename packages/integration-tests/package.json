@@ -16,6 +16,6 @@
     "@types/node": "22.13.4",
     "concurrently": "9.1.2",
     "nodemon": "3.1.9",
-    "type-fest": "4.34.1"
+    "type-fest": "4.35.0"
   }
 }

@@ -2,6 +2,7 @@ import { flavors } from "@catppuccin/palette"
 import assert from "assert"
 import { rgbify } from "../../../library/src/client/color-utilities"
 import type { MyTestDirectoryFile } from "../../MyTestDirectory"
+import type { MyBlockingCommandClientInput } from "../support/tui-sandbox"
 
 describe("neovim features", () => {
   it("can load a custom init.lua file from the .config/nvim directory", () => {
@@ -124,6 +125,13 @@ describe("neovim features", () => {
       nvim.runBlockingShellCommand({ command: "pwd", cwd: "/" }).then(output => {
         assert(output.type === "success")
         expect(output.stdout).to.equal("/\n")
+      })
+
+      // setting the cwdRelative to a directory in MyTestDirectory
+      nvim.runBlockingShellCommand({ command: "pwd", cwdRelative: "dir with spaces" }).then(output => {
+        assert(output.type === "success")
+        expect(output.stdout).to.match(/integration-tests\/test-environment\/testdirs\/dir-.*?\//)
+        expect(output.stdout).to.match(/dir with spaces\n$/)
       })
 
       // by default, the cwd is the home directory, which is the root of the
@@ -257,3 +265,8 @@ describe("neovim features", () => {
     })
   })
 })
+
+{
+  // @ts-expect-error cwdRelative should only allow MyTestDirectoryFile paths
+  const invalid: MyBlockingCommandClientInput["cwdRelative"] = "invalid-invalid"
+}

@@ -1,12 +1,8 @@
 import { createTRPCClient, httpBatchLink, splitLink, unstable_httpSubscriptionLink } from "@trpc/client"
 import type { Terminal } from "@xterm/xterm"
 import "@xterm/xterm/css/xterm.css"
-import type {
-  AppRouter,
-  BlockingCommandClientInput,
-  ExCommandClientInput,
-  LuaCodeClientInput,
-} from "../server/server.js"
+import type { BlockingCommandClientInput } from "../server/blockingCommandInputSchema.js"
+import type { AppRouter, ExCommandClientInput, LuaCodeClientInput } from "../server/server.js"
 import type {
   BlockingShellCommandOutput,
   RunExCommandOutput,

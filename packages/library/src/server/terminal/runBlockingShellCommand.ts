@@ -1,10 +1,12 @@
 import { exec } from "child_process"
 import "core-js/proposals/async-explicit-resource-management.js"
+import { join } from "path"
 import util from "util"
-import type { BlockingCommandInput } from "../server.js"
-import type { BlockingShellCommandOutput } from "../types.js"
+import type { BlockingCommandInput } from "../blockingCommandInputSchema.js"
+import type { BlockingShellCommandOutput, TestDirectory } from "../types.js"
 
 export async function executeBlockingShellCommand(
+  testDirectory: TestDirectory,
   input: BlockingCommandInput,
   signal: AbortSignal | undefined,
   allowFailure: boolean,
@@ -12,19 +14,22 @@ export async function executeBlockingShellCommand(
 ): Promise<BlockingShellCommandOutput> {
   const execPromise = util.promisify(exec)
 
-  const cwd = input.cwd ?? env["HOME"]
-
-  const processPromise = execPromise(input.command, {
-    signal: signal,
-    shell: input.shell,
-    uid: input.uid,
-    gid: input.gid,
-    cwd: cwd,
-    env,
+  const cwd = getCwd({
+    rootPathAbsolute: testDirectory.rootPathAbsolute,
+    cwdRelative: input.cwdRelative,
+    cwdAbsolute: input.cwd,
+    home: testDirectory.rootPathAbsolute,
   })
 
   try {
-    const result = await processPromise
+    const result = await execPromise(input.command, {
+      signal: signal,
+      shell: input.shell,
+      uid: input.uid,
+      gid: input.gid,
+      cwd,
+      env,
+    })
     console.log(
       `Successfully ran shell blockingCommand (${input.command}) with stdout: ${result.stdout}, stderr: ${result.stderr}`
     )
@@ -42,4 +47,17 @@ export async function executeBlockingShellCommand(
     }
     throw new Error(`Error running shell blockingCommand (${input.command})`, { cause: e })
   }
+}
+
+export type GetCwdArguments = {
+  rootPathAbsolute: string
+  cwdRelative: string | undefined
+  cwdAbsolute: string | undefined
+  home: string
+}
+export function getCwd(args: GetCwdArguments): string {
+  if (args.cwdRelative) {
+    return join(args.rootPathAbsolute, args.cwdRelative)
+  }
+  return args.cwdAbsolute ?? args.home
 }

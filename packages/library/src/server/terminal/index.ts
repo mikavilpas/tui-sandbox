@@ -1,8 +1,8 @@
 import assert from "assert"
 import "core-js/proposals/async-explicit-resource-management.js"
+import type { BlockingCommandInput } from "../blockingCommandInputSchema.js"
 import type { TerminalDimensions } from "../neovim/NeovimApplication.js"
 import { prepareNewTestDirectory } from "../neovim/prepareNewTestDirectory.js"
-import type { BlockingCommandInput } from "../server.js"
 import type { BlockingShellCommandOutput } from "../types.js"
 import type { DirectoriesConfig } from "../updateTestdirectorySchemaFile.js"
 import { convertEventEmitterToAsyncGenerator } from "../utilities/generator.js"
@@ -81,5 +81,5 @@ export async function runBlockingShellCommand(
   assert(testDirectory, `Test directory not found for client id ${input.tabId.tabId}. Maybe neovim's not started yet?`)
 
   const env = app.getEnvironmentVariables(testDirectory, input.envOverrides)
-  return executeBlockingShellCommand(input, signal, allowFailure, env)
+  return executeBlockingShellCommand(testDirectory, input, signal, allowFailure, env)
 }

@@ -2,7 +2,8 @@ import assert from "assert"
 import "core-js/proposals/async-explicit-resource-management.js"
 import { access } from "fs/promises"
 import path from "path"
-import type { BlockingCommandInput, ExCommandInput, LuaCodeInput } from "../server.js"
+import type { BlockingCommandInput } from "../blockingCommandInputSchema.js"
+import type { ExCommandInput, LuaCodeInput } from "../server.js"
 import { executeBlockingShellCommand } from "../terminal/runBlockingShellCommand.js"
 import type {
   BlockingShellCommandOutput,
@@ -124,7 +125,7 @@ export async function runBlockingShellCommand(
   assert(testDirectory, `Test directory not found for client id ${input.tabId.tabId}. Maybe neovim's not started yet?`)
 
   const env = neovim.getEnvironmentVariables(testDirectory, input.envOverrides)
-  return executeBlockingShellCommand(input, signal, allowFailure, env)
+  return executeBlockingShellCommand(testDirectory, input, signal, allowFailure, env)
 }
 
 export async function runLuaCode(options: LuaCodeInput): Promise<RunLuaCodeOutput> {

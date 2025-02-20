@@ -2,28 +2,13 @@ import type { inferRouterInputs } from "@trpc/server"
 import "core-js/proposals/async-explicit-resource-management.js"
 import type { Except } from "type-fest"
 import { z } from "zod"
+import { blockingCommandInputSchema } from "./blockingCommandInputSchema.js"
 import { trpc } from "./connection/trpc.js"
 import * as neovim from "./neovim/index.js"
 import * as terminal from "./terminal/index.js"
 import { TestServer } from "./TestServer.js"
 import type { DirectoriesConfig, TestServerConfig } from "./updateTestdirectorySchemaFile.js"
 import { tabIdSchema } from "./utilities/tabId.js"
-
-const blockingCommandInputSchema = z.object({
-  command: z.string(),
-  shell: z.string().optional(),
-  tabId: tabIdSchema,
-  allowFailure: z.boolean().optional(),
-
-  // child_process.ProcessEnvOptions
-  uid: z.number().optional(),
-  gid: z.number().optional(),
-  cwd: z.string().optional(),
-  envOverrides: z.record(z.string()).optional(),
-})
-
-export type BlockingCommandClientInput = Except<BlockingCommandInput, "tabId">
-export type BlockingCommandInput = z.infer<typeof blockingCommandInputSchema>
 
 const luaCodeInputSchema = z.object({ tabId: tabIdSchema, luaCode: z.string() })
 export type LuaCodeClientInput = Except<LuaCodeInput, "tabId">

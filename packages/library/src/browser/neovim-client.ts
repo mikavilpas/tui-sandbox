@@ -1,6 +1,7 @@
 import { TerminalClient as NeovimTerminalClient } from "../client/index.js"
 import { TerminalTerminalClient } from "../client/terminal-terminal-client.js"
-import type { BlockingCommandClientInput, ExCommandClientInput, LuaCodeClientInput } from "../server/server.js"
+import type { BlockingCommandClientInput } from "../server/blockingCommandInputSchema.js"
+import type { ExCommandClientInput, LuaCodeClientInput } from "../server/server.js"
 import type { StartTerminalGenericArguments } from "../server/terminal/TerminalTestApplication.js"
 import type {
   BlockingShellCommandOutput,

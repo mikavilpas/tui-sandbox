@@ -63,6 +63,13 @@ describe("TerminalTestApplication features", () => {
           assert(output.type === "success")
           assert(output.stdout.includes("43"))
         })
+
+      // setting the cwdRelative to a directory in MyTestDirectory
+      term.runBlockingShellCommand({ command: "pwd", cwdRelative: "dir with spaces" }).then(output => {
+        assert(output.type === "success")
+        expect(output.stdout).to.match(/integration-tests\/test-environment\/testdirs\/dir-.*?\//)
+        expect(output.stdout).to.match(/dir with spaces\n$/)
+      })
     })
   })
 })

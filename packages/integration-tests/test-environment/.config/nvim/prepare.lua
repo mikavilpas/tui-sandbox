@@ -24,4 +24,4 @@ require("mason-lspconfig").setup({
 
 -- TODO this seems to report some minor error but it works after that. Should
 -- clean this up, though.
-vim.cmd("LspInstall lua_ls@3.13.5")
+vim.cmd("MasonInstall lua_ls@3.13.5")

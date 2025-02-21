@@ -1,5 +1,12 @@
 # Changelog
 
+## [9.3.0](https://github.com/mikavilpas/tui-sandbox/compare/library-v9.2.1...library-v9.3.0) (2025-02-21)
+
+
+### Features
+
+* allow runBlockingShellCommand in relative directories ([#317](https://github.com/mikavilpas/tui-sandbox/issues/317)) ([c098672](https://github.com/mikavilpas/tui-sandbox/commit/c098672ba9f08a9236168102a406ebcb91cc8e42))
+
 ## [9.2.1](https://github.com/mikavilpas/tui-sandbox/compare/library-v9.2.0...library-v9.2.1) (2025-02-17)
 
 

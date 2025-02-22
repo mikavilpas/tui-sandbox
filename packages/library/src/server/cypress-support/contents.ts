@@ -65,7 +65,7 @@ export type NeovimContext = {
 
 /** Arguments for starting the neovim server. They are built based on your test
  * environment in a type safe manner. */
-type MyStartNeovimServerArguments = OverrideProperties<
+export type MyStartNeovimServerArguments = OverrideProperties<
   StartNeovimGenericArguments,
   {
     filename?: MyTestDirectoryFile | { openInVerticalSplits: MyTestDirectoryFile[] }

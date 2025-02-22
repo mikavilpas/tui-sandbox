@@ -1,5 +1,12 @@
 # Changelog
 
+## [9.4.0](https://github.com/mikavilpas/tui-sandbox/compare/library-v9.3.0...library-v9.4.0) (2025-02-22)
+
+
+### Features
+
+* export MyStartNeovimServerArguments type to client applications ([174d0ab](https://github.com/mikavilpas/tui-sandbox/commit/174d0abc4c5d06fa40eb112923833e27e2c8d9b9))
+
 ## [9.3.0](https://github.com/mikavilpas/tui-sandbox/compare/library-v9.2.1...library-v9.3.0) (2025-02-21)
 
 

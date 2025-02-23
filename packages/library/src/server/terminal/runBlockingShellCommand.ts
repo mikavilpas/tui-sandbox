@@ -31,7 +31,7 @@ export async function executeBlockingShellCommand(
       env,
     })
     console.log(
-      `Successfully ran shell blockingCommand (${input.command}) with stdout: ${result.stdout}, stderr: ${result.stderr}`
+      `Successfully ran shell blockingCommand (${input.command}) in cwd: '${cwd}' with stdout: ${result.stdout}, stderr: ${result.stderr}`
     )
     return {
       type: "success",

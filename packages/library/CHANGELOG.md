@@ -1,5 +1,12 @@
 # Changelog
 
+## [9.5.0](https://github.com/mikavilpas/tui-sandbox/compare/library-v9.4.0...library-v9.5.0) (2025-02-23)
+
+
+### Features
+
+* report the cwd a runBlockingShellCommand was run in ([b1f26d7](https://github.com/mikavilpas/tui-sandbox/commit/b1f26d73b38b0e716833e2d894a31200d6c49e25))
+
 ## [9.4.0](https://github.com/mikavilpas/tui-sandbox/compare/library-v9.3.0...library-v9.4.0) (2025-02-22)
 
 

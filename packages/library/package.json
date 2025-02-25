@@ -15,8 +15,8 @@
   },
   "dependencies": {
     "@catppuccin/palette": "1.7.1",
-    "@trpc/client": "11.0.0-rc.798",
-    "@trpc/server": "11.0.0-rc.798",
+    "@trpc/client": "11.0.0-rc.808",
+    "@trpc/server": "11.0.0-rc.808",
     "@xterm/addon-attach": "0.11.0",
     "@xterm/addon-fit": "0.10.0",
     "@xterm/xterm": "5.5.0",
@@ -27,7 +27,7 @@
     "express": "4.21.2",
     "neovim": "5.3.0",
     "node-pty": "1.0.0",
-    "prettier": "3.5.1",
+    "prettier": "3.5.2",
     "tsx": "4.19.3",
     "type-fest": "4.35.0",
     "winston": "3.17.0",
@@ -40,8 +40,8 @@
     "@types/express": "5.0.0",
     "@types/node": "22.13.5",
     "nodemon": "3.1.9",
-    "vite": "6.1.1",
-    "vitest": "3.0.6"
+    "vite": "6.2.0",
+    "vitest": "3.0.7"
   },
   "peerDependencies": {
     "cypress": "^13 || ^14",

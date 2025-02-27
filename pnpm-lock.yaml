@@ -102,11 +102,11 @@ importers:
         specifier: 1.7.1
         version: 1.7.1
       '@trpc/client':
-        specifier: 11.0.0-rc.814
-        version: 11.0.0-rc.814(@trpc/server@11.0.0-rc.814(typescript@5.7.3))(typescript@5.7.3)
+        specifier: 11.0.0-rc.817
+        version: 11.0.0-rc.817(@trpc/server@11.0.0-rc.817(typescript@5.7.3))(typescript@5.7.3)
       '@trpc/server':
-        specifier: 11.0.0-rc.814
-        version: 11.0.0-rc.814(typescript@5.7.3)
+        specifier: 11.0.0-rc.817
+        version: 11.0.0-rc.817(typescript@5.7.3)
       '@xterm/addon-attach':
         specifier: 0.11.0
         version: 0.11.0(@xterm/xterm@5.5.0)
@@ -615,14 +615,14 @@ packages:
   '@tootallnate/quickjs-emscripten@0.23.0':
     resolution: {integrity: sha512-C5Mc6rdnsaJDjO3UpGW/CQTHtCKaYlScZTly4JIu97Jxo/odCiH0ITnDXSJPTOrEKk/ycSZ0AOgTmkDtkOsvIA==}
 
-  '@trpc/client@11.0.0-rc.814':
-    resolution: {integrity: sha512-X++trN7KifRvLWXVmDFSSaCS8wHCdfUrttU/8jJlkWCAYvjsjFHX2IsyBUCRS+FVwat9GMRcut0Bg3itmoIIHQ==}
+  '@trpc/client@11.0.0-rc.817':
+    resolution: {integrity: sha512-LHwdO16yYSJmEt1yXTVoYtwVyoefLUlQsYsD8ccl/KspFWMIaQSi1lph5TZri5QBWCsRmoNW0Hi9/oeUmOPrLw==}
     peerDependencies:
-      '@trpc/server': 11.0.0-rc.814+f490f467f
+      '@trpc/server': 11.0.0-rc.817+53ebeae30
       typescript: '>=5.7.2'
 
-  '@trpc/server@11.0.0-rc.814':
-    resolution: {integrity: sha512-tbYYpJIjYa6YVzujuPmTczIdmGH8XZwGmncO4uNa+CP/u/EECbtykkyGHx+tSi9ZjSK6fRcIvm9AGiUWzF7cmw==}
+  '@trpc/server@11.0.0-rc.817':
+    resolution: {integrity: sha512-O8WzK0c3KGvP1eYzQQWBQobQo8EH2vJYijJMl0NXYFOsKl12W0H2LWs+qlAPegPOdkUGTCh+0QCqy2P4dPNgHA==}
     peerDependencies:
       typescript: '>=5.7.2'
 
@@ -3797,12 +3797,12 @@ snapshots:
 
   '@tootallnate/quickjs-emscripten@0.23.0': {}
 
-  '@trpc/client@11.0.0-rc.814(@trpc/server@11.0.0-rc.814(typescript@5.7.3))(typescript@5.7.3)':
+  '@trpc/client@11.0.0-rc.817(@trpc/server@11.0.0-rc.817(typescript@5.7.3))(typescript@5.7.3)':
     dependencies:
-      '@trpc/server': 11.0.0-rc.814(typescript@5.7.3)
+      '@trpc/server': 11.0.0-rc.817(typescript@5.7.3)
       typescript: 5.7.3
 
-  '@trpc/server@11.0.0-rc.814(typescript@5.7.3)':
+  '@trpc/server@11.0.0-rc.817(typescript@5.7.3)':
     dependencies:
       typescript: 5.7.3
 

@@ -1,5 +1,12 @@
 # Changelog
 
+## [9.5.1](https://github.com/mikavilpas/tui-sandbox/compare/library-v9.5.0...library-v9.5.1) (2025-03-02)
+
+
+### Bug Fixes
+
+* neovim client requests sometimes blocking indefinitely ([dec5a69](https://github.com/mikavilpas/tui-sandbox/commit/dec5a6922e61ca89d568f7dc53c833d597b2292c))
+
 ## [9.5.0](https://github.com/mikavilpas/tui-sandbox/compare/library-v9.4.0...library-v9.5.0) (2025-02-23)
 
 

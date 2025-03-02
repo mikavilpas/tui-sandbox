@@ -16,6 +16,7 @@ import type { DirectoriesConfig } from "../updateTestdirectorySchemaFile.js"
 import { convertEventEmitterToAsyncGenerator } from "../utilities/generator.js"
 import { Lazy } from "../utilities/Lazy.js"
 import type { TabId } from "../utilities/tabId.js"
+import { timeout } from "../utilities/timeout.js"
 import type { StdoutOrStderrMessage, TerminalDimensions } from "./NeovimApplication.js"
 import { NeovimApplication } from "./NeovimApplication.js"
 import { prepareNewTestDirectory } from "./prepareNewTestDirectory.js"
@@ -152,6 +153,61 @@ export async function runLuaCode(options: LuaCodeInput): Promise<RunLuaCodeOutpu
     console.warn(`Error running Lua code: ${options.luaCode}`, e)
     throw new Error(`Error running Lua code: ${options.luaCode}`, { cause: e })
   }
+}
+
+export type PollLuaCodeInput = {
+  luaAssertion: string
+  tabId: TabId
+}
+
+export async function waitForLuaCode(
+  options: PollLuaCodeInput,
+  signal: AbortSignal | undefined
+): Promise<RunLuaCodeOutput> {
+  const neovim = neovims.get(options.tabId.tabId)
+  assert(
+    neovim !== undefined,
+    `Neovim instance for clientId not found - cannot pollLuaCode. Maybe neovim's not started yet?`
+  )
+  assert(
+    neovim.application,
+    `Neovim application not found for client id ${options.tabId.tabId}. Maybe it's not started yet?`
+  )
+
+  const api = await neovim.state?.client.get()
+  if (!api) {
+    throw new Error(`Neovim API not available for client id ${options.tabId.tabId}. Maybe it's not started yet?`)
+  }
+
+  console.log(`Neovim ${neovim.application.processId()} polling Lua code: ${options.luaAssertion}`)
+
+  let running: boolean = true
+  signal?.addEventListener("abort", () => {
+    console.log(`Polling Lua code: '${options.luaAssertion}' was aborted via signal`)
+    running = false
+  })
+
+  const maxIterations = 100
+  for (let iteration = 1; iteration <= maxIterations; iteration++) {
+    // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
+    if (!running) {
+      throw new Error(`Polling Lua code: '${options.luaAssertion}' was aborted after ${iteration} iterations`)
+    }
+
+    try {
+      const value = await api.lua(options.luaAssertion)
+      console.log(`Lua code assertion passed: ${options.luaAssertion} (iteration ${iteration})`)
+
+      return { value }
+    } catch (e) {
+      console.error(`Caught error in iteration ${iteration}:`, e)
+      await timeout(100)
+    }
+  }
+
+  throw new Error(
+    `Polling Lua code: '${options.luaAssertion}' always raised an error after ${maxIterations} iterations`
+  )
 }
 
 export async function runExCommand(options: ExCommandInput): Promise<RunExCommandOutput> {

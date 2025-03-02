@@ -1,15 +1,19 @@
-export async function timeoutable<T>(ms: number, promise: Promise<T>): Promise<T> {
-  let timeoutId: NodeJS.Timeout | undefined = undefined
-  const timeout = new Promise<void>((_, reject) => {
-    timeoutId = setTimeout(() => {
-      reject(new Error(`Timeout after ${ms}ms`))
-    }, ms)
+import assert from "node:assert"
+
+export async function timeoutable<T>(timeoutMs: number, promise: Promise<T>): Promise<T> {
+  let timeoutHandle: NodeJS.Timeout
+
+  const timeoutPromise = new Promise<T>((_, reject) => {
+    timeoutHandle = setTimeout(() => {
+      reject(new Error(`Operation timed out after ${timeoutMs}ms`))
+    }, timeoutMs)
   })
 
   try {
-    await Promise.race([timeout, promise])
-    return await promise
+    return await Promise.race([promise, timeoutPromise])
   } finally {
-    clearTimeout(timeoutId) // Ensure the timeout is cleared
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+    assert(timeoutHandle!)
+    clearTimeout(timeoutHandle)
   }
 }

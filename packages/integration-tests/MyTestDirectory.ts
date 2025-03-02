@@ -38,6 +38,10 @@ export const MyTestDirectorySchema = z.object({
           name: z.literal("add_command_to_count_open_buffers.lua"),
           type: z.literal("file"),
         }),
+        "add_command_to_update_buffer_after_timeout.lua": z.object({
+          name: z.literal("add_command_to_update_buffer_after_timeout.lua"),
+          type: z.literal("file"),
+        }),
         "don't_crash_when_modification_contains_unescaped_characters\".lua": z.object({
           name: z.literal("don't_crash_when_modification_contains_unescaped_characters\".lua"),
           type: z.literal("file"),
@@ -110,6 +114,7 @@ export const testDirectoryFiles = z.enum([
   ".config/nvim",
   ".config",
   "config-modifications/add_command_to_count_open_buffers.lua",
+  "config-modifications/add_command_to_update_buffer_after_timeout.lua",
   "config-modifications/don't_crash_when_modification_contains_unescaped_characters\".lua",
   "config-modifications",
   "dir with spaces/file1.txt",

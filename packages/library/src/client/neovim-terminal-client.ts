@@ -2,7 +2,7 @@ import { createTRPCClient, httpBatchLink, splitLink, unstable_httpSubscriptionLi
 import type { Terminal } from "@xterm/xterm"
 import "@xterm/xterm/css/xterm.css"
 import type { BlockingCommandClientInput } from "../server/blockingCommandInputSchema.js"
-import type { AppRouter, ExCommandClientInput, LuaCodeClientInput } from "../server/server.js"
+import type { AppRouter, ExCommandClientInput, LuaCodeClientInput, PollLuaCodeClientInput } from "../server/server.js"
 import type {
   BlockingShellCommandOutput,
   RunExCommandOutput,
@@ -100,6 +100,15 @@ export class NeovimTerminalClient {
   public async runLuaCode(input: LuaCodeClientInput): Promise<RunLuaCodeOutput> {
     await this.ready
     return this.trpc.neovim.runLuaCode.mutate({ ...input, tabId: this.tabId })
+  }
+
+  public async waitForLuaCode(input: PollLuaCodeClientInput): Promise<RunLuaCodeOutput> {
+    await this.ready
+    try {
+      return await this.trpc.neovim.waitForLuaCode.mutate({ ...input, tabId: this.tabId })
+    } catch (e) {
+      throw e
+    }
   }
 
   public async runExCommand(input: ExCommandClientInput): Promise<RunExCommandOutput> {

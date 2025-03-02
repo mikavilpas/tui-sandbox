@@ -15,6 +15,13 @@ const luaCodeInputSchema = z.object({ tabId: tabIdSchema, luaCode: z.string() })
 export type LuaCodeClientInput = Except<LuaCodeInput, "tabId">
 export type LuaCodeInput = z.infer<typeof luaCodeInputSchema>
 
+const pollLuaCodeInputSchema = z.object({
+  tabId: tabIdSchema,
+  luaAssertion: z.string(),
+  timeoutMs: z.number().optional().default(10_000),
+})
+export type PollLuaCodeClientInput = Except<z.input<typeof pollLuaCodeInputSchema>, "tabId">
+
 const exCommandInputSchema = z.object({
   tabId: tabIdSchema,
   command: z.string(),
@@ -106,6 +113,18 @@ export async function createAppRouter(config: DirectoriesConfig) {
 
       runLuaCode: trpc.procedure.input(luaCodeInputSchema).mutation(options => {
         return timeoutable(10_000, neovim.runLuaCode(options.input))
+      }),
+
+      waitForLuaCode: trpc.procedure.input(pollLuaCodeInputSchema).mutation(async options => {
+        try {
+          const result = await timeoutable(
+            options.input.timeoutMs,
+            neovim.waitForLuaCode(options.input, options.signal)
+          )
+          return result
+        } catch (e) {
+          throw e
+        }
       }),
 
       runExCommand: trpc.procedure.input(exCommandInputSchema).mutation(options => {

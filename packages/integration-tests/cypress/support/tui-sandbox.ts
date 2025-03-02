@@ -16,6 +16,7 @@ import type {
 } from "@tui-sandbox/library/dist/src/server/types"
 import type { BlockingCommandClientInput } from "@tui-sandbox/library/src/server/blockingCommandInputSchema"
 import type { StartTerminalGenericArguments } from "@tui-sandbox/library/src/server/terminal/TerminalTestApplication"
+import { timeoutable } from "@tui-sandbox/library/src/server/utilities/timeoutable.js"
 import type { OverrideProperties } from "type-fest"
 import type { MyTestDirectory, MyTestDirectoryFile } from "../../MyTestDirectory"
 
@@ -170,18 +171,11 @@ declare global {
 afterEach(async () => {
   if (!testNeovim) return
 
-  let timeoutId: NodeJS.Timeout | undefined = undefined
-  const timeout = new Promise<void>((_, reject) => {
-    timeoutId = setTimeout(() => {
-      Cypress.log({ name: "timeout when waiting for :messages to finish. Neovim might be stuck or showing a message." })
-      reject(new Error("timeout when waiting for :messages to finish. Neovim might be stuck or showing a message."))
-    }, 5_000)
-  })
-
   try {
-    await Promise.race([timeout, testNeovim.runExCommand({ command: "messages" })])
+    await timeoutable(5_000, testNeovim.runExCommand({ command: "messages" }))
+  } catch (_) {
+    Cypress.log({ name: "timeout when waiting for :messages to finish. Neovim might be stuck or showing a message." })
   } finally {
-    clearTimeout(timeoutId) // Ensure the timeout is cleared
     testNeovim = undefined
   }
 })

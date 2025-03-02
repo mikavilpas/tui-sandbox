@@ -9,6 +9,7 @@ import * as terminal from "./terminal/index.js"
 import { TestServer } from "./TestServer.js"
 import type { DirectoriesConfig, TestServerConfig } from "./updateTestdirectorySchemaFile.js"
 import { tabIdSchema } from "./utilities/tabId.js"
+import { timeoutable } from "./utilities/timeoutable.js"
 
 const luaCodeInputSchema = z.object({ tabId: tabIdSchema, luaCode: z.string() })
 export type LuaCodeClientInput = Except<LuaCodeInput, "tabId">
@@ -104,11 +105,11 @@ export async function createAppRouter(config: DirectoriesConfig) {
       }),
 
       runLuaCode: trpc.procedure.input(luaCodeInputSchema).mutation(options => {
-        return neovim.runLuaCode(options.input)
+        return timeoutable(10_000, neovim.runLuaCode(options.input))
       }),
 
       runExCommand: trpc.procedure.input(exCommandInputSchema).mutation(options => {
-        return neovim.runExCommand(options.input)
+        return timeoutable(10_000, neovim.runExCommand(options.input))
       }),
     }),
   })

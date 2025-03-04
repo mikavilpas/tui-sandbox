@@ -13,12 +13,6 @@ importers:
       '@eslint/js':
         specifier: 9.21.0
         version: 9.21.0
-      '@typescript-eslint/eslint-plugin':
-        specifier: 8.26.0
-        version: 8.26.0(@typescript-eslint/parser@8.26.0(eslint@9.21.0)(typescript@5.8.2))(eslint@9.21.0)(typescript@5.8.2)
-      '@typescript-eslint/parser':
-        specifier: 8.26.0
-        version: 8.26.0(eslint@9.21.0)(typescript@5.8.2)
       '@umbrelladocs/linkspector':
         specifier: 0.3.13
         version: 0.3.13(typescript@5.8.2)

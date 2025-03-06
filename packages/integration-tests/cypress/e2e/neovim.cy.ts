@@ -200,6 +200,29 @@ describe("neovim features", () => {
     })
   })
 
+  it("can poll until a lua expression passes", () => {
+    cy.visit("/")
+    cy.startNeovim({ startupScriptModifications: ["add_command_to_update_buffer_after_timeout.lua"] }).then(nvim => {
+      // Set an initial buffer line
+      nvim.runLuaCode({
+        luaCode: `vim.api.nvim_buf_set_lines(0, 0, -1, false, {'initial'})`,
+      })
+
+      // Start a timer that updates the buffer after some time
+      nvim.runExCommand({ command: "UpdateBufferAfterTimeout" })
+
+      // Poll until the buffer contains "updated". Using runLuaCode here would
+      // crash if the editor state has not been updated yet, so it cannot be
+      // used here.
+      nvim.waitForLuaCode({
+        luaAssertion: `assert(vim.api.nvim_buf_get_lines(0, 0, -1, false)[1] == 'updated')`,
+      })
+
+      // Assert the final state
+      cy.contains("updated")
+    })
+  })
+
   it("can show messages after a test fails", () => {
     cy.visit("/")
     cy.startNeovim().then(nvim => {

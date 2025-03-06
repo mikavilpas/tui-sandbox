@@ -1,5 +1,12 @@
 # Changelog
 
+## [9.6.0](https://github.com/mikavilpas/tui-sandbox/compare/library-v9.5.1...library-v9.6.0) (2025-03-06)
+
+
+### Features
+
+* **nvim:** allow polling until a lua expression does not raise ([#343](https://github.com/mikavilpas/tui-sandbox/issues/343)) ([dce1fed](https://github.com/mikavilpas/tui-sandbox/commit/dce1fed51e28d59a1bd3a7d0aed84427b660f61b))
+
 ## [9.5.1](https://github.com/mikavilpas/tui-sandbox/compare/library-v9.5.0...library-v9.5.1) (2025-03-02)
 
 

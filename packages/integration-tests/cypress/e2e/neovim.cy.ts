@@ -260,17 +260,17 @@ describe("neovim features", () => {
         // wait until text on the start screen is visible
         cy.contains(`require("config")`)
 
+        // It takes a bit of time for the LSP server to start.
+        //
         // This is a pretty hacky way to know when the LSP server is ready. It
         // shows an "unused" warning when it has started :)
-        //
-        // It takes a bit of time for the LSP server to start
-        cy.contains("default", { timeout: 15_000 }).should(
-          "have.css",
-          "color",
-          // the color of the unused variable, effectively waiting for the LSP
-          // to report this after having started
-          rgbify(flavors.macchiato.colors.overlay2.rgb)
-        )
+        nvim.runLuaCode({ luaCode: `vim.lsp.get_clients({bufnr=0})` }).then(result => {
+          const clients = result.value
+          assert(!clients)
+        })
+        nvim.waitForLuaCode({
+          luaAssertion: `assert(#vim.diagnostic.get(0) > 0)`,
+        })
         cy.typeIntoTerminal("/config.defaults/e{enter}")
 
         // the final `s` is the cursor itself, and it has a different background-color

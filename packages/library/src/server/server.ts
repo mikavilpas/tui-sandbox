@@ -116,15 +116,8 @@ export async function createAppRouter(config: DirectoriesConfig) {
       }),
 
       waitForLuaCode: trpc.procedure.input(pollLuaCodeInputSchema).mutation(async options => {
-        try {
-          const result = await timeoutable(
-            options.input.timeoutMs,
-            neovim.waitForLuaCode(options.input, options.signal)
-          )
-          return result
-        } catch (e) {
-          throw e
-        }
+        const result = await timeoutable(options.input.timeoutMs, neovim.waitForLuaCode(options.input, options.signal))
+        return result
       }),
 
       runExCommand: trpc.procedure.input(exCommandInputSchema).mutation(options => {

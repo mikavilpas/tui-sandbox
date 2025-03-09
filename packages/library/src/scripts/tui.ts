@@ -3,6 +3,7 @@ import path from "node:path"
 import { createCypressSupportFile } from "../server/cypress-support/createCypressSupportFile.js"
 import type { TestServerConfig } from "../server/index.js"
 import { startTestServer, updateTestdirectorySchemaFile } from "../server/index.js"
+import { installDependencies } from "../server/neovim/index.js"
 import type { StdoutOrStderrMessage } from "../server/neovim/NeovimApplication.js"
 import { NeovimApplication } from "../server/neovim/NeovimApplication.js"
 import { prepareNewTestDirectory } from "../server/neovim/prepareNewTestDirectory.js"
@@ -28,6 +29,15 @@ const config = {
 const args = process.argv.slice(2)
 
 if (args[0] === "neovim") {
+  if (args[1] === "prepare" && args.length === 2) {
+    console.log("🚀 Installing neovim dependencies...")
+    await installDependencies(config.directories.testEnvironmentPath, config.directories).catch((err: unknown) => {
+      console.error("Error installing neovim dependencies", err)
+      process.exit(1)
+    })
+    process.exit(0)
+  }
+
   if (!(args[1] === "exec" && args.length === 3)) {
     showUsageAndExit()
   }

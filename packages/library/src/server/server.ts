@@ -132,26 +132,14 @@ export async function createAppRouter(config: DirectoriesConfig) {
 export type AppRouter = Awaited<ReturnType<typeof createAppRouter>>
 export type RouterInput = inferRouterInputs<AppRouter>
 
-export async function startTestServer(config: TestServerConfig): Promise<TestServer> {
+export async function startTestServer(config: TestServerConfig): Promise<void> {
   try {
     const testServer = new TestServer({
       port: config.port,
     })
     const appRouter = await createAppRouter(config.directories)
 
-    const neovimTask: Promise<void> = neovim
-      .installDependencies(config.directories.testEnvironmentPath, config.directories)
-      .catch((err: unknown) => {
-        console.error("Error installing neovim dependencies", err)
-        // suppress the error because neovim is optional - other applications
-        // can still be tested
-      })
-
-    const startServerTask = testServer.startAndRun(appRouter)
-
-    await Promise.all([neovimTask, startServerTask])
-
-    return testServer
+    await testServer.startAndRun(appRouter)
   } catch (err: unknown) {
     console.error("Error starting test server", err)
     throw err

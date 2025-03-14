@@ -27,11 +27,9 @@ jobs:
           cache: "pnpm"
 
       - run: |
-          # install dependencies so we can build the project
+          # install dependencies, which will also build the project
           pnpm install
-          pnpm build
-          # install the "tui" command so it's available for the next steps
-          pnpm install
+          (cd packages/integration-tests && pnpm tui neovim prepare)
 
       - run: pnpm test
       # need to work around https://github.com/cypress-io/github-action/issues/1246
@@ -41,7 +39,6 @@ jobs:
         uses: cypress-io/github-action@v6.7.16
         with:
           command: |
-            pnpm tui neovim prepare
             pnpm cy:run
 
       - uses: actions/upload-artifact@v4.6.1

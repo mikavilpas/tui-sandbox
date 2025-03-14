@@ -11,6 +11,7 @@
     "dev": "concurrently --names 'client,server' 'pnpm dev:client' 'pnpm dev:server' --prefix-colors blue,green",
     "dev:client": "vite",
     "dev:server": "cd ../integration-tests/ && nodemon --watch ../library --ext '*' --exec 'tsx ../library/src/scripts/tui.ts start'",
+    "prepare": "pnpm build",
     "test": "vitest"
   },
   "dependencies": {

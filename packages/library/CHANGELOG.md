@@ -1,5 +1,16 @@
 # Changelog
 
+## [10.0.0](https://github.com/mikavilpas/tui-sandbox/compare/library-v9.6.0...library-v10.0.0) (2025-03-14)
+
+
+### ⚠ BREAKING CHANGES
+
+* Neovim dependencies are no longer installed automatically when starting the test server. Instead, you must run `pnpm tui neovim prepare` before starting the test server. Make sure you have your preparation script in place in `path/to/your/integration-tests/test-environment/.config/nvim/prepare.lua` before doing this.
+
+### Bug Fixes
+
+* allow waiting for neovim dependencies to be installed ([d794013](https://github.com/mikavilpas/tui-sandbox/commit/d794013e7605096418c1b7667d3f0b2e038f1e9d))
+
 ## [9.6.0](https://github.com/mikavilpas/tui-sandbox/compare/library-v9.5.1...library-v9.6.0) (2025-03-06)
 
 

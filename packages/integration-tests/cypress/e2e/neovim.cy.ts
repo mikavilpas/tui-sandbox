@@ -252,7 +252,7 @@ describe("neovim features", () => {
   })
 
   describe("using an LSP server", () => {
-    it("can use a LSP server that's already installed", () => {
+    it("can use an LSP server that's already installed", () => {
       // in the test setup, the lua_ls server is installed in the file
       // prepare.lua when the test environment is started
       cy.visit("/")

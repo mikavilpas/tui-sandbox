@@ -41,7 +41,7 @@
     "@types/express": "5.0.0",
     "@types/node": "22.13.10",
     "nodemon": "3.1.9",
-    "vite": "6.2.1",
+    "vite": "6.2.2",
     "vitest": "3.0.8"
   },
   "peerDependencies": {

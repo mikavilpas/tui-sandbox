@@ -75,10 +75,12 @@ window.startTerminalApplication = async function (
 ): Promise<GenericTerminalBrowserApi> {
   const terminal = terminalClient.get()
   const testDirectory = await terminal.startTerminalApplication(args)
-  return {
+
+  const terminalBrowserApi: GenericTerminalBrowserApi = {
     dir: testDirectory,
     runBlockingShellCommand(input) {
       return terminal.runBlockingShellCommand(input)
     },
   }
+  return terminalBrowserApi
 }

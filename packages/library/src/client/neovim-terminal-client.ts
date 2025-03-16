@@ -56,7 +56,7 @@ export class NeovimTerminalClient {
     // time to complete
     this.ready = new Promise<void>(resolve => {
       console.log("Subscribing to stdout")
-      trpc.neovim.onStdout.subscribe(
+      trpc.neovim.initializeStdout.subscribe(
         { client: tabId },
         {
           onStarted() {

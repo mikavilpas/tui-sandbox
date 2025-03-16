@@ -103,6 +103,10 @@ export async function createAppRouter(config: DirectoriesConfig) {
       onStdout: trpc.procedure.input(z.object({ client: tabIdSchema })).subscription(options => {
         return neovim.initializeStdout(options.input, options.signal, config.testEnvironmentPath)
       }),
+
+      initializeStdout: trpc.procedure.input(z.object({ client: tabIdSchema })).subscription(options => {
+        return neovim.initializeStdout(options.input, options.signal, config.testEnvironmentPath)
+      }),
       sendStdin: trpc.procedure.input(z.object({ tabId: tabIdSchema, data: z.string() })).mutation(options => {
         return neovim.sendStdin(options.input)
       }),

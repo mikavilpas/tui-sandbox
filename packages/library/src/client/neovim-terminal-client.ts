@@ -1,4 +1,4 @@
-import { createTRPCClient, httpBatchLink, splitLink, unstable_httpSubscriptionLink } from "@trpc/client"
+import { createTRPCClient, httpBatchLink, httpSubscriptionLink, splitLink } from "@trpc/client"
 import type { Terminal } from "@xterm/xterm"
 import "@xterm/xterm/css/xterm.css"
 import type { BlockingCommandClientInput } from "../server/blockingCommandInputSchema.js"
@@ -26,7 +26,7 @@ export class NeovimTerminalClient {
       links: [
         splitLink({
           condition: operation => operation.type === "subscription",
-          true: unstable_httpSubscriptionLink({
+          true: httpSubscriptionLink({
             url: "/trpc",
           }),
           false: httpBatchLink({

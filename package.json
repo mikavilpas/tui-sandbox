@@ -17,11 +17,11 @@
     "tui": "pnpm --filter=library build && pnpm --filter integration-tests exec tui"
   },
   "devDependencies": {
-    "@eslint/js": "9.22.0",
+    "@eslint/js": "9.23.0",
     "@umbrelladocs/linkspector": "0.4.2",
     "concurrently": "9.1.2",
     "cypress": "14.2.0",
-    "eslint": "9.22.0",
+    "eslint": "9.23.0",
     "eslint-config-prettier": "10.1.1",
     "eslint-import-resolver-typescript": "4.2.2",
     "eslint-plugin-import-x": "4.9.1",

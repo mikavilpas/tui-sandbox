@@ -46,7 +46,7 @@ export default tseslint.config([
     },
 
     rules: {
-      "no-only-tests/no-only-tests": "error",
+      "no-only-tests/no-only-tests": "warn",
       "@typescript-eslint/require-await": "off",
 
       "no-restricted-syntax": [

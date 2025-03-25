@@ -13,9 +13,9 @@
     "zod": "3.24.2"
   },
   "devDependencies": {
-    "@types/node": "22.13.11",
+    "@types/node": "22.13.13",
     "concurrently": "9.1.2",
     "nodemon": "3.1.9",
-    "type-fest": "4.37.0"
+    "type-fest": "4.38.0"
   }
 }

@@ -23,8 +23,8 @@
     "cypress": "14.2.1",
     "eslint": "9.23.0",
     "eslint-config-prettier": "10.1.1",
-    "eslint-import-resolver-typescript": "4.2.7",
-    "eslint-plugin-import-x": "4.9.3",
+    "eslint-import-resolver-typescript": "4.3.1",
+    "eslint-plugin-import-x": "4.9.4",
     "eslint-plugin-no-only-tests": "3.3.0",
     "markdownlint-cli2": "0.17.2",
     "prettier": "3.5.3",
@@ -36,7 +36,7 @@
     "vitest": "3.0.9",
     "wait-on": "8.0.3"
   },
-  "packageManager": "pnpm@10.6.3+sha512.bb45e34d50a9a76e858a95837301bfb6bd6d35aea2c5d52094fa497a467c43f5c440103ce2511e9e0a2f89c3d6071baac3358fc68ac6fb75e2ceb3d2736065e6",
+  "packageManager": "pnpm@10.7.0",
   "pnpm": {
     "onlyBuiltDependencies": [
       "core-js",

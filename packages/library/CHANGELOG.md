@@ -1,5 +1,12 @@
 # Changelog
 
+## [10.1.0](https://github.com/mikavilpas/tui-sandbox/compare/library-v10.0.0...library-v10.1.0) (2025-03-31)
+
+
+### Features
+
+* add nvim_isRunning command to check if neovim is running ([#382](https://github.com/mikavilpas/tui-sandbox/issues/382)) ([7608b56](https://github.com/mikavilpas/tui-sandbox/commit/7608b56920349a7ec8b0567b5f0a1b560e18da71))
+
 ## [10.0.0](https://github.com/mikavilpas/tui-sandbox/compare/library-v9.6.0...library-v10.0.0) (2025-03-14)
 
 

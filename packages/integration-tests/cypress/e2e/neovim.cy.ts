@@ -289,6 +289,17 @@ describe("neovim features", () => {
   })
 })
 
+describe("nvim_isRunning", () => {
+  it("can report whether nvim_isRunning", () => {
+    cy.visit("/")
+    cy.nvim_isRunning().should("be.false")
+
+    cy.startNeovim().then(() => {
+      cy.nvim_isRunning().should("be.true")
+    })
+  })
+})
+
 {
   // @ts-expect-error cwdRelative should only allow MyTestDirectoryFile paths
   const invalid: MyBlockingCommandClientInput["cwdRelative"] = "invalid-invalid"

@@ -1,5 +1,12 @@
 # Changelog
 
+## [10.2.0](https://github.com/mikavilpas/tui-sandbox/compare/library-v10.1.0...library-v10.2.0) (2025-04-05)
+
+
+### Features
+
+* copy symlinks into test directories ([#389](https://github.com/mikavilpas/tui-sandbox/issues/389)) ([eb0f399](https://github.com/mikavilpas/tui-sandbox/commit/eb0f39909b1b5d65e7cdb75524a69a591c87da67))
+
 ## [10.1.0](https://github.com/mikavilpas/tui-sandbox/compare/library-v10.0.0...library-v10.1.0) (2025-03-31)
 
 

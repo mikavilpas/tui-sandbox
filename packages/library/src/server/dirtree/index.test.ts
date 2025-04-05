@@ -123,6 +123,18 @@ describe("dirtree", () => {
               "subdirectory-file.txt": z.object({ name: z.literal("subdirectory-file.txt"), type: z.literal("file") }),
             }),
           }),
+          "symlink-target.txt": z.object({
+            name: z.literal("symlink-target.txt"),
+            type: z.literal("file-symlink"),
+            target: z.literal("symlink-test/symlink-target.txt"),
+          }),
+          "symlink-test": z.object({
+            name: z.literal("symlink-test/"),
+            type: z.literal("directory"),
+            contents: z.object({
+              "symlink-target.txt": z.object({ name: z.literal("symlink-target.txt"), type: z.literal("file") }),
+            }),
+          }),
         }),
       })
 
@@ -159,6 +171,9 @@ describe("dirtree", () => {
         "routes",
         "subdirectory/subdirectory-file.txt",
         "subdirectory",
+        "symlink-target.txt",
+        "symlink-test/symlink-target.txt",
+        "symlink-test",
         "."
       ])
       export type MyTestDirectoryFile = z.infer<typeof testDirectoryFiles>"

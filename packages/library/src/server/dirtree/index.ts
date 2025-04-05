@@ -1,5 +1,6 @@
 import type { Dree } from "dree"
 import { scan, Type } from "dree"
+import { readlinkSync } from "fs"
 import { format, resolveConfig } from "prettier"
 import { fileURLToPath } from "url"
 import { jsonToZod } from "./json-to-zod.js"
@@ -29,17 +30,23 @@ export function getDirectoryTree(path: string): TreeResult {
   return { dree: result ?? undefined, allFiles }
 }
 
+type TreeNode = FileNode | FileSymlinkNode | DirectoryNode
+
 type FileNode = {
-  type: Type.FILE
+  type: "file"
   name: string
 }
+type FileSymlinkNode = {
+  type: "file-symlink"
+  name: string
+  /** The target of the symlink, a filepath. */
+  target: string
+}
 type DirectoryNode = {
-  type: Type.DIRECTORY
+  type: "directory"
   name: string
   contents: Record<string, TreeNode>
 }
-
-type TreeNode = FileNode | DirectoryNode
 
 export function convertDree(root: Dree | undefined): TreeNode {
   if (!root) {
@@ -47,10 +54,19 @@ export function convertDree(root: Dree | undefined): TreeNode {
   }
 
   if (root.type === Type.FILE) {
+    if (root.isSymbolicLink) {
+      const target = readlinkSync(root.path)
+      return {
+        name: root.name,
+        type: "file-symlink",
+        target,
+      } satisfies FileSymlinkNode
+    }
+
     return {
       name: root.name,
       type: root.type,
-    }
+    } satisfies FileNode
   }
 
   const node: DirectoryNode = {

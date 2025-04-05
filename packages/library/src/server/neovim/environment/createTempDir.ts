@@ -19,7 +19,7 @@ export async function createTempDir(config: DirectoriesConfig): Promise<TestDire
       if (entry === ("testdirs" satisfies TestDirsPath)) return
       if (entry === ".repro") return
 
-      execSync(`cp -a '${path.join(config.testEnvironmentPath, entry)}' ${dir}/`)
+      execSync(`cp -R '${path.join(config.testEnvironmentPath, entry)}' ${dir}/`)
     })
     console.log(`Created test directory at ${dir}`)
 

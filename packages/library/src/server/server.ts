@@ -45,7 +45,7 @@ export async function createAppRouter(config: DirectoriesConfig) {
             tabId: tabIdSchema,
             startTerminalArguments: z.object({
               commandToRun: z.array(z.string()),
-              additionalEnvironmentVariables: z.record(z.string()).optional(),
+              additionalEnvironmentVariables: z.record(z.string(), z.string()).optional(),
               terminalDimensions: z.object({
                 cols: z.number(),
                 rows: z.number(),
@@ -88,7 +88,7 @@ export async function createAppRouter(config: DirectoriesConfig) {
                 cols: z.number(),
                 rows: z.number(),
               }),
-              additionalEnvironmentVariables: z.record(z.string()).optional(),
+              additionalEnvironmentVariables: z.record(z.string(), z.string()).optional(),
             }),
           })
         )

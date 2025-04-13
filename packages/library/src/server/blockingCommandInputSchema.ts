@@ -13,7 +13,7 @@ export const blockingCommandInputSchema = z
     // absolute cwd
     cwd: z.string().optional(),
     cwdRelative: z.string().optional(),
-    envOverrides: z.record(z.string()).optional(),
+    envOverrides: z.record(z.string(), z.string()).optional(),
     uid: z.number().optional(),
     gid: z.number().optional(),
   })

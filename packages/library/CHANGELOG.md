@@ -1,5 +1,12 @@
 # Changelog
 
+## [10.2.1](https://github.com/mikavilpas/tui-sandbox/compare/library-v10.2.0...library-v10.2.1) (2025-04-13)
+
+
+### Performance Improvements
+
+* use zod v4 beta for faster type checking ([#396](https://github.com/mikavilpas/tui-sandbox/issues/396)) ([c209388](https://github.com/mikavilpas/tui-sandbox/commit/c209388009a64283e71017522b0df53a22e7429d))
+
 ## [10.2.0](https://github.com/mikavilpas/tui-sandbox/compare/library-v10.1.0...library-v10.2.0) (2025-04-05)
 
 

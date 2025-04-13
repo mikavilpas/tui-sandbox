@@ -35,7 +35,6 @@
     "zod": "3.24.2"
   },
   "devDependencies": {
-    "@runtyping/zod": "3.0.0",
     "@types/command-exists": "1.2.3",
     "@types/cors": "2.8.17",
     "@types/express": "5.0.1",

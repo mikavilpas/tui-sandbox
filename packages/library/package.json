@@ -30,9 +30,9 @@
     "node-pty": "1.0.0",
     "prettier": "3.5.3",
     "tsx": "4.19.3",
-    "type-fest": "4.39.1",
+    "type-fest": "4.40.0",
     "winston": "3.17.0",
-    "zod": "4.0.0-beta.20250414T061543"
+    "zod": "4.0.0-beta.20250415T232143"
   },
   "devDependencies": {
     "@types/command-exists": "1.2.3",

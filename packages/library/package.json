@@ -32,7 +32,7 @@
     "tsx": "4.19.3",
     "type-fest": "4.40.0",
     "winston": "3.17.0",
-    "zod": "4.0.0-beta.20250417T043022"
+    "zod": "4.0.0-beta.20250418T202744"
   },
   "devDependencies": {
     "@types/command-exists": "1.2.3",
@@ -40,7 +40,7 @@
     "@types/express": "5.0.1",
     "@types/node": "22.14.1",
     "nodemon": "3.1.9",
-    "vite": "6.3.1",
+    "vite": "6.3.2",
     "vitest": "3.1.1"
   },
   "peerDependencies": {

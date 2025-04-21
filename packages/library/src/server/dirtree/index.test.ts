@@ -87,6 +87,7 @@ describe("dirtree", () => {
             name: z.literal("lua-project/"),
             type: z.literal("directory"),
             contents: z.object({
+              ".luarc.json": z.object({ name: z.literal(".luarc.json"), type: z.literal("file") }),
               "config.lua": z.object({ name: z.literal("config.lua"), type: z.literal("file") }),
               "init.lua": z.object({ name: z.literal("init.lua"), type: z.literal("file") }),
             }),
@@ -159,6 +160,7 @@ describe("dirtree", () => {
         "dir with spaces",
         "file.txt",
         "initial-file.txt",
+        "lua-project/.luarc.json",
         "lua-project/config.lua",
         "lua-project/init.lua",
         "lua-project",

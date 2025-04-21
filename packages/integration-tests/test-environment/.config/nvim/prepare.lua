@@ -22,4 +22,4 @@ vim.cmd("Lazy! sync")
 require("mason-registry").refresh()
 
 local command = require("mason.api.command")
-command.MasonInstall({ "lua-language-server" }, { version = "3.13.5" })
+command.MasonInstall({ "emmylua_ls" }, { version = "0.7.1" })

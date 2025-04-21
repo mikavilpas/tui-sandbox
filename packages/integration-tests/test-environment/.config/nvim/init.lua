@@ -45,14 +45,7 @@ local plugins = {
       { "williamboman/mason-lspconfig.nvim", opts = {} },
     },
     config = function()
-      ---@diagnostic disable-next-line: missing-fields
-      require("mason-lspconfig").setup({
-        handlers = {
-          lua_ls = function()
-            require("lspconfig")["lua_ls"].setup({})
-          end,
-        },
-      })
+      --
     end,
   },
   { "catppuccin/nvim", name = "catppuccin", priority = 1000 },
@@ -63,3 +56,7 @@ vim.keymap.set("n", "gd", vim.lsp.buf.definition)
 vim.keymap.set("n", "gr", vim.lsp.buf.references)
 
 vim.cmd.colorscheme("catppuccin-macchiato")
+
+-- the config is automatically loaded via the config in nvim-lspconfig
+-- https://github.com/neovim/nvim-lspconfig/pull/3745
+vim.lsp.enable("emmylua_ls")

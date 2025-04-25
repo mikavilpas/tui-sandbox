@@ -38,7 +38,7 @@
     "@types/command-exists": "1.2.3",
     "@types/cors": "2.8.17",
     "@types/express": "5.0.1",
-    "@types/node": "22.15.0",
+    "@types/node": "22.15.2",
     "nodemon": "3.1.10",
     "vite": "6.3.3",
     "vitest": "3.1.2"

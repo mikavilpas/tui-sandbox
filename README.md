@@ -76,3 +76,6 @@ Example projects that use tui-sandbox:
 - [yazi.nvim](https://github.com/mikavilpas/yazi.nvim): Neovim plugin for file manager integration
 - [blink-ripgrep.nvim](https://github.com/mikavilpas/blink-ripgrep.nvim): Neovim plugin for
   [ripgrep](https://github.com/BurntSushi/ripgrep) search results
+- [tsugit.nvim](https://github.com/mikavilpas/tsugit.nvim): Neovim plugin for superfast lazygit integration
+- [mikavilpas/dotfiles](https://github.com/mikavilpas/dotfiles): My personal dotfiles. Some custom TUI application
+  integrations are end-to-end tested because "why not" 🙂

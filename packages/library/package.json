@@ -31,8 +31,7 @@
     "prettier": "3.5.3",
     "tsx": "4.19.4",
     "type-fest": "4.40.1",
-    "winston": "3.17.0",
-    "zod": "4.0.0-beta.20250430T185432"
+    "winston": "3.17.0"
   },
   "devDependencies": {
     "@types/command-exists": "1.2.3",
@@ -47,6 +46,7 @@
     "cypress": "^13 || ^14",
     "prettier": ">= 3.3.3",
     "type-fest": ">= 4.27.0",
-    "typescript": ">= 5.6.3"
+    "typescript": ">= 5.6.3",
+    "zod": "4.0.0-beta.20250430T185432"
   }
 }

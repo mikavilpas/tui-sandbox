@@ -1,5 +1,12 @@
 # Changelog
 
+## [10.2.2](https://github.com/mikavilpas/tui-sandbox/compare/library-v10.2.1...library-v10.2.2) (2025-05-05)
+
+
+### Bug Fixes
+
+* mark zod as a peer dependency ([#417](https://github.com/mikavilpas/tui-sandbox/issues/417)) ([b739b8e](https://github.com/mikavilpas/tui-sandbox/commit/b739b8ec350f484f1d358b75836601bed9b869f7))
+
 ## [10.2.1](https://github.com/mikavilpas/tui-sandbox/compare/library-v10.2.0...library-v10.2.1) (2025-04-13)
 
 

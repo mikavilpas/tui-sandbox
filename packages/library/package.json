@@ -1,6 +1,10 @@
 {
   "name": "@tui-sandbox/library",
   "version": "10.2.2",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mikavilpas/tui-sandbox"
+  },
   "license": "MIT",
   "type": "module",
   "bin": {

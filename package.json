@@ -44,7 +44,8 @@
       "es5-ext",
       "esbuild",
       "node-pty",
-      "puppeteer"
+      "puppeteer",
+      "unrs-resolver"
     ],
     "packageExtensions": {
       "node-pty": {

@@ -34,14 +34,14 @@
     "node-pty": "1.0.0",
     "prettier": "3.5.3",
     "tsx": "4.19.4",
-    "type-fest": "4.40.1",
+    "type-fest": "4.41.0",
     "winston": "3.17.0"
   },
   "devDependencies": {
     "@types/command-exists": "1.2.3",
     "@types/cors": "2.8.17",
     "@types/express": "5.0.1",
-    "@types/node": "22.15.9",
+    "@types/node": "22.15.14",
     "nodemon": "3.1.10",
     "vite": "6.3.5",
     "vitest": "3.1.3"

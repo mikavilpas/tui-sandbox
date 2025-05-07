@@ -1,5 +1,12 @@
 # Changelog
 
+## [10.2.3](https://github.com/mikavilpas/tui-sandbox/compare/library-v10.2.2...library-v10.2.3) (2025-05-07)
+
+
+### Bug Fixes
+
+* **deps:** allow any version of zod 4, including beta versions ([#422](https://github.com/mikavilpas/tui-sandbox/issues/422)) ([e33838e](https://github.com/mikavilpas/tui-sandbox/commit/e33838ea1c4bd3c5873b96050a14aba30557b01a))
+
 ## [10.2.2](https://github.com/mikavilpas/tui-sandbox/compare/library-v10.2.1...library-v10.2.2) (2025-05-05)
 
 

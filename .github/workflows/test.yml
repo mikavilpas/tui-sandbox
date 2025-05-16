@@ -12,13 +12,15 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        neovim_version: ["nightly"]
+        # https://github.com/rhysd/action-setup-vim/blob/master/action.yml
+        neovim_version: ["nightly", "stable"]
 
     steps:
       - uses: actions/checkout@v4.2.2
       - uses: rhysd/action-setup-vim@v1
         with:
           neovim: true
+          version: ${{ matrix.neovim_version }}
 
       - uses: pnpm/action-setup@v4.1.0
       - uses: actions/setup-node@v4.4.0

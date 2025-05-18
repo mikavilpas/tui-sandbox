@@ -1,5 +1,12 @@
 # Changelog
 
+## [10.3.0](https://github.com/mikavilpas/tui-sandbox/compare/library-v10.2.3...library-v10.3.0) (2025-05-18)
+
+
+### Features
+
+* **utils:** export the Lazy utility class ([#438](https://github.com/mikavilpas/tui-sandbox/issues/438)) ([e72218a](https://github.com/mikavilpas/tui-sandbox/commit/e72218a25dc303d42b41993d0eb74534b7ff1155))
+
 ## [10.2.3](https://github.com/mikavilpas/tui-sandbox/compare/library-v10.2.2...library-v10.2.3) (2025-05-07)
 
 

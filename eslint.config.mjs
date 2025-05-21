@@ -121,7 +121,7 @@ export default tseslint.config([
             "**/*.test.ts",
           ],
           optionalDependencies: false,
-          peerDependencies: false,
+          peerDependencies: ["packages/library/**/*.ts"],
         },
       ],
     },

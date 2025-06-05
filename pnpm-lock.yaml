@@ -96,11 +96,11 @@ importers:
         specifier: 1.7.1
         version: 1.7.1
       '@trpc/client':
-        specifier: 11.2.0
-        version: 11.2.0(@trpc/server@11.2.0(typescript@5.8.3))(typescript@5.8.3)
+        specifier: 11.3.0
+        version: 11.3.0(@trpc/server@11.3.0(typescript@5.8.3))(typescript@5.8.3)
       '@trpc/server':
-        specifier: 11.2.0
-        version: 11.2.0(typescript@5.8.3)
+        specifier: 11.3.0
+        version: 11.3.0(typescript@5.8.3)
       '@xterm/addon-attach':
         specifier: 0.11.0
         version: 0.11.0(@xterm/xterm@5.5.0)
@@ -588,14 +588,14 @@ packages:
   '@tootallnate/quickjs-emscripten@0.23.0':
     resolution: {integrity: sha512-C5Mc6rdnsaJDjO3UpGW/CQTHtCKaYlScZTly4JIu97Jxo/odCiH0ITnDXSJPTOrEKk/ycSZ0AOgTmkDtkOsvIA==}
 
-  '@trpc/client@11.2.0':
-    resolution: {integrity: sha512-uGehc0QvK3+UmTZb1KmIwvMLtRW0I5ykiYQHA1Yqa7yHPzpF9zw7mbwna6gqZAgjclt0/S6jwxAMJizoaP8uqQ==}
+  '@trpc/client@11.3.0':
+    resolution: {integrity: sha512-O8fih4Tj+mGqN7bPM1inXJ7/3SFYI3/0D/AKYDc/G6Bq7GNNX+1st0YMMdtFk+Vv3e8K95h6233ZOwRX0qiwOg==}
     peerDependencies:
-      '@trpc/server': 11.2.0
+      '@trpc/server': 11.3.0
       typescript: '>=5.7.2'
 
-  '@trpc/server@11.2.0':
-    resolution: {integrity: sha512-clESXvCT3rTRUavB3wjtmPDlbB+rayVPeaTeXEQVeQNdTrK5o6GnYfCdiJJSdQspUQAwkGgQFRnku5pckuISlw==}
+  '@trpc/server@11.3.0':
+    resolution: {integrity: sha512-E5y94QLxgYr+T5FOWiMqNrCW0d2CJfhxNB7bS9xQzPfPMQeo4dpX8/s3nAxITJ9ARrORhK3Efpqs3/bPI9UOTQ==}
     peerDependencies:
       typescript: '>=5.7.2'
 
@@ -3676,12 +3676,12 @@ snapshots:
 
   '@tootallnate/quickjs-emscripten@0.23.0': {}
 
-  '@trpc/client@11.2.0(@trpc/server@11.2.0(typescript@5.8.3))(typescript@5.8.3)':
+  '@trpc/client@11.3.0(@trpc/server@11.3.0(typescript@5.8.3))(typescript@5.8.3)':
     dependencies:
-      '@trpc/server': 11.2.0(typescript@5.8.3)
+      '@trpc/server': 11.3.0(typescript@5.8.3)
       typescript: 5.8.3
 
-  '@trpc/server@11.2.0(typescript@5.8.3)':
+  '@trpc/server@11.3.0(typescript@5.8.3)':
     dependencies:
       typescript: 5.8.3
 

@@ -30,7 +30,7 @@
     "prettier": "3.5.3",
     "prettier-plugin-organize-imports": "4.1.0",
     "prettier-plugin-packagejson": "2.5.15",
-    "tsx": "4.20.1",
+    "tsx": "4.20.2",
     "typescript": "5.8.3",
     "typescript-eslint": "8.34.0",
     "vitest": "3.2.3",

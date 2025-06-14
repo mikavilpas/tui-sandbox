@@ -15,19 +15,19 @@ import type {
   GenericTerminalBrowserApi,
 } from "@tui-sandbox/library/dist/src/browser/neovim-client"
 import type {
-  ExCommandClientInput,
-  LuaCodeClientInput,
-  PollLuaCodeClientInput,
-} from "@tui-sandbox/library/dist/src/server/server"
-import type {
   BlockingShellCommandOutput,
   RunExCommandOutput,
   RunLuaCodeOutput,
   StartNeovimGenericArguments,
   TestDirectory,
 } from "@tui-sandbox/library/dist/src/server/types"
+import type {
+  ExCommandClientInput,
+  LuaCodeClientInput,
+  PollLuaCodeClientInput,
+} from "@tui-sandbox/library/src/server/applications/neovim/neovimRouter"
+import type { StartTerminalGenericArguments } from "@tui-sandbox/library/src/server/applications/terminal/TerminalTestApplication"
 import type { BlockingCommandClientInput } from "@tui-sandbox/library/src/server/blockingCommandInputSchema"
-import type { StartTerminalGenericArguments } from "@tui-sandbox/library/src/server/terminal/TerminalTestApplication"
 import type { OverrideProperties } from "type-fest"
 import type { MyTestDirectory, MyTestDirectoryFile } from "../../MyTestDirectory"
 

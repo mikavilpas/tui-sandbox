@@ -1,5 +1,12 @@
 # Changelog
 
+## [10.4.1](https://github.com/mikavilpas/tui-sandbox/compare/library-v10.4.0...library-v10.4.1) (2025-06-14)
+
+
+### Bug Fixes
+
+* import path errors in codegen ([b82e79b](https://github.com/mikavilpas/tui-sandbox/commit/b82e79b38e86edc1426ad1c2cb8c31fc3991d61b))
+
 ## [10.4.0](https://github.com/mikavilpas/tui-sandbox/compare/library-v10.3.0...library-v10.4.0) (2025-06-14)
 
 

@@ -1,5 +1,12 @@
 # Changelog
 
+## [10.4.0](https://github.com/mikavilpas/tui-sandbox/compare/library-v10.3.0...library-v10.4.0) (2025-06-14)
+
+
+### Features
+
+* hide debug logs from neovim client ([#462](https://github.com/mikavilpas/tui-sandbox/issues/462)) ([46f447f](https://github.com/mikavilpas/tui-sandbox/commit/46f447f177ad8884ac5901ef69befb753e5561f2))
+
 ## [10.3.0](https://github.com/mikavilpas/tui-sandbox/compare/library-v10.2.3...library-v10.3.0) (2025-05-18)
 
 

@@ -2,10 +2,10 @@ import assert from "assert"
 import { exec } from "child_process"
 import EventEmitter from "events"
 import { join } from "path"
+import type { TestDirectory, TestEnvironmentCommonEnvironmentVariables } from "../../types.js"
+import { DisposableSingleApplication } from "../../utilities/DisposableSingleApplication.js"
+import { TerminalApplication } from "../../utilities/TerminalApplication.js"
 import type { StdoutOrStderrMessage, TerminalDimensions } from "../neovim/NeovimApplication.js"
-import type { TestDirectory, TestEnvironmentCommonEnvironmentVariables } from "../types.js"
-import { DisposableSingleApplication } from "../utilities/DisposableSingleApplication.js"
-import { TerminalApplication } from "../utilities/TerminalApplication.js"
 
 type ResettableState = {
   testDirectory: TestDirectory

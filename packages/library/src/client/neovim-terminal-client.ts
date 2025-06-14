@@ -1,8 +1,13 @@
 import { createTRPCClient, httpBatchLink, httpSubscriptionLink, splitLink } from "@trpc/client"
 import type { Terminal } from "@xterm/xterm"
 import "@xterm/xterm/css/xterm.css"
+import type {
+  ExCommandClientInput,
+  LuaCodeClientInput,
+  PollLuaCodeClientInput,
+} from "../server/applications/neovim/neovimRouter.js"
 import type { BlockingCommandClientInput } from "../server/blockingCommandInputSchema.js"
-import type { AppRouter, ExCommandClientInput, LuaCodeClientInput, PollLuaCodeClientInput } from "../server/server.js"
+import type { AppRouter } from "../server/server.js"
 import type {
   BlockingShellCommandOutput,
   RunExCommandOutput,

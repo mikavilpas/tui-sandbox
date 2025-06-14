@@ -1,8 +1,12 @@
 import { TerminalClient as NeovimTerminalClient } from "../client/index.js"
 import { TerminalTerminalClient } from "../client/terminal-terminal-client.js"
+import type {
+  ExCommandClientInput,
+  LuaCodeClientInput,
+  PollLuaCodeClientInput,
+} from "../server/applications/neovim/neovimRouter.js"
+import type { StartTerminalGenericArguments } from "../server/applications/terminal/TerminalTestApplication.js"
 import type { BlockingCommandClientInput } from "../server/blockingCommandInputSchema.js"
-import type { ExCommandClientInput, LuaCodeClientInput, PollLuaCodeClientInput } from "../server/server.js"
-import type { StartTerminalGenericArguments } from "../server/terminal/TerminalTestApplication.js"
 import type {
   BlockingShellCommandOutput,
   RunExCommandOutput,

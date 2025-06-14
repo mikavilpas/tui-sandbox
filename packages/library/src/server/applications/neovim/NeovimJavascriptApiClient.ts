@@ -1,7 +1,7 @@
 import { access } from "fs/promises"
 import type { NeovimClient as NeovimApiClient } from "neovim"
 import { attach } from "neovim"
-import { Lazy } from "../utilities/Lazy.js"
+import { Lazy } from "../../utilities/Lazy.js"
 
 export type NeovimJavascriptApiClient = NeovimApiClient
 

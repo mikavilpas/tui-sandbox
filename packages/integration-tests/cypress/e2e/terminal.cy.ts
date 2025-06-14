@@ -1,4 +1,4 @@
-import type { TestDirsPath } from "@tui-sandbox/library/src/server/neovim/environment/createTempDir"
+import type { TestDirsPath } from "@tui-sandbox/library/src/server/applications/neovim/environment/createTempDir"
 import assert from "assert"
 
 describe("TerminalTestApplication features", () => {

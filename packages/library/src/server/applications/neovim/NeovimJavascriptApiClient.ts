@@ -1,6 +1,7 @@
 import { access } from "fs/promises"
 import type { NeovimClient as NeovimApiClient } from "neovim"
 import { attach } from "neovim"
+import { createLogger, format, transports } from "winston"
 import { Lazy } from "../../utilities/Lazy.js"
 
 export type NeovimJavascriptApiClient = NeovimApiClient
@@ -8,6 +9,19 @@ export type NeovimJavascriptApiClient = NeovimApiClient
 export type PollingInterval = 100
 
 export function connectNeovimApi(socketPath: string): Lazy<Promise<NeovimJavascriptApiClient>> {
+  // When a custom logger is provided to attach(), we can hide debug level log
+  // messages
+  //
+  // https://github.com/neovim/node-client/blob/e0568e32e0fc8837ad900146bfd5ca27b9416235/README.md#logging
+  const logger = createLogger({
+    level: "warn",
+    transports: [
+      new transports.Console({
+        format: format.combine(format.colorize(), format.simple()),
+      }),
+    ],
+  })
+
   // it takes about 100ms for the socket file to be created - best make this
   // Lazy so that we don't wait for it unnecessarily.
   return new Lazy(async () => {
@@ -27,6 +41,11 @@ export function connectNeovimApi(socketPath: string): Lazy<Promise<NeovimJavascr
     // this.
     process.env["ALLOW_CONSOLE"] = "1"
 
-    return attach({ socket: socketPath })
+    return attach({
+      socket: socketPath,
+      options: {
+        logger,
+      },
+    })
   })
 }

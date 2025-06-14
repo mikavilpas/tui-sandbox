@@ -187,10 +187,19 @@ export async function waitForLuaCode(
     running = false
   })
 
+  const failureMessages: string[] = []
+  const reportFailure = () => {
+    console.warn(
+      `Polling Lua code: '${options.luaAssertion}' failed after ${maxIterations} iterations. Failure messages:`,
+      new Set(failureMessages).values()
+    )
+  }
+
   const maxIterations = 100
   for (let iteration = 1; iteration <= maxIterations; iteration++) {
     // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
     if (!running) {
+      reportFailure()
       throw new Error(`Polling Lua code: '${options.luaAssertion}' was aborted after ${iteration} iterations`)
     }
 
@@ -200,11 +209,12 @@ export async function waitForLuaCode(
 
       return { value }
     } catch (e) {
-      console.error(`Caught error in iteration ${iteration}:`, e)
+      failureMessages.push(`Caught error in iteration ${iteration}: ${String(e)}`)
       await timeout(100)
     }
   }
 
+  reportFailure()
   throw new Error(
     `Polling Lua code: '${options.luaAssertion}' always raised an error after ${maxIterations} iterations`
   )

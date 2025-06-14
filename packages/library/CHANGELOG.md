@@ -1,5 +1,12 @@
 # Changelog
 
+## [10.5.0](https://github.com/mikavilpas/tui-sandbox/compare/library-v10.4.1...library-v10.5.0) (2025-06-14)
+
+
+### Features
+
+* reduce noisy logging in waitForLuaCode ([#467](https://github.com/mikavilpas/tui-sandbox/issues/467)) ([b79d80e](https://github.com/mikavilpas/tui-sandbox/commit/b79d80e2bb99461c37bc747af5c2358c6c38b84c))
+
 ## [10.4.1](https://github.com/mikavilpas/tui-sandbox/compare/library-v10.4.0...library-v10.4.1) (2025-06-14)
 
 

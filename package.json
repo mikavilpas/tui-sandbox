@@ -17,11 +17,11 @@
     "tui": "pnpm --filter=library build && pnpm --filter integration-tests exec tui"
   },
   "devDependencies": {
-    "@eslint/js": "9.28.0",
+    "@eslint/js": "9.29.0",
     "@umbrelladocs/linkspector": "0.4.5",
     "concurrently": "9.1.2",
     "cypress": "14.4.1",
-    "eslint": "9.28.0",
+    "eslint": "9.29.0",
     "eslint-config-prettier": "10.1.5",
     "eslint-import-resolver-typescript": "4.4.3",
     "eslint-plugin-import-x": "4.15.2",
@@ -30,7 +30,7 @@
     "prettier": "3.5.3",
     "prettier-plugin-organize-imports": "4.1.0",
     "prettier-plugin-packagejson": "2.5.15",
-    "tsx": "4.20.2",
+    "tsx": "4.20.3",
     "typescript": "5.8.3",
     "typescript-eslint": "8.34.0",
     "vitest": "3.2.3",

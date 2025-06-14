@@ -1,12 +1,12 @@
 import assert from "node:assert"
 import path from "node:path"
+import { installDependencies } from "../server/applications/neovim/api.js"
+import type { StdoutOrStderrMessage } from "../server/applications/neovim/NeovimApplication.js"
+import { NeovimApplication } from "../server/applications/neovim/NeovimApplication.js"
+import { prepareNewTestDirectory } from "../server/applications/neovim/prepareNewTestDirectory.js"
 import { createCypressSupportFile } from "../server/cypress-support/createCypressSupportFile.js"
 import type { TestServerConfig } from "../server/index.js"
 import { startTestServer, updateTestdirectorySchemaFile } from "../server/index.js"
-import { installDependencies } from "../server/neovim/index.js"
-import type { StdoutOrStderrMessage } from "../server/neovim/NeovimApplication.js"
-import { NeovimApplication } from "../server/neovim/NeovimApplication.js"
-import { prepareNewTestDirectory } from "../server/neovim/prepareNewTestDirectory.js"
 
 //
 // This is the main entrypoint to tui-sandbox

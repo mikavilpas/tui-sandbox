@@ -44,7 +44,7 @@ export type TestEnvironmentCommonEnvironmentVariables = {
   XDG_DATA_HOME: string
 }
 
-export type { StartNeovimGenericArguments } from "../server/neovim/NeovimApplication.js"
+export type { StartNeovimGenericArguments } from "./applications/neovim/NeovimApplication.js"
 
 export type BlockingShellCommandOutput =
   | {

@@ -2,8 +2,8 @@ import { exec } from "child_process"
 import "core-js/proposals/async-explicit-resource-management.js"
 import { join } from "path"
 import util from "util"
-import type { BlockingCommandInput } from "../blockingCommandInputSchema.js"
-import type { BlockingShellCommandOutput, TestDirectory } from "../types.js"
+import type { BlockingCommandInput } from "../../blockingCommandInputSchema.js"
+import type { BlockingShellCommandOutput, TestDirectory } from "../../types.js"
 
 export async function executeBlockingShellCommand(
   testDirectory: TestDirectory,

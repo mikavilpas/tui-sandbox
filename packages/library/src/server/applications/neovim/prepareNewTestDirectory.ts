@@ -1,6 +1,6 @@
 import { access, mkdir } from "fs/promises"
-import type { TestDirectory } from "../types.js"
-import type { DirectoriesConfig } from "../updateTestdirectorySchemaFile.js"
+import type { TestDirectory } from "../../types.js"
+import type { DirectoriesConfig } from "../../updateTestdirectorySchemaFile.js"
 import { createTempDir, removeTestDirectories } from "./environment/createTempDir.js"
 
 export async function prepareNewTestDirectory(config: DirectoriesConfig): Promise<TestDirectory> {

@@ -2,23 +2,23 @@ import assert from "assert"
 import "core-js/proposals/async-explicit-resource-management.js"
 import { access } from "fs/promises"
 import path from "path"
-import type { BlockingCommandInput } from "../blockingCommandInputSchema.js"
-import type { ExCommandInput, LuaCodeInput } from "../server.js"
-import { executeBlockingShellCommand } from "../terminal/runBlockingShellCommand.js"
+import type { BlockingCommandInput } from "../../blockingCommandInputSchema.js"
 import type {
   BlockingShellCommandOutput,
   RunExCommandOutput,
   RunLuaCodeOutput,
   StartNeovimGenericArguments,
   TestDirectory,
-} from "../types.js"
-import type { DirectoriesConfig } from "../updateTestdirectorySchemaFile.js"
-import { convertEventEmitterToAsyncGenerator } from "../utilities/generator.js"
-import { Lazy } from "../utilities/Lazy.js"
-import type { TabId } from "../utilities/tabId.js"
-import { timeout } from "../utilities/timeout.js"
+} from "../../types.js"
+import type { DirectoriesConfig } from "../../updateTestdirectorySchemaFile.js"
+import { convertEventEmitterToAsyncGenerator } from "../../utilities/generator.js"
+import { Lazy } from "../../utilities/Lazy.js"
+import type { TabId } from "../../utilities/tabId.js"
+import { timeout } from "../../utilities/timeout.js"
+import { executeBlockingShellCommand } from "../terminal/runBlockingShellCommand.js"
 import type { StdoutOrStderrMessage, TerminalDimensions } from "./NeovimApplication.js"
 import { NeovimApplication } from "./NeovimApplication.js"
+import type { ExCommandInput, LuaCodeInput } from "./neovimRouter.js"
 import { prepareNewTestDirectory } from "./prepareNewTestDirectory.js"
 
 const neovims = new Map<TabId["tabId"], NeovimApplication>()

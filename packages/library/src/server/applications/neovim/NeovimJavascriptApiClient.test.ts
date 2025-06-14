@@ -37,6 +37,11 @@ it("connects right away if the socket file is already there", async () => {
   await lazyClient.get()
 
   vi.advanceTimersByTime(pollingInterval)
-  expect(mocked.attach).toHaveBeenCalledWith({ socket: "foosocket" })
+  expect(mocked.attach).toHaveBeenCalledWith({
+    socket: "foosocket",
+    options: {
+      logger: expect.any(Object) as never,
+    },
+  } satisfies Partial<Parameters<typeof attach>[0]>)
   expect(mocked.attach).toHaveBeenCalledTimes(1)
 })

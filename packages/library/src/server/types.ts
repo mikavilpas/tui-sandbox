@@ -64,3 +64,15 @@ export type RunLuaCodeOutput = {
 }
 
 export type RunExCommandOutput = { value?: string }
+
+/**
+ * Require all of an object's keys to be set explicitly. This is useful for
+ * readability: writing all the keys makes their presence explicit. They could
+ * also be added via a spread operator (...obj), but in that case the following
+ * cases are unclear:
+ *
+ * - extra keys might be included because TypeScript does not check for them
+ * - if the target object type has optional keys, they might be missing. In
+ *   this case, they will never get set
+ **/
+export type AllKeys<T extends Record<never, never>> = Record<keyof T, unknown>

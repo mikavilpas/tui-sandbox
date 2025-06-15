@@ -1,5 +1,7 @@
+import type { Terminal } from "@xterm/xterm"
 import { TerminalClient as NeovimTerminalClient } from "../client/index.js"
 import { TerminalTerminalClient } from "../client/terminal-terminal-client.js"
+import type { TuiTerminalApi } from "../client/websocket-client.js"
 import type {
   ExCommandClientInput,
   LuaCodeClientInput,
@@ -64,7 +66,7 @@ window.startNeovim = async function (startArgs?: StartNeovimGenericArguments): P
 declare global {
   interface Window {
     startNeovim(startArguments?: StartNeovimGenericArguments): Promise<GenericNeovimBrowserApi>
-    startTerminalApplication(args: StartTerminalGenericArguments): Promise<GenericTerminalBrowserApi>
+    startTerminalApplication(args: StartTerminalBrowserArguments): Promise<GenericTerminalBrowserApi>
   }
 }
 
@@ -73,9 +75,24 @@ export type GenericTerminalBrowserApi = {
   runBlockingShellCommand(input: BlockingCommandClientInput): Promise<BlockingShellCommandOutput>
 }
 
+export type BrowserTerminalSettings = {
+  configureTerminal?: (term: {
+    terminal: Terminal
+    api: TuiTerminalApi
+    recipes: {
+      supportDA1: () => void
+    }
+  }) => void
+}
+
+export type StartTerminalBrowserArguments = {
+  serverSettings: StartTerminalGenericArguments
+  browserSettings: BrowserTerminalSettings
+}
+
 /** Entrypoint for the test runner (cypress) */
 window.startTerminalApplication = async function (
-  args: StartTerminalGenericArguments
+  args: StartTerminalBrowserArguments
 ): Promise<GenericTerminalBrowserApi> {
   const terminal = terminalClient.get()
   const testDirectory = await terminal.startTerminalApplication(args)

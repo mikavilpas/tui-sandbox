@@ -1,3 +1,4 @@
+import type { FakeDA1Response } from "@tui-sandbox/library/src/client/terminal-config"
 import type { TestDirsPath } from "@tui-sandbox/library/src/server/applications/neovim/environment/createTempDir"
 import assert from "assert"
 
@@ -77,6 +78,28 @@ describe("TerminalTestApplication features", () => {
         expect(output.stdout).to.match(/integration-tests\/test-environment\/testdirs\/dir-.*?\//)
         expect(output.stdout).to.match(/dir with spaces\n$/)
       })
+    })
+  })
+
+  it("can support DA1 (Primary Device Attributes) requests", () => {
+    // Use case: the `yazi` terminal application needs the terminal to support DA1 requests
+    //
+    // https://github.com/sxyazi/yazi/blob/aae3f9ea4ad280a0e7b5596e137f38ec6f6f698b/yazi-adapter/src/emulator.rs?plain=1#L117-L136
+    cy.visit("/")
+    cy.startTerminalApplication({
+      commandToRun: ["bash"],
+      configureTerminal: term => {
+        term.recipes.supportDA1()
+      },
+    }).then(() => {
+      cy.contains("myprompt")
+      // send a DA1 request to the terminal (/dev/tty), and read the response.
+      // Print the response to the terminal raw
+      cy.typeIntoTerminal(`echo -ne '\\033[c' > /dev/tty; dd bs=1 count=10 < /dev/tty 2>/dev/null{enter}`)
+
+      // the response from the supportDA1 recipe should be printed to the
+      // terminal
+      cy.contains(`^[${"[?1;2c" satisfies FakeDA1Response}`)
     })
   })
 })

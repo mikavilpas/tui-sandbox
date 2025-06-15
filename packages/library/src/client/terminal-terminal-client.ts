@@ -1,11 +1,13 @@
 import { createTRPCClient, httpBatchLink, httpSubscriptionLink, splitLink } from "@trpc/client"
 import type { Terminal } from "@xterm/xterm"
 import "@xterm/xterm/css/xterm.css"
-import type { StartTerminalGenericArguments } from "../server/applications/terminal/TerminalTestApplication.js"
+import type { StartTerminalBrowserArguments } from "../browser/neovim-client.js"
 import type { BlockingCommandClientInput } from "../server/blockingCommandInputSchema.js"
 import type { AppRouter } from "../server/server.js"
 import type { BlockingShellCommandOutput, TestDirectory } from "../server/types.js"
 import "./style.css"
+import { supportDA1 } from "./terminal-config.js"
+import type { TuiTerminalApi } from "./websocket-client.js"
 import { getTabId, startTerminal } from "./websocket-client.js"
 
 /** Manages the terminal state in the browser as well as the (browser's)
@@ -15,6 +17,7 @@ export class TerminalTerminalClient {
   private readonly tabId: { tabId: string }
   private readonly terminal: Terminal
   private readonly trpc: ReturnType<typeof createTRPCClient<AppRouter>>
+  terminalApi: TuiTerminalApi
 
   constructor(app: HTMLElement) {
     const trpc = createTRPCClient<AppRouter>({
@@ -35,7 +38,7 @@ export class TerminalTerminalClient {
     this.tabId = getTabId()
     const tabId = this.tabId
 
-    const terminal = startTerminal(app, {
+    this.terminalApi = {
       onMouseEvent(data: string) {
         void trpc.terminal.sendStdin.mutate({ tabId, data }).catch((error: unknown) => {
           console.error(`Error sending mouse event`, error)
@@ -44,11 +47,12 @@ export class TerminalTerminalClient {
       onKeyPress(event) {
         void trpc.terminal.sendStdin.mutate({ tabId, data: event.key })
       },
-    })
+    }
+    const terminal = startTerminal(app, this.terminalApi)
     this.terminal = terminal
 
-    // start listening to Neovim stdout - this will take some (short) amount of
-    // time to complete
+    // start listening to stdout - this will take some (short) amount of time
+    // to complete
     this.ready = new Promise<void>(resolve => {
       console.log("Subscribing to stdout")
       trpc.terminal.onStdout.subscribe(
@@ -68,13 +72,24 @@ export class TerminalTerminalClient {
     })
   }
 
-  public async startTerminalApplication(args: StartTerminalGenericArguments): Promise<TestDirectory> {
+  public async startTerminalApplication(args: StartTerminalBrowserArguments): Promise<TestDirectory> {
     await this.ready
+
+    args.browserSettings.configureTerminal?.({
+      terminal: this.terminal,
+      api: this.terminalApi,
+      recipes: {
+        supportDA1: () => {
+          supportDA1(this.terminal, this.terminalApi)
+        },
+      },
+    })
+
     const testDirectory = await this.trpc.terminal.start.mutate({
       tabId: this.tabId,
       startTerminalArguments: {
-        additionalEnvironmentVariables: args.additionalEnvironmentVariables,
-        commandToRun: args.commandToRun,
+        additionalEnvironmentVariables: args.serverSettings.additionalEnvironmentVariables,
+        commandToRun: args.serverSettings.commandToRun,
         terminalDimensions: {
           cols: this.terminal.cols,
           rows: this.terminal.rows,

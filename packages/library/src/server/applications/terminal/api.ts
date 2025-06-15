@@ -6,9 +6,9 @@ import type { DirectoriesConfig } from "../../updateTestdirectorySchemaFile.js"
 import { convertEventEmitterToAsyncGenerator } from "../../utilities/generator.js"
 import { Lazy } from "../../utilities/Lazy.js"
 import type { TabId } from "../../utilities/tabId.js"
-import type { TerminalDimensions } from "../neovim/NeovimApplication.js"
 import { prepareNewTestDirectory } from "../neovim/prepareNewTestDirectory.js"
 import { executeBlockingShellCommand } from "./runBlockingShellCommand.js"
+import type { StartTerminalInput } from "./terminalRouter.js"
 import TerminalTestApplication from "./TerminalTestApplication.js"
 
 const terminals = new Map<TabId["tabId"], TerminalTestApplication>()
@@ -17,15 +17,20 @@ const resources: Lazy<AsyncDisposableStack> = new Lazy(() => {
 })
 
 export async function start(
-  terminalDimensions: TerminalDimensions,
-  commandToRun: string[],
-  tabId: TabId,
+  { tabId, startTerminalArguments }: StartTerminalInput,
   config: DirectoriesConfig
 ): Promise<void> {
   const app = terminals.get(tabId.tabId)
   assert(app, `Terminal with tabId ${tabId.tabId} not found.`)
   const testDirectory = await prepareNewTestDirectory(config)
-  await app.startNextAndKillCurrent(testDirectory, { commandToRun }, terminalDimensions)
+  await app.startNextAndKillCurrent(
+    testDirectory,
+    {
+      commandToRun: startTerminalArguments.commandToRun,
+      additionalEnvironmentVariables: startTerminalArguments.additionalEnvironmentVariables,
+    },
+    startTerminalArguments.terminalDimensions
+  )
 }
 
 export async function initializeStdout(

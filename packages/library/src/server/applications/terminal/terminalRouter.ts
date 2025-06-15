@@ -6,6 +6,19 @@ import type { DirectoriesConfig } from "../../updateTestdirectorySchemaFile.js"
 import { tabIdSchema } from "../../utilities/tabId.js"
 import * as terminal from "./api.js"
 
+const startTerminalInputSchema = z.object({
+  tabId: tabIdSchema,
+  startTerminalArguments: z.object({
+    commandToRun: z.array(z.string()),
+    additionalEnvironmentVariables: z.record(z.string(), z.string()).optional(),
+    terminalDimensions: z.object({
+      cols: z.number(),
+      rows: z.number(),
+    }),
+  }),
+})
+export type StartTerminalInput = z.infer<typeof startTerminalInputSchema>
+
 // let trpc infer the type as that is what it is designed to do
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export function createTerminalRouter(config: DirectoriesConfig) {
@@ -14,28 +27,9 @@ export function createTerminalRouter(config: DirectoriesConfig) {
       return terminal.initializeStdout(options.input, options.signal, config.testEnvironmentPath)
     }),
 
-    start: trpc.procedure
-      .input(
-        z.object({
-          tabId: tabIdSchema,
-          startTerminalArguments: z.object({
-            commandToRun: z.array(z.string()),
-            additionalEnvironmentVariables: z.record(z.string(), z.string()).optional(),
-            terminalDimensions: z.object({
-              cols: z.number(),
-              rows: z.number(),
-            }),
-          }),
-        })
-      )
-      .mutation(options => {
-        return terminal.start(
-          options.input.startTerminalArguments.terminalDimensions,
-          options.input.startTerminalArguments.commandToRun,
-          options.input.tabId,
-          config
-        )
-      }),
+    start: trpc.procedure.input(startTerminalInputSchema).mutation(options => {
+      return terminal.start(options.input, config)
+    }),
 
     sendStdin: trpc.procedure.input(z.object({ tabId: tabIdSchema, data: z.string() })).mutation(options => {
       return terminal.sendStdin(options.input)

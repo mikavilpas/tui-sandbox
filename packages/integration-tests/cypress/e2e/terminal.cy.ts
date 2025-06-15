@@ -6,6 +6,9 @@ describe("TerminalTestApplication features", () => {
     cy.visit("/")
     cy.startTerminalApplication({
       commandToRun: ["bash"],
+      additionalEnvironmentVariables: {
+        FOO: "barbarbarbarbarbar",
+      },
     }).then(() => {
       // wait until text on the start screen is visible
       cy.contains("myprompt")
@@ -19,6 +22,10 @@ describe("TerminalTestApplication features", () => {
       // directory
       cy.typeIntoTerminal("ls -al{enter}")
       cy.contains("testdirs" satisfies TestDirsPath).should("not.exist")
+
+      // verify that the additional environment variable is set
+      cy.typeIntoTerminal("echo $FOO{enter}")
+      cy.contains("barbarbarbarbarbar")
     })
   })
 

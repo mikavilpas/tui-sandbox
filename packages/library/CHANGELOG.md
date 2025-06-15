@@ -1,5 +1,12 @@
 # Changelog
 
+## [10.5.1](https://github.com/mikavilpas/tui-sandbox/compare/library-v10.5.0...library-v10.5.1) (2025-06-15)
+
+
+### Bug Fixes
+
+* startTerminalApplication ignoring additionalEnvironmentVariables ([#469](https://github.com/mikavilpas/tui-sandbox/issues/469)) ([7144836](https://github.com/mikavilpas/tui-sandbox/commit/7144836ed7f302bc372887baa4b71f9d730981cc))
+
 ## [10.5.0](https://github.com/mikavilpas/tui-sandbox/compare/library-v10.4.1...library-v10.5.0) (2025-06-14)
 
 

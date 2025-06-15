@@ -1,5 +1,12 @@
 # Changelog
 
+## [10.6.0](https://github.com/mikavilpas/tui-sandbox/compare/library-v10.5.1...library-v10.6.0) (2025-06-15)
+
+
+### Features
+
+* expose terminal configuration and control sequence parsing ([#471](https://github.com/mikavilpas/tui-sandbox/issues/471)) ([e63c39d](https://github.com/mikavilpas/tui-sandbox/commit/e63c39dfc947cc2f351c0879cd8f1a7e50c3758f))
+
 ## [10.5.1](https://github.com/mikavilpas/tui-sandbox/compare/library-v10.5.0...library-v10.5.1) (2025-06-15)
 
 

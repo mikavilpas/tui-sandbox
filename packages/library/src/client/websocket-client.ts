@@ -7,11 +7,11 @@ import type { TabId } from "../server/utilities/tabId.ts"
 import "./style.css"
 import { validateMouseEvent } from "./validateMouseEvent.js"
 
-export type StartTerminalOptions = {
+export type TuiTerminalApi = {
   onMouseEvent: (data: string) => void
   onKeyPress: (event: { key: string; domEvent: KeyboardEvent }) => void
 }
-export function startTerminal(app: HTMLElement, options: StartTerminalOptions): Terminal {
+export function startTerminal(app: HTMLElement, api: TuiTerminalApi): Terminal {
   const terminal = new Terminal({
     cursorBlink: false,
     convertEol: true,
@@ -62,12 +62,12 @@ export function startTerminal(app: HTMLElement, options: StartTerminalOptions): 
 
     const mouseEvent = validateMouseEvent(data)
     if (mouseEvent) {
-      options.onMouseEvent(mouseEvent)
+      api.onMouseEvent(mouseEvent)
     }
   })
 
   terminal.onKey(event => {
-    options.onKeyPress(event)
+    api.onKeyPress(event)
   })
 
   return terminal

@@ -4,10 +4,13 @@ import { Type } from "dree"
 import { constants, readdirSync, statSync } from "fs"
 import { access, mkdir, mkdtemp } from "fs/promises"
 import path from "path"
+import { debuglog } from "util"
 import { convertDree, getDirectoryTree } from "../../../dirtree/index.js"
 import type { TestDirectory } from "../../../types.js"
 import type { DirectoriesConfig } from "../../../updateTestdirectorySchemaFile.js"
 import { updateTestdirectorySchemaFile } from "../../../updateTestdirectorySchemaFile.js"
+
+const log = debuglog("tui-sandbox.createTempDir")
 
 export async function createTempDir(config: DirectoriesConfig): Promise<TestDirectory> {
   try {
@@ -21,7 +24,7 @@ export async function createTempDir(config: DirectoriesConfig): Promise<TestDire
 
       execSync(`cp -R '${path.join(config.testEnvironmentPath, entry)}' ${dir}/`)
     })
-    console.log(`Created test directory at ${dir}`)
+    log(`Created test directory at ${dir}`)
 
     const tree = convertDree(getDirectoryTree(dir).dree)
     assert(tree.type === Type.DIRECTORY)

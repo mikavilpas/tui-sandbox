@@ -108,6 +108,19 @@ export const MyTestDirectorySchema = z.object({
       name: z.literal("symlink-test/"),
       type: z.literal("directory"),
       contents: z.object({
+        a: z.object({
+          name: z.literal("a/"),
+          type: z.literal("directory"),
+          contents: z.object({
+            b: z.object({
+              name: z.literal("b/"),
+              type: z.literal("directory"),
+              contents: z.object({
+                c: z.object({ name: z.literal("c/"), type: z.literal("directory"), contents: z.object({}) }),
+              }),
+            }),
+          }),
+        }),
         "symlink-target.txt": z.object({ name: z.literal("symlink-target.txt"), type: z.literal("file") }),
       }),
     }),
@@ -149,6 +162,9 @@ export const testDirectoryFiles = z.enum([
   "subdirectory/subdirectory-file.txt",
   "subdirectory",
   "symlink-target.txt",
+  "symlink-test/a/b/c",
+  "symlink-test/a/b",
+  "symlink-test/a",
   "symlink-test/symlink-target.txt",
   "symlink-test",
   ".",

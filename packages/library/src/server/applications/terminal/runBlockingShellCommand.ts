@@ -1,9 +1,11 @@
 import { exec } from "child_process"
 import "core-js/proposals/async-explicit-resource-management.js"
 import { join } from "path"
-import util from "util"
+import util, { debuglog } from "util"
 import type { BlockingCommandInput } from "../../blockingCommandInputSchema.js"
 import type { BlockingShellCommandOutput, TestDirectory } from "../../types.js"
+
+const log = debuglog("tui-sandbox.terminal.runBlockingShellCommand")
 
 export async function executeBlockingShellCommand(
   testDirectory: TestDirectory,
@@ -30,7 +32,7 @@ export async function executeBlockingShellCommand(
       cwd,
       env,
     })
-    console.log(
+    log(
       `Successfully ran shell blockingCommand (${input.command}) in cwd: '${cwd}' with stdout: ${result.stdout}, stderr: ${result.stderr}`
     )
     return {

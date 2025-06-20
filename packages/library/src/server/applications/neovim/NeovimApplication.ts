@@ -5,11 +5,14 @@ import { access } from "fs/promises"
 import type { NeovimClient as NeovimApiClient } from "neovim"
 import { tmpdir } from "os"
 import path, { join } from "path"
+import { debuglog } from "util"
 import type { TestDirectory, TestEnvironmentCommonEnvironmentVariables } from "../../types.js"
 import { DisposableSingleApplication } from "../../utilities/DisposableSingleApplication.js"
 import type { Lazy } from "../../utilities/Lazy.js"
 import { TerminalApplication } from "../../utilities/TerminalApplication.js"
 import { connectNeovimApi } from "./NeovimJavascriptApiClient.js"
+
+const log = debuglog("tui-sandbox-neovim-application")
 
 /*
 
@@ -170,7 +173,7 @@ export class NeovimApplication implements AsyncDisposable {
       client: connectNeovimApi(socketPath),
     }
 
-    console.log(`🚀 Started Neovim instance ${processId}`)
+    log(`🚀 Started Neovim instance ${processId}`)
   }
 
   public getEnvironmentVariables(

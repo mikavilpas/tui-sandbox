@@ -4,7 +4,10 @@ import { createLogger, format, transports } from "winston"
 import type { ITerminalDimensions } from "@xterm/addon-fit"
 import type { IPty } from "node-pty"
 import pty from "node-pty"
+import { debuglog } from "util"
 import type { StartableApplication } from "./DisposableSingleApplication.js"
+
+const log = debuglog("tui-sandbox.TerminalApplication")
 
 export type ExitInfo = { exitCode: number; signal: number | undefined }
 
@@ -55,7 +58,7 @@ export class TerminalApplication implements StartableApplication {
     env?: NodeJS.ProcessEnv
     dimensions: ITerminalDimensions
   }): TerminalApplication {
-    console.log(`Starting '${command}' with args '${args.join(" ")}' in cwd '${cwd}'`)
+    log(`Starting '${command}' with args '${args.join(" ")}' in cwd '${cwd}'`)
 
     const ptyProcess = pty.spawn(command, args, {
       name: "xterm-color",
@@ -66,7 +69,7 @@ export class TerminalApplication implements StartableApplication {
     })
     ptyProcess.onData(onStdoutOrStderr)
     ptyProcess.onExit(({ exitCode, signal }) => {
-      console.log(`Child process exited with code ${exitCode} and signal ${signal}`)
+      log(`Child process exited with code ${exitCode} and signal ${signal}`)
     })
 
     const processId = ptyProcess.pid
@@ -90,8 +93,8 @@ export class TerminalApplication implements StartableApplication {
   }
 
   public async killAndWait(): Promise<void> {
-    console.log(`💣 Killing process ${this.processId}`)
+    log(`💣 Killing process ${this.processId}`)
     this.subProcess.kill()
-    console.log(`💥 Killed process ${this.processId}`)
+    log(`💥 Killed process ${this.processId}`)
   }
 }

@@ -1,7 +1,10 @@
 import { readFileSync, writeFileSync } from "fs"
 import { mkdir, stat } from "fs/promises"
 import path from "path"
+import { debuglog } from "util"
 import { createCypressSupportFileContents } from "./contents.js"
+
+const log = debuglog("tui-sandbox.dirtree")
 
 export type CreateCypressSupportFileArgs = {
   cypressSupportDirectoryPath: string
@@ -24,7 +27,7 @@ export async function createCypressSupportFile({
   try {
     await stat(configModificationsDirectoryPath)
   } catch (error) {
-    console.log(
+    console.info(
       `Creating config-modifications directory at ${configModificationsDirectoryPath}. You can put Neovim startup scripts into this directory, and load them when starting your Neovim test.`
     )
     await mkdir(configModificationsDirectoryPath, { recursive: true })
@@ -37,14 +40,14 @@ export async function createCypressSupportFile({
   try {
     oldSchema = readFileSync(outputFilePath, "utf-8")
   } catch (error) {
-    console.log(`No existing cypress support file found at ${outputFilePath}`)
+    console.warn(`No existing cypress support file found at ${outputFilePath}`)
   }
 
   if (oldSchema !== text) {
     // it's important to not write the file if the schema hasn't changed
     // because file watchers will trigger on file changes and we don't want to
     // trigger a build if the schema hasn't changed
-    console.log(`🪛 Writing cypress support file to ${outputFilePath}`)
+    log(`🪛 Writing cypress support file to ${outputFilePath}`)
     writeFileSync(outputFilePath, text)
     return "updated"
   } else {

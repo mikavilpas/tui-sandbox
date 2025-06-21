@@ -1,5 +1,8 @@
 import { readFileSync, writeFileSync } from "fs"
+import { debuglog } from "util"
 import { buildTestDirectorySchema } from "./dirtree/index.js"
+
+const log = debuglog("tui-sandbox.updateTestdirectorySchemaFile")
 
 export type DirectoriesConfig = {
   testEnvironmentPath: string
@@ -23,7 +26,7 @@ export async function updateTestdirectorySchemaFile({
   try {
     oldSchema = readFileSync(outputFilePath, "utf-8")
   } catch (error) {
-    console.log("No existing schema file found, creating a new one")
+    log("No existing schema file found, creating a new one")
   }
 
   if (oldSchema !== newSchema) {

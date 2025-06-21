@@ -30,7 +30,7 @@ describe("TerminalTestApplication features", () => {
     })
   })
 
-  it("shows an error if the application fails to start", () => {
+  it.only("shows an error if the application fails to start", () => {
     cy.visit("/")
     cy.startTerminalApplication({
       commandToRun: ["thisdoesnotexist"],

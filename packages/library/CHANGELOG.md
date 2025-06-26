@@ -1,5 +1,12 @@
 # Changelog
 
+## [10.6.1](https://github.com/mikavilpas/tui-sandbox/compare/library-v10.6.0...library-v10.6.1) (2025-06-26)
+
+
+### Bug Fixes
+
+* not removing state in NeovimApplication.dispose ([#477](https://github.com/mikavilpas/tui-sandbox/issues/477)) ([fc88a67](https://github.com/mikavilpas/tui-sandbox/commit/fc88a67cd0bd0df91683a40c34690a9e314b4ebd))
+
 ## [10.6.0](https://github.com/mikavilpas/tui-sandbox/compare/library-v10.5.1...library-v10.6.0) (2025-06-15)
 
 

@@ -202,11 +202,12 @@ export class NeovimApplication implements AsyncDisposable {
 
     try {
       await access(this.state.socketPath)
-      throw new Error(`Socket file ${this.state.socketPath} should have been removed by neovim when it exited.`)
+      console.warn(`Socket file ${this.state.socketPath} should have been removed by neovim when it exited.`)
+      return
     } catch (e) {
       // all good
+    } finally {
+      this.state = undefined
     }
-
-    this.state = undefined
   }
 }

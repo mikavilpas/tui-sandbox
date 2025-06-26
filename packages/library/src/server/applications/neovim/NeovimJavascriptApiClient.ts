@@ -4,6 +4,8 @@ import { attach } from "neovim"
 import { createLogger, format, transports } from "winston"
 import { Lazy } from "../../utilities/Lazy.js"
 
+// const log = debuglog("tui-sandbox.neovim.NeovimJavascriptApiClient")
+
 export type NeovimJavascriptApiClient = NeovimApiClient
 
 export type PollingInterval = 100
@@ -28,10 +30,10 @@ export function connectNeovimApi(socketPath: string): Lazy<Promise<NeovimJavascr
     for (let i = 0; i < 100; i++) {
       try {
         await access(socketPath)
-        // console.log(`socket file ${socketPath} created after at attempt ${i + 1}`)
+        // log(`socket file ${socketPath} created after at attempt ${i + 1}`)
         break
       } catch (e) {
-        // console.log(`polling for socket file ${socketPath} to be created (attempt ${i + 1})`)
+        // log(`polling for socket file ${socketPath} to be created (attempt ${i + 1})`)
         await new Promise(resolve => setTimeout(resolve, 100 satisfies PollingInterval))
       }
     }

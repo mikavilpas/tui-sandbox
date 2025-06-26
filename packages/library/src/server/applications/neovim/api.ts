@@ -2,6 +2,7 @@ import assert from "assert"
 import "core-js/proposals/async-explicit-resource-management.js"
 import { access } from "fs/promises"
 import path from "path"
+import { debuglog } from "util"
 import type { BlockingCommandInput } from "../../blockingCommandInputSchema.js"
 import type {
   BlockingShellCommandOutput,
@@ -26,6 +27,8 @@ const resources: Lazy<AsyncDisposableStack> = new Lazy(() => {
   return new AsyncDisposableStack()
 })
 
+const log = debuglog("tui-sandbox.neovim.api")
+
 export async function installDependencies(testEnvironmentPath: string, config: DirectoriesConfig): Promise<void> {
   await using app = new NeovimApplication(testEnvironmentPath)
   const testDirectory = await prepareNewTestDirectory(config)
@@ -33,12 +36,17 @@ export async function installDependencies(testEnvironmentPath: string, config: D
   try {
     await access(prepareFilePath)
   } catch (e) {
+    // show the output here because it's typically shown in the console before
+    // the tests start. It's also sensitive to outside changes.
+    //
+    // eslint-disable-next-line no-restricted-properties
     console.log(
       `Neovim prepareFilePath does not exist: ${prepareFilePath}. If you want to run a prepare script before starting the tests, create it.`
     )
     return
   }
 
+  // eslint-disable-next-line no-restricted-properties
   console.log(`🚀 Running Neovim prepareFilePath ${prepareFilePath}...`)
 
   let output = ""
@@ -53,7 +61,9 @@ export async function installDependencies(testEnvironmentPath: string, config: D
     { cols: 80, rows: 24 }
   )
   await app.application.untilExit()
+  // eslint-disable-next-line no-restricted-properties
   console.log(`🚀 Neovim installDependencies output:`)
+  // eslint-disable-next-line no-restricted-properties
   console.log(output)
 }
 
@@ -145,7 +155,7 @@ export async function runLuaCode(options: LuaCodeInput): Promise<RunLuaCodeOutpu
     throw new Error(`Neovim API not available for client id ${options.tabId.tabId}. Maybe it's not started yet?`)
   }
 
-  console.log(`Neovim ${neovim.application.processId()} running Lua code: ${options.luaCode}`)
+  log(`Neovim ${neovim.application.processId()} running Lua code: ${options.luaCode}`)
   try {
     const value = await api.lua(options.luaCode)
     return { value }
@@ -179,11 +189,11 @@ export async function waitForLuaCode(
     throw new Error(`Neovim API not available for client id ${options.tabId.tabId}. Maybe it's not started yet?`)
   }
 
-  console.log(`Neovim ${neovim.application.processId()} polling Lua code: ${options.luaAssertion}`)
+  log(`Neovim ${neovim.application.processId()} polling Lua code: ${options.luaAssertion}`)
 
   let running: boolean = true
   signal?.addEventListener("abort", () => {
-    console.log(`Polling Lua code: '${options.luaAssertion}' was aborted via signal`)
+    log(`Polling Lua code: '${options.luaAssertion}' was aborted via signal`)
     running = false
   })
 
@@ -205,7 +215,7 @@ export async function waitForLuaCode(
 
     try {
       const value = await api.lua(options.luaAssertion)
-      console.log(`Lua code assertion passed: ${options.luaAssertion} (iteration ${iteration})`)
+      console.info(`Lua code assertion passed: ${options.luaAssertion} (iteration ${iteration})`)
 
       return { value }
     } catch (e) {
@@ -236,11 +246,11 @@ export async function runExCommand(options: ExCommandInput): Promise<RunExComman
     throw new Error(`Neovim API not available for client id ${options.tabId.tabId}. Maybe it's not started yet?`)
   }
 
-  console.log(`Neovim ${neovim.application.processId()} running Ex command: ${options.command}`)
+  log(`Neovim ${neovim.application.processId()} running Ex command: ${options.command}`)
   try {
     const output = await api.commandOutput(options.command)
     if (options.log) {
-      console.log(`:${options.command} output: ${output}`)
+      console.info(`:${options.command} output: ${output}`)
     }
     return { value: output }
   } catch (e) {

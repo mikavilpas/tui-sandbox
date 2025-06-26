@@ -6,6 +6,7 @@ import express from "express"
 import { accessSync } from "fs"
 import path from "path"
 import { fileURLToPath } from "url"
+import { debuglog } from "util"
 
 export type TestServerSettings = {
   port: number
@@ -13,12 +14,13 @@ export type TestServerSettings = {
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
+const log = debuglog("tui-sandbox.TestServer")
 
 export class TestServer {
   public constructor(private readonly settings: TestServerSettings) {}
 
   public async startAndRun(appRouter: AnyTRPCRouter): Promise<void> {
-    console.log("🚀 Server starting")
+    log("🚀 Server starting")
 
     const app = express()
     app.use(
@@ -39,7 +41,7 @@ export class TestServer {
       } catch (e) {
         // This is normal when developing the tui-sandbox library locally. It
         // should always exist when using it as an npm package, however.
-        console.log(
+        console.warn(
           `⚠️ Warning: Looks like the tui-sandbox root contents directory is not accessible at: ${publicPath}`
         )
       }
@@ -55,16 +57,16 @@ export class TestServer {
 
     const server = app.listen(this.settings.port, "0.0.0.0")
 
-    console.log(`✅ Server listening on port ${this.settings.port}`)
+    console.info(`✅ Server listening on port ${this.settings.port}`)
 
     await Promise.race([once(process, "SIGTERM"), once(process, "SIGINT")])
-    console.log("😴 Shutting down...")
+    log("😴 Shutting down...")
     server.close(error => {
       if (error) {
         console.error("Error closing server", error)
         process.exit(1)
       }
-      console.log("Server closed")
+      log("Server closed")
       process.exit(0)
     })
   }

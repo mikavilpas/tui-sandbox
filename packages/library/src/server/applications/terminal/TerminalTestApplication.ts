@@ -2,10 +2,13 @@ import assert from "assert"
 import { exec } from "child_process"
 import EventEmitter from "events"
 import { join } from "path"
+import { debuglog } from "util"
 import type { TestDirectory, TestEnvironmentCommonEnvironmentVariables } from "../../types.js"
 import { DisposableSingleApplication } from "../../utilities/DisposableSingleApplication.js"
 import { TerminalApplication } from "../../utilities/TerminalApplication.js"
 import type { StdoutOrStderrMessage, TerminalDimensions } from "../neovim/NeovimApplication.js"
+
+const log = debuglog("tui-sandbox.terminal.TerminalTestApplication")
 
 type ResettableState = {
   testDirectory: TestDirectory
@@ -70,7 +73,7 @@ export default class TerminalTestApplication implements AsyncDisposable {
 
     this.state = { testDirectory }
 
-    console.log(`🚀 Started Terminal instance ${processId}`)
+    log(`🚀 Started Terminal instance ${processId}`)
   }
 
   public getEnvironmentVariables(

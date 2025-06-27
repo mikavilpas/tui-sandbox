@@ -1,7 +1,10 @@
 import assert from "assert"
+import { debuglog } from "util"
 import type { ExitInfo, TerminalApplication } from "./TerminalApplication.js"
 
 export type StartableApplication = Pick<TerminalApplication, "write" | "processId" | "killAndWait" | "untilExit">
+
+const log = debuglog("tui-sandbox.DisposableSingleApplication")
 
 /** A testable application that can be started, killed, and given input. For a
  * single instance of this interface, only a single instance can be running at
@@ -40,7 +43,7 @@ export class DisposableSingleApplication implements AsyncDisposable {
     if (this.processId() === undefined) {
       return
     }
-    console.log(`Killing current application ${this.processId()}...`)
+    log(`Killing current application ${this.processId()}...`)
     await this.application?.killAndWait()
   }
 }

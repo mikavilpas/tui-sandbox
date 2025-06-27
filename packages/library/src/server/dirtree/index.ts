@@ -3,8 +3,10 @@ import { scan, Type } from "dree"
 import { readlinkSync } from "fs"
 import { format, resolveConfig } from "prettier"
 import { fileURLToPath } from "url"
+import { debuglog } from "util"
 import { jsonToZod } from "./json-to-zod.js"
 
+const log = debuglog("tui-sandbox.dirtree")
 type TreeResult = { dree: Dree | undefined; allFiles: Dree[] }
 
 /** Convert a directory tree to a TypeScript type. This is useful for testing
@@ -117,7 +119,7 @@ export async function buildSchemaForDirectoryTree(result: TreeResult, name: stri
 const __filename = fileURLToPath(import.meta.url)
 
 export async function buildTestDirectorySchema(testDirectoryPath: string): Promise<string> {
-  console.log("Building schema for test directory", testDirectoryPath)
+  log("Building schema for test directory", testDirectoryPath)
   const dree = getDirectoryTree(testDirectoryPath)
   let text = await buildSchemaForDirectoryTree(dree, "MyTestDirectory")
 

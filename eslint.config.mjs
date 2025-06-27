@@ -126,6 +126,19 @@ export default tseslint.config([
       ],
     },
   },
+  {
+    files: ["packages/library/src/server/**/*.ts"],
+    rules: {
+      "no-restricted-properties": [
+        "error",
+        {
+          object: "console",
+          property: "log",
+          message: 'Use `debuglog` from "node:util" instead.',
+        },
+      ],
+    },
+  },
 
   // should be the last item, https://github.com/prettier/eslint-config-prettier?tab=readme-ov-file#installation
   eslintConfigPrettier,

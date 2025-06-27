@@ -1,5 +1,12 @@
 # Changelog
 
+## [10.7.0](https://github.com/mikavilpas/tui-sandbox/compare/library-v10.6.1...library-v10.7.0) (2025-06-27)
+
+
+### Features
+
+* reduce debug related log noise in the terminal ([#478](https://github.com/mikavilpas/tui-sandbox/issues/478)) ([dd17208](https://github.com/mikavilpas/tui-sandbox/commit/dd172088d34cb32e2cb0e31dbb0e63b4e2b266f3))
+
 ## [10.6.1](https://github.com/mikavilpas/tui-sandbox/compare/library-v10.6.0...library-v10.6.1) (2025-06-26)
 
 

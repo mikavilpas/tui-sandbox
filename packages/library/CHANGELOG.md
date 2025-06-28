@@ -1,5 +1,12 @@
 # Changelog
 
+## [10.7.1](https://github.com/mikavilpas/tui-sandbox/compare/library-v10.7.0...library-v10.7.1) (2025-06-28)
+
+
+### Bug Fixes
+
+* hide debug log in neovim API ([#488](https://github.com/mikavilpas/tui-sandbox/issues/488)) ([2674734](https://github.com/mikavilpas/tui-sandbox/commit/26747342c2b384110fbd99510ead2de9df083fa4))
+
 ## [10.7.0](https://github.com/mikavilpas/tui-sandbox/compare/library-v10.6.1...library-v10.7.0) (2025-06-27)
 
 

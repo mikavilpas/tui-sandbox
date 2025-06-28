@@ -215,7 +215,7 @@ export async function waitForLuaCode(
 
     try {
       const value = await api.lua(options.luaAssertion)
-      console.info(`Lua code assertion passed: ${options.luaAssertion} (iteration ${iteration})`)
+      log(`Lua code assertion passed: ${options.luaAssertion} (iteration ${iteration})`)
 
       return { value }
     } catch (e) {

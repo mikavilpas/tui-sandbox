@@ -26,7 +26,6 @@
     "@xterm/addon-fit": "0.10.0",
     "@xterm/xterm": "5.5.0",
     "command-exists": "1.2.9",
-    "core-js": "3.43.0",
     "cors": "2.8.5",
     "dree": "5.1.5",
     "express": "5.1.0",
@@ -53,5 +52,8 @@
     "type-fest": ">= 4.27.0",
     "typescript": ">= 5.6.3",
     "zod": ">=4.0.0-0 <5"
+  },
+  "engines": {
+    "node": ">=24.0.0"
   }
 }

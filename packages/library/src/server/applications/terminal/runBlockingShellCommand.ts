@@ -1,5 +1,4 @@
 import { exec } from "child_process"
-import "core-js/proposals/async-explicit-resource-management.js"
 import { join } from "path"
 import util, { debuglog } from "util"
 import type { BlockingCommandInput } from "../../blockingCommandInputSchema.js"

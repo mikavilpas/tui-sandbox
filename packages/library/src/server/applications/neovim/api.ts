@@ -1,5 +1,4 @@
 import assert from "assert"
-import "core-js/proposals/async-explicit-resource-management.js"
 import { access } from "fs/promises"
 import path from "path"
 import { debuglog } from "util"

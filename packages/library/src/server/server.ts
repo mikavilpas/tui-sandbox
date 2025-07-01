@@ -1,5 +1,4 @@
 import type { inferRouterInputs } from "@trpc/server"
-import "core-js/proposals/async-explicit-resource-management.js"
 import { createNeovimRouter } from "./applications/neovim/neovimRouter.js"
 import { createTerminalRouter } from "./applications/terminal/terminalRouter.js"
 import { trpc } from "./connection/trpc.js"

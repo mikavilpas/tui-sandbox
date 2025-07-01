@@ -1,4 +1,3 @@
-import "core-js/proposals/async-explicit-resource-management.js"
 import type { Except } from "type-fest"
 import { z } from "zod"
 import { tabIdSchema } from "./utilities/tabId.js"

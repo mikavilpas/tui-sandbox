@@ -1,4 +1,3 @@
-import "core-js/proposals/async-explicit-resource-management.js"
 import { z } from "zod"
 import { blockingCommandInputSchema } from "../../blockingCommandInputSchema.js"
 import { trpc } from "../../connection/trpc.js"

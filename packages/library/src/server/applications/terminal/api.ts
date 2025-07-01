@@ -1,5 +1,4 @@
 import assert from "assert"
-import "core-js/proposals/async-explicit-resource-management.js"
 import type { BlockingCommandInput } from "../../blockingCommandInputSchema.js"
 import type { BlockingShellCommandOutput } from "../../types.js"
 import type { DirectoriesConfig } from "../../updateTestdirectorySchemaFile.js"

@@ -1,5 +1,16 @@
 # Changelog
 
+## [11.0.0](https://github.com/mikavilpas/tui-sandbox/compare/library-v10.7.1...library-v11.0.0) (2025-07-01)
+
+
+### ⚠ BREAKING CHANGES
+
+* This commit drops the `core-js` dependency and requires Node.js version 24.0.0 or higher.
+
+### Code Refactoring
+
+* drop core-js dependency, require node 24.0.0 or higher ([#493](https://github.com/mikavilpas/tui-sandbox/issues/493)) ([281d919](https://github.com/mikavilpas/tui-sandbox/commit/281d919cb35f139915dfc694115e1a5e0e022e77))
+
 ## [10.7.1](https://github.com/mikavilpas/tui-sandbox/compare/library-v10.7.0...library-v10.7.1) (2025-06-28)
 
 

@@ -1,5 +1,12 @@
 # Changelog
 
+## [11.0.1](https://github.com/mikavilpas/tui-sandbox/compare/library-v11.0.0...library-v11.0.1) (2025-07-05)
+
+
+### Bug Fixes
+
+* don't try to show neovim :messages as they cannot be seen ([#499](https://github.com/mikavilpas/tui-sandbox/issues/499)) ([34701e2](https://github.com/mikavilpas/tui-sandbox/commit/34701e2650c2c4f34b4eaee83edee99f41ffee96))
+
 ## [11.0.0](https://github.com/mikavilpas/tui-sandbox/compare/library-v10.7.1...library-v11.0.0) (2025-07-01)
 
 

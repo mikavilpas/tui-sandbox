@@ -198,10 +198,7 @@ export async function waitForLuaCode(
 
   const failureMessages: string[] = []
   const reportFailure = () => {
-    console.warn(
-      `Polling Lua code: '${options.luaAssertion}' failed after ${maxIterations} iterations. Failure messages:`,
-      new Set(failureMessages).values()
-    )
+    console.warn(`Polling Lua code: '${options.luaAssertion}' failed. Failure messages:`, failureMessages)
   }
 
   const maxIterations = 100

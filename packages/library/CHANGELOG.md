@@ -1,5 +1,12 @@
 # Changelog
 
+## [11.0.2](https://github.com/mikavilpas/tui-sandbox/compare/library-v11.0.1...library-v11.0.2) (2025-07-08)
+
+
+### Bug Fixes
+
+* `waitForLuaCode()` error message always saying "100 iterations" ([#501](https://github.com/mikavilpas/tui-sandbox/issues/501)) ([908f702](https://github.com/mikavilpas/tui-sandbox/commit/908f7024e4f12c82fc93b999e5a7c5e799a47496))
+
 ## [11.0.1](https://github.com/mikavilpas/tui-sandbox/compare/library-v11.0.0...library-v11.0.1) (2025-07-05)
 
 

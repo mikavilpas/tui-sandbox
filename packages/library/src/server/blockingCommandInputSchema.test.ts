@@ -11,15 +11,13 @@ describe("blockingCommandInputSchema", () => {
     } satisfies Partial<BlockingCommandInput>)
 
     expect(fails.error).toMatchInlineSnapshot(`
-      ZodError {
-        "issues": [
-          {
-            "code": "custom",
-            "message": "Both cwd and cwdRelative provided. Please provide either but not both at the same time.",
-            "path": [],
-          },
-        ],
-      }
+      [ZodError: [
+        {
+          "code": "custom",
+          "path": [],
+          "message": "Both cwd and cwdRelative provided. Please provide either but not both at the same time."
+        }
+      ]]
     `)
   })
 })

@@ -51,9 +51,9 @@ Options:
 
 See ":help startup-options" for all options.
 
-NVIM v0.11.0-dev-1589+g71507281fb
-Build type: RelWithDebInfo
-LuaJIT 2.1.1736781742
+NVIM v0.11.2
+Build type: Release
+LuaJIT 2.1.1741730670
 Run "nvim -V1 -v" for more info
 
 */

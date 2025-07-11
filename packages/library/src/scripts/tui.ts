@@ -30,8 +30,13 @@ const args = process.argv.slice(2)
 
 if (args[0] === "neovim") {
   if (args[1] === "prepare" && args.length === 2) {
-    console.log("🚀 Installing neovim dependencies...")
-    await installDependencies(config.directories.testEnvironmentPath, config.directories).catch((err: unknown) => {
+    const NVIM_APPNAME = process.env["NVIM_APPNAME"]
+    console.log(`🚀 Installing neovim dependencies${NVIM_APPNAME ? ` for NVIM_APPNAME=${NVIM_APPNAME}` : ""}...`)
+    await installDependencies(
+      config.directories.testEnvironmentPath,
+      process.env["NVIM_APPNAME"],
+      config.directories
+    ).catch((err: unknown) => {
       console.error("Error installing neovim dependencies", err)
       process.exit(1)
     })
@@ -54,7 +59,11 @@ if (args[0] === "neovim") {
     const testDirectory = await prepareNewTestDirectory(config.directories)
     await app.startNextAndKillCurrent(
       testDirectory,
-      { filename: "empty.txt", headlessCmd: command },
+      {
+        filename: "empty.txt",
+        headlessCmd: command,
+        NVIM_APPNAME: process.env["NVIM_APPNAME"],
+      },
       { cols: 80, rows: 24 }
     )
     await app.application.untilExit()

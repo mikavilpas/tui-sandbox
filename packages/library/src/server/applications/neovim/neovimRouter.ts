@@ -42,18 +42,19 @@ export function createNeovimRouter(config: DirectoriesConfig) {
               }),
             ]),
             startupScriptModifications: z.array(z.string()).optional(),
-            terminalDimensions: z.object({
-              cols: z.number(),
-              rows: z.number(),
-            }),
             additionalEnvironmentVariables: z.record(z.string(), z.string()).optional(),
+            NVIM_APPNAME: z.string().optional().default("nvim"),
+          }),
+          terminalDimensions: z.object({
+            cols: z.number(),
+            rows: z.number(),
           }),
         })
       )
       .mutation(options => {
         return neovim.start(
           options.input.startNeovimArguments,
-          options.input.startNeovimArguments.terminalDimensions,
+          options.input.terminalDimensions,
           options.input.tabId,
           config
         )

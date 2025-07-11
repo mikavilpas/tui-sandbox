@@ -28,10 +28,14 @@ const resources: Lazy<AsyncDisposableStack> = new Lazy(() => {
 
 const log = debuglog("tui-sandbox.neovim.api")
 
-export async function installDependencies(testEnvironmentPath: string, config: DirectoriesConfig): Promise<void> {
+export async function installDependencies(
+  testEnvironmentPath: string,
+  NVIM_APPNAME: string | undefined,
+  config: DirectoriesConfig
+): Promise<void> {
   await using app = new NeovimApplication(testEnvironmentPath)
   const testDirectory = await prepareNewTestDirectory(config)
-  const prepareFilePath = path.join(testDirectory.rootPathAbsolute, ".config", "nvim", "prepare.lua")
+  const prepareFilePath = path.join(testDirectory.rootPathAbsolute, ".config", NVIM_APPNAME ?? "nvim", "prepare.lua")
   try {
     await access(prepareFilePath)
   } catch (e) {
@@ -56,7 +60,11 @@ export async function installDependencies(testEnvironmentPath: string, config: D
   })
   await app.startNextAndKillCurrent(
     testDirectory,
-    { filename: "empty.txt", headlessCmd: `lua dofile("${prepareFilePath}")` },
+    {
+      filename: "empty.txt",
+      headlessCmd: `lua dofile("${prepareFilePath}")`,
+      NVIM_APPNAME,
+    },
     { cols: 80, rows: 24 }
   )
   await app.application.untilExit()
@@ -134,7 +142,7 @@ export async function runBlockingShellCommand(
   const testDirectory = neovim.state?.testDirectory
   assert(testDirectory, `Test directory not found for client id ${input.tabId.tabId}. Maybe neovim's not started yet?`)
 
-  const env = neovim.getEnvironmentVariables(testDirectory, input.envOverrides)
+  const env = NeovimApplication.getEnvironmentVariables(testDirectory, neovim.state?.NVIM_APPNAME, input.envOverrides)
   return executeBlockingShellCommand(testDirectory, input, signal, allowFailure, env)
 }
 

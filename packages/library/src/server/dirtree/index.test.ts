@@ -53,6 +53,14 @@ describe("dirtree", () => {
                   "prepare.lua": z.object({ name: z.literal("prepare.lua"), type: z.literal("file") }),
                 }),
               }),
+              nvim_alt: z.object({
+                name: z.literal("nvim_alt/"),
+                type: z.literal("directory"),
+                contents: z.object({
+                  "init.lua": z.object({ name: z.literal("init.lua"), type: z.literal("file") }),
+                  "prepare.lua": z.object({ name: z.literal("prepare.lua"), type: z.literal("file") }),
+                }),
+              }),
             }),
           }),
           "config-modifications": z.object({
@@ -150,6 +158,9 @@ describe("dirtree", () => {
         ".config/nvim/init.lua",
         ".config/nvim/prepare.lua",
         ".config/nvim",
+        ".config/nvim_alt/init.lua",
+        ".config/nvim_alt/prepare.lua",
+        ".config/nvim_alt",
         ".config",
         "config-modifications/add_command_to_count_open_buffers.lua",
         "config-modifications/add_command_to_update_buffer_after_timeout.lua",

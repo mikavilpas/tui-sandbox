@@ -31,7 +31,11 @@ jobs:
       - run: |
           # install dependencies, which will also build the project
           pnpm install
-          (cd packages/integration-tests && pnpm tui neovim prepare)
+          cd packages/integration-tests
+
+          # NVIM_APPNAME=nvim is the default, but spelled out here for clarity
+          NVIM_APPNAME=nvim pnpm tui neovim prepare
+          NVIM_APPNAME=nvim_alt pnpm tui neovim prepare
 
       - run: pnpm test
       # need to work around https://github.com/cypress-io/github-action/issues/1246

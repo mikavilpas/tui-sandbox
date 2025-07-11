@@ -10,6 +10,7 @@ import type {
 import type { StartTerminalGenericArguments } from "../server/applications/terminal/TerminalTestApplication.js"
 import type { BlockingCommandClientInput } from "../server/blockingCommandInputSchema.js"
 import type {
+  AllKeys,
   BlockingShellCommandOutput,
   RunExCommandOutput,
   RunLuaCodeOutput,
@@ -42,7 +43,9 @@ window.startNeovim = async function (startArgs?: StartNeovimGenericArguments): P
     additionalEnvironmentVariables: startArgs?.additionalEnvironmentVariables,
     filename: startArgs?.filename ?? "initial-file.txt",
     startupScriptModifications: startArgs?.startupScriptModifications ?? [],
-  })
+    headlessCmd: undefined,
+    NVIM_APPNAME: startArgs?.NVIM_APPNAME,
+  } satisfies AllKeys<StartNeovimGenericArguments>)
 
   const neovimBrowserApi: GenericNeovimBrowserApi = {
     runBlockingShellCommand(input: BlockingCommandClientInput): Promise<BlockingShellCommandOutput> {

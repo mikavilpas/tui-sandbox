@@ -86,10 +86,11 @@ export class NeovimTerminalClient {
         filename: args.filename,
         additionalEnvironmentVariables: args.additionalEnvironmentVariables,
         startupScriptModifications: args.startupScriptModifications,
-        terminalDimensions: {
-          cols: this.terminal.cols,
-          rows: this.terminal.rows,
-        },
+        NVIM_APPNAME: args.NVIM_APPNAME,
+      },
+      terminalDimensions: {
+        cols: this.terminal.cols,
+        rows: this.terminal.rows,
       },
       tabId: this.tabId,
     })

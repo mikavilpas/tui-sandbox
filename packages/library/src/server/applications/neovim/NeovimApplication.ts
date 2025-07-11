@@ -67,6 +67,19 @@ export type StartNeovimGenericArguments = {
   /** Executes the given command with --headless -c <command> -c qa */
   headlessCmd?: string
 
+  /**
+   * This variable controls the sub-directory that Nvim will read from (and
+   * auto-create) in each of the base directories.
+   *
+   * For example, setting $NVIM_APPNAME to "foo" before starting will cause
+   * Nvim to look for configuration files in $XDG_CONFIG_HOME/foo instead of
+   * $XDG_CONFIG_HOME/nvim. $NVIM_APPNAME must be a name, such as "foo", or a
+   * relative path, such as "foo/bar".
+   *
+   * https://neovim.io/doc/user/starting.html#_nvim_appname
+   */
+  NVIM_APPNAME?: string
+
   /** Additions to the environment variables for the Neovim process. These
    * override any already existing environment variables. */
   additionalEnvironmentVariables?: Record<string, string> | undefined
@@ -76,6 +89,7 @@ export type TerminalDimensions = { cols: number; rows: number }
 
 type ResettableState = {
   testDirectory: TestDirectory
+  NVIM_APPNAME: string | undefined
   socketPath: string
   client: Lazy<Promise<NeovimApiClient>>
 }
@@ -148,7 +162,11 @@ export class NeovimApplication implements AsyncDisposable {
     const stdout = this.events
 
     await this.application.startNextAndKillCurrent(async () => {
-      const env = this.getEnvironmentVariables(testDirectory, startArgs.additionalEnvironmentVariables)
+      const env = NeovimApplication.getEnvironmentVariables(
+        testDirectory,
+        startArgs.NVIM_APPNAME,
+        startArgs.additionalEnvironmentVariables
+      )
       return TerminalApplication.start({
         command: "nvim",
         args: neovimArguments,
@@ -170,30 +188,35 @@ export class NeovimApplication implements AsyncDisposable {
     this.state = {
       testDirectory,
       socketPath,
+      NVIM_APPNAME: startArgs.NVIM_APPNAME,
       client: connectNeovimApi(socketPath),
     }
 
-    log(`🚀 Started Neovim instance ${processId}`)
+    log(`🚀 Started Neovim instance ${processId} (NVIM_APPNAME: ${startArgs.NVIM_APPNAME})`)
   }
 
-  public getEnvironmentVariables(
+  public static getEnvironmentVariables(
     testDirectory: TestDirectory,
+    NVIM_APPNAME: string | undefined,
     additionalEnvironmentVariables?: Record<string, string>
   ): NodeJS.ProcessEnv {
     return {
       ...process.env,
-      HOME: testDirectory.rootPathAbsolute,
+      ...({
+        HOME: testDirectory.rootPathAbsolute,
 
-      // this is needed so that neovim can load its configuration, emulating
-      // a common setup real neovim users have
-      XDG_CONFIG_HOME: join(testDirectory.rootPathAbsolute, ".config"),
-      // the data directory is where lazy.nvim stores its plugins. To prevent
-      // downloading a new set of plugins for each test, share the data
-      // directory.
-      XDG_DATA_HOME: join(testDirectory.testEnvironmentPath, ".repro", "data"),
+        // this is needed so that neovim can load its configuration, emulating
+        // a common setup real neovim users have
+        XDG_CONFIG_HOME: join(testDirectory.rootPathAbsolute, ".config"),
+        // the data directory is where lazy.nvim stores its plugins. To prevent
+        // downloading a new set of plugins for each test, share the data
+        // directory.
+        XDG_DATA_HOME: join(testDirectory.testEnvironmentPath, ".repro", "data"),
+      } satisfies TestEnvironmentCommonEnvironmentVariables),
+      NVIM_APPNAME: NVIM_APPNAME ?? "nvim",
 
       ...additionalEnvironmentVariables,
-    } satisfies TestEnvironmentCommonEnvironmentVariables
+    }
   }
 
   async [Symbol.asyncDispose](): Promise<void> {

@@ -16,6 +16,18 @@ describe("neovim features", () => {
     })
   })
 
+  it("can start neovim with a different NVIM_APPNAME", () => {
+    cy.visit("/")
+    cy.startNeovim({ NVIM_APPNAME: "nvim_alt" }).then(() => {
+      // wait until text on the start screen is visible
+      cy.contains("If you see this text, Neovim is ready!")
+
+      // this variable only exists in the nvim_alt/init.lua file
+      cy.typeIntoTerminal(":=_G.isInitFileLoaded_alt{enter}")
+      cy.contains("yesTheInitFileIsLoaded")
+    })
+  })
+
   it("can start with startupScriptModifications and open another file", () => {
     cy.visit("/")
     cy.startNeovim({

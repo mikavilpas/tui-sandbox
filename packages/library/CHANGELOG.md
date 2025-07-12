@@ -1,5 +1,12 @@
 # Changelog
 
+## [11.1.0](https://github.com/mikavilpas/tui-sandbox/compare/library-v11.0.2...library-v11.1.0) (2025-07-12)
+
+
+### Features
+
+* can start neovim with a different NVIM_APPNAME ([90802b1](https://github.com/mikavilpas/tui-sandbox/commit/90802b1425243cb432ebf1a5e081bb8b333404ae))
+
 ## [11.0.2](https://github.com/mikavilpas/tui-sandbox/compare/library-v11.0.1...library-v11.0.2) (2025-07-08)
 
 

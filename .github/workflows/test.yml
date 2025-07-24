@@ -42,7 +42,7 @@ jobs:
       - run: pnpm --filter integration-tests exec cypress install
 
       - name: Cypress run
-        uses: cypress-io/github-action@v6.10.1
+        uses: cypress-io/github-action@v6.10.2
         with:
           command: |
             pnpm cy:run

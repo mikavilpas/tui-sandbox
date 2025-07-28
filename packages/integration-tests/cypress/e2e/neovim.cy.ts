@@ -34,8 +34,9 @@ describe("neovim features", () => {
       startupScriptModifications: [
         "add_command_to_count_open_buffers.lua",
         "don't_crash_when_modification_contains_unescaped_characters\".lua",
+        "subdir/subdir-modification.lua",
       ],
-    }).then(() => {
+    }).then(nvim => {
       // wait until text on the start screen is visible
       cy.contains("If you see this text, Neovim is ready!")
 
@@ -46,6 +47,10 @@ describe("neovim features", () => {
 
       cy.typeIntoTerminal(":CountBuffers{enter}")
       cy.contains("Number of open buffers: 2")
+
+      nvim.runLuaCode({
+        luaCode: `assert(_G.subdirectory_modification_loaded)`,
+      })
     })
   })
 

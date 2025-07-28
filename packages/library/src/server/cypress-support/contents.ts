@@ -23,6 +23,7 @@ import type {
   StartNeovimGenericArguments,
   TestDirectory,
 } from "@tui-sandbox/library/dist/src/server/types"
+import type { MyNeovimConfigModification } from "@tui-sandbox/library/src/client/MyNeovimConfigModification"
 import type {
   ExCommandClientInput,
   LuaCodeClientInput,
@@ -85,7 +86,7 @@ export type MyStartNeovimServerArguments = OverrideProperties<
   StartNeovimGenericArguments,
   {
     filename?: MyTestDirectoryFile | { openInVerticalSplits: MyTestDirectoryFile[] }
-    startupScriptModifications?: Array<keyof MyTestDirectory["config-modifications"]["contents"]>
+    startupScriptModifications?: Array<MyNeovimConfigModification<MyTestDirectoryFile>>
   }
 >
 

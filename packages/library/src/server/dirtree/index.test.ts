@@ -79,6 +79,16 @@ describe("dirtree", () => {
                 name: z.literal("don't_crash_when_modification_contains_unescaped_characters\\".lua"),
                 type: z.literal("file"),
               }),
+              subdir: z.object({
+                name: z.literal("subdir/"),
+                type: z.literal("directory"),
+                contents: z.object({
+                  "subdir-modification.lua": z.object({
+                    name: z.literal("subdir-modification.lua"),
+                    type: z.literal("file"),
+                  }),
+                }),
+              }),
             }),
           }),
           "dir with spaces": z.object({
@@ -165,6 +175,8 @@ describe("dirtree", () => {
         "config-modifications/add_command_to_count_open_buffers.lua",
         "config-modifications/add_command_to_update_buffer_after_timeout.lua",
         "config-modifications/don't_crash_when_modification_contains_unescaped_characters\\".lua",
+        "config-modifications/subdir/subdir-modification.lua",
+        "config-modifications/subdir",
         "config-modifications",
         "dir with spaces/file1.txt",
         "dir with spaces/file2.txt",

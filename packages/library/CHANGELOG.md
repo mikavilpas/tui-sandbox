@@ -1,5 +1,12 @@
 # Changelog
 
+## [11.2.0](https://github.com/mikavilpas/tui-sandbox/compare/library-v11.1.0...library-v11.2.0) (2025-07-28)
+
+
+### Features
+
+* allow organizing `startupScriptModifications` in directories ([#525](https://github.com/mikavilpas/tui-sandbox/issues/525)) ([86fc817](https://github.com/mikavilpas/tui-sandbox/commit/86fc8174e9d2773164eb0fc363b7b10fd17a6f70))
+
 ## [11.1.0](https://github.com/mikavilpas/tui-sandbox/compare/library-v11.0.2...library-v11.1.0) (2025-07-12)
 
 

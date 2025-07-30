@@ -1,5 +1,5 @@
 import type { Except } from "type-fest"
-import { z } from "zod"
+import * as z from "zod"
 import { blockingCommandInputSchema } from "../../blockingCommandInputSchema.js"
 import { trpc } from "../../connection/trpc.js"
 import type { DirectoriesConfig } from "../../updateTestdirectorySchemaFile.js"

@@ -44,7 +44,7 @@
     "nodemon": "3.1.10",
     "vite": "7.0.6",
     "vitest": "3.2.4",
-    "zod": "4.0.13"
+    "zod": "4.0.14"
   },
   "peerDependencies": {
     "cypress": "^13 || ^14",

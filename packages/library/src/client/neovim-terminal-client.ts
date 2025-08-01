@@ -5,6 +5,7 @@ import type {
   ExCommandClientInput,
   LuaCodeClientInput,
   PollLuaCodeClientInput,
+  RunLuaFileClientInput,
 } from "../server/applications/neovim/neovimRouter.js"
 import type { BlockingCommandClientInput } from "../server/blockingCommandInputSchema.js"
 import type { AppRouter } from "../server/server.js"
@@ -106,6 +107,15 @@ export class NeovimTerminalClient {
   public async runLuaCode(input: LuaCodeClientInput): Promise<RunLuaCodeOutput> {
     await this.ready
     return this.trpc.neovim.runLuaCode.mutate({ ...input, tabId: this.tabId })
+  }
+
+  public async doFile(input: RunLuaFileClientInput): Promise<RunExCommandOutput> {
+    await this.ready
+    return this.trpc.neovim.runExCommand.mutate({
+      ...input,
+      tabId: this.tabId,
+      command: `lua dofile("${input.luaFile}")`,
+    })
   }
 
   public async waitForLuaCode(input: PollLuaCodeClientInput): Promise<RunLuaCodeOutput> {

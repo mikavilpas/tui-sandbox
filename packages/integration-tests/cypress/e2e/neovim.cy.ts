@@ -268,6 +268,37 @@ describe("neovim features", () => {
     })
   })
 
+  it(`"dofile" can load additional lua files easily after nvim startup`, () => {
+    cy.visit("/")
+
+    cy.startNeovim().then(nvim => {
+      cy.contains("If you see this text, Neovim is ready!")
+
+      // the file should not be loaded yet, meaning the command is not available
+      nvim.runLuaCode({
+        luaCode: `assert(vim.api.nvim_get_commands({})['CountBuffers'] == nil)`,
+      })
+
+      nvim.doFile({
+        luaFile: "config-modifications/add_command_to_count_open_buffers.lua",
+      })
+
+      // the command should now be available
+      nvim.runLuaCode({
+        luaCode: `assert(vim.api.nvim_get_commands({})['CountBuffers'] ~= nil)`,
+      })
+
+      // test some types, no need to run this in the tests though
+      if (1 + 0 === 1337) {
+        nvim.doFile({
+          // @ts-expect-error the file is not listed in MyTestDirectoryFile, so
+          // it should be a type error
+          luaFile: "invalid-file",
+        })
+      }
+    })
+  })
+
   describe("using an LSP server", () => {
     it("can use an LSP server that's already installed", () => {
       // in the test setup, the LSP server is installed in the file

@@ -1,5 +1,12 @@
 # Changelog
 
+## [11.2.1](https://github.com/mikavilpas/tui-sandbox/compare/library-v11.2.0...library-v11.2.1) (2025-08-01)
+
+
+### Performance Improvements
+
+* use wildcard import for zod in json-to-zod.ts ([27cbdfb](https://github.com/mikavilpas/tui-sandbox/commit/27cbdfb26f8ea808129ca9f8ab6b64c6e6d5f02a))
+
 ## [11.2.0](https://github.com/mikavilpas/tui-sandbox/compare/library-v11.1.0...library-v11.2.0) (2025-07-28)
 
 

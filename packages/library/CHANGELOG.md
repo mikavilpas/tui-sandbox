@@ -1,5 +1,12 @@
 # Changelog
 
+## [11.3.0](https://github.com/mikavilpas/tui-sandbox/compare/library-v11.2.1...library-v11.3.0) (2025-08-01)
+
+
+### Features
+
+* `nvim.doFile()` command to load a lua file after nvim startup ([2ec6837](https://github.com/mikavilpas/tui-sandbox/commit/2ec683738082764238d6879cf3b380a5405c5e6a))
+
 ## [11.2.1](https://github.com/mikavilpas/tui-sandbox/compare/library-v11.2.0...library-v11.2.1) (2025-08-01)
 
 

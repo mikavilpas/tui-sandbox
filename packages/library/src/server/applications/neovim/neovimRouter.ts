@@ -26,6 +26,14 @@ const exCommandInputSchema = z.object({
 export type ExCommandClientInput = Except<ExCommandInput, "tabId">
 export type ExCommandInput = z.infer<typeof exCommandInputSchema>
 
+const runLuaFileInputSchema = z.object({
+  tabId: tabIdSchema,
+  luaFile: z.string(),
+  log: z.boolean().optional(),
+})
+export type RunLuaFileInput = z.output<typeof runLuaFileInputSchema>
+export type RunLuaFileClientInput = Except<RunLuaFileInput, "tabId">
+
 // let trpc infer the type as that is what it is designed to do
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export function createNeovimRouter(config: DirectoriesConfig) {

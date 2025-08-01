@@ -6,6 +6,7 @@ import type {
   ExCommandClientInput,
   LuaCodeClientInput,
   PollLuaCodeClientInput,
+  RunLuaFileClientInput,
 } from "../server/applications/neovim/neovimRouter.js"
 import type { StartTerminalGenericArguments } from "../server/applications/terminal/TerminalTestApplication.js"
 import type { BlockingCommandClientInput } from "../server/blockingCommandInputSchema.js"
@@ -31,6 +32,7 @@ const terminalClient = new Lazy(() => new TerminalTerminalClient(app))
 export type GenericNeovimBrowserApi = {
   runBlockingShellCommand(input: BlockingCommandClientInput): Promise<BlockingShellCommandOutput>
   runLuaCode(input: LuaCodeClientInput): Promise<RunLuaCodeOutput>
+  doFile(input: RunLuaFileClientInput): Promise<RunLuaCodeOutput>
   waitForLuaCode(input: PollLuaCodeClientInput): Promise<RunLuaCodeOutput>
   runExCommand(input: ExCommandClientInput): Promise<RunExCommandOutput>
   dir: TestDirectory
@@ -53,6 +55,9 @@ window.startNeovim = async function (startArgs?: StartNeovimGenericArguments): P
     },
     runLuaCode(input) {
       return neovim.runLuaCode(input)
+    },
+    doFile(input) {
+      return neovim.doFile(input)
     },
     waitForLuaCode(input) {
       return neovim.waitForLuaCode(input)

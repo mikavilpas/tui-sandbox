@@ -52,7 +52,7 @@ export async function jsonToZod(object: unknown, name: string = "schema"): Promi
   }
   const prettierConfig = await resolveConfig(__filename)
 
-  return format(`import {z} from "zod"\n\nexport const ${name}=${parse(object, [])}`, {
+  return format(`import * as z from "zod"\n\nexport const ${name}=${parse(object, [])}`, {
     ...(prettierConfig || {}),
     parser: "babel",
     plugins: [babelParser],

@@ -1,5 +1,12 @@
 # Changelog
 
+## [11.3.1](https://github.com/mikavilpas/tui-sandbox/compare/library-v11.3.0...library-v11.3.1) (2025-08-02)
+
+
+### Bug Fixes
+
+* remove unused `command-exists` dependency ([e7a04ab](https://github.com/mikavilpas/tui-sandbox/commit/e7a04ab9ca2f53946fd20f493accdd02515f1696))
+
 ## [11.3.0](https://github.com/mikavilpas/tui-sandbox/compare/library-v11.2.1...library-v11.3.0) (2025-08-01)
 
 

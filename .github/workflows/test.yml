@@ -37,6 +37,9 @@ jobs:
           NVIM_APPNAME=nvim pnpm tui neovim prepare
           NVIM_APPNAME=nvim_alt pnpm tui neovim prepare
 
+          # test that tui neovim exec works
+          pnpm tui neovim exec version
+
       - run: pnpm test
       # need to work around https://github.com/cypress-io/github-action/issues/1246
       - run: pnpm --filter integration-tests exec cypress install

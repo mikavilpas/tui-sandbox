@@ -1,4 +1,3 @@
-import assert from "node:assert"
 import path from "node:path"
 import { installDependencies } from "../server/applications/neovim/api.js"
 import type { StdoutOrStderrMessage } from "../server/applications/neovim/NeovimApplication.js"
@@ -7,6 +6,7 @@ import { prepareNewTestDirectory } from "../server/applications/neovim/prepareNe
 import { createCypressSupportFile } from "../server/cypress-support/createCypressSupportFile.js"
 import type { TestServerConfig } from "../server/index.js"
 import { startTestServer, updateTestdirectorySchemaFile } from "../server/index.js"
+import { parseArguments } from "./parseArguments.js"
 
 //
 // This is the main entrypoint to tui-sandbox
@@ -28,8 +28,10 @@ const config = {
 // the arguments passed to this script start at index 2
 const args = process.argv.slice(2)
 
-if (args[0] === "neovim") {
-  if (args[1] === "prepare" && args.length === 2) {
+const command = await parseArguments(args)
+
+switch (command?.action) {
+  case "neovim prepare": {
     const NVIM_APPNAME = process.env["NVIM_APPNAME"]
     console.log(`🚀 Installing neovim dependencies${NVIM_APPNAME ? ` for NVIM_APPNAME=${NVIM_APPNAME}` : ""}...`)
     await installDependencies(
@@ -42,15 +44,7 @@ if (args[0] === "neovim") {
     })
     process.exit(0)
   }
-
-  if (!(args[1] === "exec" && args.length === 3)) {
-    showUsageAndExit()
-  }
-
-  const command = args[2]
-  assert(command, "No command provided")
-
-  {
+  case "neovim exec": {
     // automatically dispose of the neovim instance when done
     await using app = new NeovimApplication(config.directories.testEnvironmentPath)
     app.events.on("stdout" satisfies StdoutOrStderrMessage, data => {
@@ -61,41 +55,42 @@ if (args[0] === "neovim") {
       testDirectory,
       {
         filename: "empty.txt",
-        headlessCmd: command,
+        headlessCmd: command.command,
         NVIM_APPNAME: process.env["NVIM_APPNAME"],
       },
       { cols: 80, rows: 24 }
     )
     await app.application.untilExit()
+    break
   }
+  case "start": {
+    try {
+      await createCypressSupportFile({
+        cypressSupportDirectoryPath: path.join(cwd, "cypress", "support"),
+        supportFileName: "tui-sandbox.ts",
+      })
+    } catch (e) {
+      console.error("Failed to createCypressSupportFile", e)
+    }
 
-  process.exit(0)
-}
+    try {
+      await updateTestdirectorySchemaFile(config.directories)
+    } catch (e) {
+      console.error("Failed to updateTestdirectorySchemaFile", e)
+    }
 
-if (args[0] !== "start") {
-  showUsageAndExit()
-}
-console.log(`🚀 Starting test server in ${cwd} - this should be the root of your integration-tests directory 🤞🏻`)
-
-try {
-  await createCypressSupportFile({
-    cypressSupportDirectoryPath: path.join(cwd, "cypress", "support"),
-    supportFileName: "tui-sandbox.ts",
-  })
-} catch (e) {
-  console.error("Failed to createCypressSupportFile", e)
-}
-
-try {
-  await updateTestdirectorySchemaFile(config.directories)
-} catch (e) {
-  console.error("Failed to updateTestdirectorySchemaFile", e)
-}
-
-try {
-  await startTestServer(config)
-} catch (e) {
-  console.error("Failed to startTestServer", e)
+    try {
+      console.log(`🚀 Starting test server in ${cwd} - this should be the root of your integration-tests directory 🤞🏻`)
+      await startTestServer(config)
+    } catch (e) {
+      console.error("Failed to startTestServer", e)
+    }
+    break
+  }
+  default: {
+    command satisfies undefined
+    showUsageAndExit()
+  }
 }
 
 function showUsageAndExit() {

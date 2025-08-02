@@ -1,5 +1,12 @@
 # Changelog
 
+## [11.3.3](https://github.com/mikavilpas/tui-sandbox/compare/library-v11.3.2...library-v11.3.3) (2025-08-02)
+
+
+### Bug Fixes
+
+* not mentioning `tui neovim prepare` in `tui` usage instructions ([68448c5](https://github.com/mikavilpas/tui-sandbox/commit/68448c5575d753de647a82b352c0a3b6c22f424a))
+
 ## [11.3.2](https://github.com/mikavilpas/tui-sandbox/compare/library-v11.3.1...library-v11.3.2) (2025-08-02)
 
 

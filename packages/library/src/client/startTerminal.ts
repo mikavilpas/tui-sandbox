@@ -1,5 +1,6 @@
 import { flavors } from "@catppuccin/palette"
 import { FitAddon } from "@xterm/addon-fit"
+import { Unicode11Addon } from "@xterm/addon-unicode11"
 import { Terminal } from "@xterm/xterm"
 import "@xterm/xterm/css/xterm.css"
 import * as z from "zod"
@@ -13,6 +14,7 @@ export type TuiTerminalApi = {
 }
 export function startTerminal(app: HTMLElement, api: TuiTerminalApi): Terminal {
   const terminal = new Terminal({
+    allowProposedApi: true,
     cursorBlink: false,
     convertEol: true,
     fontSize: 13,
@@ -42,6 +44,13 @@ export function startTerminal(app: HTMLElement, api: TuiTerminalApi): Terminal {
   // page in this case
   const fitAddon = new FitAddon()
   terminal.loadAddon(fitAddon)
+
+  // The Unicode11Addon fixes emoji rendering issues. Without it, emoji are
+  // displayed as truncated (partial) images.
+  const unicode11Addon = new Unicode11Addon()
+  terminal.loadAddon(unicode11Addon)
+  terminal.unicode.activeVersion = "11"
+
   terminal.open(app)
   fitAddon.fit()
 

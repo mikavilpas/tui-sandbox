@@ -1,5 +1,5 @@
 import type { Terminal } from "@xterm/xterm"
-import type { TuiTerminalApi } from "./websocket-client.js"
+import type { TuiTerminalApi } from "./startTerminal.js"
 
 /** DA1—Primary Device Attributes
  * In this DA exchange, the host asks for the terminal's architectural class and basic attributes.

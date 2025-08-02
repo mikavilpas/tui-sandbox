@@ -16,8 +16,8 @@ import type {
   StartNeovimGenericArguments,
   TestDirectory,
 } from "../server/types.js"
+import { getTabId, startTerminal } from "./startTerminal.js"
 import "./style.css"
-import { getTabId, startTerminal } from "./websocket-client.js"
 
 /** Manages the terminal state in the browser as well as the (browser's)
  * connection to the server side terminal application api. */

@@ -5,10 +5,10 @@ import type { StartTerminalBrowserArguments } from "../browser/neovim-client.js"
 import type { BlockingCommandClientInput } from "../server/blockingCommandInputSchema.js"
 import type { AppRouter } from "../server/server.js"
 import type { BlockingShellCommandOutput, TestDirectory } from "../server/types.js"
+import type { TuiTerminalApi } from "./startTerminal.js"
+import { getTabId, startTerminal } from "./startTerminal.js"
 import "./style.css"
 import { supportDA1 } from "./terminal-config.js"
-import type { TuiTerminalApi } from "./websocket-client.js"
-import { getTabId, startTerminal } from "./websocket-client.js"
 
 /** Manages the terminal state in the browser as well as the (browser's)
  * connection to the server side terminal application api. */

@@ -1,5 +1,12 @@
 # Changelog
 
+## [11.3.2](https://github.com/mikavilpas/tui-sandbox/compare/library-v11.3.1...library-v11.3.2) (2025-08-02)
+
+
+### Bug Fixes
+
+* rendering emoji as truncated images ([fc6b16e](https://github.com/mikavilpas/tui-sandbox/commit/fc6b16e788ad41ab537217a2c0a5dc796c6cd48e))
+
 ## [11.3.1](https://github.com/mikavilpas/tui-sandbox/compare/library-v11.3.0...library-v11.3.1) (2025-08-02)
 
 

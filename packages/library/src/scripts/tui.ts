@@ -105,6 +105,7 @@ function showUsageAndExit() {
       `Usage (pick one):`,
       `    tui start`,
       `    tui neovim exec '<ex-command>'`,
+      `    tui neovim prepare`,
     ].join("\n")
   )
 

@@ -1,11 +1,8 @@
 import path from "node:path"
-import { installDependencies } from "../server/applications/neovim/api.js"
-import type { StdoutOrStderrMessage } from "../server/applications/neovim/NeovimApplication.js"
-import { NeovimApplication } from "../server/applications/neovim/NeovimApplication.js"
-import { prepareNewTestDirectory } from "../server/applications/neovim/prepareNewTestDirectory.js"
-import { createCypressSupportFile } from "../server/cypress-support/createCypressSupportFile.js"
 import type { TestServerConfig } from "../server/index.js"
-import { startTestServer, updateTestdirectorySchemaFile } from "../server/index.js"
+import { commandTuiNeovimExec } from "./commands/commandTuiNeovimExec.js"
+import { commandTuiNeovimPrepare } from "./commands/commandTuiNeovimPrepare.js"
+import { commandTuiStart } from "./commands/commandTuiStart.js"
 import { parseArguments } from "./parseArguments.js"
 
 //
@@ -16,8 +13,8 @@ const outputFileName = "MyTestDirectory.ts"
 
 /** The cwd in the user's directory when they are running this script. Not the
  * cwd of the script itself. */
-const cwd = process.cwd()
-const config = {
+export const cwd = process.cwd()
+export const config = {
   directories: {
     testEnvironmentPath: path.join(cwd, "test-environment/"),
     outputFilePath: path.join(cwd, outputFileName),
@@ -32,59 +29,15 @@ const command = await parseArguments(args)
 
 switch (command?.action) {
   case "neovim prepare": {
-    const NVIM_APPNAME = process.env["NVIM_APPNAME"]
-    console.log(`🚀 Installing neovim dependencies${NVIM_APPNAME ? ` for NVIM_APPNAME=${NVIM_APPNAME}` : ""}...`)
-    await installDependencies(
-      config.directories.testEnvironmentPath,
-      process.env["NVIM_APPNAME"],
-      config.directories
-    ).catch((err: unknown) => {
-      console.error("Error installing neovim dependencies", err)
-      process.exit(1)
-    })
-    process.exit(0)
+    await commandTuiNeovimPrepare()
+    break
   }
   case "neovim exec": {
-    // automatically dispose of the neovim instance when done
-    await using app = new NeovimApplication(config.directories.testEnvironmentPath)
-    app.events.on("stdout" satisfies StdoutOrStderrMessage, data => {
-      console.log(`  neovim output: ${data}`)
-    })
-    const testDirectory = await prepareNewTestDirectory(config.directories)
-    await app.startNextAndKillCurrent(
-      testDirectory,
-      {
-        filename: "empty.txt",
-        headlessCmd: command.command,
-        NVIM_APPNAME: process.env["NVIM_APPNAME"],
-      },
-      { cols: 80, rows: 24 }
-    )
-    await app.application.untilExit()
+    await commandTuiNeovimExec(command)
     break
   }
   case "start": {
-    try {
-      await createCypressSupportFile({
-        cypressSupportDirectoryPath: path.join(cwd, "cypress", "support"),
-        supportFileName: "tui-sandbox.ts",
-      })
-    } catch (e) {
-      console.error("Failed to createCypressSupportFile", e)
-    }
-
-    try {
-      await updateTestdirectorySchemaFile(config.directories)
-    } catch (e) {
-      console.error("Failed to updateTestdirectorySchemaFile", e)
-    }
-
-    try {
-      console.log(`🚀 Starting test server in ${cwd} - this should be the root of your integration-tests directory 🤞🏻`)
-      await startTestServer(config)
-    } catch (e) {
-      console.error("Failed to startTestServer", e)
-    }
+    await commandTuiStart()
     break
   }
   default: {

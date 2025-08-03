@@ -1,5 +1,12 @@
 # Changelog
 
+## [11.4.0](https://github.com/mikavilpas/tui-sandbox/compare/library-v11.3.3...library-v11.4.0) (2025-08-03)
+
+
+### Features
+
+* add cypress assertions for checking for text in a color ([#548](https://github.com/mikavilpas/tui-sandbox/issues/548)) ([1450931](https://github.com/mikavilpas/tui-sandbox/commit/1450931b4c4e0f4f53b3f8d126110df4ddc62c3f))
+
 ## [11.3.3](https://github.com/mikavilpas/tui-sandbox/compare/library-v11.3.2...library-v11.3.3) (2025-08-02)
 
 

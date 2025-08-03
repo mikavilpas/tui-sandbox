@@ -39,10 +39,17 @@ export const parseArguments = async (args: string[]): Promise<ParseArgumentsResu
   }
 }
 
-export type ParseArgumentsResult =
-  | { action: "neovim prepare" }
-  | {
-      action: "neovim exec"
-      command: string
-    }
-  | { action: "start" }
+export type ParseArgumentsResult = NeovimPrepare | NeovimExec | TuiStart
+
+export type NeovimExec = {
+  action: "neovim exec"
+  command: string
+}
+
+export type NeovimPrepare = {
+  action: "neovim prepare"
+}
+
+export type TuiStart = {
+  action: "start"
+}

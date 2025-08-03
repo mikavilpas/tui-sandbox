@@ -14,7 +14,7 @@ export const parseArguments = async (args: string[]): Promise<ParseArgumentsResu
   }
 
   {
-    // tui neovim exec <command> <args>
+    // tui neovim exec <command>
     const schema = z.tuple([z.literal("neovim"), z.literal("exec"), z.string()])
     const execArguments = schema.safeParse(args)
     if (execArguments.success) {

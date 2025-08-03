@@ -10,7 +10,7 @@ export default tseslint.config([
       "eslint.config.mjs",
       "packages/integration-tests/cypress.config.ts",
       "packages/integration-tests/test-environment/**/*",
-      "vitest.workspace.js",
+      "vitest.config.js",
       "packages/integration-tests/dist/",
       "packages/library/dist/",
       "packages/library/vite.config.js",

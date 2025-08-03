@@ -1,6 +1,6 @@
 import fs from "fs"
 import nodePath from "path"
-import { expect, it } from "vitest"
+import { expect, it, vi } from "vitest"
 import type { TestDirsPath } from "./createTempDir.js"
 import { createTempDir } from "./createTempDir.js"
 

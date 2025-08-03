@@ -1,5 +1,6 @@
 import { rm } from "fs/promises"
 import path from "path"
+import { assert, describe, expect, it } from "vitest"
 import { prepareNewTestDirectory } from "./prepareNewTestDirectory.js"
 
 describe("prepareNewTestDirectory when the testEnvironmentPath does not exist", () => {

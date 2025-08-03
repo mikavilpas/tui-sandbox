@@ -1,5 +1,6 @@
 import { access } from "fs/promises"
 import { attach } from "neovim"
+import { afterEach, beforeEach, expect, it, vi } from "vitest"
 import type { PollingInterval } from "./NeovimJavascriptApiClient.js"
 import { connectNeovimApi } from "./NeovimJavascriptApiClient.js"
 

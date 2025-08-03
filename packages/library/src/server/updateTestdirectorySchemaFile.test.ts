@@ -1,4 +1,5 @@
 import { readFileSync, writeFileSync } from "fs"
+import { describe, expect, it, vi } from "vitest"
 import { buildTestDirectorySchema } from "./dirtree/index.js"
 import type { UpdateTestdirectorySchemaFileResult } from "./updateTestdirectorySchemaFile.js"
 import { updateTestdirectorySchemaFile } from "./updateTestdirectorySchemaFile.js"

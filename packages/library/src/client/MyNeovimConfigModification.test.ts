@@ -1,3 +1,4 @@
+import { assertType, it } from "vitest"
 import * as z from "zod"
 import type { MyNeovimConfigModification } from "./MyNeovimConfigModification.js"
 

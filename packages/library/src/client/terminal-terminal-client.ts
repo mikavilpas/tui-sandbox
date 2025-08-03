@@ -7,7 +7,6 @@ import type { AppRouter } from "../server/server.js"
 import type { BlockingShellCommandOutput, TestDirectory } from "../server/types.js"
 import type { TuiTerminalApi } from "./startTerminal.js"
 import { getTabId, startTerminal } from "./startTerminal.js"
-import "./style.css"
 import { supportDA1 } from "./terminal-config.js"
 
 /** Manages the terminal state in the browser as well as the (browser's)

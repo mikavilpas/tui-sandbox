@@ -1,6 +1,6 @@
 import { flavors } from "@catppuccin/palette"
 import assert from "assert"
-import { rgbify } from "../../../library/src/client/color-utilities"
+import { rgbify } from "../../../library/src/client"
 import type { MyTestDirectoryFile } from "../../MyTestDirectory"
 import type { MyBlockingCommandClientInput } from "../support/tui-sandbox"
 

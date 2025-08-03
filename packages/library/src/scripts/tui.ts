@@ -1,5 +1,6 @@
 import path from "node:path"
 import type { TestServerConfig } from "../server/index.js"
+import { commandRunOnce } from "./commands/commandRunOnce.js"
 import { commandTuiNeovimExec } from "./commands/commandTuiNeovimExec.js"
 import { commandTuiNeovimPrepare } from "./commands/commandTuiNeovimPrepare.js"
 import { commandTuiStart } from "./commands/commandTuiStart.js"
@@ -38,6 +39,10 @@ switch (command?.action) {
   }
   case "start": {
     await commandTuiStart()
+    break
+  }
+  case "run": {
+    await commandRunOnce()
     break
   }
   default: {

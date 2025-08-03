@@ -37,9 +37,20 @@ export const parseArguments = async (args: string[]): Promise<ParseArgumentsResu
       }
     }
   }
+
+  {
+    // tui start
+    const schema = z.tuple([z.literal("run")])
+    const result = schema.safeParse(args)
+    if (result.success) {
+      return {
+        action: "run",
+      }
+    }
+  }
 }
 
-export type ParseArgumentsResult = NeovimPrepare | NeovimExec | TuiStart
+export type ParseArgumentsResult = NeovimPrepare | NeovimExec | TuiStart | TuiRunOnce
 
 export type NeovimExec = {
   action: "neovim exec"
@@ -52,4 +63,8 @@ export type NeovimPrepare = {
 
 export type TuiStart = {
   action: "start"
+}
+
+export type TuiRunOnce = {
+  action: "run"
 }

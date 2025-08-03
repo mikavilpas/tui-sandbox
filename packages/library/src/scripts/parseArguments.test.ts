@@ -21,3 +21,8 @@ it(`can parse "start"`, async () => {
   expect(await parseArguments(["start"])).toEqual({ action: "start" })
   expect(await parseArguments(["start", "foo"])).toBeUndefined()
 })
+
+it(`can parse "run"`, async () => {
+  expect(await parseArguments(["run"])).toEqual({ action: "run" })
+  expect(await parseArguments(["run", "foo"])).toBeUndefined()
+})

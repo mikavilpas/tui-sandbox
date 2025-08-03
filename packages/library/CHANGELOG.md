@@ -1,5 +1,12 @@
 # Changelog
 
+## [11.4.1](https://github.com/mikavilpas/tui-sandbox/compare/library-v11.4.0...library-v11.4.1) (2025-08-03)
+
+
+### Bug Fixes
+
+* not being able to import from `@tui-sandbox/library/src/client` ([#550](https://github.com/mikavilpas/tui-sandbox/issues/550)) ([cbb3648](https://github.com/mikavilpas/tui-sandbox/commit/cbb3648592c951cc85bee6d37fd22de774f4334b))
+
 ## [11.4.0](https://github.com/mikavilpas/tui-sandbox/compare/library-v11.3.3...library-v11.4.0) (2025-08-03)
 
 

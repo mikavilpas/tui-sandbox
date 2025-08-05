@@ -1,5 +1,12 @@
 # Changelog
 
+## [11.5.0](https://github.com/mikavilpas/tui-sandbox/compare/library-v11.4.1...library-v11.5.0) (2025-08-05)
+
+
+### Features
+
+* `textIsVisibleWithColor` matches can be hovered in cypress log ([#557](https://github.com/mikavilpas/tui-sandbox/issues/557)) ([05bf204](https://github.com/mikavilpas/tui-sandbox/commit/05bf2045d6cd51d42bb84e224ac6993b19e61856))
+
 ## [11.4.1](https://github.com/mikavilpas/tui-sandbox/compare/library-v11.4.0...library-v11.4.1) (2025-08-03)
 
 

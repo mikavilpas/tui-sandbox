@@ -1,5 +1,12 @@
 # Changelog
 
+## [11.6.0](https://github.com/mikavilpas/tui-sandbox/compare/library-v11.5.0...library-v11.6.0) (2025-08-05)
+
+
+### Features
+
+* `tui run` command for running tests ([#559](https://github.com/mikavilpas/tui-sandbox/issues/559)) ([2ca3dba](https://github.com/mikavilpas/tui-sandbox/commit/2ca3dba3da1704ecf73b7d726322fc489cf03154))
+
 ## [11.5.0](https://github.com/mikavilpas/tui-sandbox/compare/library-v11.4.1...library-v11.5.0) (2025-08-05)
 
 

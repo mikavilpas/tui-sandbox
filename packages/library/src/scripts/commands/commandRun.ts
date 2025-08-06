@@ -1,9 +1,9 @@
 import concurrently from "concurrently"
 import { debuglog } from "util"
 
-const log = debuglog("tui-sandbox.commandRunOnce")
+const log = debuglog("tui-sandbox.commandRun")
 
-export async function commandRunOnce(): Promise<void> {
+export async function commandRun(): Promise<void> {
   const job = concurrently(
     [
       {

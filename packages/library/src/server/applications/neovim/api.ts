@@ -83,9 +83,7 @@ export async function initializeStdout(
   const neovim = neovims.get(tabId) ?? new NeovimApplication(testEnvironmentPath)
   if (neovims.get(tabId) === undefined) {
     neovims.set(tabId, neovim)
-    resources.get().adopt(neovim, async n => {
-      await n[Symbol.asyncDispose]()
-    })
+    resources.get().use(neovim)
   }
 
   const stdout = convertEventEmitterToAsyncGenerator(neovim.events, "stdout")

@@ -41,9 +41,7 @@ export async function initializeStdout(
   const app = terminals.get(tabId) ?? new TerminalTestApplication(testEnvironmentPath)
   if (terminals.get(tabId) === undefined) {
     terminals.set(tabId, app)
-    resources.get().adopt(app, async a => {
-      await a[Symbol.asyncDispose]()
-    })
+    resources.get().use(app)
   }
 
   const stdout = convertEventEmitterToAsyncGenerator(app.events, "stdout")

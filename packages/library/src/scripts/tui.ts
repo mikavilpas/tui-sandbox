@@ -1,3 +1,4 @@
+import assert from "node:assert"
 import path from "node:path"
 import type { TestServerConfig } from "../server/index.js"
 import { commandRun } from "./commands/commandRun.js"
@@ -9,6 +10,15 @@ import { parseArguments } from "./parseArguments.js"
 //
 // This is the main entrypoint to tui-sandbox
 //
+
+const [major] = process.versions.node.split(".").map(Number)
+assert(major)
+assert(!isNaN(major))
+
+if (major < 24) {
+  console.error(`tui-sandbox error: Node.js >= 24.0.0 is required. You are using ${process.version}.`)
+  process.exit(1)
+}
 
 const outputFileName = "MyTestDirectory.ts"
 

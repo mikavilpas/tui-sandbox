@@ -1,5 +1,12 @@
 # Changelog
 
+## [11.6.1](https://github.com/mikavilpas/tui-sandbox/compare/library-v11.6.0...library-v11.6.1) (2025-08-06)
+
+
+### Bug Fixes
+
+* enforce Node.js version &gt;= 24.0.0 or crash at runtime ([#564](https://github.com/mikavilpas/tui-sandbox/issues/564)) ([258ed59](https://github.com/mikavilpas/tui-sandbox/commit/258ed59a692da872af2da1b85a970b040415a151))
+
 ## [11.6.0](https://github.com/mikavilpas/tui-sandbox/compare/library-v11.5.0...library-v11.6.0) (2025-08-05)
 
 

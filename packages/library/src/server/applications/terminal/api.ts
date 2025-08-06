@@ -57,7 +57,7 @@ export async function initializeStdout(
 export async function sendStdin(options: { tabId: TabId; data: string }): Promise<void> {
   const tabId = options.tabId.tabId
   const app = terminals.get(tabId)
-  assert(app !== undefined, `Terminal instance for clientId not found - cannot send stdin. Maybe it's not started yet?`)
+  assert(app !== undefined, `Terminal instance for tabId not found - cannot send stdin. Maybe it's not started yet?`)
   assert(
     app.application,
     `Terminal application not found for client id ${options.tabId.tabId}. Maybe it's not started yet?`
@@ -73,11 +73,11 @@ export async function runBlockingShellCommand(
 ): Promise<BlockingShellCommandOutput> {
   const tabId = input.tabId.tabId
   const app = terminals.get(tabId)
-  assert(app !== undefined, `Terminal instance for clientId not found - cannot send stdin. Maybe it's not started yet?`)
   assert(
-    app.application,
-    `Terminal application not found for client id ${input.tabId.tabId}. Maybe it's not started yet?`
+    app !== undefined,
+    `Terminal instance for tabId ${input.tabId.tabId} not found - cannot send stdin. Maybe it's not started yet?`
   )
+  assert(app.application, `Terminal application not found for tabId ${input.tabId.tabId}. Maybe it's not started yet?`)
 
   const testDirectory = app.state?.testDirectory
   assert(testDirectory, `Test directory not found for client id ${input.tabId.tabId}. Maybe neovim's not started yet?`)

@@ -35,7 +35,7 @@
     "prettier": "3.6.2",
     "type-fest": "4.41.0",
     "winston": "3.17.0",
-    "zod": "4.0.14"
+    "zod": "4.0.15"
   },
   "devDependencies": {
     "@types/command-exists": "1.2.3",

@@ -6,7 +6,6 @@
   "type": "module",
   "scripts": {
     "build": "pnpm --recursive build",
-    "cy:run": "pnpm tui run",
     "dev": "pnpm --filter integration-tests dev",
     "eslint": "eslint --max-warnings=0 .",
     "preinstall": "npx only-allow pnpm",

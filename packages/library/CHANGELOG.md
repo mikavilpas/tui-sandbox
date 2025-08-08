@@ -1,5 +1,12 @@
 # Changelog
 
+## [11.6.2](https://github.com/mikavilpas/tui-sandbox/compare/library-v11.6.1...library-v11.6.2) (2025-08-08)
+
+
+### Bug Fixes
+
+* not failing test run when tests fail ([#571](https://github.com/mikavilpas/tui-sandbox/issues/571)) ([b4a08bf](https://github.com/mikavilpas/tui-sandbox/commit/b4a08bff5db768223df5a792c751a29503324b64))
+
 ## [11.6.1](https://github.com/mikavilpas/tui-sandbox/compare/library-v11.6.0...library-v11.6.1) (2025-08-06)
 
 

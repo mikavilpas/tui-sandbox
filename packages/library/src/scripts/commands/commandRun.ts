@@ -21,7 +21,7 @@ export async function commandRun(): Promise<TestResultExitCode> {
       },
       {
         name: cypressName,
-        command: `'wait-on --timeout 60000 http-get://127.0.0.1:3000/ping && pnpm exec cypress run --config baseUrl=http://127.0.0.1:3000 --quiet'`,
+        command: `'wait-on --timeout 60000 http-get://127.0.0.1:3000/ping && cypress run --config baseUrl=http://127.0.0.1:3000 --quiet'`,
         prefixColor: "yellow",
       },
     ],

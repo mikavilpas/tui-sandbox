@@ -1,6 +1,7 @@
 import assert from "node:assert"
 import path from "node:path"
 import type { TestServerConfig } from "../server/index.js"
+import type { TestResultExitCode } from "./commands/commandRun.js"
 import { commandRun } from "./commands/commandRun.js"
 import { commandTuiNeovimExec } from "./commands/commandTuiNeovimExec.js"
 import { commandTuiNeovimPrepare } from "./commands/commandTuiNeovimPrepare.js"
@@ -52,8 +53,11 @@ switch (command?.action) {
     break
   }
   case "run": {
-    await commandRun()
-    break
+    const result: TestResultExitCode = await commandRun()
+    // important:
+    //
+    // This is what determines if the test run was successful or not.
+    process.exit(result)
   }
   default: {
     command satisfies undefined

@@ -1,5 +1,12 @@
 # Changelog
 
+## [11.6.3](https://github.com/mikavilpas/tui-sandbox/compare/library-v11.6.2...library-v11.6.3) (2025-08-08)
+
+
+### Bug Fixes
+
+* needlessly requiring pnpm in commandRun script ([#573](https://github.com/mikavilpas/tui-sandbox/issues/573)) ([5df931d](https://github.com/mikavilpas/tui-sandbox/commit/5df931d890faa2c791614fc21993cf1a576f75ea))
+
 ## [11.6.2](https://github.com/mikavilpas/tui-sandbox/compare/library-v11.6.1...library-v11.6.2) (2025-08-08)
 
 

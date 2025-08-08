@@ -9,10 +9,10 @@
   "dependencies": {
     "@catppuccin/palette": "1.7.1",
     "@tui-sandbox/library": "workspace:*",
-    "zod": "4.0.15"
+    "zod": "4.0.16"
   },
   "devDependencies": {
-    "@types/node": "24.2.0",
+    "@types/node": "24.2.1",
     "concurrently": "9.2.0",
     "nodemon": "3.1.10",
     "type-fest": "4.41.0"

@@ -69,7 +69,7 @@ jobs:
       pull-requests: write
       contents: write
     steps:
-      - uses: fastify/github-action-merge-dependabot@v3
+      - uses: fastify/github-action-merge-dependabot@v3.11.1
         with:
           # https://github.com/fastify/github-action-merge-dependabot?tab=readme-ov-file
           github-token: ${{ secrets.GITHUB_TOKEN }}

@@ -66,6 +66,10 @@ jobs:
     name: Automerge Dependabot PRs
     runs-on: ubuntu-latest
     permissions:
+      # NOTE: no special token needs to be generated if these permissions are
+      # used. However, "Workflow permissions > Allow GitHub Actions to create
+      # and approve pull requests" needs to be enabled
+      # https://github.com/fastify/github-action-merge-dependabot/issues/359
       pull-requests: write
       contents: write
     steps:

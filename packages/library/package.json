@@ -43,8 +43,8 @@
     "@types/express": "5.0.3",
     "@types/node": "24.2.1",
     "nodemon": "3.1.10",
-    "tsx": "4.20.3",
-    "vite": "7.1.1",
+    "tsx": "4.20.4",
+    "vite": "7.1.2",
     "vitest": "3.2.4"
   },
   "peerDependencies": {

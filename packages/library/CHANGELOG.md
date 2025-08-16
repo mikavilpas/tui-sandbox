@@ -1,5 +1,12 @@
 # Changelog
 
+## [11.6.4](https://github.com/mikavilpas/tui-sandbox/compare/library-v11.6.3...library-v11.6.4) (2025-08-16)
+
+
+### Bug Fixes
+
+* document what `supportDA1()` does as doc comments ([#588](https://github.com/mikavilpas/tui-sandbox/issues/588)) ([26ed4c7](https://github.com/mikavilpas/tui-sandbox/commit/26ed4c7faca7020663144d7a143d35d78a127746))
+
 ## [11.6.3](https://github.com/mikavilpas/tui-sandbox/compare/library-v11.6.2...library-v11.6.3) (2025-08-08)
 
 

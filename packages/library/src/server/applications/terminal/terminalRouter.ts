@@ -23,7 +23,7 @@ export type StartTerminalInput = z.infer<typeof startTerminalInputSchema>
 export function createTerminalRouter(config: DirectoriesConfig) {
   const terminalRouter = trpc.router({
     onStdout: trpc.procedure.input(z.object({ client: tabIdSchema })).subscription(options => {
-      return terminal.initializeStdout(options.input, options.signal, config.testEnvironmentPath)
+      return terminal.initializeStdout(options.input, options.signal)
     }),
 
     start: trpc.procedure.input(startTerminalInputSchema).mutation(options => {

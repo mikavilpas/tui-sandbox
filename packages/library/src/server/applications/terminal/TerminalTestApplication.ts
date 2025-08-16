@@ -23,10 +23,7 @@ export default class TerminalTestApplication implements AsyncDisposable {
   public state: ResettableState | undefined
   public readonly events: EventEmitter
 
-  public constructor(
-    private readonly testEnvironmentPath: string,
-    public readonly application: DisposableSingleApplication = new DisposableSingleApplication()
-  ) {
+  public constructor(public readonly application: DisposableSingleApplication = new DisposableSingleApplication()) {
     this.events = new EventEmitter()
   }
 

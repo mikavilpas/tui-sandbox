@@ -34,11 +34,10 @@ export async function start(
 
 export async function initializeStdout(
   options: { client: TabId },
-  signal: AbortSignal | undefined,
-  testEnvironmentPath: string
+  signal: AbortSignal | undefined
 ): Promise<AsyncGenerator<string, void, unknown>> {
   const tabId = options.client.tabId
-  const app = terminals.get(tabId) ?? new TerminalTestApplication(testEnvironmentPath)
+  const app = terminals.get(tabId) ?? new TerminalTestApplication()
   if (terminals.get(tabId) === undefined) {
     terminals.set(tabId, app)
     resources.get().use(app)

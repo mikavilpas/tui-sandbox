@@ -88,6 +88,17 @@ export type BrowserTerminalSettings = {
     terminal: Terminal
     api: TuiTerminalApi
     recipes: {
+      /** Make the terminal respond to "DA1—Primary Device Attributes" requests.
+       *
+       * In this DA exchange, the host asks for the terminal's architectural class and basic attributes.
+       * https://vt100.net/docs/vt510-rm/DA1.html
+       *
+       * Terminal Response
+       *
+       * The terminal responds by sending its architectural class and basic
+       * attributes to the host. This response depends on the terminal's current
+       * operating VT level.
+       */
       supportDA1: () => void
     }
   }) => void

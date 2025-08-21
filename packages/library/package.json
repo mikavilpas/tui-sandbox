@@ -48,7 +48,7 @@
     "vitest": "3.2.4"
   },
   "peerDependencies": {
-    "cypress": "^13 || ^14",
+    "cypress": "^13 || ^14 || ^15",
     "prettier": ">= 3.3.3",
     "type-fest": ">= 4.27.0",
     "typescript": ">= 5.6.3",

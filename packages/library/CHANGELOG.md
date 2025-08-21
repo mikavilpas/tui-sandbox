@@ -1,5 +1,12 @@
 # Changelog
 
+## [11.6.5](https://github.com/mikavilpas/tui-sandbox/compare/library-v11.6.4...library-v11.6.5) (2025-08-21)
+
+
+### Bug Fixes
+
+* update cypress peer dependency to include version 15 ([#595](https://github.com/mikavilpas/tui-sandbox/issues/595)) ([4938baa](https://github.com/mikavilpas/tui-sandbox/commit/4938baa53c8b5e761684368606179bbb89d2c542))
+
 ## [11.6.4](https://github.com/mikavilpas/tui-sandbox/compare/library-v11.6.3...library-v11.6.4) (2025-08-16)
 
 

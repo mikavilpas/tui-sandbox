@@ -1,5 +1,12 @@
 # Changelog
 
+## [11.6.6](https://github.com/mikavilpas/tui-sandbox/compare/library-v11.6.5...library-v11.6.6) (2025-08-23)
+
+
+### Bug Fixes
+
+* `startTerminalApplication()` not returning the TestDirectory ([#598](https://github.com/mikavilpas/tui-sandbox/issues/598)) ([dc2406b](https://github.com/mikavilpas/tui-sandbox/commit/dc2406b453593b185adfc85d83b2d4b2c8807a19))
+
 ## [11.6.5](https://github.com/mikavilpas/tui-sandbox/compare/library-v11.6.4...library-v11.6.5) (2025-08-21)
 
 

@@ -1,6 +1,6 @@
 import assert from "assert"
 import type { BlockingCommandInput } from "../../blockingCommandInputSchema.js"
-import type { BlockingShellCommandOutput } from "../../types.js"
+import type { BlockingShellCommandOutput, TestDirectory } from "../../types.js"
 import type { DirectoriesConfig } from "../../updateTestdirectorySchemaFile.js"
 import { convertEventEmitterToAsyncGenerator } from "../../utilities/generator.js"
 import { Lazy } from "../../utilities/Lazy.js"
@@ -18,7 +18,7 @@ const resources: Lazy<AsyncDisposableStack> = new Lazy(() => {
 export async function start(
   { tabId, startTerminalArguments }: StartTerminalInput,
   config: DirectoriesConfig
-): Promise<void> {
+): Promise<TestDirectory> {
   const app = terminals.get(tabId.tabId)
   assert(app, `Terminal with tabId ${tabId.tabId} not found.`)
   const testDirectory = await prepareNewTestDirectory(config)
@@ -30,6 +30,8 @@ export async function start(
     },
     startTerminalArguments.terminalDimensions
   )
+
+  return testDirectory
 }
 
 export async function initializeStdout(

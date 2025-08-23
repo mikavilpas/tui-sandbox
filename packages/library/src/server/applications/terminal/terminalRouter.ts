@@ -1,6 +1,7 @@
 import * as z from "zod"
 import { blockingCommandInputSchema } from "../../blockingCommandInputSchema.js"
 import { trpc } from "../../connection/trpc.js"
+import { serverTestDirectorySchema } from "../../types.js"
 import type { DirectoriesConfig } from "../../updateTestdirectorySchemaFile.js"
 import { tabIdSchema } from "../../utilities/tabId.js"
 import * as terminal from "./api.js"
@@ -26,9 +27,12 @@ export function createTerminalRouter(config: DirectoriesConfig) {
       return terminal.initializeStdout(options.input, options.signal)
     }),
 
-    start: trpc.procedure.input(startTerminalInputSchema).mutation(options => {
-      return terminal.start(options.input, config)
-    }),
+    start: trpc.procedure
+      .input(startTerminalInputSchema)
+      .output(serverTestDirectorySchema)
+      .mutation(options => {
+        return terminal.start(options.input, config)
+      }),
 
     sendStdin: trpc.procedure.input(z.object({ tabId: tabIdSchema, data: z.string() })).mutation(options => {
       return terminal.sendStdin(options.input)

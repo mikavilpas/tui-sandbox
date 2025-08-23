@@ -1,4 +1,5 @@
 import type { VimValue } from "neovim/lib/types/VimValue.js"
+import * as z from "zod"
 
 /** Describes the contents of the test directory, which is a blueprint for
  * files and directories. Tests can create a unique, safe environment for
@@ -8,7 +9,7 @@ import type { VimValue } from "neovim/lib/types/VimValue.js"
  * be written with confidence that the files and directories they expect are
  * actually found. Otherwise the tests are brittle and can break easily.
  */
-export type TestDirectory<TContents extends object = object> = {
+export type TestDirectory<TContents extends Record<string, unknown> = Record<string, unknown>> = {
   /** The path to the unique test directory (the root).
    *
    * @example /Users/mikavilpas/git/tui-sandbox/packages/integration-tests/test-environment/testdirs/dir-0199UZ
@@ -30,6 +31,14 @@ export type TestDirectory<TContents extends object = object> = {
 
   contents: TContents
 }
+
+export const serverTestDirectorySchema = z.object({
+  rootPathAbsolute: z.string(),
+  testEnvironmentPath: z.string(),
+  testEnvironmentPathRelative: z.string(),
+  contents: z.record(z.string(), z.unknown()),
+})
+export type ServerTestDirectory = z.infer<typeof serverTestDirectorySchema>
 
 export type TestEnvironmentCommonEnvironmentVariables = {
   HOME: string

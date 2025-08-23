@@ -4,7 +4,7 @@ import "@xterm/xterm/css/xterm.css"
 import type { StartTerminalBrowserArguments } from "../browser/neovim-client.js"
 import type { BlockingCommandClientInput } from "../server/blockingCommandInputSchema.js"
 import type { AppRouter } from "../server/server.js"
-import type { BlockingShellCommandOutput, TestDirectory } from "../server/types.js"
+import type { BlockingShellCommandOutput, ServerTestDirectory } from "../server/types.js"
 import type { TuiTerminalApi } from "./startTerminal.js"
 import { getTabId, startTerminal } from "./startTerminal.js"
 import { supportDA1 } from "./terminal-config.js"
@@ -71,7 +71,7 @@ export class TerminalTerminalClient {
     })
   }
 
-  public async startTerminalApplication(args: StartTerminalBrowserArguments): Promise<TestDirectory> {
+  public async startTerminalApplication(args: StartTerminalBrowserArguments): Promise<ServerTestDirectory> {
     await this.ready
 
     args.browserSettings.configureTerminal?.({

@@ -41,6 +41,20 @@ describe("TerminalTestApplication features", () => {
     })
   })
 
+  it("returns the TestDirectory for type-safe access to the environment", () => {
+    cy.visit("/")
+    cy.startTerminalApplication({ commandToRun: ["bash"] }).then(term => {
+      // it should not be undefined
+      // eslint-disable-next-line @typescript-eslint/no-unused-expressions
+      expect(term.dir).to.not.be.undefined
+
+      expect(term.dir.testEnvironmentPathRelative).to.match(/testdirs\/dir-.*?/)
+      expect(
+        term.dir.contents.subdirectory.contents["subdirectory-file.txt"].name satisfies "subdirectory-file.txt"
+      ).to.equal("subdirectory-file.txt")
+    })
+  })
+
   it("can runBlockingShellCommand", () => {
     cy.visit("/")
     cy.startTerminalApplication({

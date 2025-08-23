@@ -2,6 +2,7 @@ import type { Except } from "type-fest"
 import * as z from "zod"
 import { blockingCommandInputSchema } from "../../blockingCommandInputSchema.js"
 import { trpc } from "../../connection/trpc.js"
+import { serverTestDirectorySchema } from "../../types.js"
 import type { DirectoriesConfig } from "../../updateTestdirectorySchemaFile.js"
 import { tabIdSchema } from "../../utilities/tabId.js"
 import { timeoutable } from "../../utilities/timeoutable.js"
@@ -59,6 +60,7 @@ export function createNeovimRouter(config: DirectoriesConfig) {
           }),
         })
       )
+      .output(serverTestDirectorySchema)
       .mutation(options => {
         return neovim.start(
           options.input.startNeovimArguments,

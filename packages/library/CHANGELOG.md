@@ -1,5 +1,12 @@
 # Changelog
 
+## [11.6.7](https://github.com/mikavilpas/tui-sandbox/compare/library-v11.6.6...library-v11.6.7) (2025-08-28)
+
+
+### Bug Fixes
+
+* avoid nodejs error about string exitCode ([#603](https://github.com/mikavilpas/tui-sandbox/issues/603)) ([be90700](https://github.com/mikavilpas/tui-sandbox/commit/be90700610ea8e177736d2cb6e28cf08b007e02b))
+
 ## [11.6.6](https://github.com/mikavilpas/tui-sandbox/compare/library-v11.6.5...library-v11.6.6) (2025-08-23)
 
 

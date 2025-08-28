@@ -57,7 +57,8 @@ switch (command?.action) {
     // important:
     //
     // This is what determines if the test run was successful or not.
-    process.exit(result)
+    process.exitCode = typeof result === "number" ? result : 1
+    break
   }
   default: {
     command satisfies undefined

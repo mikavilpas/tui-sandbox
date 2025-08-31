@@ -18,7 +18,7 @@ export async function commandTuiStart(config: TestServerConfig): Promise<void> {
 
 async function updateSchemaFile(config: TestServerConfig): Promise<void> {
   try {
-    await updateTestdirectorySchemaFile(config.directories)
+    await updateTestdirectorySchemaFile(config)
   } catch (e) {
     console.error("Failed to updateTestdirectorySchemaFile", e)
   }

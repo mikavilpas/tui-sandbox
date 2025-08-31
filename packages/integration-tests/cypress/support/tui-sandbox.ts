@@ -25,7 +25,7 @@ import type {
 import type { StartTerminalGenericArguments } from "@tui-sandbox/library/src/server/applications/terminal/TerminalTestApplication"
 import type { BlockingCommandClientInput } from "@tui-sandbox/library/src/server/blockingCommandInputSchema"
 import type { OverrideProperties } from "type-fest"
-import type { MyTestDirectory, MyTestDirectoryFile } from "../../MyTestDirectory"
+import type { MyNeovimAppName, MyTestDirectory, MyTestDirectoryFile } from "../../MyTestDirectory"
 
 export type TerminalTestApplicationContext = {
   /** Types text into the terminal, making the terminal application receive the
@@ -85,6 +85,7 @@ export type NeovimContext = {
 export type MyStartNeovimServerArguments = OverrideProperties<
   StartNeovimGenericArguments,
   {
+    NVIM_APPNAME?: MyNeovimAppName
     filename?: MyTestDirectoryFile | { openInVerticalSplits: MyTestDirectoryFile[] }
     startupScriptModifications?: Array<MyNeovimConfigModification<MyTestDirectoryFile>>
   }

@@ -7,22 +7,22 @@ import path from "path"
 import { debuglog } from "util"
 import { convertDree, getDirectoryTree } from "../../../dirtree/index.js"
 import type { TestDirectory } from "../../../types.js"
-import type { DirectoriesConfig } from "../../../updateTestdirectorySchemaFile.js"
+import type { TestServerConfig } from "../../../updateTestdirectorySchemaFile.js"
 import { updateTestdirectorySchemaFile } from "../../../updateTestdirectorySchemaFile.js"
 
 const log = debuglog("tui-sandbox.createTempDir")
 
-export async function createTempDir(config: DirectoriesConfig): Promise<TestDirectory> {
+export async function createTempDir(config: TestServerConfig): Promise<TestDirectory> {
   try {
     // before calling this function, the testEnvironmentPath should already exist
-    statSync(config.testEnvironmentPath)
-    const dir = await createUniqueDirectory(config.testEnvironmentPath)
+    statSync(config.directories.testEnvironmentPath)
+    const dir = await createUniqueDirectory(config.directories.testEnvironmentPath)
 
-    readdirSync(config.testEnvironmentPath).forEach(entry => {
+    readdirSync(config.directories.testEnvironmentPath).forEach(entry => {
       if (entry === ("testdirs" satisfies TestDirsPath)) return
       if (entry === ".repro") return
 
-      execSync(`cp -R '${path.join(config.testEnvironmentPath, entry)}' ${dir}/`)
+      execSync(`cp -R '${path.join(config.directories.testEnvironmentPath, entry)}' ${dir}/`)
     })
     log(`Created test directory at ${dir}`)
 
@@ -33,8 +33,8 @@ export async function createTempDir(config: DirectoriesConfig): Promise<TestDire
     return {
       rootPathAbsolute: dir,
       contents: tree.contents,
-      testEnvironmentPath: config.testEnvironmentPath,
-      testEnvironmentPathRelative: path.relative(config.testEnvironmentPath, dir),
+      testEnvironmentPath: config.directories.testEnvironmentPath,
+      testEnvironmentPathRelative: path.relative(config.directories.testEnvironmentPath, dir),
     }
   } catch (err) {
     console.error(err)

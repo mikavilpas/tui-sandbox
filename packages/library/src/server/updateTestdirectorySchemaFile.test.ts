@@ -1,7 +1,8 @@
 import { readFileSync, writeFileSync } from "fs"
+import type { PartialDeep } from "type-fest"
 import { describe, expect, it, vi } from "vitest"
 import { buildTestDirectorySchema } from "./dirtree/index.js"
-import type { UpdateTestdirectorySchemaFileResult } from "./updateTestdirectorySchemaFile.js"
+import type { TestServerConfig, UpdateTestdirectorySchemaFileResult } from "./updateTestdirectorySchemaFile.js"
 import { updateTestdirectorySchemaFile } from "./updateTestdirectorySchemaFile.js"
 
 vi.mock("fs")
@@ -20,9 +21,11 @@ describe("when the schema has not changed", () => {
     mock.readFileSync.mockImplementation(() => "schema")
 
     const result = await updateTestdirectorySchemaFile({
-      testEnvironmentPath: "path",
-      outputFilePath: "path",
-    })
+      directories: {
+        testEnvironmentPath: "path",
+        outputFilePath: "path",
+      },
+    } satisfies PartialDeep<TestServerConfig> as TestServerConfig)
 
     expect(result).toBe("did-nothing" satisfies UpdateTestdirectorySchemaFileResult)
   })
@@ -34,9 +37,11 @@ describe("when the schema has changed", () => {
     mock.readFileSync.mockImplementation(() => "old schema")
 
     const result = await updateTestdirectorySchemaFile({
-      testEnvironmentPath: "path",
-      outputFilePath: "path",
-    })
+      directories: {
+        testEnvironmentPath: "path",
+        outputFilePath: "path",
+      },
+    } satisfies PartialDeep<TestServerConfig> as TestServerConfig)
 
     expect(result).toBe("updated" satisfies UpdateTestdirectorySchemaFileResult)
     expect(mock.writeFileSync).toHaveBeenCalledWith("path", "new schema")

@@ -1,7 +1,7 @@
 import { installDependencies } from "../../server/applications/neovim/api.js"
-import { config } from "../tui.js"
+import type { TestServerConfig } from "../../server/updateTestdirectorySchemaFile.js"
 
-export async function commandTuiNeovimPrepare(): Promise<void> {
+export async function commandTuiNeovimPrepare(config: TestServerConfig): Promise<void> {
   const NVIM_APPNAME = process.env["NVIM_APPNAME"]
   console.log(`🚀 Installing neovim dependencies${NVIM_APPNAME ? ` for NVIM_APPNAME=${NVIM_APPNAME}` : ""}...`)
   await installDependencies(

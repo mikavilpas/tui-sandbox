@@ -79,3 +79,17 @@ Example projects that use tui-sandbox:
 - [tsugit.nvim](https://github.com/mikavilpas/tsugit.nvim): Neovim plugin for superfast lazygit integration
 - [mikavilpas/dotfiles](https://github.com/mikavilpas/dotfiles): My personal dotfiles. Some custom TUI application
   integrations are end-to-end tested because "why not" 🙂
+
+### Configuration
+
+To configure the test environment, create a `tui-sandbox.config.ts` file in the root of your project with the following
+contents:
+
+```ts
+import { createDefaultConfig } from "@tui-sandbox/library/dist/src/server/config.js"
+import type { TestServerConfig } from "@tui-sandbox/library/dist/src/server/index.js"
+
+export const config: TestServerConfig = createDefaultConfig(process.cwd(), process.env)
+// add customizations here
+config.port = 5174
+```

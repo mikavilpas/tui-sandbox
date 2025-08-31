@@ -1,9 +1,9 @@
 import { NeovimApplication, type StdoutOrStderrMessage } from "../../server/applications/neovim/NeovimApplication.js"
 import { prepareNewTestDirectory } from "../../server/applications/neovim/prepareNewTestDirectory.js"
+import type { TestServerConfig } from "../../server/updateTestdirectorySchemaFile.js"
 import type { NeovimExec } from "../parseArguments.js"
-import { config } from "../tui.js"
 
-export async function commandTuiNeovimExec(command: NeovimExec): Promise<void> {
+export async function commandTuiNeovimExec(command: NeovimExec, config: TestServerConfig): Promise<void> {
   // automatically dispose of the neovim instance when done
   await using app = new NeovimApplication(config.directories.testEnvironmentPath)
   app.events.on("stdout" satisfies StdoutOrStderrMessage, data => {

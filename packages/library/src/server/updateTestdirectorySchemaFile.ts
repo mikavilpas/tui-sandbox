@@ -3,7 +3,7 @@ import { debuglog } from "util"
 import * as z from "zod"
 import { buildTestDirectorySchema } from "./dirtree/index.js"
 
-const log = debuglog("tui-sandbox.updateTestdirectorySchemaFile")
+const log = debuglog(`tui-sandbox.${updateTestdirectorySchemaFile.name}`)
 
 export type DirectoriesConfig = TestServerConfig["directories"]
 

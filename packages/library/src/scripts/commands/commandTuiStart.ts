@@ -1,10 +1,11 @@
 import path from "path"
 import { createCypressSupportFile } from "../../server/cypress-support/createCypressSupportFile.js"
 import { startTestServer } from "../../server/server.js"
+import type { TestServerConfig } from "../../server/updateTestdirectorySchemaFile.js"
 import { updateTestdirectorySchemaFile } from "../../server/updateTestdirectorySchemaFile.js"
-import { config, cwd } from "../tui.js"
+import { cwd } from "../tui.js"
 
-export async function commandTuiStart(): Promise<void> {
+export async function commandTuiStart(config: TestServerConfig): Promise<void> {
   try {
     await createCypressSupportFile({
       cypressSupportDirectoryPath: path.join(cwd, "cypress", "support"),

@@ -1,18 +1,20 @@
 import { readFileSync, writeFileSync } from "fs"
 import { debuglog } from "util"
+import * as z from "zod"
 import { buildTestDirectorySchema } from "./dirtree/index.js"
 
 const log = debuglog("tui-sandbox.updateTestdirectorySchemaFile")
 
-export type DirectoriesConfig = {
-  testEnvironmentPath: string
-  outputFilePath: string
-}
+export type DirectoriesConfig = TestServerConfig["directories"]
 
-export type TestServerConfig = {
-  directories: DirectoriesConfig
-  port: number
-}
+export type TestServerConfig = z.output<typeof testServerConfigSchema>
+export const testServerConfigSchema = z.strictObject({
+  directories: z.object({
+    testEnvironmentPath: z.string(),
+    outputFilePath: z.string(),
+  }),
+  port: z.number().int().min(1).max(65535),
+})
 
 export type UpdateTestdirectorySchemaFileResult = "updated" | "did-nothing"
 

@@ -26,7 +26,8 @@
     //
     "./cypress",
     "./eslint.config.mjs",
-    "./MyTestDirectory.ts"
+    "./MyTestDirectory.ts",
+    "./tui-sandbox.config.ts"
   ],
   "references": [{ "path": "../library/tsconfig.json" }]
 }

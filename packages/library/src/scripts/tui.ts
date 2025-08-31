@@ -31,20 +31,20 @@ if (configResult.error) {
 
 // the arguments passed to this script start at index 2
 const args = process.argv.slice(2)
-
+const config = configResult.result
 const command = await parseArguments(args)
 
 switch (command?.action) {
   case "neovim prepare": {
-    await commandTuiNeovimPrepare(configResult.result)
+    await commandTuiNeovimPrepare(config)
     break
   }
   case "neovim exec": {
-    await commandTuiNeovimExec(command, configResult.result)
+    await commandTuiNeovimExec(command, config)
     break
   }
   case "start": {
-    await commandTuiStart(configResult.result)
+    await commandTuiStart(config)
     break
   }
   case "run": {

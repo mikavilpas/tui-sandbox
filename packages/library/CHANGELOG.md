@@ -1,5 +1,12 @@
 # Changelog
 
+## [11.7.0](https://github.com/mikavilpas/tui-sandbox/compare/library-v11.6.7...library-v11.7.0) (2025-08-31)
+
+
+### Features
+
+* add configuration file support ([#606](https://github.com/mikavilpas/tui-sandbox/issues/606)) ([5bd9aea](https://github.com/mikavilpas/tui-sandbox/commit/5bd9aea9428883233d8873ca9db8df40caf83e3c))
+
 ## [11.6.7](https://github.com/mikavilpas/tui-sandbox/compare/library-v11.6.6...library-v11.6.7) (2025-08-28)
 
 

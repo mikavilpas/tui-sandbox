@@ -1,5 +1,12 @@
 # Changelog
 
+## [11.7.1](https://github.com/mikavilpas/tui-sandbox/compare/library-v11.7.0...library-v11.7.1) (2025-09-01)
+
+
+### Performance Improvements
+
+* improve startup speed by parallelizing startup tasks ([97073dc](https://github.com/mikavilpas/tui-sandbox/commit/97073dc8a7c3975e9822ee702e89bf94c01fd550))
+
 ## [11.7.0](https://github.com/mikavilpas/tui-sandbox/compare/library-v11.6.7...library-v11.7.0) (2025-08-31)
 
 

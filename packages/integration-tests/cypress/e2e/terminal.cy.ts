@@ -116,4 +116,20 @@ describe("TerminalTestApplication features", () => {
       cy.contains(`^[${"[?1;2c" satisfies FakeDA1Response}`)
     })
   })
+
+  describe("mise integration", () => {
+    it("can use applications installed to the host environment with the miseIntegration", () => {
+      cy.visit("/")
+      cy.startTerminalApplication({ commandToRun: ["bash"] }).then(term => {
+        // in the test environment's mise.toml file, cowsay is defined as an
+        // application managed by mise. The test environment is expected to have
+        // initialized the mise environment before starting the tests.
+        term.runBlockingShellCommand({
+          command: "which cowsay",
+          allowFailure: false,
+        })
+        cy.typeIntoTerminal("cowsay --version{enter}")
+      })
+    })
+  })
 })

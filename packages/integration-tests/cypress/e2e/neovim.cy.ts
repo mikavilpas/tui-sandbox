@@ -335,6 +335,22 @@ describe("neovim features", () => {
       })
     })
   })
+
+  describe("mise integration", () => {
+    it("can use applications installed to the host environment with the miseIntegration", () => {
+      cy.visit("/")
+      cy.startNeovim().then(nvim => {
+        // in the test environment's mise.toml file, cowsay is defined as an
+        // application managed by mise. The test environment is expected to have
+        // initialized the mise environment before starting the tests.
+        nvim.runBlockingShellCommand({
+          command: "which cowsay",
+          allowFailure: false,
+        })
+        cy.typeIntoTerminal("cowsay --version{enter}")
+      })
+    })
+  })
 })
 
 describe("nvim_isRunning", () => {

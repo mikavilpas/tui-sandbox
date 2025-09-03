@@ -27,7 +27,7 @@
     "@xterm/xterm": "5.5.0",
     "concurrently": "9.2.1",
     "cors": "2.8.5",
-    "cypress": "15.0.0",
+    "cypress": "15.1.0",
     "dree": "5.1.5",
     "express": "5.1.0",
     "neovim": "5.4.0",

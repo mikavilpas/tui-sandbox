@@ -1,2 +1,8 @@
+[settings]
+disable_tools = ["node"]
+
 [tools]
+
+# small sample application that can be installed with mise and used in the test
+# environment
 cowsay = "latest"

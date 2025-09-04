@@ -1,5 +1,12 @@
 # Changelog
 
+## [11.8.0](https://github.com/mikavilpas/tui-sandbox/compare/library-v11.7.1...library-v11.8.0) (2025-09-04)
+
+
+### Features
+
+* NVIM_APPNAMEs can be specified in config for type-safe access ([#618](https://github.com/mikavilpas/tui-sandbox/issues/618)) ([d0ff4d2](https://github.com/mikavilpas/tui-sandbox/commit/d0ff4d26278203d0db83538be306602aa5ea329b))
+
 ## [11.7.1](https://github.com/mikavilpas/tui-sandbox/compare/library-v11.7.0...library-v11.7.1) (2025-09-01)
 
 

@@ -3,7 +3,7 @@ import * as z from "zod"
 import { blockingCommandInputSchema } from "../../blockingCommandInputSchema.js"
 import { trpc } from "../../connection/trpc.js"
 import { serverTestDirectorySchema } from "../../types.js"
-import type { DirectoriesConfig } from "../../updateTestdirectorySchemaFile.js"
+import type { NeovimIntegrationDefaultAppName, TestServerConfig } from "../../updateTestdirectorySchemaFile.js"
 import { tabIdSchema } from "../../utilities/tabId.js"
 import { timeoutable } from "../../utilities/timeoutable.js"
 import * as neovim from "./api.js"
@@ -37,7 +37,7 @@ export type RunLuaFileClientInput = Except<RunLuaFileInput, "tabId">
 
 // let trpc infer the type as that is what it is designed to do
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-export function createNeovimRouter(config: DirectoriesConfig) {
+export function createNeovimRouter(config: TestServerConfig) {
   return trpc.router({
     start: trpc.procedure
       .input(
@@ -52,7 +52,10 @@ export function createNeovimRouter(config: DirectoriesConfig) {
             ]),
             startupScriptModifications: z.array(z.string()).optional(),
             additionalEnvironmentVariables: z.record(z.string(), z.string()).optional(),
-            NVIM_APPNAME: z.string().optional().default("nvim"),
+            NVIM_APPNAME: z
+              .string()
+              .optional()
+              .default("nvim" satisfies NeovimIntegrationDefaultAppName),
           }),
           terminalDimensions: z.object({
             cols: z.number(),
@@ -61,7 +64,7 @@ export function createNeovimRouter(config: DirectoriesConfig) {
         })
       )
       .output(serverTestDirectorySchema)
-      .mutation(options => {
+      .mutation(async options => {
         return neovim.start(
           options.input.startNeovimArguments,
           options.input.terminalDimensions,
@@ -70,11 +73,11 @@ export function createNeovimRouter(config: DirectoriesConfig) {
         )
       }),
     onStdout: trpc.procedure.input(z.object({ client: tabIdSchema })).subscription(options => {
-      return neovim.initializeStdout(options.input, options.signal, config.testEnvironmentPath)
+      return neovim.initializeStdout(options.input, options.signal, config.directories.testEnvironmentPath)
     }),
 
     initializeStdout: trpc.procedure.input(z.object({ client: tabIdSchema })).subscription(options => {
-      return neovim.initializeStdout(options.input, options.signal, config.testEnvironmentPath)
+      return neovim.initializeStdout(options.input, options.signal, config.directories.testEnvironmentPath)
     }),
     sendStdin: trpc.procedure.input(z.object({ tabId: tabIdSchema, data: z.string() })).mutation(options => {
       return neovim.sendStdin(options.input)

@@ -1,9 +1,11 @@
+import assert from "assert"
 import type { Dree } from "dree"
 import { scan, Type } from "dree"
 import { readlinkSync } from "fs"
 import { format, resolveConfig } from "prettier"
 import { fileURLToPath } from "url"
 import { debuglog } from "util"
+import type { TestServerConfig } from "../updateTestdirectorySchemaFile.js"
 import { jsonToZod } from "./json-to-zod.js"
 
 const log = debuglog("tui-sandbox.dirtree")
@@ -83,7 +85,11 @@ export function convertDree(root: Dree | undefined): TreeNode {
   return node
 }
 
-export async function buildSchemaForDirectoryTree(result: TreeResult, name: string): Promise<string> {
+export async function buildSchemaForDirectoryTree(
+  result: TreeResult,
+  name: string,
+  config: TestServerConfig
+): Promise<string> {
   const root = convertDree(result.dree)
 
   const schema = (await jsonToZod(root, `${name}Schema`)).split("\n")
@@ -103,6 +109,13 @@ export async function buildSchemaForDirectoryTree(result: TreeResult, name: stri
   const allFilePaths = result.allFiles.map(f => f.relativePath)
   const ContentsSchema = `${name}ContentsSchema`
   const ContentsSchemaType = `${name}ContentsSchemaType`
+
+  assert(config.integrations.neovim.NVIM_APPNAMEs.length > 0, "At least one NVIM_APPNAME must be configured")
+  const NVIM_APPNAMEsUnion =
+    config.integrations.neovim.NVIM_APPNAMEs.length > 1
+      ? config.integrations.neovim.NVIM_APPNAMEs.map(a => `"${a}"`).join(" | ")
+      : `"${config.integrations.neovim.NVIM_APPNAMEs[0]}"`
+
   return [
     ...lines,
     ...schema,
@@ -113,15 +126,16 @@ export async function buildSchemaForDirectoryTree(result: TreeResult, name: stri
     "",
     `export const testDirectoryFiles = z.enum(${JSON.stringify(allFilePaths, null, 2)})`,
     `export type MyTestDirectoryFile = z.infer<typeof testDirectoryFiles>`,
+    `export type MyNeovimAppName = ${NVIM_APPNAMEsUnion}`,
   ].join("\n")
 }
 
 const __filename = fileURLToPath(import.meta.url)
 
-export async function buildTestDirectorySchema(testDirectoryPath: string): Promise<string> {
-  log("Building schema for test directory", testDirectoryPath)
-  const dree = getDirectoryTree(testDirectoryPath)
-  let text = await buildSchemaForDirectoryTree(dree, "MyTestDirectory")
+export async function buildTestDirectorySchema(config: TestServerConfig): Promise<string> {
+  log("Building schema for test directory", config.directories.testEnvironmentPath)
+  const dree = getDirectoryTree(config.directories.testEnvironmentPath)
+  let text = await buildSchemaForDirectoryTree(dree, "MyTestDirectory", config)
 
   const options = await resolveConfig(__filename)
   text = await format(text, { ...options, parser: "typescript" })

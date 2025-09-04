@@ -1,6 +1,9 @@
 import { rm } from "fs/promises"
 import path from "path"
+import type { PartialDeep } from "type-fest"
 import { assert, describe, expect, it } from "vitest"
+import { createDefaultConfig } from "../../config.js"
+import type { TestServerConfig } from "../../updateTestdirectorySchemaFile.js"
 import { prepareNewTestDirectory } from "./prepareNewTestDirectory.js"
 
 describe("prepareNewTestDirectory when the testEnvironmentPath does not exist", () => {
@@ -9,9 +12,12 @@ describe("prepareNewTestDirectory when the testEnvironmentPath does not exist", 
     // has not been created yet
     const testEnvironmentPath = "/tmp/test"
     const testDirectory = await prepareNewTestDirectory({
-      outputFilePath: path.join(testEnvironmentPath, "foo.ts"),
-      testEnvironmentPath,
-    })
+      ...createDefaultConfig("cwd", {}),
+      directories: {
+        outputFilePath: path.join(testEnvironmentPath, "foo.ts"),
+        testEnvironmentPath,
+      },
+    } satisfies PartialDeep<TestServerConfig>)
 
     try {
       expect(testDirectory.contents).toEqual({})

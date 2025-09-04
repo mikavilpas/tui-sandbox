@@ -9,7 +9,7 @@ export async function commandTuiNeovimExec(command: NeovimExec, config: TestServ
   app.events.on("stdout" satisfies StdoutOrStderrMessage, data => {
     console.log(`  neovim output: ${data}`)
   })
-  const testDirectory = await prepareNewTestDirectory(config.directories)
+  const testDirectory = await prepareNewTestDirectory(config)
   await app.startNextAndKillCurrent(
     testDirectory,
     {

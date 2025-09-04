@@ -1,7 +1,7 @@
 import { flavors } from "@catppuccin/palette"
 import assert from "assert"
 import { rgbify } from "../../../library/src/client"
-import type { MyTestDirectoryFile } from "../../MyTestDirectory"
+import type { MyNeovimAppName, MyTestDirectoryFile } from "../../MyTestDirectory"
 import type { MyBlockingCommandClientInput } from "../support/tui-sandbox"
 
 describe("neovim features", () => {
@@ -362,6 +362,17 @@ describe("nvim_isRunning", () => {
       cy.nvim_isRunning().should("be.true")
     })
   })
+
+  // test some types and make sure they are as expected
+  // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
+  if (false) {
+    cy.startNeovim({ NVIM_APPNAME: "nvim" satisfies MyNeovimAppName })
+    cy.startNeovim({ NVIM_APPNAME: "nvim_alt" satisfies MyNeovimAppName })
+    cy.startNeovim({
+      // @ts-expect-error this NVIM_APPNAME is not configured, should be a type error
+      NVIM_APPNAME: "doesnotexist",
+    })
+  }
 })
 
 {

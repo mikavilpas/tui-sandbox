@@ -10,7 +10,7 @@ import type {
   StartNeovimGenericArguments,
   TestDirectory,
 } from "../../types.js"
-import type { DirectoriesConfig } from "../../updateTestdirectorySchemaFile.js"
+import type { TestServerConfig } from "../../updateTestdirectorySchemaFile.js"
 import { convertEventEmitterToAsyncGenerator } from "../../utilities/generator.js"
 import { Lazy } from "../../utilities/Lazy.js"
 import type { TabId } from "../../utilities/tabId.js"
@@ -28,12 +28,8 @@ const resources: Lazy<AsyncDisposableStack> = new Lazy(() => {
 
 const log = debuglog("tui-sandbox.neovim.api")
 
-export async function installDependencies(
-  testEnvironmentPath: string,
-  NVIM_APPNAME: string | undefined,
-  config: DirectoriesConfig
-): Promise<void> {
-  await using app = new NeovimApplication(testEnvironmentPath)
+export async function installDependencies(NVIM_APPNAME: string | undefined, config: TestServerConfig): Promise<void> {
+  await using app = new NeovimApplication(config.directories.testEnvironmentPath)
   const testDirectory = await prepareNewTestDirectory(config)
   const prepareFilePath = path.join(testDirectory.rootPathAbsolute, ".config", NVIM_APPNAME ?? "nvim", "prepare.lua")
   try {
@@ -102,7 +98,7 @@ export async function start(
   options: StartNeovimGenericArguments,
   terminalDimensions: TerminalDimensions,
   tabId: TabId,
-  config: DirectoriesConfig
+  config: TestServerConfig
 ): Promise<TestDirectory> {
   const neovim = neovims.get(tabId.tabId)
   assert(neovim, `Neovim instance not found for client id ${tabId.tabId}`)

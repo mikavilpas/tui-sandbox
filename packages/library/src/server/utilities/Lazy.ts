@@ -9,4 +9,8 @@ export class Lazy<T> {
     }
     return this.value
   }
+
+  set(value: T): void {
+    this.value = value
+  }
 }

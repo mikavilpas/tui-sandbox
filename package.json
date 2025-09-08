@@ -29,7 +29,7 @@
     "prettier-plugin-packagejson": "2.5.19",
     "tsx": "4.20.5",
     "typescript": "5.9.2",
-    "typescript-eslint": "8.42.0",
+    "typescript-eslint": "8.43.0",
     "vitest": "3.2.4",
     "wait-on": "8.0.4"
   },

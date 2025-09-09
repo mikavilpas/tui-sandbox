@@ -1,6 +1,7 @@
 {
   "packages": {
     "packages/library": {
+      "release-as": "11.8.1",
       "release-type": "node"
     }
   },

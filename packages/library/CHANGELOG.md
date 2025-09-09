@@ -1,5 +1,12 @@
 # Changelog
 
+## [11.8.1](https://github.com/mikavilpas/tui-sandbox/compare/library-v11.8.0...library-v11.8.1) (2025-09-09)
+
+
+### Features
+
+* release 11.8.1 ([716083d](https://github.com/mikavilpas/tui-sandbox/commit/716083dd8abd729b45a86a891d6b3be29f220952))
+
 ## [11.8.0](https://github.com/mikavilpas/tui-sandbox/compare/library-v11.7.1...library-v11.8.0) (2025-09-04)
 
 

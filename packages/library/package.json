@@ -34,7 +34,7 @@
     "node-pty": "1.0.0",
     "prettier": "3.6.2",
     "tsx": "4.20.5",
-    "type-fest": "4.41.0",
+    "type-fest": "5.0.0",
     "winston": "3.17.0",
     "zod": "4.1.8"
   },

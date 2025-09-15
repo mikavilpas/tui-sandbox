@@ -16,16 +16,16 @@ jobs:
         neovim_version: ["nightly", "stable"]
 
     steps:
-      - uses: actions/checkout@v5.0.0
-      - uses: rhysd/action-setup-vim@v1
+      - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
+      - uses: rhysd/action-setup-vim@89f3345bcde053529463583418779d83ee6dfb33 # v1
         with:
           neovim: true
           version: ${{ matrix.neovim_version }}
 
-      - uses: jdx/mise-action@v3.2.0
+      - uses: jdx/mise-action@5ac50f778e26fac95da98d50503682459e86d566 # v3.2.0
 
-      - uses: pnpm/action-setup@v4.1.0
-      - uses: actions/setup-node@v5.0.0
+      - uses: pnpm/action-setup@a7487c7e89a18df4991f7f222e4898a00d66ddda # v4.1.0
+      - uses: actions/setup-node@a0853c24544627f65ddf259abe73b1d18a591444 # v5.0.0
         with:
           node-version-file: .nvmrc
           cache: "pnpm"
@@ -49,12 +49,12 @@ jobs:
       - run: pnpm --filter integration-tests exec cypress install
 
       - name: Cypress run
-        uses: cypress-io/github-action@v6.10.2
+        uses: cypress-io/github-action@b8ba51a856ba5f4c15cf39007636d4ab04f23e3c # v6.10.2
         with:
           command: |
             pnpm tui run
 
-      - uses: actions/upload-artifact@v4.6.2
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
         # add the line below to store screenshots only on failures
         # if: failure()
         if: failure()

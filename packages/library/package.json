@@ -34,13 +34,13 @@
     "prettier": "3.6.2",
     "tsx": "4.20.5",
     "winston": "3.17.0",
-    "zod": "4.1.8"
+    "zod": "4.1.9"
   },
   "devDependencies": {
     "@types/command-exists": "1.2.3",
     "@types/cors": "2.8.19",
     "@types/express": "5.0.3",
-    "@types/node": "24.5.0",
+    "@types/node": "24.5.1",
     "cypress": "15.2.0",
     "nodemon": "3.1.10",
     "type-fest": "5.0.0",

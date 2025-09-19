@@ -52,7 +52,7 @@
     "prettier": ">= 3.3.3",
     "type-fest": ">= 4.27.0",
     "typescript": ">= 5.6.3",
-    "wait-on": "9.0.0",
+    "wait-on": ">=9.0.0",
     "zod": ">=4.0.0-0 <5"
   },
   "engines": {

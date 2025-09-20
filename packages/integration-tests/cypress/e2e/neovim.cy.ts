@@ -1,8 +1,9 @@
 import { flavors } from "@catppuccin/palette"
 import assert from "assert"
+import { join } from "path"
 import { rgbify } from "../../../library/src/client"
 import type { MyNeovimAppName, MyTestDirectoryFile } from "../../MyTestDirectory"
-import type { MyBlockingCommandClientInput } from "../support/tui-sandbox"
+import type { MyBlockingCommandClientInput, NeovimContext } from "../support/tui-sandbox"
 
 describe("neovim features", () => {
   it("can load a custom init.lua file from the .config/nvim directory", () => {
@@ -317,18 +318,29 @@ describe("neovim features", () => {
   })
 
   describe("using an LSP server", () => {
-    it("can use an LSP server that's already installed", () => {
+    let currentNeovim: NeovimContext | undefined
+
+    afterEach(function () {
+      if (this.currentTest?.state === "failed") {
+        assert(currentNeovim)
+        const logFilePath = join(currentNeovim.dir.rootPathAbsolute, ".local/state/nvim/lsp.log")
+        cy.task("showLspLogFile", { logFilePath: logFilePath })
+      }
+    })
+
+    it.only("can use an LSP server that's already installed", () => {
       // in the test setup, the LSP server is installed in the file
       // prepare.lua when the test environment is started
       cy.visit("/")
       cy.startNeovim({ filename: "lua-project/init.lua" }).then(nvim => {
+        currentNeovim = nvim
+
         // wait until text on the start screen is visible
         cy.contains(`require("config")`)
+        // make sure nvim finds the executable for emmylua_ls
+        nvim.runLuaCode({ luaCode: `assert(vim.fn.executable("emmylua_ls") == 1)` })
 
         // It takes a bit of time for the LSP server to start.
-        //
-        // This is a pretty hacky way to know when the LSP server is ready. It
-        // shows an "unused" warning when it has started :)
         nvim.runLuaCode({ luaCode: `vim.lsp.get_clients({bufnr=0})` }).then(result => {
           const clients = result.value
           assert(!clients)

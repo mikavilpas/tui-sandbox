@@ -9,7 +9,7 @@
   "dependencies": {
     "@catppuccin/palette": "1.7.1",
     "@tui-sandbox/library": "workspace:*",
-    "zod": "4.1.9"
+    "zod": "4.1.11"
   },
   "devDependencies": {
     "@types/node": "24.5.2",

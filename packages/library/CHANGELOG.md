@@ -1,5 +1,15 @@
 # Changelog
 
+## [11.8.1](https://github.com/mikavilpas/tui-sandbox/compare/library-v11.8.1...library-v11.8.1) (2025-09-20)
+
+
+### Bug Fixes
+
+* **deps:** update all non-major dependencies ([#646](https://github.com/mikavilpas/tui-sandbox/issues/646)) ([02b524b](https://github.com/mikavilpas/tui-sandbox/commit/02b524b7a21240cbea3885219e89e9f02bab5440))
+* **deps:** update dependency type-fest to v5 ([#639](https://github.com/mikavilpas/tui-sandbox/issues/639)) ([3865200](https://github.com/mikavilpas/tui-sandbox/commit/38652001f2b6e3f4c1496ddf75f776f3be8c4b52))
+* **deps:** update dependency zod to v4.1.11 ([#661](https://github.com/mikavilpas/tui-sandbox/issues/661)) ([c1c0615](https://github.com/mikavilpas/tui-sandbox/commit/c1c0615a2cacce721c9307cb2eb66e29358be895))
+* **peer-deps:** bump wait-on from 9.0.0 to &gt;=9.0.0 ([#653](https://github.com/mikavilpas/tui-sandbox/issues/653)) ([c8851d1](https://github.com/mikavilpas/tui-sandbox/commit/c8851d15ddefe493086f71c4f33373a04dabdc1c))
+
 ## [11.8.1](https://github.com/mikavilpas/tui-sandbox/compare/library-v11.8.1...library-v11.8.1) (2025-09-19)
 
 

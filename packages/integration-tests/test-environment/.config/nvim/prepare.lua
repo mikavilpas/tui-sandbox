@@ -7,3 +7,10 @@
 
 -- make sure the dependencies defined in ./init.lua are installed
 vim.cmd("Lazy! sync")
+
+-- An LSP server has been installed for use in end-to-end tests with mise. It's
+-- expected to be available in the environment.
+assert(
+  vim.fn.executable("emmylua_ls") == 1,
+  "emmylua_ls should be available for nvim"
+)

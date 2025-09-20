@@ -34,7 +34,7 @@
     "prettier": "3.6.2",
     "tsx": "4.20.5",
     "winston": "3.17.0",
-    "zod": "4.1.9"
+    "zod": "4.1.11"
   },
   "devDependencies": {
     "@types/command-exists": "1.2.3",

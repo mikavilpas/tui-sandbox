@@ -9,7 +9,7 @@ on:
 jobs:
   build:
     name: Run tests
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     strategy:
       matrix:
         # https://github.com/rhysd/action-setup-vim/blob/master/action.yml

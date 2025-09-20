@@ -1,0 +1,3 @@
+[tools]
+"ubi:EmmyLuaLs/emmylua-analyzer-rust" = { version = "0.14.0", exe = "emmylua_ls", matching_regex = "^emmylua_ls" }
+actionlint = "1.7.7"

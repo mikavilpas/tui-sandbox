@@ -48,12 +48,14 @@ jobs:
       # need to work around https://github.com/cypress-io/github-action/issues/1246
       - run: pnpm --filter integration-tests exec cypress install
 
+      - run: |
+          file "$(which emmylua_ls)"
+          emmylua_ls --version
+
       - name: Cypress run
         uses: cypress-io/github-action@b8ba51a856ba5f4c15cf39007636d4ab04f23e3c # v6.10.2
         with:
           command: |
-            file $(which emmylua_ls)
-            emmylua_ls --version
             pnpm tui run
 
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2

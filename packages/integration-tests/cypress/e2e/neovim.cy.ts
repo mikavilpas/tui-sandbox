@@ -240,6 +240,23 @@ describe("neovim features", () => {
     })
   })
 
+  it("does not show duplicated errors if the polling fails", () => {
+    cy.visit("/")
+    cy.startNeovim().then(nvim => {
+      Cypress.on("fail", () => {
+        // we expect this error to be able to inspect what the error looks like -
+        // hide it so that the rest of the e2e tests can run
+      })
+
+      // poll for something that will never pass to see what the error messages
+      // look like
+      nvim.waitForLuaCode({
+        luaAssertion: `assert(-1 == 1337)`,
+        timeoutMs: 500,
+      })
+    })
+  })
+
   it("can show messages after a test fails", () => {
     cy.visit("/")
     cy.startNeovim().then(nvim => {

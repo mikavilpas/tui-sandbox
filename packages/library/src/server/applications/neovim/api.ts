@@ -198,7 +198,7 @@ export async function waitForLuaCode(
     running = false
   })
 
-  const failureMessages: string[] = []
+  const failureMessages = new Set<string>()
   const reportFailure = () => {
     console.warn(`Polling Lua code: '${options.luaAssertion}' failed. Failure messages:`, failureMessages)
   }
@@ -217,7 +217,7 @@ export async function waitForLuaCode(
 
       return { value }
     } catch (e) {
-      failureMessages.push(`Caught error in iteration ${iteration}: ${String(e)}`)
+      failureMessages.add(String(e))
       await timeout(100)
     }
   }

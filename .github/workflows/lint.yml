@@ -27,6 +27,7 @@ jobs:
           node-version-file: .nvmrc
           cache: "pnpm"
       - run: pnpm install
+      - run: pnpm build
       - run: pnpm run eslint
 
   actionlint:

@@ -7,33 +7,46 @@ on:
       - main
 
 jobs:
-  build:
-    name: Run tests
+  pnpm-tests:
+    name: pnpm test
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v5
+      - uses: pnpm/action-setup@v4.1.0
+      - uses: actions/setup-node@v5
+        with:
+          node-version-file: .nvmrc
+          cache: "pnpm"
+      - run: pnpm install
+      - run: pnpm test
+
+  end-to-end-tests:
+    name: end-to-end-tests
     runs-on: ubuntu-24.04
     strategy:
       matrix:
         # https://github.com/rhysd/action-setup-vim/blob/master/action.yml
         neovim_version: ["nightly", "stable"]
-
     steps:
-      - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
+      - uses: actions/checkout@v5
+      - uses: pnpm/action-setup@v4.1.0
+      - uses: actions/setup-node@v5
+        with:
+          node-version-file: .nvmrc
+          cache: "pnpm"
+
+      - name: install dependencies and build
+        run: pnpm install && pnpm build
+
+      - uses: jdx/mise-action@5ac50f778e26fac95da98d50503682459e86d566 # v3.2.0
       - uses: rhysd/action-setup-vim@89f3345bcde053529463583418779d83ee6dfb33 # v1
         with:
           neovim: true
           version: ${{ matrix.neovim_version }}
 
-      - uses: jdx/mise-action@5ac50f778e26fac95da98d50503682459e86d566 # v3.2.0
-
-      - uses: pnpm/action-setup@a7487c7e89a18df4991f7f222e4898a00d66ddda # v4.1.0
-      - uses: actions/setup-node@a0853c24544627f65ddf259abe73b1d18a591444 # v5.0.0
-        with:
-          node-version-file: .nvmrc
-          cache: "pnpm"
-
       - run: |
-          # install dependencies, which will also build the project
-          pnpm install
           cd packages/integration-tests
+          pnpm i # make sure the tui command is found
 
           # NVIM_APPNAME=nvim is the default, but spelled out here for clarity
           NVIM_APPNAME=nvim pnpm tui neovim prepare
@@ -44,7 +57,6 @@ jobs:
           # test that tui neovim exec works
           pnpm tui neovim exec version
 
-      - run: pnpm test
       # need to work around https://github.com/cypress-io/github-action/issues/1246
       - run: pnpm --filter integration-tests exec cypress install
 

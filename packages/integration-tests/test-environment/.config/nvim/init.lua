@@ -39,14 +39,29 @@ vim.o.swapfile = false
 ---@type LazySpec
 local plugins = {
   {
-    "neovim/nvim-lspconfig",
-    dependencies = {
-      { "williamboman/mason.nvim", opts = {} },
-      { "williamboman/mason-lspconfig.nvim", opts = {} },
-    },
+    -- https://github.com/mason-org/mason-lspconfig.nvim?tab=readme-ov-file#recommended-setup-for-lazynvim
+    "mason-org/mason-lspconfig.nvim",
+    opts = {},
     config = function()
-      --
+      ---@diagnostic disable-next-line: missing-fields
+      require("mason-lspconfig").setup({
+        -- make sure mason-lspconfig does not automatically enable any LSP
+        -- servers that might be installed on the system. We want to only use the
+        -- LSP servers that are included in the test setup.
+        automatic_enable = false,
+      })
+      -- vim.lsp.config("emmylua_ls", {
+      --   root_markers = {
+      --     -- https://github.com/neovim/nvim-lspconfig/blob/master/lsp/emmylua_ls.lua
+      --     ".luarc.json",
+      --   },
+      -- })
+      vim.lsp.enable("emmylua_ls")
     end,
+    dependencies = {
+      { "mason-org/mason.nvim", opts = {} },
+      "neovim/nvim-lspconfig",
+    },
   },
   { "catppuccin/nvim", name = "catppuccin", priority = 1000 },
 }
@@ -57,6 +72,5 @@ vim.keymap.set("n", "gr", vim.lsp.buf.references)
 
 vim.cmd.colorscheme("catppuccin-macchiato")
 
--- the config is automatically loaded via the config in nvim-lspconfig
--- https://github.com/neovim/nvim-lspconfig/pull/3745
-vim.lsp.enable("emmylua_ls")
+vim.lsp.log.set_level("debug")
+-- require("vim.lsp.log").set_format_func(vim.inspect)

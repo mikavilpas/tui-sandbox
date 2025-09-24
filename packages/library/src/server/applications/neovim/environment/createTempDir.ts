@@ -1,6 +1,5 @@
 import assert from "assert"
 import { execSync } from "child_process"
-import { Type } from "dree"
 import { constants, readdirSync, statSync } from "fs"
 import { access, mkdir, mkdtemp } from "fs/promises"
 import path from "path"
@@ -27,7 +26,7 @@ export async function createTempDir(config: TestServerConfig): Promise<TestDirec
     log(`Created test directory at ${dir}`)
 
     const tree = convertDree(getDirectoryTree(dir).dree)
-    assert(tree.type === Type.DIRECTORY)
+    assert(tree.type === "directory")
 
     await updateTestdirectorySchemaFile(config)
     return {

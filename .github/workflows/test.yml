@@ -7,8 +7,8 @@ on:
       - main
 
 jobs:
-  setup:
-    name: Setup shared dependencies for jobs
+  pnpm-tests:
+    name: pnpm test
     runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v5
@@ -22,36 +22,10 @@ jobs:
         # installing dependencies will also build the project
         run: pnpm install
 
-      - name: Upload built project artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: built-project
-          path: |
-            packages/library/dist
-
-  pnpm-tests:
-    name: pnpm test
-    needs: setup
-    runs-on: ubuntu-24.04
-    steps:
-      - uses: actions/checkout@v5
-      - uses: pnpm/action-setup@v4.1.0
-      - uses: actions/setup-node@v5
-        with:
-          node-version-file: .nvmrc
-          cache: "pnpm"
-
-      - name: Download built project
-        uses: actions/download-artifact@v5
-        with:
-          name: built-project
-          path: .
-
       - run: pnpm test
 
   end-to-end-tests:
     name: pnpm test
-    needs: setup
     runs-on: ubuntu-24.04
     strategy:
       matrix:
@@ -59,16 +33,15 @@ jobs:
         neovim_version: ["nightly", "stable"]
     steps:
       - uses: actions/checkout@v5
-      - name: Download built project
-        uses: actions/download-artifact@v5
-        with:
-          name: built-project
-          path: .
       - uses: pnpm/action-setup@v4.1.0
       - uses: actions/setup-node@v5
         with:
           node-version-file: .nvmrc
           cache: "pnpm"
+
+      - name: install dependencies and build
+        # installing dependencies will also build the project
+        run: pnpm install
 
       - uses: jdx/mise-action@5ac50f778e26fac95da98d50503682459e86d566 # v3.2.0
       - uses: rhysd/action-setup-vim@89f3345bcde053529463583418779d83ee6dfb33 # v1

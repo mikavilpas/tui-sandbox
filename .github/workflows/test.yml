@@ -25,7 +25,7 @@ jobs:
       - run: pnpm test
 
   end-to-end-tests:
-    name: pnpm test
+    name: end-to-end-tests
     runs-on: ubuntu-24.04
     strategy:
       matrix:
@@ -61,7 +61,6 @@ jobs:
           # test that tui neovim exec works
           pnpm tui neovim exec version
 
-      - run: pnpm test
       # need to work around https://github.com/cypress-io/github-action/issues/1246
       - run: pnpm --filter integration-tests exec cypress install
 

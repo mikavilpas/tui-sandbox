@@ -27,8 +27,7 @@ jobs:
         with:
           name: built-project
           path: |
-            node_modules
-            packages/integration-tests
+            packages/library/dist
 
   pnpm-tests:
     name: pnpm test

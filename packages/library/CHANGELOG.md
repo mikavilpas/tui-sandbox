@@ -1,5 +1,12 @@
 # Changelog
 
+## [11.8.4](https://github.com/mikavilpas/tui-sandbox/compare/library-v11.8.3...library-v11.8.4) (2025-09-28)
+
+
+### Bug Fixes
+
+* **deps:** update dependency tsx to v4.20.6 ([#675](https://github.com/mikavilpas/tui-sandbox/issues/675)) ([050e84d](https://github.com/mikavilpas/tui-sandbox/commit/050e84d17dcb897c9a872a3e4fc782a91612a32e))
+
 ## [11.8.3](https://github.com/mikavilpas/tui-sandbox/compare/library-v11.8.2...library-v11.8.3) (2025-09-25)
 
 

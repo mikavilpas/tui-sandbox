@@ -141,8 +141,8 @@ importers:
         specifier: '>=9.0.0'
         version: 9.0.0
       winston:
-        specifier: 3.18.1
-        version: 3.18.1
+        specifier: 3.18.2
+        version: 3.18.2
       zod:
         specifier: 4.1.11
         version: 4.1.11
@@ -283,8 +283,8 @@ packages:
   '@dabh/diagnostics@2.0.3':
     resolution: {integrity: sha512-hrlQOIi7hAfzsMqlGSFyVucrx38O+j6wiGOf//H2ecvIEqYN4ADBSS2iLMh5UFyDunCNniUIPk/q3riFv45xRA==}
 
-  '@dabh/diagnostics@2.0.6':
-    resolution: {integrity: sha512-fuB2/plPknb9zp6TyJpnvEXYJddd4xEGoOMraVdK2bq99xpECHuTpqKJ+N40DGHLx1i4jiFzmX9Ti7hh6KLIbw==}
+  '@dabh/diagnostics@2.0.7':
+    resolution: {integrity: sha512-EnXa4T9/wuLw8iaEUFwIJMo0xNxyE3mzxLL14ixfVToJNQHG2Jwo8xMmafVJwAiAmIyHXsFDZpZR/TJC31857g==}
 
   '@emnapi/core@1.4.3':
     resolution: {integrity: sha512-4m62DuCE07lw01soJwPiBGC0nAww0Q+RY70VZ+n49yDIO13yyinhbWCeNnaob0lakDtWQzSdtNWzJeOJt2ma+g==}
@@ -721,8 +721,8 @@ packages:
     resolution: {integrity: sha512-LtoMMhxAlorcGhmFYI+LhPgbPZCkgP6ra1YL604EeF6U98pLlQ3iWIGMdWSC+vWmPBWBNgmDBAhnAobLROJmwg==}
     engines: {node: '>=18'}
 
-  '@so-ric/colorspace@1.1.5':
-    resolution: {integrity: sha512-m2yI81kZ+2J2psTYtmBs3lfl/LM4WgLMCzkweMfQdbbyndcyOmFa6pblHjvjfblphPaGDzTDK+lmC/dUMSnv0A==}
+  '@so-ric/colorspace@1.1.6':
+    resolution: {integrity: sha512-/KiKkpHNOBgkFJwu9sh48LkHSMYGyuTcSFK/qMBdnOAlrRJzRSXAOFB5qwzaVQuDl8wAvHVMkaASQDReTahxuw==}
 
   '@standard-schema/spec@1.0.0':
     resolution: {integrity: sha512-m2bOd0f2RT9k8QJx1JN85cZYyH1RqFBdlwtkSlf4tBDYLCiiZnv1fIIwacK6cqwXavOydf0NPToMQgpKq+dVlA==}
@@ -3553,8 +3553,8 @@ packages:
     resolution: {integrity: sha512-RhruH2Cj0bV0WgNL+lOfoUBI4DVfdUNjVnJGVovWZmrcKtrFTTRzgXYK2O9cymSGjrERCtaAeHwMNnUWXlwZow==}
     engines: {node: '>= 12.0.0'}
 
-  winston@3.18.1:
-    resolution: {integrity: sha512-EaQ6y7b9h6q7UJQn4/xlOsiu0I8844FfMdbN6V2I2i4528qeEWqRUcHzhvkseckAb1QxMhwX5V2YYiABkOfGfg==}
+  winston@3.18.2:
+    resolution: {integrity: sha512-+yDkrWD2rWkv6XjSgK2QyujZDNsHE9YLa8S284TpVrYdaloMkZ7NvHzfnETYlSPOX9h5j5VJ+Ro9J872O8CC/g==}
     engines: {node: '>= 12.0.0'}
 
   word-wrap@1.2.5:
@@ -3787,9 +3787,9 @@ snapshots:
       enabled: 2.0.0
       kuler: 2.0.0
 
-  '@dabh/diagnostics@2.0.6':
+  '@dabh/diagnostics@2.0.7':
     dependencies:
-      '@so-ric/colorspace': 1.1.5
+      '@so-ric/colorspace': 1.1.6
       enabled: 2.0.0
       fix-esm: 1.0.1
       kuler: 2.0.0
@@ -4134,7 +4134,7 @@ snapshots:
 
   '@sindresorhus/merge-streams@2.3.0': {}
 
-  '@so-ric/colorspace@1.1.5':
+  '@so-ric/colorspace@1.1.6':
     dependencies:
       color: 5.0.2
       text-hex: 1.0.0
@@ -7468,10 +7468,10 @@ snapshots:
       triple-beam: 1.4.1
       winston-transport: 4.9.0
 
-  winston@3.18.1:
+  winston@3.18.2:
     dependencies:
       '@colors/colors': 1.6.0
-      '@dabh/diagnostics': 2.0.6
+      '@dabh/diagnostics': 2.0.7
       async: 3.2.6
       is-stream: 2.0.1
       logform: 2.7.0

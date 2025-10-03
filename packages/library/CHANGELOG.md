@@ -1,5 +1,15 @@
 # Changelog
 
+## [11.8.5](https://github.com/mikavilpas/tui-sandbox/compare/library-v11.8.4...library-v11.8.5) (2025-10-03)
+
+
+### Bug Fixes
+
+* **deps:** update all non-major dependencies ([#683](https://github.com/mikavilpas/tui-sandbox/issues/683)) ([29ace69](https://github.com/mikavilpas/tui-sandbox/commit/29ace69333645f3e0813a3c9ec3db4ccc660034c))
+* **deps:** update dependency winston to v3.18.0 ([#679](https://github.com/mikavilpas/tui-sandbox/issues/679)) ([7c92218](https://github.com/mikavilpas/tui-sandbox/commit/7c922180f4c433897f43b5ec9b54561b6715ae6e))
+* **deps:** update dependency winston to v3.18.1 ([#681](https://github.com/mikavilpas/tui-sandbox/issues/681)) ([d79aef7](https://github.com/mikavilpas/tui-sandbox/commit/d79aef79f9d32edcecdc85feb3a39f30a875de14))
+* **deps:** update dependency winston to v3.18.2 ([#682](https://github.com/mikavilpas/tui-sandbox/issues/682)) ([33809e7](https://github.com/mikavilpas/tui-sandbox/commit/33809e748237b863a98b6af489c7f1abe33e5eb5))
+
 ## [11.8.4](https://github.com/mikavilpas/tui-sandbox/compare/library-v11.8.3...library-v11.8.4) (2025-09-28)
 
 

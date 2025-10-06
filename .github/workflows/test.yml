@@ -38,7 +38,7 @@ jobs:
       - name: install dependencies and build
         run: pnpm install && pnpm build
 
-      - uses: jdx/mise-action@156251fcc627ac4e26cb0f93dd47d1d4979abf24 # v3.3.0
+      - uses: jdx/mise-action@e3d7b8d67a7958d1207f6ed871e83b1ea780e7b0 # v3.3.1
       - uses: rhysd/action-setup-vim@89f3345bcde053529463583418779d83ee6dfb33 # v1
         with:
           neovim: true

@@ -24,7 +24,7 @@ export async function executeBlockingShellCommand(
 
   try {
     const result = await execPromise(input.command, {
-      signal: signal,
+      signal,
       shell: input.shell,
       uid: input.uid,
       gid: input.gid,

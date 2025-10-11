@@ -50,6 +50,7 @@ export default tseslint.config([
     rules: {
       "no-only-tests/no-only-tests": "warn",
       "@typescript-eslint/require-await": "off",
+      "object-shorthand": "warn",
 
       "no-restricted-syntax": [
         "error",

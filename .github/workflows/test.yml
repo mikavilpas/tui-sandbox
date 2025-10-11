@@ -57,6 +57,16 @@ jobs:
           # test that tui neovim exec works
           pnpm tui neovim exec version
 
+      - name: Test that tui neovim exec warns for missing NVIM_APPNAME
+        run: |
+          # allow this test to fail
+          set +e
+          # test that tui neovim exec works
+          OUTPUT="$(NVIM_APPNAME=doesnotexist pnpm tui neovim exec version)"
+          echo "$OUTPUT" | grep "Please set NVIM_APPNAME to one of the configured names" || (echo "Did not find expected warning" && exit 1)
+          # make sure the exit code is non-zero
+          test $? -ne 0 || (echo "Expected non-zero exit code" && exit 1)
+
       # need to work around https://github.com/cypress-io/github-action/issues/1246
       - run: pnpm --filter integration-tests exec cypress install
 

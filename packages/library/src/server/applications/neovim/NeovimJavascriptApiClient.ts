@@ -17,9 +17,24 @@ export function connectNeovimApi(socketPath: string): Lazy<Promise<NeovimJavascr
   // https://github.com/neovim/node-client/blob/e0568e32e0fc8837ad900146bfd5ca27b9416235/README.md#logging
   const logger = createLogger({
     level: "warn",
+
     transports: [
       new transports.Console({
-        format: format.combine(format.colorize(), format.simple()),
+        format: format.combine(
+          format(info => {
+            if ((info.message as string).startsWith("failed request to")) {
+              // This is logged when neovim is started with --embed, which we don't use.
+              // It's not a problem, so hide it.
+              //
+              // Returning false removes this log entry
+              return false
+            }
+
+            return info
+          })(),
+          format.colorize(),
+          format.simple()
+        ),
       }),
     ],
   })

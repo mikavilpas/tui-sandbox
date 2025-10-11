@@ -1,5 +1,12 @@
 # Changelog
 
+## [11.9.0](https://github.com/mikavilpas/tui-sandbox/compare/library-v11.8.6...library-v11.9.0) (2025-10-11)
+
+
+### Features
+
+* validate NVIM_APPNAME in commandTuiNeovimExec ([8a02055](https://github.com/mikavilpas/tui-sandbox/commit/8a02055dd19813063e39873093394537f410cfd7))
+
 ## [11.8.6](https://github.com/mikavilpas/tui-sandbox/compare/library-v11.8.5...library-v11.8.6) (2025-10-06)
 
 

@@ -52,7 +52,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           # renovate: datasource=github-releases depName=EmmyLuaLs/emmylua-analyzer-rust
-          EMMYLUA_LS_VERSION: 0.14.0
+          EMMYLUA_LS_VERSION: 0.15.0
 
       - name: install dependencies and build
         run: pnpm install && pnpm build

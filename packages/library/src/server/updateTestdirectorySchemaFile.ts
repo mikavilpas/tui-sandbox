@@ -9,6 +9,11 @@ export type DirectoriesConfig = TestServerConfig["directories"]
 
 export type TestServerConfig = z.output<typeof testServerConfigSchema>
 
+export type TestServerConfigMetadata = {
+  configFilePath: string
+  config: TestServerConfig
+}
+
 export type Dictionary = Record<string, string>
 
 export type CustomizeEnv = (env: Dictionary) => Promise<Dictionary>

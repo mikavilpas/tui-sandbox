@@ -4,13 +4,13 @@ import { pathToFileURL } from "url"
 import { debuglog } from "util"
 import * as z from "zod"
 import { createDefaultConfig } from "../server/config.js"
-import { type TestServerConfig, testServerConfigSchema } from "../server/updateTestdirectorySchemaFile.js"
+import { testServerConfigSchema, type TestServerConfigMetadata } from "../server/updateTestdirectorySchemaFile.js"
 
 const log = debuglog("tui-sandbox.resolveConfig")
 
 export type ResolveTuiConfigResultSuccess = {
   id: "default-config" | "custom-config" | "no-config-found"
-  result: TestServerConfig
+  result: TestServerConfigMetadata
   error?: never
 }
 export type ResolveTuiConfigResultError = {
@@ -37,7 +37,10 @@ export const resolveTuiConfig = async (cwd: string): Promise<ResolveTuiConfigRes
 
     return {
       id: "no-config-found",
-      result: defaultConfig,
+      result: {
+        config: defaultConfig,
+        configFilePath: url.pathname,
+      },
     }
   }
 
@@ -47,7 +50,10 @@ export const resolveTuiConfig = async (cwd: string): Promise<ResolveTuiConfigRes
   if (customConfig.success) {
     return {
       id: "custom-config",
-      result: customConfig.data.config,
+      result: {
+        config: customConfig.data.config,
+        configFilePath: url.pathname,
+      },
     }
   } else {
     return {

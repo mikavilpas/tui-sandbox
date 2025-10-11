@@ -11,12 +11,13 @@ it("defaults to the default configuration if no config file is found", async () 
   const config = await resolveTuiConfig(__dirname)
   assert(!config.error)
   expect(config.id).toBe("no-config-found" satisfies ResolveTuiConfigResultSuccess["id"])
-  expect(testServerConfigSchema.safeParse(config.result).success).toBe(true)
+  expect(testServerConfigSchema.safeParse(config.result.config).success).toBe(true)
 })
 
 it("loads a custom configuration file if it exists", async () => {
   using dir = TempDirectory.create()
 
+  const filename = `${dir.path}/tui-sandbox.config.ts`
   const customConfig: TestServerConfig = {
     directories: {
       testEnvironmentPath: "./test-environment2/",
@@ -26,7 +27,6 @@ it("loads a custom configuration file if it exists", async () => {
     port: 12345,
   }
   {
-    const filename = `${dir.path}/tui-sandbox.config.ts`
     const contents = `export const config = ${JSON.stringify(customConfig)}`
     await writeFile(filename, contents)
   }
@@ -34,7 +34,10 @@ it("loads a custom configuration file if it exists", async () => {
   const config = await resolveTuiConfig(dir.path)
   expect(config).toStrictEqual({
     id: "custom-config",
-    result: customConfig,
+    result: {
+      config: customConfig,
+      configFilePath: filename,
+    },
   } satisfies ResolveTuiConfigResult)
 })
 

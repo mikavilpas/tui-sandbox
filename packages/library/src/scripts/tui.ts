@@ -1,5 +1,5 @@
 import assert from "node:assert"
-import type { TestServerConfig } from "../server/updateTestdirectorySchemaFile.js"
+import type { TestServerConfigMetadata } from "../server/updateTestdirectorySchemaFile.js"
 import type { TestResultExitCode } from "./commands/commandRun.js"
 import { commandRun } from "./commands/commandRun.js"
 import { commandTuiNeovimExec } from "./commands/commandTuiNeovimExec.js"
@@ -32,7 +32,7 @@ if (configResult.error) {
 
 // the arguments passed to this script start at index 2
 const args = process.argv.slice(2)
-const config: TestServerConfig = configResult.result
+const config: TestServerConfigMetadata = configResult.result
 const command = await parseArguments(args)
 
 switch (command?.action) {

@@ -1,5 +1,12 @@
 # Changelog
 
+## [11.9.1](https://github.com/mikavilpas/tui-sandbox/compare/library-v11.9.0...library-v11.9.1) (2025-10-11)
+
+
+### Bug Fixes
+
+* neovim lua polling displays confusing error messages ([#703](https://github.com/mikavilpas/tui-sandbox/issues/703)) ([b1c2adb](https://github.com/mikavilpas/tui-sandbox/commit/b1c2adb66245f1da962814977b0145a4c4492895))
+
 ## [11.9.0](https://github.com/mikavilpas/tui-sandbox/compare/library-v11.8.6...library-v11.9.0) (2025-10-11)
 
 

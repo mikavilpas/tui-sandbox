@@ -172,7 +172,7 @@ export class NeovimApplication implements AsyncDisposable {
         args: neovimArguments,
 
         cwd: this.testEnvironmentPath,
-        env: env,
+        env,
         dimensions: terminalDimensions,
 
         onStdoutOrStderr(data) {

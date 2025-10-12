@@ -55,7 +55,7 @@ jobs:
           MISE_ENV: "" # allow looking in the default mise environment
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - uses: rhysd/action-setup-vim@b6be9a961870666d5e56a52162ca939cab3af2d5 # v1
+      - uses: rhysd/action-setup-vim@1bba848d81cbce6e9d5d2b39fb7aaba7cdf0dd33 # v1
         with:
           neovim: true
           version: ${{ matrix.neovim_version }}

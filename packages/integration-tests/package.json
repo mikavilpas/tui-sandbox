@@ -16,6 +16,6 @@
     "assert": "2.1.0",
     "concurrently": "9.2.1",
     "nodemon": "3.1.10",
-    "type-fest": "5.0.1"
+    "type-fest": "5.1.0"
   }
 }

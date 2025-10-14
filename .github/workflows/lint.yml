@@ -10,8 +10,7 @@ jobs:
     steps:
       - uses: DavidAnson/markdownlint-cli2-action@992badcdf24e3b8eb7e87ff9287fe931bcb00c6e # v20.0.0
 
-  eslint:
-    name: runner / eslint
+  lint:
     runs-on: ubuntu-24.04
     permissions:
       contents: read
@@ -28,7 +27,7 @@ jobs:
           cache: "pnpm"
       - run: pnpm install
       - run: pnpm build
-      - run: pnpm run eslint
+      - run: pnpm run lint
 
   actionlint:
     runs-on: ubuntu-24.04

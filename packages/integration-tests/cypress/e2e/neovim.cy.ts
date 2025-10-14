@@ -2,7 +2,7 @@ import { flavors } from "@catppuccin/palette"
 import assert from "assert"
 import { rgbify } from "../../../library/src/client"
 import type { MyNeovimAppName, MyTestDirectoryFile } from "../../MyTestDirectory"
-import type { MyBlockingCommandClientInput } from "../support/tui-sandbox"
+import { currentNeovim, type MyBlockingCommandClientInput } from "../support/tui-sandbox"
 
 describe("neovim features", () => {
   it("can load a custom init.lua file from the .config/nvim directory", () => {
@@ -377,6 +377,16 @@ describe("nvim_isRunning", () => {
 
     cy.startNeovim().then(() => {
       cy.nvim_isRunning().should("be.true")
+    })
+  })
+
+  it("can provide access to the current neovim instance if it is running", () => {
+    cy.visit("/")
+
+    cy.wrap(currentNeovim).should("be.undefined")
+    cy.startNeovim().then(() => {
+      assert(currentNeovim)
+      assert(currentNeovim.dir.rootPathAbsolute)
     })
   })
 

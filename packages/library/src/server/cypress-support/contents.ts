@@ -106,7 +106,7 @@ Cypress.Commands.add("startNeovim", (startArguments?: MyStartNeovimServerArgumen
     const underlyingNeovim: GenericNeovimBrowserApi = await win.startNeovim(
       startArguments as StartNeovimGenericArguments
     )
-    testNeovim = underlyingNeovim
+    currentNeovim = underlyingNeovim
 
     // wrap everything so that Cypress can await all the commands
     Cypress.Commands.addAll({
@@ -145,7 +145,7 @@ Cypress.Commands.add("startNeovim", (startArguments?: MyStartNeovimServerArgumen
 
 Cypress.Commands.add("nvim_isRunning", () => {
   return cy.window().then(async _ => {
-    return !!testNeovim
+    return !!currentNeovim
   })
 })
 
@@ -185,7 +185,7 @@ Cypress.Commands.add("typeIntoTerminal", (text: string, options?: Partial<Cypres
   cy.get("textarea").focus().type(text, options)
 })
 
-let testNeovim: GenericNeovimBrowserApi | undefined
+export let currentNeovim: GenericNeovimBrowserApi | undefined
 
 before(function () {
   // disable Cypress's default behavior of logging all XMLHttpRequests and
@@ -233,8 +233,8 @@ declare global {
   }
 }
 
-afterEach(async () => {
-  testNeovim = undefined
+beforeEach(async () => {
+  currentNeovim = undefined
 })
 `
 

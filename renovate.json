@@ -2,5 +2,18 @@
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "automerge": true,
   "commitBodyTable": true,
-  "extends": ["config:best-practices", "group:allNonMajor"]
+  "extends": ["config:best-practices", "group:allNonMajor"],
+  "customManagers": [
+    {
+      "customType": "regex",
+      "datasourceTemplate": "github-releases",
+      "managerFilePatterns": [
+        "packages/integration-tests/test-environment/.config/nvim/init.lua",
+        "packages/integration-tests/test-environment/.config/nvim_alt/init.lua"
+      ],
+      "matchStrings": [
+        "--\\s*renovate:\\s*datasource=github-releases\\s+depName=(?<depName>\\S+)\\s*[\\r\\n]+[^=]+=\\s*(?<currentValue>\\S+)"
+      ]
+    }
+  ]
 }

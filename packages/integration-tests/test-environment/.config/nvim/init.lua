@@ -4,6 +4,9 @@
 -- this is used in some tests
 _G.isInitFileLoaded = "yesTheInitFileIsLoaded"
 
+-- renovate: datasource=github-releases depName=folke/lazy.nvim
+local lazy_version = "v11.17.1"
+
 -- Bootstrap lazy.nvim
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
@@ -12,7 +15,7 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
     "git",
     "clone",
     "--filter=blob:none",
-    "--branch=stable",
+    "--branch=" .. lazy_version,
     lazyrepo,
     lazypath,
   })

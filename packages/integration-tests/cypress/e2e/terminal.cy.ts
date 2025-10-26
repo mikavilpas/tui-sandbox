@@ -30,6 +30,20 @@ describe("TerminalTestApplication features", () => {
     })
   })
 
+  it("creates a symlink to the latest test-environment", () => {
+    cy.visit("/")
+    cy.startTerminalApplication({ commandToRun: ["bash"] }).then(term => {
+      // wait until text on the start screen is visible
+      cy.contains("myprompt")
+
+      term.runBlockingShellCommand({ command: `readlink ${term.dir.latestEnvironmentSymlink}` }).then(output => {
+        assert(output.type === "success")
+        const symlinkTarget = output.stdout.trim()
+        expect(symlinkTarget).to.equal(term.dir.rootPathAbsolute)
+      })
+    })
+  })
+
   it("shows an error if the application fails to start", () => {
     cy.visit("/")
     cy.startTerminalApplication({

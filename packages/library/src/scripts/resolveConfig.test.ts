@@ -22,6 +22,7 @@ it("loads a custom configuration file if it exists", async () => {
     directories: {
       testEnvironmentPath: "./test-environment2/",
       outputFilePath: "./output.ts",
+      latestSymlinkName: "latest",
     },
     integrations: { neovim: { NVIM_APPNAMEs: ["nvim", "nvim_2"] } },
     port: 12345,

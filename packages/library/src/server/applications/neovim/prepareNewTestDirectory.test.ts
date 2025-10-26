@@ -16,6 +16,7 @@ describe("prepareNewTestDirectory when the testEnvironmentPath does not exist", 
       directories: {
         outputFilePath: path.join(testEnvironmentPath, "foo.ts"),
         testEnvironmentPath,
+        latestSymlinkName: "latest",
       },
     } satisfies PartialDeep<TestServerConfig>)
 

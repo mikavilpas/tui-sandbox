@@ -1,5 +1,12 @@
 # Changelog
 
+## [11.10.0](https://github.com/mikavilpas/tui-sandbox/compare/library-v11.9.2...library-v11.10.0) (2025-10-26)
+
+
+### Features
+
+* create a symlink to the latest test-environment ([#743](https://github.com/mikavilpas/tui-sandbox/issues/743)) ([72dccf6](https://github.com/mikavilpas/tui-sandbox/commit/72dccf6de96981084f77c040e92037c2e696c092))
+
 ## [11.9.2](https://github.com/mikavilpas/tui-sandbox/compare/library-v11.9.1...library-v11.9.2) (2025-10-25)
 
 

@@ -63,7 +63,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - uses: rhysd/action-setup-vim@1bba848d81cbce6e9d5d2b39fb7aaba7cdf0dd33 # v1
+      - uses: rhysd/action-setup-vim@387ddb86526bf67490a750c5e481fdecdf3ef4f6 # v1
         with:
           neovim: true
           version: ${{ matrix.neovim_version }}

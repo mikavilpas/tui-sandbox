@@ -19,6 +19,7 @@ export default defineConfig({
     outDir: "./dist/browser/",
   },
   test: {
+    exclude: ["node_modules", "dist"],
     globals: true, // This will make describe, it, etc. available globally
     environment: "node",
     mockReset: true,

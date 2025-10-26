@@ -1,5 +1,12 @@
 # Changelog
 
+## [11.9.2](https://github.com/mikavilpas/tui-sandbox/compare/library-v11.9.1...library-v11.9.2) (2025-10-25)
+
+
+### Bug Fixes
+
+* **deps:** update all non-major dependencies to v11.7.0 ([#739](https://github.com/mikavilpas/tui-sandbox/issues/739)) ([40ca05e](https://github.com/mikavilpas/tui-sandbox/commit/40ca05e300664dca203e2aabeab56b30cbd9b8a3))
+
 ## [11.9.1](https://github.com/mikavilpas/tui-sandbox/compare/library-v11.9.0...library-v11.9.1) (2025-10-11)
 
 

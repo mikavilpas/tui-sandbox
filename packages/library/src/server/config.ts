@@ -6,6 +6,7 @@ export const createDefaultConfig = (cwd: string, environment: NodeJS.ProcessEnv)
     directories: {
       testEnvironmentPath: path.join(cwd, "test-environment/"),
       outputFilePath: path.join(cwd, "MyTestDirectory.ts"),
+      latestSymlinkName: "latest",
     },
     port: environment["PORT"] ? parseInt(environment["PORT"]) : 3000,
     integrations: {

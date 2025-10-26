@@ -18,6 +18,7 @@ it("should create a temp dir with no contents", async () => {
     directories: {
       testEnvironmentPath: dir.path,
       outputFilePath: nodePath.join(dir.path, "MyTestDirectory.ts"),
+      latestSymlinkName: "latest",
     },
   } satisfies PartialDeep<TestServerConfig>)
 

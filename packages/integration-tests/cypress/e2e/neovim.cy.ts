@@ -16,6 +16,25 @@ describe("neovim features", () => {
     })
   })
 
+  it("creates a symlink to the latest test-environment", () => {
+    cy.visit("/")
+    cy.startNeovim().then(nvim => {
+      // wait until text on the start screen is visible
+      cy.contains("If you see this text, Neovim is ready!")
+
+      // check that the symlink exists and points to the correct directory
+      nvim
+        .runExCommand({
+          command: `:=vim.uv.fs_readlink("${nvim.dir.latestEnvironmentSymlink}")`,
+        })
+        .then(result => {
+          assert(result.value)
+          expect(result.value).to.match(new RegExp("testdirs/dir-"))
+          expect(result.value).to.match(new RegExp(nvim.dir.rootPathAbsolute))
+        })
+    })
+  })
+
   it("can start neovim with a different NVIM_APPNAME", () => {
     cy.visit("/")
     cy.startNeovim({ NVIM_APPNAME: "nvim_alt" }).then(() => {

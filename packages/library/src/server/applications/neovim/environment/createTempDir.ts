@@ -1,7 +1,7 @@
 import assert from "assert"
 import { execSync } from "child_process"
 import { constants, readdirSync, statSync } from "fs"
-import { access, mkdir, mkdtemp } from "fs/promises"
+import { access, mkdir, mkdtemp, symlink } from "fs/promises"
 import path from "path"
 import { debuglog } from "util"
 import { convertDree, getDirectoryTree } from "../../../dirtree/index.js"
@@ -28,12 +28,16 @@ export async function createTempDir(config: TestServerConfig): Promise<TestDirec
     const tree = convertDree(getDirectoryTree(dir).dree)
     assert(tree.type === "directory")
 
-    await updateTestdirectorySchemaFile(config)
+    const [_, latestEnvironmentSymlink] = await Promise.all([
+      updateTestdirectorySchemaFile(config),
+      createLatestSymlink(config, dir),
+    ])
     return {
       rootPathAbsolute: dir,
       contents: tree.contents,
       testEnvironmentPath: config.directories.testEnvironmentPath,
       testEnvironmentPathRelative: path.relative(config.directories.testEnvironmentPath, dir),
+      latestEnvironmentSymlink,
     }
   } catch (err) {
     console.error(err)
@@ -54,6 +58,26 @@ async function createUniqueDirectory(testEnvironmentPath: string): Promise<strin
   assert(typeof dir === "string")
 
   return dir
+}
+
+async function createLatestSymlink(config: TestServerConfig, uniqueTestDirectory: string): Promise<string> {
+  const latestSymlinkPath = path.join(
+    config.directories.testEnvironmentPath,
+    "testdirs" satisfies TestDirsPath,
+    config.directories.latestSymlinkName
+  )
+  try {
+    await access(latestSymlinkPath, constants.F_OK)
+    // If it already exists, remove it
+    execSync(`rm -f '${latestSymlinkPath}'`)
+  } catch {
+    // It doesn't exist, that's fine
+  }
+
+  // recreate it
+  await symlink(uniqueTestDirectory, latestSymlinkPath, "junction")
+
+  return latestSymlinkPath
 }
 
 export async function removeTestDirectories(testEnvironmentPath: string): Promise<void> {

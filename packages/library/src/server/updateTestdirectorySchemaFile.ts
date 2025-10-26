@@ -37,6 +37,7 @@ export const testServerConfigSchema = z.strictObject({
   directories: z.object({
     testEnvironmentPath: z.string(),
     outputFilePath: z.string(),
+    latestSymlinkName: z.string().optional().default("latest"),
   }),
   port: z.number().int().min(1).max(65535),
   integrations: z.strictObject({

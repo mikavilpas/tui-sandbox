@@ -29,6 +29,8 @@ export type TestDirectory<TContents extends Record<string, unknown> = Record<str
    */
   testEnvironmentPathRelative: string
 
+  latestEnvironmentSymlink: string
+
   contents: TContents
 }
 
@@ -36,6 +38,7 @@ export const serverTestDirectorySchema = z.object({
   rootPathAbsolute: z.string(),
   testEnvironmentPath: z.string(),
   testEnvironmentPathRelative: z.string(),
+  latestEnvironmentSymlink: z.string(),
   contents: z.record(z.string(), z.unknown()),
 })
 export type ServerTestDirectory = z.infer<typeof serverTestDirectorySchema>

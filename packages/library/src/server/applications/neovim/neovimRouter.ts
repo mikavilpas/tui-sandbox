@@ -72,11 +72,8 @@ export function createNeovimRouter(config: TestServerConfig) {
           config
         )
       }),
-    onStdout: trpc.procedure.input(z.object({ client: tabIdSchema })).subscription(options => {
-      return neovim.initializeStdout(options.input, options.signal, config.directories.testEnvironmentPath)
-    }),
 
-    initializeStdout: trpc.procedure.input(z.object({ client: tabIdSchema })).subscription(options => {
+    onStdout: trpc.procedure.input(z.object({ client: tabIdSchema })).subscription(options => {
       return neovim.initializeStdout(options.input, options.signal, config.directories.testEnvironmentPath)
     }),
     sendStdin: trpc.procedure.input(z.object({ tabId: tabIdSchema, data: z.string() })).mutation(options => {

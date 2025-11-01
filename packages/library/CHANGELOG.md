@@ -1,5 +1,17 @@
 # Changelog
 
+## [11.11.0](https://github.com/mikavilpas/tui-sandbox/compare/library-v11.10.0...library-v11.11.0) (2025-11-01)
+
+
+### Features
+
+* add `TUI_SANDBOX_TEST_ENVIRONMENT_PATH` environment variable ([#753](https://github.com/mikavilpas/tui-sandbox/issues/753)) ([1fbacf6](https://github.com/mikavilpas/tui-sandbox/commit/1fbacf600f8a810e0bdc8725626078b38b520458))
+
+
+### Bug Fixes
+
+* **deps:** update all non-major dependencies ([#748](https://github.com/mikavilpas/tui-sandbox/issues/748)) ([bb77739](https://github.com/mikavilpas/tui-sandbox/commit/bb777393395c64d95b5388da02404ebba9ed316f))
+
 ## [11.10.0](https://github.com/mikavilpas/tui-sandbox/compare/library-v11.9.2...library-v11.10.0) (2025-10-26)
 
 

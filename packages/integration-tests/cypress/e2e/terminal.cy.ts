@@ -66,6 +66,11 @@ describe("TerminalTestApplication features", () => {
       expect(
         term.dir.contents.subdirectory.contents["subdirectory-file.txt"].name satisfies "subdirectory-file.txt"
       ).to.equal("subdirectory-file.txt")
+
+      term.runBlockingShellCommand({ command: "echo $TUI_SANDBOX_TEST_ENVIRONMENT_PATH" }).then(output => {
+        assert(output.type === "success")
+        expect(output.stdout.trim()).to.equal(term.dir.testEnvironmentPath)
+      })
     })
   })
 

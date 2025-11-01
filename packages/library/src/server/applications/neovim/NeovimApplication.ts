@@ -204,14 +204,9 @@ export class NeovimApplication implements AsyncDisposable {
       ...process.env,
       ...({
         HOME: testDirectory.rootPathAbsolute,
-
-        // this is needed so that neovim can load its configuration, emulating
-        // a common setup real neovim users have
         XDG_CONFIG_HOME: join(testDirectory.rootPathAbsolute, ".config"),
-        // the data directory is where lazy.nvim stores its plugins. To prevent
-        // downloading a new set of plugins for each test, share the data
-        // directory.
         XDG_DATA_HOME: join(testDirectory.testEnvironmentPath, ".repro", "data"),
+        TUI_SANDBOX_TEST_ENVIRONMENT_PATH: testDirectory.testEnvironmentPath,
       } satisfies TestEnvironmentCommonEnvironmentVariables),
       NVIM_APPNAME: NVIM_APPNAME ?? "nvim",
 

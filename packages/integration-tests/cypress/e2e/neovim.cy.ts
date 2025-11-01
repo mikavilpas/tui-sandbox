@@ -141,6 +141,12 @@ describe("neovim features", () => {
         expect(output.stderr).to.equal("")
       })
 
+      nvim.runBlockingShellCommand({ command: `echo $TUI_SANDBOX_TEST_ENVIRONMENT_PATH` }).then(output => {
+        assert(output.type === "success")
+        expect(output.stdout).to.equal(nvim.dir.testEnvironmentPath + "\n")
+        expect(output.stderr).to.equal("")
+      })
+
       nvim.runBlockingShellCommand({ command: "echo file-contents > $HOME/somefile.txt" })
       cy.typeIntoTerminal(":e $HOME/somefile.txt{enter}", { delay: 0 })
       cy.contains("file-contents")

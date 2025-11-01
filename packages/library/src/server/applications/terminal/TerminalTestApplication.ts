@@ -82,6 +82,7 @@ export default class TerminalTestApplication implements AsyncDisposable {
       HOME: testDirectory.rootPathAbsolute,
       XDG_CONFIG_HOME: join(testDirectory.rootPathAbsolute, ".config"),
       XDG_DATA_HOME: join(testDirectory.testEnvironmentPath, ".repro", "data"),
+      TUI_SANDBOX_TEST_ENVIRONMENT_PATH: testDirectory.testEnvironmentPath,
       ...additionalEnvironmentVariables,
     } satisfies TestEnvironmentCommonEnvironmentVariables
   }

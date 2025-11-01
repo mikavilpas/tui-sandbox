@@ -2,6 +2,7 @@ import eslintConfigPrettier from "eslint-config-prettier"
 import eslintPluginImportX from "eslint-plugin-import-x"
 import importZod from "eslint-plugin-import-zod"
 import noOnlyTests from "eslint-plugin-no-only-tests"
+import oxlint from "eslint-plugin-oxlint"
 import tseslint from "typescript-eslint"
 
 export default tseslint.config([
@@ -143,6 +144,7 @@ export default tseslint.config([
     },
   },
 
+  ...oxlint.configs["flat/recommended"], // oxlint should be the last one
   // should be the last item, https://github.com/prettier/eslint-config-prettier?tab=readme-ov-file#installation
   eslintConfigPrettier,
 ])

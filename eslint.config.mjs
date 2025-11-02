@@ -3,9 +3,10 @@ import eslintPluginImportX from "eslint-plugin-import-x"
 import importZod from "eslint-plugin-import-zod"
 import noOnlyTests from "eslint-plugin-no-only-tests"
 import oxlint from "eslint-plugin-oxlint"
+import { defineConfig } from "eslint/config"
 import tseslint from "typescript-eslint"
 
-export default tseslint.config([
+export default defineConfig([
   {
     ignores: [
       "eslint.config.mjs",

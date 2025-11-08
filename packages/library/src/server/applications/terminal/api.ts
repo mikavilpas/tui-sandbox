@@ -8,6 +8,7 @@ import type { TabId } from "../../utilities/tabId.js"
 import { prepareNewTestDirectory } from "../neovim/prepareNewTestDirectory.js"
 import { executeBlockingShellCommand } from "./runBlockingShellCommand.js"
 import type { StartTerminalInput } from "./terminalRouter.js"
+import type { StdoutOrStderrMessage } from "./TerminalTestApplication.js"
 import TerminalTestApplication from "./TerminalTestApplication.js"
 
 const terminals = new Map<TabId["tabId"], TerminalTestApplication>()
@@ -45,7 +46,7 @@ export async function initializeStdout(
     resources.get().use(app)
   }
 
-  const stdout = convertEventEmitterToAsyncGenerator(app.events, "stdout")
+  const stdout = convertEventEmitterToAsyncGenerator(app.events, "stdout" satisfies StdoutOrStderrMessage)
   signal?.addEventListener("abort", () => {
     void app[Symbol.asyncDispose]().finally(() => {
       terminals.delete(tabId)

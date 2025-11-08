@@ -1,6 +1,7 @@
 // Function to parse mouse events
 // https://invisible-island.net/xterm/ctlseqs/ctlseqs.html#h3-Button-event-tracking
 export function validateMouseEvent(data: string): string | undefined {
+  // oxlint-disable-next-line no-control-regex
   const match = /\x1b\[<(\d+);(\d+);(\d+)([mM])/.exec(data)
   if (!match) {
     return

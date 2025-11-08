@@ -38,7 +38,7 @@ export class TestServer {
       const publicPath = path.resolve(__dirname, "..", "..", "browser")
       try {
         accessSync(publicPath)
-      } catch (e) {
+      } catch {
         // This is normal when developing the tui-sandbox library locally. It
         // should always exist when using it as an npm package, however.
         console.warn(

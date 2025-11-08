@@ -55,7 +55,7 @@ export async function updateTestdirectorySchemaFile(
 
   try {
     oldSchema = readFileSync(config.directories.outputFilePath, "utf-8")
-  } catch (error) {
+  } catch {
     log("No existing schema file found, creating a new one")
   }
 

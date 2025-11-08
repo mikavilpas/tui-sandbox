@@ -8,7 +8,7 @@
     "build": "pnpm --recursive build",
     "dev": "pnpm --filter integration-tests dev",
     "preinstall": "npx only-allow pnpm",
-    "lint": "pnpx oxlint --type-aware && eslint --max-warnings=0 .",
+    "lint": "pnpx oxlint --type-aware --deny-warnings && eslint --max-warnings=0 .",
     "markdownlint": "markdownlint-cli2 README.md",
     "prettier": "prettier --check .",
     "test": "vitest run",

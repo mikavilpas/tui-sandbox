@@ -227,7 +227,7 @@ export class NeovimApplication implements AsyncDisposable {
       // happens. It's better to report it than to hide it.
       log(`Socket file ${this.state.socketPath} should have been removed by neovim when it exited.`)
       return
-    } catch (e) {
+    } catch {
       // all good
     } finally {
       this.state = undefined

@@ -120,11 +120,7 @@ export class NeovimTerminalClient {
 
   public async waitForLuaCode(input: PollLuaCodeClientInput): Promise<RunLuaCodeOutput> {
     await this.ready
-    try {
-      return await this.trpc.neovim.waitForLuaCode.mutate({ ...input, tabId: this.tabId })
-    } catch (e) {
-      throw e
-    }
+    return this.trpc.neovim.waitForLuaCode.mutate({ ...input, tabId: this.tabId })
   }
 
   public async runExCommand(input: ExCommandClientInput): Promise<RunExCommandOutput> {

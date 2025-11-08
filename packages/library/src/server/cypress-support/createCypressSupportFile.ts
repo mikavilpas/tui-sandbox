@@ -26,7 +26,7 @@ export async function createCypressSupportFile({
   const configModificationsDirectoryPath = path.join(cypressSupportDirectoryPath, "config-modifications")
   try {
     await stat(configModificationsDirectoryPath)
-  } catch (error) {
+  } catch {
     console.info(
       `Creating config-modifications directory at ${configModificationsDirectoryPath}. You can put Neovim startup scripts into this directory, and load them when starting your Neovim test.`
     )
@@ -39,7 +39,7 @@ export async function createCypressSupportFile({
   const outputFilePath = path.join(cypressSupportDirectoryPath, supportFileName)
   try {
     oldSchema = readFileSync(outputFilePath, "utf-8")
-  } catch (error) {
+  } catch {
     console.warn(`No existing cypress support file found at ${outputFilePath}`)
   }
 

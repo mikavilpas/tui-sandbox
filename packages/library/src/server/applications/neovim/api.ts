@@ -34,7 +34,7 @@ export async function installDependencies(NVIM_APPNAME: string | undefined, conf
   const prepareFilePath = path.join(testDirectory.rootPathAbsolute, ".config", NVIM_APPNAME ?? "nvim", "prepare.lua")
   try {
     await access(prepareFilePath)
-  } catch (e) {
+  } catch {
     // show the output here because it's typically shown in the console before
     // the tests start. It's also sensitive to outside changes.
     //
@@ -205,7 +205,6 @@ export async function waitForLuaCode(
 
   const maxIterations = 100
   for (let iteration = 1; iteration <= maxIterations; iteration++) {
-    // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
     if (!running) {
       reportFailure()
       throw new Error(`Polling Lua code: '${options.luaAssertion}' was aborted after ${iteration} iterations`)

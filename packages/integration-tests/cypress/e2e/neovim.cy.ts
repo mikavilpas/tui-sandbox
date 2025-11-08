@@ -331,6 +331,7 @@ describe("neovim features", () => {
       })
 
       // test some types, no need to run this in the tests though
+      // oxlint-disable-next-line no-constant-condition
       if (1 + 0 === 1337) {
         nvim.doFile({
           // @ts-expect-error the file is not listed in MyTestDirectoryFile, so
@@ -406,7 +407,8 @@ describe("nvim_isRunning", () => {
   })
 
   // test some types and make sure they are as expected
-  // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
+
+  // oxlint-disable-next-line no-constant-condition
   if (false) {
     cy.startNeovim({ NVIM_APPNAME: "nvim" satisfies MyNeovimAppName })
     cy.startNeovim({ NVIM_APPNAME: "nvim_alt" satisfies MyNeovimAppName })
@@ -419,5 +421,6 @@ describe("nvim_isRunning", () => {
 
 {
   // @ts-expect-error cwdRelative should only allow MyTestDirectoryFile paths
+  // oxlint-disable-next-line no-unused-vars
   const invalid: MyBlockingCommandClientInput["cwdRelative"] = "invalid-invalid"
 }

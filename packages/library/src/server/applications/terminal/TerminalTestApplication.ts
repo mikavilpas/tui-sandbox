@@ -8,6 +8,8 @@ import { DisposableSingleApplication } from "../../utilities/DisposableSingleApp
 import { TerminalApplication } from "../../utilities/TerminalApplication.js"
 import type { StdoutOrStderrMessage, TerminalDimensions } from "../neovim/NeovimApplication.js"
 
+export type { StdoutOrStderrMessage }
+
 const log = debuglog("tui-sandbox.terminal.TerminalTestApplication")
 
 type ResettableState = {

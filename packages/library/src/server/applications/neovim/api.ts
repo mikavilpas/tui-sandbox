@@ -82,7 +82,7 @@ export async function initializeStdout(
     resources.get().use(neovim)
   }
 
-  const stdout = convertEventEmitterToAsyncGenerator(neovim.events, "stdout")
+  const stdout = convertEventEmitterToAsyncGenerator(neovim.events, "stdout" satisfies StdoutOrStderrMessage)
   if (signal) {
     signal.addEventListener("abort", () => {
       void neovim[Symbol.asyncDispose]().finally(() => {

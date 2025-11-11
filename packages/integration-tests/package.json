@@ -15,7 +15,7 @@
     "@types/node": "24.10.0",
     "assert": "2.1.0",
     "concurrently": "9.2.1",
-    "nodemon": "3.1.10",
+    "nodemon": "3.1.11",
     "type-fest": "5.2.0"
   }
 }

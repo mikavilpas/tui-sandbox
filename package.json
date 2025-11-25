@@ -24,7 +24,7 @@
     "eslint-plugin-import-zod": "1.2.1",
     "eslint-plugin-no-only-tests": "3.3.0",
     "eslint-plugin-oxlint": "1.29.0",
-    "markdownlint-cli2": "0.19.0",
+    "markdownlint-cli2": "0.19.1",
     "oxlint": "1.29.0",
     "oxlint-tsgolint": "0.8.0",
     "prettier": "3.6.2",

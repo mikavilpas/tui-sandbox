@@ -1,5 +1,13 @@
 # Changelog
 
+## [11.11.1](https://github.com/mikavilpas/tui-sandbox/compare/library-v11.11.0...library-v11.11.1) (2025-11-28)
+
+
+### Bug Fixes
+
+* **deps:** update all non-major dependencies to v11.7.2 ([#795](https://github.com/mikavilpas/tui-sandbox/issues/795)) ([0d3852f](https://github.com/mikavilpas/tui-sandbox/commit/0d3852f23116247a127d0ac9f18fbed43f4cb3cf))
+* **deps:** update dependency zod to v4.1.13 ([#797](https://github.com/mikavilpas/tui-sandbox/issues/797)) ([0bd3218](https://github.com/mikavilpas/tui-sandbox/commit/0bd32181b3a5c1436f52641aa115a714f306dcf6))
+
 ## [11.11.0](https://github.com/mikavilpas/tui-sandbox/compare/library-v11.10.0...library-v11.11.0) (2025-11-01)
 
 

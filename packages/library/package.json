@@ -30,7 +30,7 @@
     "express": "5.1.0",
     "neovim": "5.4.0",
     "node-pty": "1.0.0",
-    "prettier": "3.6.2",
+    "prettier": "3.7.0",
     "tsx": "4.20.6",
     "winston": "3.18.3",
     "zod": "4.1.13"

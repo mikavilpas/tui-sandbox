@@ -27,7 +27,7 @@
     "markdownlint-cli2": "0.19.1",
     "oxlint": "1.31.0",
     "oxlint-tsgolint": "0.8.3",
-    "prettier": "3.7.3",
+    "prettier": "3.7.4",
     "prettier-plugin-organize-imports": "4.3.0",
     "prettier-plugin-packagejson": "2.5.20",
     "tsx": "4.21.0",

@@ -1,5 +1,22 @@
 # Changelog
 
+## [11.11.1](https://github.com/mikavilpas/tui-sandbox/compare/library-v11.11.0...library-v11.11.1) (2025-12-16)
+
+
+### Bug Fixes
+
+* **deps:** update all non-major dependencies ([#809](https://github.com/mikavilpas/tui-sandbox/issues/809)) ([dc67c53](https://github.com/mikavilpas/tui-sandbox/commit/dc67c53a9807404af98d2a1ed215e27ab74a03aa))
+* **deps:** update all non-major dependencies ([#815](https://github.com/mikavilpas/tui-sandbox/issues/815)) ([26a870a](https://github.com/mikavilpas/tui-sandbox/commit/26a870a629fa87a88d358a23e5c44296e711ac6f))
+* **deps:** update all non-major dependencies to v11.7.2 ([#795](https://github.com/mikavilpas/tui-sandbox/issues/795)) ([0d3852f](https://github.com/mikavilpas/tui-sandbox/commit/0d3852f23116247a127d0ac9f18fbed43f4cb3cf))
+* **deps:** update dependency express to v5.2.0 [security] ([#806](https://github.com/mikavilpas/tui-sandbox/issues/806)) ([707d345](https://github.com/mikavilpas/tui-sandbox/commit/707d3455ed98148427ad2dfdadce26314b5cb35b))
+* **deps:** update dependency prettier to v3.7.0 ([#802](https://github.com/mikavilpas/tui-sandbox/issues/802)) ([2beaef3](https://github.com/mikavilpas/tui-sandbox/commit/2beaef3bc73c81db2bff11555b54855a9d8c1e4b))
+* **deps:** update dependency prettier to v3.7.1 ([#803](https://github.com/mikavilpas/tui-sandbox/issues/803)) ([8a5dd6f](https://github.com/mikavilpas/tui-sandbox/commit/8a5dd6fb74ce1d46fb8c30431a55f7fd47408e80))
+* **deps:** update dependency prettier to v3.7.2 ([#807](https://github.com/mikavilpas/tui-sandbox/issues/807)) ([398f960](https://github.com/mikavilpas/tui-sandbox/commit/398f960e29368f22d3f66ea2569b848283d73b3d))
+* **deps:** update dependency prettier to v3.7.4 ([#819](https://github.com/mikavilpas/tui-sandbox/issues/819)) ([3b989b3](https://github.com/mikavilpas/tui-sandbox/commit/3b989b339743b3e61b253c64c736c6a98360f3aa))
+* **deps:** update dependency tsx to v4.21.0 ([#812](https://github.com/mikavilpas/tui-sandbox/issues/812)) ([d1047b6](https://github.com/mikavilpas/tui-sandbox/commit/d1047b6e116dc89d50b206378d71fbbf681186fd))
+* **deps:** update dependency winston to v3.19.0 ([#824](https://github.com/mikavilpas/tui-sandbox/issues/824)) ([b0b54fd](https://github.com/mikavilpas/tui-sandbox/commit/b0b54fdd35085e912d8bc03a0a76e591ef237c41))
+* **deps:** update dependency zod to v4.1.13 ([#797](https://github.com/mikavilpas/tui-sandbox/issues/797)) ([0bd3218](https://github.com/mikavilpas/tui-sandbox/commit/0bd32181b3a5c1436f52641aa115a714f306dcf6))
+
 ## [11.11.0](https://github.com/mikavilpas/tui-sandbox/compare/library-v11.10.0...library-v11.11.0) (2025-11-01)
 
 

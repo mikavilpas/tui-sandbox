@@ -117,7 +117,8 @@
       {
         "allowAsStatement": true
       }
-    ]
+    ],
+    "typescript/switch-exhaustiveness-check": "warn"
   },
   "overrides": [
     {

@@ -106,10 +106,10 @@ importers:
         version: 1.7.1
       '@trpc/client':
         specifier: 11.7.2
-        version: 11.7.2(@trpc/server@11.7.2(typescript@5.9.2))(typescript@5.9.2)
+        version: 11.7.2(@trpc/server@11.8.0(typescript@5.9.2))(typescript@5.9.2)
       '@trpc/server':
-        specifier: 11.7.2
-        version: 11.7.2(typescript@5.9.2)
+        specifier: 11.8.0
+        version: 11.8.0(typescript@5.9.2)
       '@xterm/addon-fit':
         specifier: 0.10.0
         version: 0.10.0(@xterm/xterm@5.5.0)
@@ -971,8 +971,8 @@ packages:
       '@trpc/server': 11.7.2
       typescript: '>=5.7.2'
 
-  '@trpc/server@11.7.2':
-    resolution: {integrity: sha512-AgB26PXY69sckherIhCacKLY49rxE2XP5h38vr/KMZTbLCL1p8IuIoKPjALTcugC2kbyQ7Lbqo2JDVfRSmPmfQ==}
+  '@trpc/server@11.8.0':
+    resolution: {integrity: sha512-DphyQnLuyX2nwJCQGWQ9zYz4hZGvRhSBqDhQ0SH3tDhQ3PU4u68xofA0pJ741Ir4InEAFD+TtJVLAQy+wVOkiQ==}
     peerDependencies:
       typescript: '>=5.7.2'
 
@@ -4485,12 +4485,12 @@ snapshots:
 
   '@tootallnate/quickjs-emscripten@0.23.0': {}
 
-  '@trpc/client@11.7.2(@trpc/server@11.7.2(typescript@5.9.2))(typescript@5.9.2)':
+  '@trpc/client@11.7.2(@trpc/server@11.8.0(typescript@5.9.2))(typescript@5.9.2)':
     dependencies:
-      '@trpc/server': 11.7.2(typescript@5.9.2)
+      '@trpc/server': 11.8.0(typescript@5.9.2)
       typescript: 5.9.2
 
-  '@trpc/server@11.7.2(typescript@5.9.2)':
+  '@trpc/server@11.8.0(typescript@5.9.2)':
     dependencies:
       typescript: 5.9.2
 

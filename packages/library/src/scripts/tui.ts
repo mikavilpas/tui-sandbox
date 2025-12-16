@@ -56,7 +56,7 @@ switch (command?.action) {
     process.exitCode = typeof result === "number" ? result : 1
     break
   }
-  default: {
+  case undefined: {
     command satisfies undefined
     showUsageAndExit()
   }

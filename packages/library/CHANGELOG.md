@@ -1,5 +1,13 @@
 # Changelog
 
+## [11.11.2](https://github.com/mikavilpas/tui-sandbox/compare/library-v11.11.1...library-v11.11.2) (2025-12-17)
+
+
+### Bug Fixes
+
+* **deps:** update dependency @trpc/client to v11.8.0 ([#841](https://github.com/mikavilpas/tui-sandbox/issues/841)) ([8c669ec](https://github.com/mikavilpas/tui-sandbox/commit/8c669ec5fb7bf7bc32f1afe1751cfd8d01f2dbb1))
+* **deps:** update dependency @trpc/server to v11.8.0 [security] ([#840](https://github.com/mikavilpas/tui-sandbox/issues/840)) ([b42c9fa](https://github.com/mikavilpas/tui-sandbox/commit/b42c9fac0267aba12cac76e9602284def08f6417))
+
 ## [11.11.1](https://github.com/mikavilpas/tui-sandbox/compare/library-v11.11.0...library-v11.11.1) (2025-12-16)
 
 

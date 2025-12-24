@@ -2,3 +2,4 @@
 
 export { rgbify } from "./color-utilities.js"
 export { textIsVisibleWithBackgroundColor, textIsVisibleWithColor } from "./cypress-assertions.js"
+export type { MyNeovimConfigModification } from "./MyNeovimConfigModification.ts"

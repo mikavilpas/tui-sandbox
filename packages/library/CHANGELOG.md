@@ -1,5 +1,24 @@
 # Changelog
 
+## [12.0.0](https://github.com/mikavilpas/tui-sandbox/compare/library-v11.11.2...library-v12.0.0) (2025-12-24)
+
+
+### ⚠ BREAKING CHANGES
+
+* clean up exports
+
+### Bug Fixes
+
+* **deps:** update all non-major dependencies ([#844](https://github.com/mikavilpas/tui-sandbox/issues/844)) ([2b22bc7](https://github.com/mikavilpas/tui-sandbox/commit/2b22bc771000d855e358620fc5055b72da436627))
+* **deps:** update all non-major dependencies ([#858](https://github.com/mikavilpas/tui-sandbox/issues/858)) ([a6ba6bd](https://github.com/mikavilpas/tui-sandbox/commit/a6ba6bd5652a615a51a4db936b258b39e56fc7fc))
+* **deps:** update dependency zod to v4.2.1 ([#848](https://github.com/mikavilpas/tui-sandbox/issues/848)) ([e748af0](https://github.com/mikavilpas/tui-sandbox/commit/e748af0b0e0cf05ce4f3a272d9ec6ae712e22e99))
+* imports in generated support/tui-sandbox.ts ([#861](https://github.com/mikavilpas/tui-sandbox/issues/861)) ([f78a9cb](https://github.com/mikavilpas/tui-sandbox/commit/f78a9cb409b4433f6bf75c51aa4a704d51a3b49c))
+
+
+### Code Refactoring
+
+* clean up exports ([0f78bc0](https://github.com/mikavilpas/tui-sandbox/commit/0f78bc0d2d69a855130aa3d07e0fa0d91138603c))
+
 ## [11.11.2](https://github.com/mikavilpas/tui-sandbox/compare/library-v11.11.1...library-v11.11.2) (2025-12-17)
 
 

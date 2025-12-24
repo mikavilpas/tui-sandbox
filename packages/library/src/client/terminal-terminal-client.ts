@@ -4,6 +4,8 @@ import type { StartTerminalBrowserArguments } from "../browser/neovim-client.js"
 import type { BlockingCommandClientInput } from "../server/blockingCommandInputSchema.js"
 import type { AppRouter } from "../server/server.js"
 import type { BlockingShellCommandOutput, ServerTestDirectory } from "../server/types.js"
+import type { InMemoryClipboard } from "./clipboard.js"
+import { InMemoryClipboardProvider } from "./clipboard.js"
 import type { TuiTerminalApi } from "./startTerminal.js"
 import { getTabId, startTerminal } from "./startTerminal.js"
 import { supportDA1 } from "./terminal-config.js"
@@ -15,7 +17,9 @@ export class TerminalTerminalClient {
   private readonly tabId: { tabId: string }
   private readonly terminal: Terminal
   private readonly trpc: ReturnType<typeof createTRPCClient<AppRouter>>
-  terminalApi: TuiTerminalApi
+
+  public readonly clipboard: InMemoryClipboard
+  public readonly terminalApi: TuiTerminalApi
 
   constructor(app: HTMLElement) {
     const trpc = createTRPCClient<AppRouter>({
@@ -36,6 +40,7 @@ export class TerminalTerminalClient {
     this.tabId = getTabId()
     const tabId = this.tabId
 
+    const clipboard = new InMemoryClipboardProvider()
     this.terminalApi = {
       onMouseEvent(data: string) {
         void trpc.terminal.sendStdin.mutate({ tabId, data }).catch((error: unknown) => {
@@ -45,7 +50,9 @@ export class TerminalTerminalClient {
       onKeyPress(event) {
         void trpc.terminal.sendStdin.mutate({ tabId, data: event.key })
       },
+      clipboard,
     }
+    this.clipboard = clipboard
     const terminal = startTerminal(app, this.terminalApi)
     this.terminal = terminal
 

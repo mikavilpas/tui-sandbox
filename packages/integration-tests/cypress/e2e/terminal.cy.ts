@@ -135,6 +135,29 @@ describe("TerminalTestApplication features", () => {
     })
   })
 
+  it("can support OSC52 clipboard requests", () => {
+    // OSC52 is used this way: the terminal application sends an escape
+    // sequence that requests the host terminal (e.g. iTerm2, kitty, wezterm,
+    // ghostty) to set the clipboard contents to some data. This should work
+    // even through an ssh connection to an external system, so it's very
+    // flexible.
+    //
+    // Some references:
+    // - https://github.com/xtermjs/xterm.js/pull/4220
+    // - https://github.com/neovim/neovim/pull/25872
+    cy.visit("/")
+    cy.startTerminalApplication({
+      commandToRun: ["bash"],
+    }).then(term => {
+      cy.contains("myprompt")
+      term.clipboard.system().should("eql", "")
+
+      // send an OSC52 clipboard set request to the terminal
+      cy.typeIntoTerminal(`printf "\\033]52;c;$(printf "%s" "blabla" | base64)\\a"{enter}`)
+      term.clipboard.system().should("eql", "blabla")
+    })
+  })
+
   describe("mise integration", () => {
     it("can use applications installed to the host environment with the miseIntegration", () => {
       cy.visit("/")

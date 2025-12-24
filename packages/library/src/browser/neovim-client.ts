@@ -1,5 +1,6 @@
 import type { Terminal } from "@xterm/xterm"
 import "@xterm/xterm/css/xterm.css"
+import type { InMemoryClipboard } from "../client/clipboard.js"
 import { NeovimTerminalClient } from "../client/neovim-terminal-client.js"
 import type { TuiTerminalApi } from "../client/startTerminal.js"
 import "../client/style.css"
@@ -38,6 +39,7 @@ export type GenericNeovimBrowserApi = {
   waitForLuaCode(input: PollLuaCodeClientInput): Promise<RunLuaCodeOutput>
   runExCommand(input: ExCommandClientInput): Promise<RunExCommandOutput>
   dir: TestDirectory
+  clipboard: InMemoryClipboard
 }
 
 /** Entrypoint for the test runner (cypress) */
@@ -68,6 +70,7 @@ window.startNeovim = async function (startArgs?: StartNeovimGenericArguments): P
       return neovim.runExCommand(input)
     },
     dir: testDirectory,
+    clipboard: neovim.clipboard,
   }
 
   return neovimBrowserApi
@@ -83,6 +86,7 @@ declare global {
 export type GenericTerminalBrowserApi = {
   dir: TestDirectory
   runBlockingShellCommand(input: BlockingCommandClientInput): Promise<BlockingShellCommandOutput>
+  clipboard: InMemoryClipboard
 }
 
 export type BrowserTerminalSettings = {
@@ -123,6 +127,7 @@ window.startTerminalApplication = async function (
     runBlockingShellCommand(input) {
       return terminal.runBlockingShellCommand(input)
     },
+    clipboard: terminal.clipboard,
   }
   return terminalBrowserApi
 }

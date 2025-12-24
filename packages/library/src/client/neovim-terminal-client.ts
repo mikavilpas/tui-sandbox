@@ -15,6 +15,8 @@ import type {
   StartNeovimGenericArguments,
   TestDirectory,
 } from "../server/types.js"
+import type { InMemoryClipboard } from "./clipboard.js"
+import { InMemoryClipboardProvider } from "./clipboard.js"
 import { getTabId, startTerminal } from "./startTerminal.js"
 
 /** Manages the terminal state in the browser as well as the (browser's)
@@ -24,6 +26,7 @@ export class NeovimTerminalClient {
   private readonly tabId: { tabId: string }
   private readonly terminal: Terminal
   private readonly trpc: ReturnType<typeof createTRPCClient<AppRouter>>
+  public readonly clipboard: InMemoryClipboard
 
   constructor(app: HTMLElement) {
     const trpc = createTRPCClient<AppRouter>({
@@ -44,6 +47,7 @@ export class NeovimTerminalClient {
     this.tabId = getTabId()
     const tabId = this.tabId
 
+    const clipboard = new InMemoryClipboardProvider()
     const terminal = startTerminal(app, {
       onMouseEvent(data: string) {
         void trpc.neovim.sendStdin.mutate({ tabId, data }).catch((error: unknown) => {
@@ -53,7 +57,9 @@ export class NeovimTerminalClient {
       onKeyPress(event) {
         void trpc.neovim.sendStdin.mutate({ tabId, data: event.key })
       },
+      clipboard,
     })
+    this.clipboard = clipboard
     this.terminal = terminal
 
     // start listening to Neovim stdout - this will take some (short) amount of

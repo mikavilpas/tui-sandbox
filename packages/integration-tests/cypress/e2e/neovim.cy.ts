@@ -406,6 +406,42 @@ describe("nvim_isRunning", () => {
     })
   })
 
+  it("can read the OSC52 clipboard contents", () => {
+    // OSC52 allows terminal applications to set the system clipboard by sending
+    // an escape sequence. Neovim supports this natively since version 0.10.
+    //
+    // References:
+    // - https://github.com/neovim/neovim/pull/25872
+    // - :help clipboard-osc52 (https://neovim.io/doc/user/provider.html#clipboard-osc52)
+    cy.visit("/")
+    cy.startNeovim().then(nvim => {
+      cy.contains("If you see this text, Neovim is ready!")
+
+      // Verify clipboard starts empty
+      nvim.clipboard.system().should("eql", "")
+
+      // Configure Neovim to use OSC52 for clipboard
+      //
+      // See `:help clipboard-osc52` in neovim for more information
+      nvim.runLuaCode({ luaCode: `vim.g.clipboard = 'osc52'` })
+
+      // Yank some text to the clipboard using Neovim
+      // First, select the word "see" and yank it to the + register
+      cy.typeIntoTerminal("/see{enter}")
+      cy.typeIntoTerminal('viw"+y')
+
+      // Verify the clipboard now contains "see"
+      nvim.clipboard.system().should("eql", "see")
+
+      // verify that the clipboard contents can be read
+      cy.typeIntoTerminal(`"_dd`)
+      cy.typeIntoTerminal("p")
+      nvim.waitForLuaCode({
+        luaAssertion: `assert(vim.api.nvim_buf_get_lines(0, 0, -1, false)[1] == 'see')`,
+      })
+    })
+  })
+
   // test some types and make sure they are as expected
 
   // oxlint-disable-next-line no-constant-condition

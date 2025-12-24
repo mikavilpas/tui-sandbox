@@ -1,14 +1,17 @@
 import { flavors } from "@catppuccin/palette"
+import { ClipboardAddon } from "@xterm/addon-clipboard"
 import { FitAddon } from "@xterm/addon-fit"
 import { Unicode11Addon } from "@xterm/addon-unicode11"
 import { Terminal } from "@xterm/xterm"
 import * as z from "zod"
 import type { TabId } from "../server/utilities/tabId.ts"
+import type { InMemoryClipboardProvider } from "./clipboard.js"
 import { validateMouseEvent } from "./validateMouseEvent.js"
 
 export type TuiTerminalApi = {
   onMouseEvent: (data: string) => void
   onKeyPress: (event: { key: string; domEvent: KeyboardEvent }) => void
+  clipboard: InMemoryClipboardProvider
 }
 export function startTerminal(app: HTMLElement, api: TuiTerminalApi): Terminal {
   const terminal = new Terminal({
@@ -38,23 +41,28 @@ export function startTerminal(app: HTMLElement, api: TuiTerminalApi): Terminal {
     yellow: colors.yellow.hex,
   }
 
-  // The FitAddon makes the terminal fit the size of the container, the entire
-  // page in this case
-  const fitAddon = new FitAddon()
-  terminal.loadAddon(fitAddon)
+  {
+    // The FitAddon makes the terminal fit the size of the container, the entire
+    // page in this case
+    const fitAddon = new FitAddon()
+    terminal.loadAddon(fitAddon)
 
-  // The Unicode11Addon fixes emoji rendering issues. Without it, emoji are
-  // displayed as truncated (partial) images.
-  const unicode11Addon = new Unicode11Addon()
-  terminal.loadAddon(unicode11Addon)
-  terminal.unicode.activeVersion = "11"
+    // The Unicode11Addon fixes emoji rendering issues. Without it, emoji are
+    // displayed as truncated (partial) images.
+    const unicode11Addon = new Unicode11Addon()
+    terminal.loadAddon(unicode11Addon)
+    terminal.unicode.activeVersion = "11"
 
-  terminal.open(app)
-  fitAddon.fit()
-
-  window.addEventListener("resize", () => {
+    terminal.open(app)
     fitAddon.fit()
-  })
+
+    window.addEventListener("resize", () => {
+      fitAddon.fit()
+    })
+
+    const clipboardAddon = new ClipboardAddon(undefined, api.clipboard)
+    terminal.loadAddon(clipboardAddon)
+  }
 
   terminal.onData(data => {
     data satisfies string

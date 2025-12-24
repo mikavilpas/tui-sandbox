@@ -36,7 +36,7 @@
     "dist"
   ],
   "scripts": {
-    "build": "concurrently --names 'vite,tsc' 'vite build' 'tsc' --prefix-colors blue,green",
+    "build": "concurrently --names 'vite,tsc' 'vite build' 'tsc' --prefix-colors blue,green && attw --pack --profile=esm-only",
     "dev": "concurrently --names 'client,server' 'pnpm dev:client' 'pnpm dev:server' --prefix-colors blue,green",
     "dev:client": "vite",
     "dev:server": "cd ../integration-tests/ && nodemon --watch ../library --ext '*' --exec 'tsx ../library/src/scripts/tui.ts start'",
@@ -61,6 +61,7 @@
     "zod": "4.2.1"
   },
   "devDependencies": {
+    "@arethetypeswrong/cli": "0.18.2",
     "@types/command-exists": "1.2.3",
     "@types/cors": "2.8.19",
     "@types/express": "5.0.6",

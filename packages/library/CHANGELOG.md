@@ -1,5 +1,12 @@
 # Changelog
 
+## [12.1.0](https://github.com/mikavilpas/tui-sandbox/compare/library-v12.0.0...library-v12.1.0) (2025-12-24)
+
+
+### Features
+
+* **🎄🎁:** support reading the OSC52 clipboard contents in tests ([#862](https://github.com/mikavilpas/tui-sandbox/issues/862)) ([8aa995e](https://github.com/mikavilpas/tui-sandbox/commit/8aa995e97b6134b666b6d66085da23a5b22fd680))
+
 ## [12.0.0](https://github.com/mikavilpas/tui-sandbox/compare/library-v11.11.2...library-v12.0.0) (2025-12-24)
 
 

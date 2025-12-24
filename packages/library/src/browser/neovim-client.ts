@@ -1,6 +1,8 @@
 import type { Terminal } from "@xterm/xterm"
+import "@xterm/xterm/css/xterm.css"
 import { NeovimTerminalClient } from "../client/neovim-terminal-client.js"
 import type { TuiTerminalApi } from "../client/startTerminal.js"
+import "../client/style.css"
 import { TerminalTerminalClient } from "../client/terminal-terminal-client.js"
 import type {
   ExCommandClientInput,

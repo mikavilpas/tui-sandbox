@@ -1,6 +1,5 @@
 import { createTRPCClient, httpBatchLink, httpSubscriptionLink, splitLink } from "@trpc/client"
 import type { Terminal } from "@xterm/xterm"
-import "@xterm/xterm/css/xterm.css"
 import type {
   ExCommandClientInput,
   LuaCodeClientInput,
@@ -17,7 +16,6 @@ import type {
   TestDirectory,
 } from "../server/types.js"
 import { getTabId, startTerminal } from "./startTerminal.js"
-import "./style.css"
 
 /** Manages the terminal state in the browser as well as the (browser's)
  * connection to the server side terminal application api. */

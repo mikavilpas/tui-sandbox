@@ -1,5 +1,5 @@
-import type { FakeDA1Response } from "@tui-sandbox/library/src/client/terminal-config"
-import type { TestDirsPath } from "@tui-sandbox/library/src/server/applications/neovim/environment/createTempDir"
+import type { FakeDA1Response } from "@tui-sandbox/library/dist/src/client/terminal-config.js"
+import type { TestDirsPath } from "@tui-sandbox/library/dist/src/server/applications/neovim/environment/createTempDir.js"
 import assert from "assert"
 
 describe("TerminalTestApplication features", () => {

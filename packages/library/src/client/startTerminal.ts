@@ -2,10 +2,8 @@ import { flavors } from "@catppuccin/palette"
 import { FitAddon } from "@xterm/addon-fit"
 import { Unicode11Addon } from "@xterm/addon-unicode11"
 import { Terminal } from "@xterm/xterm"
-import "@xterm/xterm/css/xterm.css"
 import * as z from "zod"
 import type { TabId } from "../server/utilities/tabId.ts"
-import "./style.css"
 import { validateMouseEvent } from "./validateMouseEvent.js"
 
 export type TuiTerminalApi = {

@@ -2,7 +2,7 @@
 disable_tools = ["node"]
 
 [tools]
-"ubi:EmmyLuaLs/emmylua-analyzer-rust" = { version = "0.18.0", exe = "emmylua_ls", matching_regex = "^emmylua_ls" }
+"ubi:EmmyLuaLs/emmylua-analyzer-rust" = { version = "0.19.0", exe = "emmylua_ls", matching_regex = "^emmylua_ls" }
 
 # small sample application that can be installed with mise and used in the test
 # environment

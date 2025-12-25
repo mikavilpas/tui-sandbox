@@ -1,5 +1,13 @@
 # Changelog
 
+## [12.1.1](https://github.com/mikavilpas/tui-sandbox/compare/library-v12.1.0...library-v12.1.1) (2025-12-25)
+
+
+### Bug Fixes
+
+* **deps:** update all non-major dependencies ([#866](https://github.com/mikavilpas/tui-sandbox/issues/866)) ([651d38c](https://github.com/mikavilpas/tui-sandbox/commit/651d38c8b12c2ee0bbf855c773b9eb87c1a41fcd))
+* **deps:** update dependency @xterm/xterm to v6 ([#867](https://github.com/mikavilpas/tui-sandbox/issues/867)) ([45e2ca5](https://github.com/mikavilpas/tui-sandbox/commit/45e2ca53e8c8d4748619193a12f7cce0bae9bad7))
+
 ## [12.1.0](https://github.com/mikavilpas/tui-sandbox/compare/library-v12.0.0...library-v12.1.0) (2025-12-24)
 
 

@@ -36,7 +36,7 @@ export type RunLuaFileInput = z.output<typeof runLuaFileInputSchema>
 export type RunLuaFileClientInput = Except<RunLuaFileInput, "tabId">
 
 // let trpc infer the type as that is what it is designed to do
-// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+// oxlint-disable-next-line explicit-module-boundary-types
 export function createNeovimRouter(config: TestServerConfig) {
   return trpc.router({
     start: trpc.procedure

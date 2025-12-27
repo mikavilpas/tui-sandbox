@@ -4,7 +4,7 @@ import type { TestResultExitCode } from "./commands/commandRun.js"
 import { commandRun } from "./commands/commandRun.js"
 import { commandTuiNeovimExec } from "./commands/commandTuiNeovimExec.js"
 import { commandTuiNeovimPrepare } from "./commands/commandTuiNeovimPrepare.js"
-import { commandTuiStart } from "./commands/commandTuiStart.js"
+import { commandTuiStart, updateGeneratedCode } from "./commands/commandTuiStart.js"
 import { parseArguments } from "./parseArguments.js"
 import { resolveTuiConfig } from "./resolveTuiConfig.js"
 
@@ -48,6 +48,10 @@ switch (command?.action) {
     await commandTuiStart(config)
     break
   }
+  case "codegen": {
+    await updateGeneratedCode(config)
+    break
+  }
   case "run": {
     const result: TestResultExitCode = await commandRun()
     // important:
@@ -68,6 +72,7 @@ function showUsageAndExit() {
       //
       `Usage (pick one):`,
       `    tui start`,
+      `    tui codegen`,
       `    tui neovim exec '<ex-command>'`,
       `    tui neovim prepare`,
     ].join("\n")

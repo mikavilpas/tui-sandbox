@@ -146,7 +146,7 @@ export default defineConfig([
     },
   },
 
-  ...oxlint.configs["flat/recommended"], // oxlint should be the last one
+  ...oxlint.buildFromOxlintConfigFile("./.oxlintrc.json"),
   // should be the last item, https://github.com/prettier/eslint-config-prettier?tab=readme-ov-file#installation
   eslintConfigPrettier,
 ])

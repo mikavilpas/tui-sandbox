@@ -6,7 +6,7 @@ import { TestServer } from "./TestServer.js"
 import type { TestServerConfig } from "./updateTestdirectorySchemaFile.js"
 
 /** @private */
-// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+// oxlint-disable-next-line explicit-module-boundary-types
 export async function createAppRouter(config: TestServerConfig) {
   const appRouter = trpc.router({
     terminal: createTerminalRouter(config),

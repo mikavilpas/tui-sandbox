@@ -20,7 +20,7 @@ const startTerminalInputSchema = z.object({
 export type StartTerminalInput = z.infer<typeof startTerminalInputSchema>
 
 // let trpc infer the type as that is what it is designed to do
-// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+// oxlint-disable-next-line explicit-module-boundary-types
 export function createTerminalRouter(config: TestServerConfig) {
   const terminalRouter = trpc.router({
     onStdout: trpc.procedure.input(z.object({ client: tabIdSchema })).subscription(options => {

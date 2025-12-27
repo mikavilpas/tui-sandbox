@@ -1,5 +1,12 @@
 # Changelog
 
+## [12.2.0](https://github.com/mikavilpas/tui-sandbox/compare/library-v12.1.1...library-v12.2.0) (2025-12-27)
+
+
+### Features
+
+* add `tui codegen` command to update generated files ([#872](https://github.com/mikavilpas/tui-sandbox/issues/872)) ([164cefc](https://github.com/mikavilpas/tui-sandbox/commit/164cefc3ccd42d44215a49451301e1cc1e2aefc2))
+
 ## [12.1.1](https://github.com/mikavilpas/tui-sandbox/compare/library-v12.1.0...library-v12.1.1) (2025-12-25)
 
 

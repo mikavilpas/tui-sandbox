@@ -6,7 +6,7 @@ import { updateTestdirectorySchemaFile } from "../../server/updateTestdirectoryS
 import { cwd } from "../tui.js"
 
 export async function commandTuiStart(config: TestServerConfigMetadata): Promise<void> {
-  await Promise.allSettled([updateSchemaFile(config.config), createSupportFile()])
+  await updateGeneratedCode(config)
 
   try {
     console.log(`🚀 Starting test server in ${cwd} - this should be the root of your integration-tests directory 🤞🏻`)
@@ -14,6 +14,10 @@ export async function commandTuiStart(config: TestServerConfigMetadata): Promise
   } catch (e) {
     console.error("Failed to startTestServer", e)
   }
+}
+
+export async function updateGeneratedCode(config: TestServerConfigMetadata): Promise<void> {
+  await Promise.allSettled([updateSchemaFile(config.config), createSupportFile()])
 }
 
 async function updateSchemaFile(config: TestServerConfig): Promise<void> {

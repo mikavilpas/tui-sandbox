@@ -29,9 +29,15 @@ export const parseArguments = async (args: string[]): Promise<ParseArgumentsResu
     const schema = z.tuple([z.literal("start")])
     const result = schema.safeParse(args)
     if (result.success) {
-      return {
-        action: "start",
-      }
+      return { action: "start" }
+    }
+  }
+
+  {
+    const schema = z.tuple([z.literal("codegen")])
+    const result = schema.safeParse(args)
+    if (result.success) {
+      return { action: "codegen" }
     }
   }
 
@@ -39,14 +45,12 @@ export const parseArguments = async (args: string[]): Promise<ParseArgumentsResu
     const schema = z.tuple([z.literal("run")])
     const result = schema.safeParse(args)
     if (result.success) {
-      return {
-        action: "run",
-      }
+      return { action: "run" }
     }
   }
 }
 
-export type ParseArgumentsResult = NeovimPrepare | NeovimExec | TuiStart | TuiRunOnce
+export type ParseArgumentsResult = NeovimPrepare | NeovimExec | TuiStart | TuiCodegen | TuiRunOnce
 
 export type NeovimExec = {
   action: "neovim exec"
@@ -59,6 +63,10 @@ export type NeovimPrepare = {
 
 export type TuiStart = {
   action: "start"
+}
+
+export type TuiCodegen = {
+  action: "codegen"
 }
 
 export type TuiRunOnce = {

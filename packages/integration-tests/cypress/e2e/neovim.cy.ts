@@ -420,11 +420,6 @@ describe("nvim_isRunning", () => {
       // Verify clipboard starts empty
       nvim.clipboard.system().should("eql", "")
 
-      // Configure Neovim to use OSC52 for clipboard
-      //
-      // See `:help clipboard-osc52` in neovim for more information
-      nvim.runLuaCode({ luaCode: `vim.g.clipboard = 'osc52'` })
-
       // Yank some text to the clipboard using Neovim
       // First, select the word "see" and yank it to the + register
       cy.typeIntoTerminal("/see{enter}")

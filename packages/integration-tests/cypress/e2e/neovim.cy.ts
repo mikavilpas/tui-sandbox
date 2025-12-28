@@ -396,6 +396,22 @@ describe("neovim features", () => {
   })
 })
 
+it("can write long input in order and fast", () => {
+  cy.visit("/")
+  cy.startNeovim({ filename: "file.txt" }).then(nvim => {
+    cy.contains("Hello")
+    cy.typeIntoTerminal(`"_dd`)
+
+    const longText = "This is a long line of text that we will use to test fast input in Neovim. "
+
+    cy.typeIntoTerminal(`i${longText.repeat(20)}{esc}`, { delay: 0 })
+
+    nvim.runExCommand({ command: `%"+y` })
+    cy.typeIntoTerminal('V"+y')
+    nvim.clipboard.system().should("eql", `${longText.repeat(20)}\n`)
+  })
+})
+
 describe("nvim_isRunning", () => {
   it("can report whether nvim_isRunning", () => {
     cy.visit("/")

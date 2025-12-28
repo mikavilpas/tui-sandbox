@@ -3,6 +3,13 @@
   "automerge": true,
   "commitBodyTable": true,
   "extends": ["config:best-practices", "group:allNonMajor"],
+  "packageRules": [
+    {
+      "description": ["see https://github.com/mikavilpas/tui-sandbox/pull/875"],
+      "matchPackageNames": ["node-pty"],
+      "allowedVersions": "<1.1.0"
+    }
+  ],
   "customManagers": [
     {
       "description": ["lua file github-releases"],

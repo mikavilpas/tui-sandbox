@@ -40,6 +40,9 @@ vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 vim.o.swapfile = false
 
+-- use osc52 for clipboard
+vim.g.clipboard = "osc52"
+
 require("lazy").setup({
   ---@type LazySpec
   { "lewis6991/gitsigns.nvim", opts = {} },

@@ -38,6 +38,9 @@ vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 vim.o.swapfile = false
 
+-- use osc52 for clipboard
+vim.g.clipboard = "osc52"
+
 -- install the following plugins
 ---@type LazySpec
 local plugins = {

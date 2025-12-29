@@ -15,6 +15,7 @@ import type {
   StartNeovimGenericArguments,
   TestDirectory,
 } from "../server/types.js"
+import { BatchedAsyncQueue, type TerminalInputEvent } from "./BatchedAsyncQueue.js"
 import type { InMemoryClipboard } from "./clipboard.js"
 import { InMemoryClipboardProvider } from "./clipboard.js"
 import { getTabId, startTerminal } from "./startTerminal.js"
@@ -27,6 +28,7 @@ export class NeovimTerminalClient {
   private readonly terminal: Terminal
   private readonly trpc: ReturnType<typeof createTRPCClient<AppRouter>>
   public readonly clipboard: InMemoryClipboard
+  private readonly inputQueue: BatchedAsyncQueue<TerminalInputEvent>
 
   constructor(app: HTMLElement) {
     const trpc = createTRPCClient<AppRouter>({
@@ -47,6 +49,18 @@ export class NeovimTerminalClient {
     this.tabId = getTabId()
     const tabId = this.tabId
 
+    {
+      const controller = new AbortController()
+      window.addEventListener("pagehide", () => {
+        controller.abort()
+      })
+
+      this.inputQueue = new BatchedAsyncQueue<TerminalInputEvent>(async events => {
+        const keys = events.map(e => e.key).join("")
+        await trpc.neovim.sendStdin.mutate({ tabId: this.tabId, data: keys })
+      }, controller.signal)
+    }
+
     const clipboard = new InMemoryClipboardProvider()
     const terminal = startTerminal(app, {
       onMouseEvent(data: string) {
@@ -54,8 +68,8 @@ export class NeovimTerminalClient {
           console.error(`Error sending mouse event`, error)
         })
       },
-      onKeyPress(event) {
-        void trpc.neovim.sendStdin.mutate({ tabId, data: event.key })
+      onKeyPress: event => {
+        this.inputQueue.enqueue(event)
       },
       clipboard,
     })
@@ -100,6 +114,7 @@ export class NeovimTerminalClient {
       tabId: this.tabId,
     })
 
+    void this.inputQueue.startProcessing()
     return testDirectory
   }
 

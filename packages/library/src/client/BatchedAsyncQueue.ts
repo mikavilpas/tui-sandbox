@@ -1,4 +1,4 @@
-export type TerminalInputEvent = { key: string; domEvent: KeyboardEvent }
+export type TerminalInputEvent = string
 
 export class BatchedAsyncQueue<T> {
   /** The values currently in the queue. They will be processed in the next

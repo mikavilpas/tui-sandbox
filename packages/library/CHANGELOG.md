@@ -1,5 +1,12 @@
 # Changelog
 
+## [12.2.2](https://github.com/mikavilpas/tui-sandbox/compare/library-v12.2.1...library-v12.2.2) (2025-12-29)
+
+
+### Bug Fixes
+
+* crash on mac os after node-pty 1.1.0 update ([#879](https://github.com/mikavilpas/tui-sandbox/issues/879)) ([9bc1598](https://github.com/mikavilpas/tui-sandbox/commit/9bc15986e6749d714735b6cf0a9171419f6150dd))
+
 ## [12.2.1](https://github.com/mikavilpas/tui-sandbox/compare/library-v12.2.0...library-v12.2.1) (2025-12-28)
 
 

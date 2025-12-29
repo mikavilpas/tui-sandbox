@@ -55,21 +55,19 @@ export class NeovimTerminalClient {
         controller.abort()
       })
 
-      this.inputQueue = new BatchedAsyncQueue<TerminalInputEvent>(async events => {
-        const keys = events.map(e => e.key).join("")
+      this.inputQueue = new BatchedAsyncQueue<TerminalInputEvent>(async (events: string[]) => {
+        const keys = events.join("")
         await trpc.neovim.sendStdin.mutate({ tabId: this.tabId, data: keys })
       }, controller.signal)
     }
 
     const clipboard = new InMemoryClipboardProvider()
     const terminal = startTerminal(app, {
-      onMouseEvent(data: string) {
-        void trpc.neovim.sendStdin.mutate({ tabId, data }).catch((error: unknown) => {
-          console.error(`Error sending mouse event`, error)
-        })
+      onMouseEvent: (data: string) => {
+        this.inputQueue.enqueue(data)
       },
-      onKeyPress: event => {
-        this.inputQueue.enqueue(event)
+      onKeyPress: (event: { key: string; domEvent: KeyboardEvent }) => {
+        this.inputQueue.enqueue(event.key)
       },
       clipboard,
     })

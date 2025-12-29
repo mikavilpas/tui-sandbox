@@ -1,5 +1,12 @@
 # Changelog
 
+## [12.2.3](https://github.com/mikavilpas/tui-sandbox/compare/library-v12.2.2...library-v12.2.3) (2025-12-29)
+
+
+### Bug Fixes
+
+* neovim mouse events are processed in order ([ff3053d](https://github.com/mikavilpas/tui-sandbox/commit/ff3053d0b93cd1afdb531afb2c33991c965c678e))
+
 ## [12.2.2](https://github.com/mikavilpas/tui-sandbox/compare/library-v12.2.1...library-v12.2.2) (2025-12-29)
 
 

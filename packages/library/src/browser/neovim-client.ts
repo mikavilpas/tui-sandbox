@@ -1,10 +1,10 @@
 import type { Terminal } from "@xterm/xterm"
 import "@xterm/xterm/css/xterm.css"
 import type { InMemoryClipboard } from "../client/clipboard.js"
-import { NeovimTerminalClient } from "../client/neovim-terminal-client.js"
+import { NeovimTerminalClient } from "../client/neovim/neovim-terminal-client.js"
 import type { TuiTerminalApi } from "../client/startTerminal.js"
 import "../client/style.css"
-import { TerminalTerminalClient } from "../client/terminal-terminal-client.js"
+import { TerminalTerminalClient } from "../client/terminal/terminal-terminal-client.js"
 import type {
   ExCommandClientInput,
   LuaCodeClientInput,

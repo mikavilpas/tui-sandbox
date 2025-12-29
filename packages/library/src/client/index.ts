@@ -3,4 +3,4 @@
 export type { InMemoryClipboard } from "./clipboard.js"
 export { rgbify } from "./color-utilities.js"
 export { textIsVisibleWithBackgroundColor, textIsVisibleWithColor } from "./cypress-assertions.js"
-export type { MyNeovimConfigModification } from "./MyNeovimConfigModification.ts"
+export type { MyNeovimConfigModification } from "./neovim/MyNeovimConfigModification.ts"

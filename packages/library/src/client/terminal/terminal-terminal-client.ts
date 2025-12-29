@@ -4,6 +4,7 @@ import type { StartTerminalBrowserArguments } from "../../browser/neovim-client.
 import type { BlockingCommandClientInput } from "../../server/blockingCommandInputSchema.js"
 import type { AppRouter } from "../../server/server.js"
 import type { BlockingShellCommandOutput, ServerTestDirectory } from "../../server/types.js"
+import { BatchedAsyncQueue, type TerminalInputEvent } from "../BatchedAsyncQueue.js"
 import type { InMemoryClipboard } from "../clipboard.js"
 import { InMemoryClipboardProvider } from "../clipboard.js"
 import type { TuiTerminalApi } from "../startTerminal.js"
@@ -17,6 +18,7 @@ export class TerminalTerminalClient {
   private readonly tabId: { tabId: string }
   private readonly terminal: Terminal
   private readonly trpc: ReturnType<typeof createTRPCClient<AppRouter>>
+  private readonly inputQueue: BatchedAsyncQueue<TerminalInputEvent>
 
   public readonly clipboard: InMemoryClipboard
   public readonly terminalApi: TuiTerminalApi
@@ -40,15 +42,25 @@ export class TerminalTerminalClient {
     this.tabId = getTabId()
     const tabId = this.tabId
 
+    {
+      const controller = new AbortController()
+      window.addEventListener("pagehide", () => {
+        controller.abort()
+      })
+
+      this.inputQueue = new BatchedAsyncQueue<TerminalInputEvent>(async (events: string[]) => {
+        const keys = events.join("")
+        await trpc.terminal.sendStdin.mutate({ tabId: this.tabId, data: keys })
+      }, controller.signal)
+    }
+
     const clipboard = new InMemoryClipboardProvider()
     this.terminalApi = {
-      onMouseEvent(data: string) {
-        void trpc.terminal.sendStdin.mutate({ tabId, data }).catch((error: unknown) => {
-          console.error(`Error sending mouse event`, error)
-        })
+      onMouseEvent: (data: string) => {
+        this.inputQueue.enqueue(data)
       },
-      onKeyPress(event) {
-        void trpc.terminal.sendStdin.mutate({ tabId, data: event.key })
+      onKeyPress: (event: { key: string; domEvent: KeyboardEvent }) => {
+        this.inputQueue.enqueue(event.key)
       },
       clipboard,
     }
@@ -102,6 +114,7 @@ export class TerminalTerminalClient {
       },
     })
 
+    void this.inputQueue.startProcessing()
     return testDirectory
   }
 

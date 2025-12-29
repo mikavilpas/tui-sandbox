@@ -173,4 +173,17 @@ describe("TerminalTestApplication features", () => {
       })
     })
   })
+
+  it("can write long input in order and fast", () => {
+    cy.visit("/")
+    cy.startTerminalApplication({ commandToRun: ["bash"] }).then(() => {
+      cy.contains("myprompt")
+      const longText = "This is a long line of text that we will use to test fast input. "
+
+      cy.typeIntoTerminal(`echo '${longText.repeat(20)}' | wc -c{enter}`, { delay: 0 })
+
+      const expectedCharCount = longText.length * 20 + 1
+      cy.contains(expectedCharCount)
+    })
+  })
 })

@@ -5,20 +5,20 @@ import type {
   LuaCodeClientInput,
   PollLuaCodeClientInput,
   RunLuaFileClientInput,
-} from "../server/applications/neovim/neovimRouter.js"
-import type { BlockingCommandClientInput } from "../server/blockingCommandInputSchema.js"
-import type { AppRouter } from "../server/server.js"
+} from "../..//server/applications/neovim/neovimRouter.js"
+import type { AppRouter } from "../..//server/server.js"
 import type {
   BlockingShellCommandOutput,
   RunExCommandOutput,
   RunLuaCodeOutput,
   StartNeovimGenericArguments,
   TestDirectory,
-} from "../server/types.js"
-import { BatchedAsyncQueue, type TerminalInputEvent } from "./BatchedAsyncQueue.js"
-import type { InMemoryClipboard } from "./clipboard.js"
-import { InMemoryClipboardProvider } from "./clipboard.js"
-import { getTabId, startTerminal } from "./startTerminal.js"
+} from "../..//server/types.js"
+import type { BlockingCommandClientInput } from "../../server/blockingCommandInputSchema.js"
+import { BatchedAsyncQueue, type TerminalInputEvent } from "../BatchedAsyncQueue.js"
+import type { InMemoryClipboard } from "../clipboard.js"
+import { InMemoryClipboardProvider } from "../clipboard.js"
+import { getTabId, startTerminal } from "../startTerminal.js"
 
 /** Manages the terminal state in the browser as well as the (browser's)
  * connection to the server side terminal application api. */

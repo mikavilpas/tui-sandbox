@@ -15,6 +15,7 @@ import type {
   TestDirectory,
 } from "../..//server/types.js"
 import type { BlockingCommandClientInput } from "../../server/blockingCommandInputSchema.js"
+import type { TabId } from "../../server/utilities/tabId.js"
 import { BatchedAsyncQueue, type TerminalInputEvent } from "../BatchedAsyncQueue.js"
 import type { InMemoryClipboard } from "../clipboard.js"
 import { InMemoryClipboardProvider } from "../clipboard.js"
@@ -24,7 +25,7 @@ import { getTabId, startTerminal } from "../startTerminal.js"
  * connection to the server side terminal application api. */
 export class NeovimTerminalClient {
   public constructor(
-    private readonly tabId: { tabId: string },
+    private readonly tabId: TabId,
     private readonly terminal: Terminal,
     private readonly trpc: ReturnType<typeof createTRPCClient<AppRouter>>,
     public readonly clipboard: InMemoryClipboard,

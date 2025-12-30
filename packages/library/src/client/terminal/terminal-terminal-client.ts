@@ -14,16 +14,16 @@ import { supportDA1 } from "./terminal-config.js"
 /** Manages the terminal state in the browser as well as the (browser's)
  * connection to the server side terminal application api. */
 export class TerminalTerminalClient {
-  private readonly ready: Promise<void>
-  private readonly tabId: { tabId: string }
-  private readonly terminal: Terminal
-  private readonly trpc: ReturnType<typeof createTRPCClient<AppRouter>>
-  private readonly inputQueue: BatchedAsyncQueue<TerminalInputEvent>
+  public constructor(
+    private readonly tabId: { tabId: string },
+    private readonly terminal: Terminal,
+    private readonly trpc: ReturnType<typeof createTRPCClient<AppRouter>>,
+    private readonly inputQueue: BatchedAsyncQueue<TerminalInputEvent>,
+    public readonly clipboard: InMemoryClipboard,
+    public readonly terminalApi: TuiTerminalApi
+  ) {}
 
-  public readonly clipboard: InMemoryClipboard
-  public readonly terminalApi: TuiTerminalApi
-
-  constructor(app: HTMLElement) {
+  static async create(app: HTMLElement): Promise<TerminalTerminalClient> {
     const trpc = createTRPCClient<AppRouter>({
       links: [
         splitLink({
@@ -37,39 +37,34 @@ export class TerminalTerminalClient {
         }),
       ],
     })
-    this.trpc = trpc
 
-    this.tabId = getTabId()
-    const tabId = this.tabId
+    const tabId = getTabId()
 
-    {
-      const controller = new AbortController()
-      window.addEventListener("pagehide", () => {
-        controller.abort()
-      })
+    const controller = new AbortController()
+    window.addEventListener("pagehide", () => {
+      controller.abort()
+    })
 
-      this.inputQueue = new BatchedAsyncQueue<TerminalInputEvent>(async (events: string[]) => {
-        const keys = events.join("")
-        await trpc.terminal.sendStdin.mutate({ tabId: this.tabId, data: keys })
-      }, controller.signal)
-    }
+    const inputQueue = new BatchedAsyncQueue<TerminalInputEvent>(async (events: string[]) => {
+      const keys = events.join("")
+      await trpc.terminal.sendStdin.mutate({ tabId, data: keys })
+    }, controller.signal)
 
     const clipboard = new InMemoryClipboardProvider()
-    this.terminalApi = {
+    const terminalApi = {
       onMouseEvent: (data: string) => {
-        this.inputQueue.enqueue(data)
+        inputQueue.enqueue(data)
       },
       onKeyPress: (event: { key: string; domEvent: KeyboardEvent }) => {
-        this.inputQueue.enqueue(event.key)
+        inputQueue.enqueue(event.key)
       },
       clipboard,
     }
-    this.clipboard = clipboard
-    this.terminal = startTerminal(app, this.terminalApi)
+    const terminal = startTerminal(app, terminalApi)
 
     // start listening to stdout - this will take some (short) amount of time
     // to complete
-    this.ready = new Promise<void>(resolve => {
+    await new Promise<void>(resolve => {
       console.log("Subscribing to stdout")
       trpc.terminal.onStdout.subscribe(
         { client: tabId },
@@ -78,7 +73,7 @@ export class TerminalTerminalClient {
             resolve()
           },
           onData: (data: string) => {
-            this.terminal.write(data)
+            terminal.write(data)
           },
           onError(err: unknown) {
             console.error(`Error from the application`, err)
@@ -86,11 +81,11 @@ export class TerminalTerminalClient {
         }
       )
     })
+
+    return new TerminalTerminalClient(tabId, terminal, trpc, inputQueue, clipboard, terminalApi)
   }
 
   public async startTerminalApplication(args: StartTerminalBrowserArguments): Promise<ServerTestDirectory> {
-    await this.ready
-
     args.browserSettings.configureTerminal?.({
       terminal: this.terminal,
       api: this.terminalApi,
@@ -118,7 +113,6 @@ export class TerminalTerminalClient {
   }
 
   public async runBlockingShellCommand(input: BlockingCommandClientInput): Promise<BlockingShellCommandOutput> {
-    await this.ready
     return this.trpc.terminal.runBlockingShellCommand.mutate({ ...input, tabId: this.tabId })
   }
 }

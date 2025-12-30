@@ -29,8 +29,8 @@ if (!app) {
 }
 
 // limitation: right now only one client can be used in the same test
-const neovimClient = new Lazy(() => new NeovimTerminalClient(app))
-const terminalClient = new Lazy(() => new TerminalTerminalClient(app))
+const neovimClient = new Lazy(() => NeovimTerminalClient.create(app))
+const terminalClient = new Lazy(() => TerminalTerminalClient.create(app))
 
 export type GenericNeovimBrowserApi = {
   runBlockingShellCommand(input: BlockingCommandClientInput): Promise<BlockingShellCommandOutput>
@@ -44,7 +44,7 @@ export type GenericNeovimBrowserApi = {
 
 /** Entrypoint for the test runner (cypress) */
 window.startNeovim = async function (startArgs?: StartNeovimGenericArguments): Promise<GenericNeovimBrowserApi> {
-  const neovim = neovimClient.get()
+  const neovim = await neovimClient.get()
   const testDirectory = await neovim.startNeovim({
     additionalEnvironmentVariables: startArgs?.additionalEnvironmentVariables,
     filename: startArgs?.filename ?? "initial-file.txt",
@@ -119,7 +119,7 @@ export type StartTerminalBrowserArguments = {
 window.startTerminalApplication = async function (
   args: StartTerminalBrowserArguments
 ): Promise<GenericTerminalBrowserApi> {
-  const terminal = terminalClient.get()
+  const terminal = await terminalClient.get()
   const testDirectory = await terminal.startTerminalApplication(args)
 
   const terminalBrowserApi: GenericTerminalBrowserApi = {

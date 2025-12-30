@@ -65,8 +65,7 @@ export class TerminalTerminalClient {
       clipboard,
     }
     this.clipboard = clipboard
-    const terminal = startTerminal(app, this.terminalApi)
-    this.terminal = terminal
+    this.terminal = startTerminal(app, this.terminalApi)
 
     // start listening to stdout - this will take some (short) amount of time
     // to complete
@@ -78,8 +77,8 @@ export class TerminalTerminalClient {
           onStarted() {
             resolve()
           },
-          onData(data: string) {
-            terminal.write(data)
+          onData: (data: string) => {
+            this.terminal.write(data)
           },
           onError(err: unknown) {
             console.error(`Error from the application`, err)

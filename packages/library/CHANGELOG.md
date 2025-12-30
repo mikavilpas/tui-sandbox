@@ -1,5 +1,12 @@
 # Changelog
 
+## [12.2.4](https://github.com/mikavilpas/tui-sandbox/compare/library-v12.2.3...library-v12.2.4) (2025-12-30)
+
+
+### Bug Fixes
+
+* terminal keyboard and mouse events are reliably sent in order ([#885](https://github.com/mikavilpas/tui-sandbox/issues/885)) ([c584857](https://github.com/mikavilpas/tui-sandbox/commit/c58485735b9f775aacab2afc65b20499a48c269c))
+
 ## [12.2.3](https://github.com/mikavilpas/tui-sandbox/compare/library-v12.2.2...library-v12.2.3) (2025-12-29)
 
 

@@ -4,6 +4,7 @@ import type { StartTerminalBrowserArguments } from "../../browser/neovim-client.
 import type { BlockingCommandClientInput } from "../../server/blockingCommandInputSchema.js"
 import type { AppRouter } from "../../server/server.js"
 import type { BlockingShellCommandOutput, ServerTestDirectory } from "../../server/types.js"
+import type { TabId } from "../../server/utilities/tabId.js"
 import { BatchedAsyncQueue, type TerminalInputEvent } from "../BatchedAsyncQueue.js"
 import type { InMemoryClipboard } from "../clipboard.js"
 import { InMemoryClipboardProvider } from "../clipboard.js"
@@ -15,7 +16,7 @@ import { supportDA1 } from "./terminal-config.js"
  * connection to the server side terminal application api. */
 export class TerminalTerminalClient {
   public constructor(
-    private readonly tabId: { tabId: string },
+    private readonly tabId: TabId,
     private readonly terminal: Terminal,
     private readonly trpc: ReturnType<typeof createTRPCClient<AppRouter>>,
     private readonly inputQueue: BatchedAsyncQueue<TerminalInputEvent>,

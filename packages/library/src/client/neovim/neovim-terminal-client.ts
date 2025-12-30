@@ -62,7 +62,7 @@ export class NeovimTerminalClient {
     }
 
     const clipboard = new InMemoryClipboardProvider()
-    const terminal = startTerminal(app, {
+    this.terminal = startTerminal(app, {
       onMouseEvent: (data: string) => {
         this.inputQueue.enqueue(data)
       },
@@ -72,7 +72,6 @@ export class NeovimTerminalClient {
       clipboard,
     })
     this.clipboard = clipboard
-    this.terminal = terminal
 
     // start listening to Neovim stdout - this will take some (short) amount of
     // time to complete
@@ -84,8 +83,8 @@ export class NeovimTerminalClient {
           onStarted() {
             resolve()
           },
-          onData(data: string) {
-            terminal.write(data)
+          onData: (data: string) => {
+            this.terminal.write(data)
           },
           onError(err: unknown) {
             console.error(`Error from the application`, err)

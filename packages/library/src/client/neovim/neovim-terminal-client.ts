@@ -15,11 +15,12 @@ import type {
   TestDirectory,
 } from "../..//server/types.js"
 import type { BlockingCommandClientInput } from "../../server/blockingCommandInputSchema.js"
+import { Lazy } from "../../server/utilities/Lazy.js"
 import type { TabId } from "../../server/utilities/tabId.js"
 import { BatchedAsyncQueue, type TerminalInputEvent } from "../BatchedAsyncQueue.js"
 import type { InMemoryClipboard } from "../clipboard.js"
 import { InMemoryClipboardProvider } from "../clipboard.js"
-import { getTabId, startTerminal } from "../startTerminal.js"
+import { getTabId, startTerminal, type TuiTerminalApi } from "../startTerminal.js"
 
 /** Manages the terminal state in the browser as well as the (browser's)
  * connection to the server side terminal application api. */
@@ -29,7 +30,8 @@ export class NeovimTerminalClient {
     private readonly terminal: Terminal,
     private readonly trpc: ReturnType<typeof createTRPCClient<AppRouter>>,
     public readonly clipboard: InMemoryClipboard,
-    private readonly inputQueue: BatchedAsyncQueue<TerminalInputEvent>
+    private readonly inputQueue: BatchedAsyncQueue<TerminalInputEvent>,
+    public readonly terminalApi: TuiTerminalApi
   ) {}
 
   static async create(app: HTMLElement): Promise<NeovimTerminalClient> {
@@ -56,7 +58,7 @@ export class NeovimTerminalClient {
     }, controller.signal)
 
     const clipboard = new InMemoryClipboardProvider()
-    const terminal = startTerminal(app, {
+    const terminalApi: TuiTerminalApi = {
       onMouseEvent: (data: string) => {
         inputQueue.enqueue(data)
       },
@@ -64,7 +66,9 @@ export class NeovimTerminalClient {
         inputQueue.enqueue(event.key)
       },
       clipboard,
-    })
+      title: new Lazy(() => "title not set yet"),
+    }
+    const terminal = startTerminal(app, terminalApi)
 
     // start listening to Neovim stdout - this will take some (short) amount of
     // time to complete
@@ -86,7 +90,7 @@ export class NeovimTerminalClient {
       )
     })
 
-    return new NeovimTerminalClient(tabId, terminal, trpc, clipboard, inputQueue)
+    return new NeovimTerminalClient(tabId, terminal, trpc, clipboard, inputQueue, terminalApi)
   }
 
   public async startNeovim(args: StartNeovimGenericArguments): Promise<TestDirectory> {

@@ -54,6 +54,7 @@ export const MyTestDirectorySchema = z.object({
           name: z.literal("don't_crash_when_modification_contains_unescaped_characters\".lua"),
           type: z.literal("file"),
         }),
+        "set_terminal_title.lua": z.object({ name: z.literal("set_terminal_title.lua"), type: z.literal("file") }),
         subdir: z.object({
           name: z.literal("subdir/"),
           type: z.literal("directory"),
@@ -150,6 +151,7 @@ export const testDirectoryFiles = z.enum([
   "config-modifications/add_command_to_count_open_buffers.lua",
   "config-modifications/add_command_to_update_buffer_after_timeout.lua",
   "config-modifications/don't_crash_when_modification_contains_unescaped_characters\".lua",
+  "config-modifications/set_terminal_title.lua",
   "config-modifications/subdir/subdir-modification.lua",
   "config-modifications/subdir",
   "config-modifications",

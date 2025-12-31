@@ -453,6 +453,17 @@ describe("nvim_isRunning", () => {
     })
   })
 
+  it("can read the current terminal title after it's been changed", () => {
+    cy.visit("/")
+    cy.startNeovim().then(nvim => {
+      cy.contains("If you see this text, Neovim is ready!")
+      nvim.title.current().should("eql", "title not set yet")
+
+      nvim.doFile({ luaFile: "config-modifications/set_terminal_title.lua" })
+      nvim.title.current().should("eql", "Neovim Integration Test Environment")
+    })
+  })
+
   // test some types and make sure they are as expected
 
   // oxlint-disable-next-line no-constant-condition

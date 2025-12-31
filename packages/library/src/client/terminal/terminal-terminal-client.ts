@@ -4,6 +4,7 @@ import type { StartTerminalBrowserArguments } from "../../browser/neovim-client.
 import type { BlockingCommandClientInput } from "../../server/blockingCommandInputSchema.js"
 import type { AppRouter } from "../../server/server.js"
 import type { BlockingShellCommandOutput, ServerTestDirectory } from "../../server/types.js"
+import { Lazy } from "../../server/utilities/Lazy.js"
 import type { TabId } from "../../server/utilities/tabId.js"
 import { BatchedAsyncQueue, type TerminalInputEvent } from "../BatchedAsyncQueue.js"
 import { InMemoryClipboardProvider } from "../clipboard.js"
@@ -50,7 +51,7 @@ export class TerminalTerminalClient {
     }, controller.signal)
 
     const clipboard = new InMemoryClipboardProvider()
-    const terminalApi = {
+    const terminalApi: TuiTerminalApi = {
       onMouseEvent: (data: string) => {
         inputQueue.enqueue(data)
       },
@@ -58,6 +59,7 @@ export class TerminalTerminalClient {
         inputQueue.enqueue(event.key)
       },
       clipboard,
+      title: new Lazy(() => "title not set yet"),
     }
     const terminal = startTerminal(app, terminalApi)
 

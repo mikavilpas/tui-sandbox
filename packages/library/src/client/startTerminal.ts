@@ -4,6 +4,7 @@ import { FitAddon } from "@xterm/addon-fit"
 import { Unicode11Addon } from "@xterm/addon-unicode11"
 import { Terminal } from "@xterm/xterm"
 import * as z from "zod"
+import type { Lazy } from "../server/index.js"
 import type { TabId } from "../server/utilities/tabId.ts"
 import type { InMemoryClipboardProvider } from "./clipboard.js"
 import { validateMouseEvent } from "./validateMouseEvent.js"
@@ -12,6 +13,7 @@ export type TuiTerminalApi = {
   onMouseEvent: (data: string) => void
   onKeyPress: (event: { key: string; domEvent: KeyboardEvent }) => void
   clipboard: InMemoryClipboardProvider
+  title: Lazy<string>
 }
 export function startTerminal(app: HTMLElement, api: TuiTerminalApi): Terminal {
   const terminal = new Terminal({
@@ -19,6 +21,10 @@ export function startTerminal(app: HTMLElement, api: TuiTerminalApi): Terminal {
     cursorBlink: false,
     convertEol: true,
     fontSize: 13,
+  })
+
+  terminal.onTitleChange(title => {
+    api.title.set(title)
   })
 
   const colors = flavors.macchiato.colors

@@ -40,6 +40,7 @@ export type GenericNeovimBrowserApi = {
   runExCommand(input: ExCommandClientInput): Promise<RunExCommandOutput>
   dir: TestDirectory
   clipboard: InMemoryClipboard
+  title: Lazy<string>
 }
 
 /** Entrypoint for the test runner (cypress) */
@@ -71,6 +72,7 @@ window.startNeovim = async function (startArgs?: StartNeovimGenericArguments): P
     },
     dir: testDirectory,
     clipboard: neovim.clipboard,
+    title: neovim.terminalApi.title,
   }
 
   return neovimBrowserApi
@@ -87,6 +89,7 @@ export type GenericTerminalBrowserApi = {
   dir: TestDirectory
   runBlockingShellCommand(input: BlockingCommandClientInput): Promise<BlockingShellCommandOutput>
   clipboard: InMemoryClipboard
+  title: Lazy<string>
 }
 
 export type BrowserTerminalSettings = {
@@ -128,6 +131,7 @@ window.startTerminalApplication = async function (
       return terminal.runBlockingShellCommand(input)
     },
     clipboard: terminal.terminalApi.clipboard,
+    title: terminal.terminalApi.title,
   }
   return terminalBrowserApi
 }

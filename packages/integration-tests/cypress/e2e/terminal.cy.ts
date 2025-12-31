@@ -186,4 +186,18 @@ describe("TerminalTestApplication features", () => {
       cy.contains(expectedCharCount)
     })
   })
+
+  it("can read the current terminal title after it's been changed", () => {
+    cy.visit("/")
+    cy.startTerminalApplication({ commandToRun: ["bash"] }).then(term => {
+      term.title.current().should("eql", "title not set yet")
+
+      cy.contains("myprompt")
+      // set the terminal title
+      const newTitle = "My New Terminal Title"
+      cy.typeIntoTerminal(`echo -ne "\\033]0;${newTitle}\\007"{enter}`)
+
+      term.title.current().should("eql", newTitle)
+    })
+  })
 })

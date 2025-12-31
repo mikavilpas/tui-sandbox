@@ -6,7 +6,6 @@ import type { AppRouter } from "../../server/server.js"
 import type { BlockingShellCommandOutput, ServerTestDirectory } from "../../server/types.js"
 import type { TabId } from "../../server/utilities/tabId.js"
 import { BatchedAsyncQueue, type TerminalInputEvent } from "../BatchedAsyncQueue.js"
-import type { InMemoryClipboard } from "../clipboard.js"
 import { InMemoryClipboardProvider } from "../clipboard.js"
 import type { TuiTerminalApi } from "../startTerminal.js"
 import { getTabId, startTerminal } from "../startTerminal.js"
@@ -20,7 +19,6 @@ export class TerminalTerminalClient {
     private readonly terminal: Terminal,
     private readonly trpc: ReturnType<typeof createTRPCClient<AppRouter>>,
     private readonly inputQueue: BatchedAsyncQueue<TerminalInputEvent>,
-    public readonly clipboard: InMemoryClipboard,
     public readonly terminalApi: TuiTerminalApi
   ) {}
 
@@ -83,7 +81,7 @@ export class TerminalTerminalClient {
       )
     })
 
-    return new TerminalTerminalClient(tabId, terminal, trpc, inputQueue, clipboard, terminalApi)
+    return new TerminalTerminalClient(tabId, terminal, trpc, inputQueue, terminalApi)
   }
 
   public async startTerminalApplication(args: StartTerminalBrowserArguments): Promise<ServerTestDirectory> {

@@ -127,7 +127,7 @@ window.startTerminalApplication = async function (
     runBlockingShellCommand(input) {
       return terminal.runBlockingShellCommand(input)
     },
-    clipboard: terminal.clipboard,
+    clipboard: terminal.terminalApi.clipboard,
   }
   return terminalBrowserApi
 }

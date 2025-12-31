@@ -1,5 +1,12 @@
 # Changelog
 
+## [12.3.0](https://github.com/mikavilpas/tui-sandbox/compare/library-v12.2.4...library-v12.3.0) (2025-12-31)
+
+
+### Features
+
+* make assertions against the current terminal title ([#890](https://github.com/mikavilpas/tui-sandbox/issues/890)) ([d824594](https://github.com/mikavilpas/tui-sandbox/commit/d8245941da4d6b9cb2391a6a265304b178ba6940))
+
 ## [12.2.4](https://github.com/mikavilpas/tui-sandbox/compare/library-v12.2.3...library-v12.2.4) (2025-12-30)
 
 

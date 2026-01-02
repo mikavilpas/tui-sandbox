@@ -9,7 +9,7 @@
     "dev": "pnpm --filter integration-tests dev",
     "preinstall": "npx only-allow pnpm",
     "lint": "pnpx oxlint --type-aware --deny-warnings && eslint --max-warnings=0 .",
-    "markdownlint": "markdownlint-cli2 README.md",
+    "markdownlint": "rumdl check",
     "prettier": "prettier --check .",
     "test": "vitest run",
     "tui": "pnpm --filter=library build && pnpm --filter integration-tests exec tui"
@@ -24,7 +24,6 @@
     "eslint-plugin-import-zod": "1.2.1",
     "eslint-plugin-no-only-tests": "3.3.0",
     "eslint-plugin-oxlint": "1.36.0",
-    "markdownlint-cli2": "0.20.0",
     "oxlint": "1.36.0",
     "oxlint-tsgolint": "0.10.0",
     "prettier": "3.7.4",

@@ -50,7 +50,7 @@ export default defineConfig([
     },
 
     rules: {
-      "@typescript-eslint/no-unnecessary-condition": "off",
+      "@typescript-eslint/no-unnecessary-condition": ["warn", { allowConstantLoopConditions: true }],
       "no-only-tests/no-only-tests": "warn",
       "@typescript-eslint/require-await": "off",
       "object-shorthand": "warn",

@@ -464,17 +464,15 @@ describe("nvim_isRunning", () => {
     })
   })
 
-  // test some types and make sure they are as expected
-
-  // oxlint-disable-next-line no-constant-condition
-  if (false) {
+  // test some types and make sure they are as expected. does not need to be run
+  it.skip("type checks for NVIM_APPNAME", () => {
     cy.startNeovim({ NVIM_APPNAME: "nvim" satisfies MyNeovimAppName })
     cy.startNeovim({ NVIM_APPNAME: "nvim_alt" satisfies MyNeovimAppName })
     cy.startNeovim({
       // @ts-expect-error this NVIM_APPNAME is not configured, should be a type error
       NVIM_APPNAME: "doesnotexist",
     })
-  }
+  })
 })
 
 {

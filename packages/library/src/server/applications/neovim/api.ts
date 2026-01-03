@@ -205,6 +205,7 @@ export async function waitForLuaCode(
 
   const maxIterations = 100
   for (let iteration = 1; iteration <= maxIterations; iteration++) {
+    // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition -- modified by AbortSignal
     if (!running) {
       reportFailure()
       throw new Error(`Polling Lua code: '${options.luaAssertion}' was aborted after ${iteration} iterations`)

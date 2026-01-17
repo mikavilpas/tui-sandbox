@@ -69,7 +69,7 @@
     "@types/node": "24.10.8",
     "cypress": "15.9.0",
     "nodemon": "3.1.11",
-    "type-fest": "5.4.0",
+    "type-fest": "5.4.1",
     "vite": "8.0.0-beta.7",
     "vitest": "4.0.17"
   },

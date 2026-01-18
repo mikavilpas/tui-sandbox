@@ -26,7 +26,7 @@
     "eslint-plugin-oxlint": "1.39.0",
     "oxlint": "1.39.0",
     "oxlint-tsgolint": "0.11.0",
-    "prettier": "3.7.4",
+    "prettier": "3.8.0",
     "prettier-plugin-organize-imports": "4.3.0",
     "prettier-plugin-packagejson": "2.5.21",
     "tsx": "4.21.0",

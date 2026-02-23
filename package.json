@@ -17,7 +17,7 @@
   "devDependencies": {
     "@umbrelladocs/linkspector": "0.4.7",
     "cypress": "15.10.0",
-    "eslint": "10.0.0",
+    "eslint": "10.0.1",
     "eslint-config-prettier": "10.1.8",
     "eslint-import-resolver-typescript": "4.4.4",
     "eslint-plugin-import-x": "4.16.1",
@@ -25,7 +25,7 @@
     "eslint-plugin-no-only-tests": "3.3.0",
     "eslint-plugin-oxlint": "1.49.0",
     "oxlint": "1.49.0",
-    "oxlint-tsgolint": "0.14.1",
+    "oxlint-tsgolint": "0.14.2",
     "prettier": "3.8.1",
     "prettier-plugin-organize-imports": "4.3.0",
     "prettier-plugin-packagejson": "3.0.0",

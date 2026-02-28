@@ -16,7 +16,7 @@
   },
   "devDependencies": {
     "@umbrelladocs/linkspector": "0.4.7",
-    "cypress": "15.10.0",
+    "cypress": "15.11.0",
     "eslint": "10.0.2",
     "eslint-config-prettier": "10.1.8",
     "eslint-import-resolver-typescript": "4.4.4",

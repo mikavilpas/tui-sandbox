@@ -1,5 +1,19 @@
 # Changelog
 
+## [12.3.1](https://github.com/mikavilpas/tui-sandbox/compare/library-v12.3.0...library-v12.3.1) (2026-03-01)
+
+
+### Bug Fixes
+
+* **deps:** update all non-major dependencies ([#899](https://github.com/mikavilpas/tui-sandbox/issues/899)) ([2eb89f4](https://github.com/mikavilpas/tui-sandbox/commit/2eb89f4ca378d69c074fd00b9985aeba31e17385))
+* **deps:** update all non-major dependencies ([#936](https://github.com/mikavilpas/tui-sandbox/issues/936)) ([8f34a91](https://github.com/mikavilpas/tui-sandbox/commit/8f34a9100b223b68bf42fa277c03d728dd7a8f74))
+* **deps:** update all non-major dependencies ([#945](https://github.com/mikavilpas/tui-sandbox/issues/945)) ([10dfaf0](https://github.com/mikavilpas/tui-sandbox/commit/10dfaf057fba273cd783f905fd6eb627a2b4e68b))
+* **deps:** update all non-major dependencies to v11.10.0 ([#966](https://github.com/mikavilpas/tui-sandbox/issues/966)) ([85d2c56](https://github.com/mikavilpas/tui-sandbox/commit/85d2c5699b7102644494f642003c5c60f3853063))
+* **deps:** update dependency cors to v2.8.6 ([#935](https://github.com/mikavilpas/tui-sandbox/issues/935)) ([bc5767a](https://github.com/mikavilpas/tui-sandbox/commit/bc5767a8afb73abef72d849dc6bafb78548ffb1d))
+* **deps:** update dependency prettier to v3.8.0 ([#920](https://github.com/mikavilpas/tui-sandbox/issues/920)) ([716a023](https://github.com/mikavilpas/tui-sandbox/commit/716a0237c28b17b056cd53a37f04acab8f0408f8))
+* **deps:** update dependency prettier to v3.8.1 ([#933](https://github.com/mikavilpas/tui-sandbox/issues/933)) ([35e99f9](https://github.com/mikavilpas/tui-sandbox/commit/35e99f91c6305086a82543c70a0969dceaaa84ff))
+* **deps:** update dependency zod to v4.3.5 ([#901](https://github.com/mikavilpas/tui-sandbox/issues/901)) ([1fa875d](https://github.com/mikavilpas/tui-sandbox/commit/1fa875dd30e38244b503112fff38575762d5496e))
+
 ## [12.3.0](https://github.com/mikavilpas/tui-sandbox/compare/library-v12.2.4...library-v12.3.0) (2025-12-31)
 
 

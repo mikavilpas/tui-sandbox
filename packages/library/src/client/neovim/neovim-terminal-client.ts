@@ -21,6 +21,7 @@ import { BatchedAsyncQueue, type TerminalInputEvent } from "../BatchedAsyncQueue
 import type { InMemoryClipboard } from "../clipboard.js"
 import { InMemoryClipboardProvider } from "../clipboard.js"
 import { getTabId, startTerminal, type TuiTerminalApi } from "../startTerminal.js"
+import { supportDSR } from "../terminal/terminal-config.js"
 
 /** Manages the terminal state in the browser as well as the (browser's)
  * connection to the server side terminal application api. */
@@ -69,6 +70,10 @@ export class NeovimTerminalClient {
       title: new Lazy(() => "title not set yet"),
     }
     const terminal = startTerminal(app, terminalApi)
+
+    // Neovim sends a DSR query during startup to detect terminal capabilities.
+    // Without a response, it waits 100ms and warns about slower startup.
+    supportDSR(terminal, terminalApi)
 
     // start listening to Neovim stdout - this will take some (short) amount of
     // time to complete

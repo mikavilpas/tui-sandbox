@@ -245,6 +245,7 @@ describe("neovim features", () => {
   it("can poll until a lua expression passes", () => {
     cy.visit("/")
     cy.startNeovim({ startupScriptModifications: ["add_command_to_update_buffer_after_timeout.lua"] }).then(nvim => {
+      cy.contains("initial")
       // Set an initial buffer line
       nvim.runLuaCode({
         luaCode: `vim.api.nvim_buf_set_lines(0, 0, -1, false, {'initial'})`,
@@ -268,6 +269,7 @@ describe("neovim features", () => {
   it("does not show duplicated errors if the polling fails", () => {
     cy.visit("/")
     cy.startNeovim().then(nvim => {
+      cy.contains("initial")
       Cypress.on("fail", () => {
         // we expect this error to be able to inspect what the error looks like -
         // hide it so that the rest of the e2e tests can run

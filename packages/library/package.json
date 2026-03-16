@@ -70,8 +70,8 @@
     "cypress": "15.11.0",
     "nodemon": "3.1.14",
     "type-fest": "5.4.4",
-    "vite": "8.0.0-beta.18",
-    "vitest": "4.0.18"
+    "vite": "8.0.0",
+    "vitest": "4.1.0"
   },
   "peerDependencies": {
     "cypress": "^13 || ^14 || ^15",

@@ -63,7 +63,7 @@ describe("DisposableSingleApplication", () => {
       const app = new TestDisposableSingleApplication()
       await app.startNextAndKillCurrent(async () => fakeApp)
       fakeApp.untilExit = Promise.reject(new Error("fake error"))
-      await expect(app.untilExit()).rejects.toThrowError(new Error("fake error"))
+      await expect(app.untilExit()).rejects.toThrow(new Error("fake error"))
     })
   })
 

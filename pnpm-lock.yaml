@@ -93,8 +93,8 @@ importers:
         specifier: 3.1.14
         version: 3.1.14
       type-fest:
-        specifier: 5.4.4
-        version: 5.4.4
+        specifier: 5.5.0
+        version: 5.5.0
 
   packages/library:
     dependencies:
@@ -178,8 +178,8 @@ importers:
         specifier: 3.1.14
         version: 3.1.14
       type-fest:
-        specifier: 5.4.4
-        version: 5.4.4
+        specifier: 5.5.0
+        version: 5.5.0
       vite:
         specifier: 8.0.1
         version: 8.0.1(@types/node@24.12.0)(esbuild@0.27.4)(tsx@4.21.0)
@@ -3267,8 +3267,8 @@ packages:
     resolution: {integrity: sha512-4dbzIzqvjtgiM5rw1k5rEHtBANKmdudhGyBEajN01fEyhaAIhsoKNy6y7+IN93IfpFtwY9iqi7kD+xwKhQsNJA==}
     engines: {node: '>=8'}
 
-  type-fest@5.4.4:
-    resolution: {integrity: sha512-JnTrzGu+zPV3aXIUhnyWJj4z/wigMsdYajGLIYakqyOW1nPllzXEJee0QQbHj+CTIQtXGlAjuK0UY+2xTyjVAw==}
+  type-fest@5.5.0:
+    resolution: {integrity: sha512-PlBfpQwiUvGViBNX84Yxwjsdhd1TUlXr6zjX7eoirtCPIr08NAmxwa+fcYBTeRQxHo9YC9wwF3m9i700sHma8g==}
     engines: {node: '>=20'}
 
   type-is@2.0.1:
@@ -6897,7 +6897,7 @@ snapshots:
 
   type-fest@0.8.1: {}
 
-  type-fest@5.4.4:
+  type-fest@5.5.0:
     dependencies:
       tagged-tag: 1.0.0
 

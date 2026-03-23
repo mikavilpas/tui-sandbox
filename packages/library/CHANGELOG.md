@@ -1,5 +1,14 @@
 # Changelog
 
+## [12.3.3](https://github.com/mikavilpas/tui-sandbox/compare/library-v12.3.2...library-v12.3.3) (2026-03-23)
+
+
+### Bug Fixes
+
+* **deps:** update all non-major dependencies ([#1034](https://github.com/mikavilpas/tui-sandbox/issues/1034)) ([3c4e96a](https://github.com/mikavilpas/tui-sandbox/commit/3c4e96a04a8cc677a184de6d82038dac28402449))
+* **deps:** update all non-major dependencies to v11.13.0 ([#1031](https://github.com/mikavilpas/tui-sandbox/issues/1031)) ([69d8de9](https://github.com/mikavilpas/tui-sandbox/commit/69d8de9eb535dec0df3aafb1aa0963d649de50f6))
+* **deps:** update all non-major dependencies to v11.13.3 ([#1033](https://github.com/mikavilpas/tui-sandbox/issues/1033)) ([76b0234](https://github.com/mikavilpas/tui-sandbox/commit/76b02343eea15088b246c5abc2d12e0f541f3272))
+
 ## [12.3.2](https://github.com/mikavilpas/tui-sandbox/compare/library-v12.3.1...library-v12.3.2) (2026-03-09)
 
 

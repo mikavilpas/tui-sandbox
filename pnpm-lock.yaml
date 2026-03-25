@@ -71,8 +71,8 @@ importers:
   packages/integration-tests:
     dependencies:
       '@catppuccin/palette':
-        specifier: 1.7.1
-        version: 1.7.1
+        specifier: 1.8.0
+        version: 1.8.0
       '@tui-sandbox/library':
         specifier: workspace:*
         version: link:../library
@@ -99,8 +99,8 @@ importers:
   packages/library:
     dependencies:
       '@catppuccin/palette':
-        specifier: 1.7.1
-        version: 1.7.1
+        specifier: 1.8.0
+        version: 1.8.0
       '@trpc/client':
         specifier: 11.14.1
         version: 11.14.1(@trpc/server@11.14.1(typescript@5.9.3))(typescript@5.9.3)
@@ -212,8 +212,8 @@ packages:
   '@braidai/lang@1.1.2':
     resolution: {integrity: sha512-qBcknbBufNHlui137Hft8xauQMTZDKdophmLFv05r2eNmdIv/MlPuP4TdUknHG68UdWLgVZwgxVe735HzJNIwA==}
 
-  '@catppuccin/palette@1.7.1':
-    resolution: {integrity: sha512-aRc1tbzrevOTV7nFTT9SRdF26w/MIwT4Jwt4fDMc9itRZUDXCuEDBLyz4TQMlqO9ZP8mf5Hu4Jr6D03NLFc6Gw==}
+  '@catppuccin/palette@1.8.0':
+    resolution: {integrity: sha512-qXhwKiLzQomUygUJYB36YAFgs+dET5bIocfkiaFIatQF5Pwc7L112TlF9P8J5Oqs3x3XTjYSucG0ncHXSCuk7Q==}
 
   '@colors/colors@1.5.0':
     resolution: {integrity: sha512-ooWCrlZP11i8GImSjTHYHLkvFDP48nS4+204nGb1RiX/WXYHmJA2III9/e2DWVabCESdW7hBAEzHRqUn9OUVvQ==}
@@ -3602,7 +3602,7 @@ snapshots:
 
   '@braidai/lang@1.1.2': {}
 
-  '@catppuccin/palette@1.7.1': {}
+  '@catppuccin/palette@1.8.0': {}
 
   '@colors/colors@1.5.0':
     optional: true

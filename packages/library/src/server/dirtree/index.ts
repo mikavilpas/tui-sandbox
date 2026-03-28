@@ -23,10 +23,10 @@ export function getDirectoryTree(path: string): TreeResult {
       size: false,
       sizeInBytes: false,
     },
-    file => {
+    (file: Dree) => {
       allFiles.push(file)
     },
-    dir => {
+    (dir: Dree) => {
       allFiles.push(dir)
     }
   ) as Dree | null // https://github.com/euberdeveloper/dree/pull/51

@@ -44,8 +44,8 @@
   },
   "dependencies": {
     "@catppuccin/palette": "1.8.0",
-    "@trpc/client": "11.15.0",
-    "@trpc/server": "11.15.0",
+    "@trpc/client": "11.15.1",
+    "@trpc/server": "11.15.1",
     "@xterm/addon-clipboard": "0.2.0",
     "@xterm/addon-fit": "0.11.0",
     "@xterm/addon-unicode11": "0.9.0",

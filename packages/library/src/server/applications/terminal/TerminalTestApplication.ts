@@ -4,6 +4,7 @@ import EventEmitter from "events"
 import { join } from "path"
 import { debuglog } from "util"
 import type { TestDirectory, TestEnvironmentCommonEnvironmentVariables } from "../../types.js"
+import type { ZeroboxIntegrationConfig } from "../../updateTestdirectorySchemaFile.js"
 import { DisposableSingleApplication } from "../../utilities/DisposableSingleApplication.js"
 import { TerminalApplication } from "../../utilities/TerminalApplication.js"
 import type { StdoutOrStderrMessage, TerminalDimensions } from "../neovim/NeovimApplication.js"
@@ -32,7 +33,8 @@ export default class TerminalTestApplication implements AsyncDisposable {
   public async startNextAndKillCurrent(
     testDirectory: TestDirectory,
     startArgs: StartTerminalGenericArguments,
-    terminalDimensions: TerminalDimensions
+    terminalDimensions: TerminalDimensions,
+    zeroboxConfig?: ZeroboxIntegrationConfig
   ): Promise<void> {
     await this[Symbol.asyncDispose]()
     assert(
@@ -40,10 +42,24 @@ export default class TerminalTestApplication implements AsyncDisposable {
       "TerminalTestApplication state should be undefined after disposing so that no previous state is reused."
     )
 
-    const command = startArgs.commandToRun[0]
+    let command = startArgs.commandToRun[0]
     assert(command, "No command to run was provided.")
-    // TODO could check if the command is executable
-    const terminalArguments = startArgs.commandToRun.slice(1)
+    let terminalArguments = startArgs.commandToRun.slice(1)
+
+    if (zeroboxConfig?.enabled) {
+      const { resolveZeroboxBinary } = await import("./resolveZeroboxBinary.js")
+      const zeroboxBin = resolveZeroboxBinary()
+      terminalArguments = [
+        `--allow-write=${testDirectory.rootPathAbsolute}`,
+        "--allow-write=/dev/tty",
+        "--allow-env",
+        "--",
+        command,
+        ...terminalArguments,
+      ]
+      command = zeroboxBin
+      log(`🔒 zerobox enabled: wrapping command with ${zeroboxBin}`)
+    }
 
     const stdout = this.events
 

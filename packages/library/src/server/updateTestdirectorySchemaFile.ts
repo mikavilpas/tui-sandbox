@@ -33,6 +33,14 @@ const neovimIntegration = z.strictObject({
 
 export type NeovimIntegrationConfig = z.output<typeof neovimIntegration>
 
+const zeroboxIntegration = z
+  .strictObject({
+    enabled: z.boolean().default(false),
+  })
+  .default({ enabled: false })
+
+export type ZeroboxIntegrationConfig = z.output<typeof zeroboxIntegration>
+
 export const testServerConfigSchema = z.strictObject({
   directories: z.object({
     testEnvironmentPath: z.string(),
@@ -42,6 +50,7 @@ export const testServerConfigSchema = z.strictObject({
   port: z.number().int().min(1).max(65535),
   integrations: z.strictObject({
     neovim: neovimIntegration,
+    UNSTABLE_zerobox: zeroboxIntegration,
   }),
 })
 

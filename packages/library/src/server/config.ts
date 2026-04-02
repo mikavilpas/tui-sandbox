@@ -13,6 +13,9 @@ export const createDefaultConfig = (cwd: string, environment: NodeJS.ProcessEnv)
       neovim: {
         NVIM_APPNAMEs: ["nvim"],
       },
+      UNSTABLE_zerobox: {
+        enabled: false,
+      },
     },
   }
 }

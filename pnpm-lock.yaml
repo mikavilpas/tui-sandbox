@@ -152,6 +152,9 @@ importers:
       winston:
         specifier: 3.19.0
         version: 3.19.0
+      zerobox:
+        specifier: 0.1.9
+        version: 0.1.9
       zod:
         specifier: 4.3.6
         version: 4.3.6
@@ -1091,6 +1094,46 @@ packages:
 
   '@xterm/xterm@6.0.0':
     resolution: {integrity: sha512-TQwDdQGtwwDt+2cgKDLn0IRaSxYu1tSUjgKarSDkUM0ZNiSRXFpjxEsvc/Zgc5kq5omJ+V0a8/kIM2WD3sMOYg==}
+
+  '@zerobox/cli-darwin-arm64@0.1.9':
+    resolution: {integrity: sha512-W95tGIfLWDMVWNIkkgK4lnhD8HIzmatxw/m00CsugQwHfdPranOC1RhK6LQeQbTWCHf5n23vCcLLbdFKpaM2yQ==}
+    engines: {node: '>=18'}
+    cpu: [arm64]
+    os: [darwin]
+
+  '@zerobox/cli-darwin-x64@0.1.9':
+    resolution: {integrity: sha512-t6dUc8RbJJ6BVjeYo+/LRh+dwDpr8isL8TS2UI1SIsWOBsVIQZeFYXRcXlgfEQhNj6wUYHKyS/z8RiiRD8RJ2Q==}
+    engines: {node: '>=18'}
+    cpu: [x64]
+    os: [darwin]
+
+  '@zerobox/cli-linux-arm64-musl@0.1.9':
+    resolution: {integrity: sha512-g7UJK+MxeljOwYEeH4FlNTDSa4mSe2HGeRuSbIMhD90e3t8lLjRDR6/d185B+T2nNIgDOolvYuOpyDYhoSxRjQ==}
+    engines: {node: '>=18'}
+    cpu: [arm64]
+    os: [linux]
+    libc: [musl]
+
+  '@zerobox/cli-linux-arm64@0.1.9':
+    resolution: {integrity: sha512-ITfyA53ykHFcodEar/Fi1K1Duszc5RICmD5VfMBMtryTedfW+yMb2Bqkyy1V5I5bBABBo9pI6KNl/tagfCZ5bA==}
+    engines: {node: '>=18'}
+    cpu: [arm64]
+    os: [linux]
+    libc: [glibc]
+
+  '@zerobox/cli-linux-x64-musl@0.1.9':
+    resolution: {integrity: sha512-y7r6iSqUGFDqySE8InQ8RmG/IUsCYzgLovwPoNHkO4k3CRgDkfIVSdlxAZmErLbUNRXWVHCSpHeto4FlNWEj/g==}
+    engines: {node: '>=18'}
+    cpu: [x64]
+    os: [linux]
+    libc: [musl]
+
+  '@zerobox/cli-linux-x64@0.1.9':
+    resolution: {integrity: sha512-QyCj41vsy3Bbo8Wfy3voYoEmVyNWWjJNNg1DTo/sDosD+9kZPyRpDs6hD/MI/irH+CwWljIYCxEPKNM3VEfoDg==}
+    engines: {node: '>=18'}
+    cpu: [x64]
+    os: [linux]
+    libc: [glibc]
 
   abbrev@4.0.0:
     resolution: {integrity: sha512-a1wflyaL0tHtJSmLSOVybYhy22vRih4eduhhrkcjgrWGnRfrZtovJ2FRjxuTtkkj47O/baf0R86QU5OuYpz8fA==}
@@ -3562,6 +3605,11 @@ packages:
     resolution: {integrity: sha512-CzhO+pFNo8ajLM2d2IW/R93ipy99LWjtwblvC1RsoSUMZgyLbYFr221TnSNT7GjGdYui6P459mw9JH/g/zW2ug==}
     engines: {node: '>=18'}
 
+  zerobox@0.1.9:
+    resolution: {integrity: sha512-GHMWITdU3ERqNp4k+lu6puG96cMo/TA3snIjwKTjJIVQ8+M1k9w9t9MdWBj8ZcSHZtWrksfemCZINR+ijISnRA==}
+    engines: {node: '>=18'}
+    hasBin: true
+
   zod@3.25.76:
     resolution: {integrity: sha512-gzUt/qt81nXsFGKIFcC3YnfEAx5NkunCfnDlvuBSSFS02bcXu4Lmea0AFIUwbLWxWPx3d9p8S5QoaujKcNQxcQ==}
 
@@ -4360,6 +4408,24 @@ snapshots:
   '@xterm/addon-unicode11@0.9.0': {}
 
   '@xterm/xterm@6.0.0': {}
+
+  '@zerobox/cli-darwin-arm64@0.1.9':
+    optional: true
+
+  '@zerobox/cli-darwin-x64@0.1.9':
+    optional: true
+
+  '@zerobox/cli-linux-arm64-musl@0.1.9':
+    optional: true
+
+  '@zerobox/cli-linux-arm64@0.1.9':
+    optional: true
+
+  '@zerobox/cli-linux-x64-musl@0.1.9':
+    optional: true
+
+  '@zerobox/cli-linux-x64@0.1.9':
+    optional: true
 
   abbrev@4.0.0:
     optional: true
@@ -7208,6 +7274,15 @@ snapshots:
   yocto-queue@0.1.0: {}
 
   yoctocolors@2.1.2: {}
+
+  zerobox@0.1.9:
+    optionalDependencies:
+      '@zerobox/cli-darwin-arm64': 0.1.9
+      '@zerobox/cli-darwin-x64': 0.1.9
+      '@zerobox/cli-linux-arm64': 0.1.9
+      '@zerobox/cli-linux-arm64-musl': 0.1.9
+      '@zerobox/cli-linux-x64': 0.1.9
+      '@zerobox/cli-linux-x64-musl': 0.1.9
 
   zod@3.25.76: {}
 

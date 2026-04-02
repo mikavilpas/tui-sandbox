@@ -29,7 +29,8 @@ export async function start(
       commandToRun: startTerminalArguments.commandToRun,
       additionalEnvironmentVariables: startTerminalArguments.additionalEnvironmentVariables,
     },
-    startTerminalArguments.terminalDimensions
+    startTerminalArguments.terminalDimensions,
+    config.integrations.UNSTABLE_zerobox
   )
 
   return testDirectory

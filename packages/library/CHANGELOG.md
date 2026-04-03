@@ -1,5 +1,25 @@
 # Changelog
 
+## [12.4.0](https://github.com/mikavilpas/tui-sandbox/compare/library-v12.3.2...library-v12.4.0) (2026-04-03)
+
+
+### Features
+
+* show terminal content in error messages on test failure ([#1068](https://github.com/mikavilpas/tui-sandbox/issues/1068)) ([6adaf3f](https://github.com/mikavilpas/tui-sandbox/commit/6adaf3fae7e8ee98d3e313b3b49fb7101d828d26))
+* write `.terminal-snapshot.yaml` after each test ([#1069](https://github.com/mikavilpas/tui-sandbox/issues/1069)) ([d6b0450](https://github.com/mikavilpas/tui-sandbox/commit/d6b0450f099ff8f92687f99323d54060d6cab6d3))
+
+
+### Bug Fixes
+
+* **deps:** update all non-major dependencies ([#1034](https://github.com/mikavilpas/tui-sandbox/issues/1034)) ([3c4e96a](https://github.com/mikavilpas/tui-sandbox/commit/3c4e96a04a8cc677a184de6d82038dac28402449))
+* **deps:** update all non-major dependencies ([#1048](https://github.com/mikavilpas/tui-sandbox/issues/1048)) ([ab1c9b2](https://github.com/mikavilpas/tui-sandbox/commit/ab1c9b233700fdcb849dd67d516993b010f7460f))
+* **deps:** update all non-major dependencies to v11.13.0 ([#1031](https://github.com/mikavilpas/tui-sandbox/issues/1031)) ([69d8de9](https://github.com/mikavilpas/tui-sandbox/commit/69d8de9eb535dec0df3aafb1aa0963d649de50f6))
+* **deps:** update all non-major dependencies to v11.13.3 ([#1033](https://github.com/mikavilpas/tui-sandbox/issues/1033)) ([76b0234](https://github.com/mikavilpas/tui-sandbox/commit/76b02343eea15088b246c5abc2d12e0f541f3272))
+* **deps:** update all non-major dependencies to v11.14.1 ([#1045](https://github.com/mikavilpas/tui-sandbox/issues/1045)) ([d920785](https://github.com/mikavilpas/tui-sandbox/commit/d92078518cecd3dd2a3a25083a125bdb8f1fb9c4))
+* **deps:** update all non-major dependencies to v11.15.1 ([#1057](https://github.com/mikavilpas/tui-sandbox/issues/1057)) ([b8d0d88](https://github.com/mikavilpas/tui-sandbox/commit/b8d0d8815106ea0db5b6b085f60558fdd24ae382))
+* **deps:** update all non-major dependencies to v11.16.0 ([#1062](https://github.com/mikavilpas/tui-sandbox/issues/1062)) ([f9d1bea](https://github.com/mikavilpas/tui-sandbox/commit/f9d1bea3264a050f2588d7263e4ab35bd43abd5d))
+* **deps:** update dependency @catppuccin/palette to v1.8.0 ([#1047](https://github.com/mikavilpas/tui-sandbox/issues/1047)) ([49ffd58](https://github.com/mikavilpas/tui-sandbox/commit/49ffd581cffa9596a549e43462df928ba34629e9))
+
 ## [12.3.2](https://github.com/mikavilpas/tui-sandbox/compare/library-v12.3.1...library-v12.3.2) (2026-03-09)
 
 

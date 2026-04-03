@@ -16,6 +16,7 @@ export default defineConfig([
       "packages/integration-tests/dist/",
       "packages/library/dist/",
       "packages/library/vite.config.js",
+      "packages/library/src/server/cypress-support/tui-sandbox-template.ts",
     ],
   },
 

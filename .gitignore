@@ -16,3 +16,4 @@ packages/library/dist
 packages/library/vite.config.js.timestamp*
 packages/integration-tests/dist/tsconfig.tsbuildinfo
 .oxlintrc.json.bak
+.claude

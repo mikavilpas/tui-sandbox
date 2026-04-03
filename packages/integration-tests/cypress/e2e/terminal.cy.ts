@@ -58,8 +58,7 @@ describe("TerminalTestApplication features", () => {
   it("returns the TestDirectory for type-safe access to the environment", () => {
     cy.visit("/")
     cy.startTerminalApplication({ commandToRun: ["bash"] }).then(term => {
-      // it should not be undefined
-      expect(term.dir).to.not.be.undefined
+      expect(term.dir).to.not.equal(undefined)
 
       expect(term.dir.testEnvironmentPathRelative).to.match(/testdirs\/dir-.*?/)
       expect(

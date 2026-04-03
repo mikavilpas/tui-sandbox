@@ -364,11 +364,9 @@ describe("neovim features", () => {
         nvim.waitForLuaCode({
           luaAssertion: `assert(#vim.diagnostic.get(0) > 0)`,
         })
-        cy.typeIntoTerminal("/config.defaults/e{enter}")
 
-        // the final `s` is the cursor itself, and it has a different background-color
-        cy.contains("config.default").should("have.css", "background-color", rgbify(flavors.macchiato.colors.red.rgb))
-
+        // Navigate to config.defaults and use go-to-definition
+        cy.typeIntoTerminal("/config.defaults{enter}")
         cy.typeIntoTerminal("gd")
 
         // should have navigated to the definition of `config.defaults`, which

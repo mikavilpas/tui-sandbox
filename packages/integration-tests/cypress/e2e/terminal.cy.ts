@@ -2,6 +2,38 @@ import type { FakeDA1Response } from "@tui-sandbox/library/dist/src/client/termi
 import type { TestDirsPath } from "@tui-sandbox/library/dist/src/server/applications/neovim/environment/createTempDir.js"
 import assert from "assert"
 
+describe("terminal snapshot file", () => {
+  let snapshotPath: string
+
+  before(() => {
+    // Remove any stale snapshot from a previous run so the test can't
+    // pass by reading old data.
+    cy.exec("rm -f test-environment/testdirs/.terminal-snapshot.yaml")
+  })
+
+  it("writes a snapshot after a passing test", () => {
+    cy.visit("/")
+    cy.startTerminalApplication({ commandToRun: ["bash"] }).then(term => {
+      cy.contains("myprompt")
+      snapshotPath = `${term.dir.testEnvironmentPath}/testdirs/.terminal-snapshot.yaml`
+    })
+  })
+
+  it("contains the previous test's result", () => {
+    // This test reads the snapshot written by the previous test's afterEach.
+    // cy.readFile returns the raw string for .yaml files.
+    cy.readFile(snapshotPath).then((yaml: string) => {
+      expect(yaml).to.include("writes a snapshot after a passing test")
+      expect(yaml).to.include("testFile:")
+      expect(yaml).to.include("terminal.cy.ts")
+      expect(yaml).to.include("testState: passed")
+      expect(yaml).to.include("myprompt")
+      expect(yaml).to.include("error: null")
+      expect(yaml).to.include("terminalContent: |")
+    })
+  })
+})
+
 describe("TerminalTestApplication features", () => {
   it("can start the shell", () => {
     cy.visit("/")

@@ -45,8 +45,19 @@ vim.g.clipboard = "osc52"
 
 require("lazy").setup({
   ---@type LazySpec
-  { "lewis6991/gitsigns.nvim", opts = {} },
-  { "catppuccin/nvim", name = "catppuccin", priority = 1000 },
+  {
+    "lewis6991/gitsigns.nvim",
+    -- renovate: datasource=github-releases depName=lewis6991/gitsigns.nvim
+    version = "v2.1.0",
+    opts = {},
+  },
+  {
+    "catppuccin/nvim",
+    name = "catppuccin",
+    priority = 1000,
+    -- renovate: datasource=github-releases depName=catppuccin/nvim
+    version = "v2.0.0",
+  },
 })
 
 vim.cmd.colorscheme("catppuccin-latte")

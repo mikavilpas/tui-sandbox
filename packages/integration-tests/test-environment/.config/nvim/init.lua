@@ -46,15 +46,33 @@ vim.g.clipboard = "osc52"
 local plugins = {
   {
     "neovim/nvim-lspconfig",
+    -- renovate: datasource=github-releases depName=neovim/nvim-lspconfig
+    version = "v2.7.0",
     dependencies = {
-      { "williamboman/mason.nvim", opts = {} },
-      { "williamboman/mason-lspconfig.nvim", opts = {} },
+      {
+        "williamboman/mason.nvim",
+        -- renovate: datasource=github-releases depName=williamboman/mason.nvim
+        version = "v2.2.1",
+        opts = {},
+      },
+      {
+        "williamboman/mason-lspconfig.nvim",
+        -- renovate: datasource=github-releases depName=williamboman/mason-lspconfig.nvim
+        version = "v2.1.0",
+        opts = {},
+      },
     },
     config = function()
       --
     end,
   },
-  { "catppuccin/nvim", name = "catppuccin", priority = 1000 },
+  {
+    "catppuccin/nvim",
+    name = "catppuccin",
+    priority = 1000,
+    -- renovate: datasource=github-releases depName=catppuccin/nvim
+    version = "v2.0.0",
+  },
 }
 require("lazy").setup({ spec = plugins })
 

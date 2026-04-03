@@ -27,5 +27,6 @@
     //
     "./src/",
     "src/scripts/tui.ts"
-  ]
+  ],
+  "exclude": ["src/server/cypress-support/tui-sandbox-template.ts"]
 }

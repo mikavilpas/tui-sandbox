@@ -7,6 +7,9 @@
   },
   "license": "MIT",
   "type": "module",
+  "imports": {
+    "#tui-sandbox-template": "./src/server/cypress-support/tui-sandbox-template.ts"
+  },
   "exports": {
     ".": {
       "types": "./dist/src/client/index.d.ts",
@@ -33,7 +36,8 @@
     "tui": "dist/src/scripts/tui.js"
   },
   "files": [
-    "dist"
+    "dist",
+    "src/server/cypress-support/tui-sandbox-template.ts"
   ],
   "scripts": {
     "build": "concurrently --names 'vite,tsc' 'vite build' 'tsc' --prefix-colors blue,green && attw --pack --profile=esm-only",

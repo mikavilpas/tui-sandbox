@@ -15,7 +15,8 @@
     "vitest.config.js",
     "packages/integration-tests/dist/",
     "packages/library/dist/",
-    "packages/library/vite.config.js"
+    "packages/library/vite.config.js",
+    "packages/library/src/server/cypress-support/tui-sandbox-template.ts"
   ],
   "rules": {
     "no-array-constructor": "error",

@@ -5,6 +5,7 @@ import type { ITerminalDimensions } from "@xterm/addon-fit"
 import type { IPty } from "node-pty"
 import pty from "node-pty"
 import { debuglog } from "util"
+import type { SandboxOptions } from "zerobox"
 import type { StartableApplication } from "./DisposableSingleApplication.js"
 
 const log = debuglog("tui-sandbox.TerminalApplication")
@@ -43,13 +44,14 @@ export class TerminalApplication implements StartableApplication {
   }
 
   /** @constructor Start a new terminal application. */
-  public static start({
+  public static async start({
     onStdoutOrStderr,
     command,
     args,
     cwd,
     env,
     dimensions,
+    zerobox: zeroboxOptions,
   }: {
     onStdoutOrStderr: (data: string) => void
     command: string
@@ -57,7 +59,18 @@ export class TerminalApplication implements StartableApplication {
     cwd: string
     env?: NodeJS.ProcessEnv
     dimensions: ITerminalDimensions
-  }): TerminalApplication {
+    /** When provided, the command is wrapped inside a zerobox sandbox. */
+    zerobox?: SandboxOptions
+  }): Promise<TerminalApplication> {
+    if (zeroboxOptions) {
+      const { resolveBinary, buildFlags } = await import("zerobox")
+      const zeroboxBin = resolveBinary()
+      const flags = buildFlags(zeroboxOptions)
+      args = [...flags, "--", command, ...args]
+      command = zeroboxBin
+      log(`🔒 zerobox enabled: wrapping command with ${zeroboxBin}`)
+    }
+
     log(`Starting '${command}' with args '${args.join(" ")}' in cwd '${cwd}'`)
 
     const ptyProcess = pty.spawn(command, args, {

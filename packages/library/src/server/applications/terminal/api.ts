@@ -1,4 +1,5 @@
 import assert from "assert"
+import type { SandboxOptions } from "zerobox"
 import type { BlockingCommandInput } from "../../blockingCommandInputSchema.js"
 import type { BlockingShellCommandOutput, TestDirectory } from "../../types.js"
 import type { TestServerConfig } from "../../updateTestdirectorySchemaFile.js"
@@ -23,6 +24,20 @@ export async function start(
   const app = terminals.get(tabId.tabId)
   assert(app, `Terminal with tabId ${tabId.tabId} not found.`)
   const testDirectory = await prepareNewTestDirectory(config)
+  const zeroboxConfig = config.integrations.UNSTABLE_zerobox
+  let zerobox: SandboxOptions | undefined
+  if (zeroboxConfig.enabled) {
+    zerobox = {
+      allowWrite: [testDirectory.rootPathAbsolute],
+      allowEnv: true,
+    }
+    // macOS blocks /dev/tty access inside the sandbox, so we need to
+    // explicitly allow it. Linux doesn't need this.
+    if (process.platform === "darwin") {
+      zerobox.allowWrite?.push("/dev/tty")
+    }
+  }
+
   await app.startNextAndKillCurrent(
     testDirectory,
     {
@@ -30,7 +45,7 @@ export async function start(
       additionalEnvironmentVariables: startTerminalArguments.additionalEnvironmentVariables,
     },
     startTerminalArguments.terminalDimensions,
-    config.integrations.UNSTABLE_zerobox
+    zerobox
   )
 
   return testDirectory

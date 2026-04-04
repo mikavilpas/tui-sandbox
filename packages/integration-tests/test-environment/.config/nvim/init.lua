@@ -83,4 +83,20 @@ vim.cmd.colorscheme("catppuccin-macchiato")
 
 -- the config is automatically loaded via the config in nvim-lspconfig
 -- https://github.com/neovim/nvim-lspconfig/pull/3745
+--
+-- Disable file watching to avoid EMFILE (too many open files) errors.
+-- The test environment has thousands of plugin files that would exhaust
+-- the default 256 fd soft limit on macOS when watched via kqueue.
+vim.lsp.config("emmylua_ls", {
+  capabilities = {
+    workspace = {
+      didChangeWatchedFiles = {
+        -- see :h lsp-defaults, where it's enabled by default
+        --
+        -- see :h lsp-protocol
+        dynamicRegistration = false,
+      },
+    },
+  },
+})
 vim.lsp.enable("emmylua_ls")

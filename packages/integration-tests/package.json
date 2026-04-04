@@ -9,6 +9,7 @@
   "dependencies": {
     "@catppuccin/palette": "1.8.0",
     "@tui-sandbox/library": "workspace:*",
+    "zerobox": "0.1.11",
     "zod": "4.3.6"
   },
   "devDependencies": {

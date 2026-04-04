@@ -2,6 +2,7 @@ import assert from "assert"
 import { access } from "fs/promises"
 import path from "path"
 import { debuglog } from "util"
+import type { SandboxOptions } from "zerobox"
 import type { BlockingCommandInput } from "../../blockingCommandInputSchema.js"
 import type {
   BlockingShellCommandOutput,
@@ -104,7 +105,25 @@ export async function start(
   assert(neovim, `Neovim instance not found for client id ${tabId.tabId}`)
 
   const testDirectory = await prepareNewTestDirectory(config)
-  await neovim.startNextAndKillCurrent(testDirectory, options, terminalDimensions)
+
+  const zeroboxConfig = config.integrations.UNSTABLE_zerobox
+  let zerobox: SandboxOptions | undefined
+  if (zeroboxConfig.enabled) {
+    const { tmpdir } = await import("os")
+    zerobox = {
+      allowWrite: [testDirectory.rootPathAbsolute, tmpdir()],
+      allowEnv: true,
+      // Neovim uses a unix domain socket for --listen (RPC API).
+      // macOS sandbox-exec treats socket creation as a network operation,
+      // so we need to allow network access. Ideally we'd restrict this to
+      // unix sockets only (zerobox has internal support for this via
+      // UnixDomainSocketPolicy), but the CLI/SDK don't expose it yet.
+      // TODO: tighten to unix sockets only when zerobox exposes the option
+      allowNet: true,
+    }
+  }
+
+  await neovim.startNextAndKillCurrent(testDirectory, options, terminalDimensions, zerobox)
 
   return testDirectory
 }

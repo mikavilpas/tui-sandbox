@@ -6,6 +6,7 @@ import type { NeovimClient as NeovimApiClient } from "neovim"
 import { tmpdir } from "os"
 import path, { join } from "path"
 import { debuglog } from "util"
+import type { SandboxOptions } from "zerobox"
 import type { TestDirectory, TestEnvironmentCommonEnvironmentVariables } from "../../types.js"
 import { DisposableSingleApplication } from "../../utilities/DisposableSingleApplication.js"
 import type { Lazy } from "../../utilities/Lazy.js"
@@ -111,7 +112,8 @@ export class NeovimApplication implements AsyncDisposable {
   public async startNextAndKillCurrent(
     testDirectory: TestDirectory,
     startArgs: StartNeovimGenericArguments,
-    terminalDimensions: TerminalDimensions
+    terminalDimensions: TerminalDimensions,
+    zerobox?: SandboxOptions
   ): Promise<void> {
     await this[Symbol.asyncDispose]()
     assert(
@@ -174,6 +176,7 @@ export class NeovimApplication implements AsyncDisposable {
         cwd: this.testEnvironmentPath,
         env,
         dimensions: terminalDimensions,
+        zerobox,
 
         onStdoutOrStderr(data) {
           data satisfies string

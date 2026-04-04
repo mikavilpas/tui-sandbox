@@ -47,16 +47,13 @@ export default class TerminalTestApplication implements AsyncDisposable {
     let terminalArguments = startArgs.commandToRun.slice(1)
 
     if (zeroboxConfig?.enabled) {
-      const { resolveZeroboxBinary } = await import("./resolveZeroboxBinary.js")
-      const zeroboxBin = resolveZeroboxBinary()
-      terminalArguments = [
-        `--allow-write=${testDirectory.rootPathAbsolute}`,
-        "--allow-write=/dev/tty",
-        "--allow-env",
-        "--",
-        command,
-        ...terminalArguments,
-      ]
+      const { resolveBinary, buildFlags } = await import("zerobox")
+      const zeroboxBin = resolveBinary()
+      const flags = buildFlags({
+        allowWrite: [testDirectory.rootPathAbsolute, "/dev/tty"],
+        allowEnv: true,
+      })
+      terminalArguments = [...flags, "--", command, ...terminalArguments]
       command = zeroboxBin
       log(`🔒 zerobox enabled: wrapping command with ${zeroboxBin}`)
     }

@@ -381,6 +381,8 @@ describe("neovim features", () => {
 it("can write long input in order and fast", () => {
   cy.visit("/")
   cy.startNeovim({ filename: "file.txt" }).then(nvim => {
+    // guard against a regression where long input took a long time to be
+    // processed
     cy.contains("Hello")
     cy.typeIntoTerminal(`"_dd`)
 

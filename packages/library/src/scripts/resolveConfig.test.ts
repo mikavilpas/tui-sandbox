@@ -24,7 +24,10 @@ it("loads a custom configuration file if it exists", async () => {
       outputFilePath: "./output.ts",
       latestSymlinkName: "latest",
     },
-    integrations: { neovim: { NVIM_APPNAMEs: ["nvim", "nvim_2"] } },
+    integrations: {
+      neovim: { NVIM_APPNAMEs: ["nvim", "nvim_2"] },
+      UNSTABLE_zerobox: { enabled: false },
+    },
     port: 12345,
   }
   {

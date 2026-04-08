@@ -27,6 +27,7 @@ describe("dirtree", () => {
         neovim: {
           NVIM_APPNAMEs: ["nvim" satisfies NeovimIntegrationDefaultAppName, "nvim_alt"],
         },
+        UNSTABLE_zerobox: { enabled: false },
       },
     }
     const result = await buildSchemaForDirectoryTree(output.get(), "MyDirectoryTree", config)
@@ -310,6 +311,7 @@ describe("dirtree", () => {
           neovim: {
             NVIM_APPNAMEs: ["nvim" satisfies NeovimIntegrationDefaultAppName, "nvim_alt"],
           },
+          UNSTABLE_zerobox: { enabled: false },
         },
       }
       const tinytree = getDirectoryTree(smallDirectory)

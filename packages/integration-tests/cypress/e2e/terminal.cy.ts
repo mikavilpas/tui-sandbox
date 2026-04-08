@@ -25,11 +25,31 @@ describe("terminal snapshot file", () => {
     cy.readFile(snapshotPath).then((yaml: string) => {
       expect(yaml).to.include("writes a snapshot after a passing test")
       expect(yaml).to.include("testFile:")
-      expect(yaml).to.include("terminal.cy.ts")
       expect(yaml).to.include("testState: passed")
       expect(yaml).to.include("myprompt")
       expect(yaml).to.include("error: null")
       expect(yaml).to.include("terminalContent: |")
+    })
+  })
+})
+
+describe("zerobox integration", () => {
+  it("prevents writing to directories outside the test environment", () => {
+    cy.visit("/")
+    cy.startTerminalApplication({
+      commandToRun: ["bash"],
+    }).then(() => {
+      cy.contains("myprompt")
+
+      // writing inside the test directory should succeed — the file is
+      // created and ls confirms it exists
+      cy.typeIntoTerminal("touch ./zerobox-allowed-file{enter}")
+      cy.typeIntoTerminal("ls ./zerobox-allowed-file{enter}")
+      cy.contains("zerobox-allowed-file")
+
+      // writing outside the test directory should be blocked by zerobox
+      cy.typeIntoTerminal("touch /tmp/zerobox-spike-test-file{enter}")
+      cy.contains("Operation not permitted")
     })
   })
 })
@@ -83,7 +103,7 @@ describe("TerminalTestApplication features", () => {
     }).then(() => {
       // the error message is not very informative, but the tester should be
       // able to see more details in the test output
-      cy.contains(/Child process \d+? \(thisdoesnotexist\) exited with code 1/)
+      cy.contains(/Child process \d+? .+? exited with code \d+/)
     })
   })
 

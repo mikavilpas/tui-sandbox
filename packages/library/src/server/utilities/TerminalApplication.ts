@@ -8,7 +8,7 @@ import type { StartableApplication } from "./DisposableSingleApplication.js"
 
 const log = debuglog("tui-sandbox.TerminalApplication")
 
-export type ExitInfo = { exitCode: number; signal: number | undefined }
+export type ExitInfo = { exitCode: number }
 
 // NOTE separating stdout and stderr is not supported by node-pty
 // https://github.com/microsoft/node-pty/issues/71
@@ -76,18 +76,15 @@ export class TerminalApplication implements StartableApplication {
     if (!processId) {
       throw new Error("Failed to spawn child process")
     }
-    const untilExit = new Promise<ExitInfo>(resolve => {
-      // Keep the Node.js event loop alive until the exit callback fires.
-      // When the child process exits, zigpty's internal tty.ReadStream on the
-      // PTY fd is destroyed. If that was the last active handle, Node.js would
-      // exit before the native waitpid() callback can post the exit event back
-      // to the event loop.
-      // oxlint-disable-next-line no-empty-function
-      const keepAlive = setInterval(() => {}, 60_000)
-      ptyProcess.onExit(({ exitCode, signal }) => {
-        clearInterval(keepAlive)
-        resolve({ exitCode, signal })
-      })
+    // Keep the Node.js event loop alive until the process exits. When the
+    // child exits, zigpty destroys its internal tty.ReadStream — if that was
+    // the last active handle, Node.js would exit before the native waitpid()
+    // callback can resolve the `exited` promise.
+    // oxlint-disable-next-line no-empty-function
+    const keepAlive = setInterval(() => {}, 60_000)
+    const untilExit = ptyProcess.exited.then(exitCode => {
+      clearInterval(keepAlive)
+      return { exitCode }
     })
 
     return new TerminalApplication(ptyProcess, onStdoutOrStderr, untilExit, command)

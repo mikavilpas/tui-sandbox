@@ -15,7 +15,7 @@ const fakeApp = {
   processId: 123,
   write: vi.fn(),
   killAndWait: vi.fn(),
-  untilExit: Promise.resolve<ExitInfo>({ exitCode: 0, signal: undefined }),
+  untilExit: Promise.resolve({ exitCode: 0 }),
 } satisfies StartableApplication
 
 describe("DisposableSingleApplication", () => {
@@ -52,10 +52,9 @@ describe("DisposableSingleApplication", () => {
     it("successful exit works", async () => {
       const app = new TestDisposableSingleApplication()
       await app.startNextAndKillCurrent(async () => fakeApp)
-      fakeApp.untilExit = Promise.resolve({ exitCode: 1, signal: 9 })
+      fakeApp.untilExit = Promise.resolve({ exitCode: 1 })
       await expect(app.untilExit()).resolves.toStrictEqual({
         exitCode: 1,
-        signal: 9,
       } satisfies ExitInfo)
     })
 

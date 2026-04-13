@@ -67,7 +67,6 @@
   },
   "devDependencies": {
     "@arethetypeswrong/cli": "0.18.2",
-    "@types/command-exists": "1.2.3",
     "@types/cors": "2.8.19",
     "@types/express": "5.0.6",
     "@types/node": "24.12.2",

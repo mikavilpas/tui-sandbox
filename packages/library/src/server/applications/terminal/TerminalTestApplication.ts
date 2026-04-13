@@ -58,7 +58,9 @@ export default class TerminalTestApplication implements AsyncDisposable {
         dimensions: terminalDimensions,
 
         onStdoutOrStderr(data) {
-          data satisfies string
+          // zigpty's onData provides string when encoding is "utf8" (the
+          // default). It only returns Buffer when encoding is explicitly null.
+          assert(typeof data === "string")
           stdout.emit("stdout" satisfies StdoutOrStderrMessage, data)
         },
       })
@@ -78,7 +80,7 @@ export default class TerminalTestApplication implements AsyncDisposable {
   public getEnvironmentVariables(
     testDirectory: TestDirectory,
     additionalEnvironmentVariables?: Record<string, string>
-  ): NodeJS.ProcessEnv {
+  ): Record<string, string> {
     return {
       ...process.env,
       HOME: testDirectory.rootPathAbsolute,

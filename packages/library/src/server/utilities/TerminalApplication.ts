@@ -2,9 +2,8 @@ import type winston from "winston"
 import { createLogger, format, transports } from "winston"
 
 import type { ITerminalDimensions } from "@xterm/addon-fit"
-import type { IPty } from "node-pty"
-import pty from "node-pty"
 import { debuglog } from "util"
+import * as zigpty from "zigpty"
 import type { StartableApplication } from "./DisposableSingleApplication.js"
 
 const log = debuglog("tui-sandbox.TerminalApplication")
@@ -19,7 +18,7 @@ export class TerminalApplication implements StartableApplication {
   public readonly logger: winston.Logger
 
   private constructor(
-    private readonly subProcess: IPty,
+    private readonly subProcess: zigpty.IPty,
     public readonly onStdoutOrStderr: (data: string) => void,
     public readonly untilExit: Promise<ExitInfo>,
     public readonly name: string
@@ -51,16 +50,16 @@ export class TerminalApplication implements StartableApplication {
     env,
     dimensions,
   }: {
-    onStdoutOrStderr: (data: string) => void
+    onStdoutOrStderr: (data: string | Buffer) => void
     command: string
     args: string[]
     cwd: string
-    env?: NodeJS.ProcessEnv
+    env?: Record<string, string>
     dimensions: ITerminalDimensions
   }): TerminalApplication {
     log(`Starting '${command}' with args '${args.join(" ")}' in cwd '${cwd}'`)
 
-    const ptyProcess = pty.spawn(command, args, {
+    const ptyProcess = zigpty.spawn(command, args, {
       name: "xterm-color",
       cwd,
       env,
@@ -78,13 +77,20 @@ export class TerminalApplication implements StartableApplication {
       throw new Error("Failed to spawn child process")
     }
     const untilExit = new Promise<ExitInfo>(resolve => {
+      // Keep the Node.js event loop alive until the exit callback fires.
+      // When the child process exits, zigpty's internal tty.ReadStream on the
+      // PTY fd is destroyed. If that was the last active handle, Node.js would
+      // exit before the native waitpid() callback can post the exit event back
+      // to the event loop.
+      // oxlint-disable-next-line no-empty-function
+      const keepAlive = setInterval(() => {}, 60_000)
       ptyProcess.onExit(({ exitCode, signal }) => {
-        // console.log(`Child process ${processId} exited with code ${exitCode} and signal ${signal}`)
+        clearInterval(keepAlive)
         resolve({ exitCode, signal })
       })
     })
 
-    return new TerminalApplication(ptyProcess, onStdoutOrStderr, untilExit, ptyProcess.process satisfies string)
+    return new TerminalApplication(ptyProcess, onStdoutOrStderr, untilExit, command)
   }
 
   /** Write to the terminal's stdin. */

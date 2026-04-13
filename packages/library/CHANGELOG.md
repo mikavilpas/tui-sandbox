@@ -1,5 +1,13 @@
 # Changelog
 
+## [12.4.1](https://github.com/mikavilpas/tui-sandbox/compare/library-v12.4.0...library-v12.4.1) (2026-04-13)
+
+
+### Bug Fixes
+
+* **deps:** update dependency prettier to v3.8.2 ([#1098](https://github.com/mikavilpas/tui-sandbox/issues/1098)) ([eb65644](https://github.com/mikavilpas/tui-sandbox/commit/eb656440da4f8eb3c671206f68e5e18fddd13529))
+* swap `node-pty` dependency for the more minimal `zigpty` ([#1100](https://github.com/mikavilpas/tui-sandbox/issues/1100)) ([dd92b50](https://github.com/mikavilpas/tui-sandbox/commit/dd92b503e43084ab489c151347859fda39182955))
+
 ## [12.4.0](https://github.com/mikavilpas/tui-sandbox/compare/library-v12.3.2...library-v12.4.0) (2026-04-03)
 
 

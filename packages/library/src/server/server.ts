@@ -1,4 +1,3 @@
-import type { inferRouterInputs } from "@trpc/server"
 import { createNeovimRouter } from "./applications/neovim/neovimRouter.js"
 import { createTerminalRouter } from "./applications/terminal/terminalRouter.js"
 import { trpc } from "./connection/trpc.js"
@@ -17,7 +16,6 @@ export async function createAppRouter(config: TestServerConfig) {
 }
 
 export type AppRouter = Awaited<ReturnType<typeof createAppRouter>>
-export type RouterInput = inferRouterInputs<AppRouter>
 
 export async function startTestServer(config: TestServerConfig): Promise<void> {
   try {

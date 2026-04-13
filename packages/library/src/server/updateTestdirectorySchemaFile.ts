@@ -5,23 +5,12 @@ import { buildTestDirectorySchema } from "./dirtree/index.js"
 
 const log = debuglog(`tui-sandbox.${updateTestdirectorySchemaFile.name}`)
 
-export type DirectoriesConfig = TestServerConfig["directories"]
-
 export type TestServerConfig = z.output<typeof testServerConfigSchema>
 
 export type TestServerConfigMetadata = {
   configFilePath: string
   config: TestServerConfig
 }
-
-export type Dictionary = Record<string, string>
-
-export type CustomizeEnv = (env: Dictionary) => Promise<Dictionary>
-
-export type CustomizeMiseEnvironmentVariables = (
-  env: Dictionary,
-  defaultImplementation: CustomizeEnv
-) => Promise<Record<string, string>>
 
 export type NeovimIntegrationDefaultAppName = "nvim"
 const neovimIntegration = z.strictObject({
@@ -30,8 +19,6 @@ const neovimIntegration = z.strictObject({
     .min(1)
     .default(["nvim" satisfies NeovimIntegrationDefaultAppName]),
 })
-
-export type NeovimIntegrationConfig = z.output<typeof neovimIntegration>
 
 export const testServerConfigSchema = z.strictObject({
   directories: z.object({

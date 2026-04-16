@@ -16,7 +16,6 @@
     "tui": "pnpm --filter=library build && pnpm --filter integration-tests exec tui"
   },
   "devDependencies": {
-    "@umbrelladocs/linkspector": "0.4.8",
     "cypress": "15.13.1",
     "eslint": "10.2.0",
     "eslint-config-prettier": "10.1.8",

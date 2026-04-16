@@ -26,7 +26,7 @@
     "eslint-plugin-no-only-tests": "3.3.0",
     "eslint-plugin-oxlint": "1.59.0",
     "knip": "6.4.1",
-    "oxlint": "1.59.0",
+    "oxlint": "1.60.0",
     "oxlint-tsgolint": "0.20.0",
     "prettier": "3.8.2",
     "prettier-plugin-organize-imports": "4.3.0",

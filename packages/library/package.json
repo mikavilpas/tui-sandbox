@@ -59,7 +59,7 @@
     "dree": "5.1.5",
     "express": "5.2.1",
     "neovim": "5.4.0",
-    "prettier": "3.8.2",
+    "prettier": "3.8.3",
     "tsx": "4.21.0",
     "winston": "3.19.0",
     "zigpty": "0.1.6",

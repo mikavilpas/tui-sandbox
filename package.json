@@ -24,7 +24,7 @@
     "eslint-plugin-import-zod": "1.2.1",
     "eslint-plugin-no-only-tests": "3.3.0",
     "eslint-plugin-oxlint": "1.60.0",
-    "knip": "6.4.1",
+    "knip": "6.5.0",
     "oxlint": "1.60.0",
     "oxlint-tsgolint": "0.21.1",
     "prettier": "3.8.3",

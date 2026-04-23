@@ -58,7 +58,7 @@ local plugins = {
       {
         "williamboman/mason-lspconfig.nvim",
         -- renovate: datasource=github-releases depName=williamboman/mason-lspconfig.nvim
-        version = "v2.1.0",
+        version = "v2.2.0",
         opts = {},
       },
     },

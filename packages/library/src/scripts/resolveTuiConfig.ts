@@ -32,7 +32,7 @@ export const resolveTuiConfig = async (cwd: string): Promise<ResolveTuiConfigRes
     file = await import(url.href)
     log(`Found configuration file in ${url.pathname}:`, JSON.stringify(file, null, 2))
   } catch (e) {
-    console.log("Using the default configuration.")
+    console.log(`Using the default configuration. If you want to add a custom config, add it to ${url.pathname}`)
     log("Config load error:", e)
 
     return {

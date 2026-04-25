@@ -1,5 +1,17 @@
 # Changelog
 
+## [12.5.0](https://github.com/mikavilpas/tui-sandbox/compare/library-v12.4.1...library-v12.5.0) (2026-04-25)
+
+
+### Features
+
+* describe where to put a custom tui-sandbox config file ([#1127](https://github.com/mikavilpas/tui-sandbox/issues/1127)) ([01809a2](https://github.com/mikavilpas/tui-sandbox/commit/01809a23e76cce427e8752ba96799e02777aecef))
+
+
+### Bug Fixes
+
+* **deps:** update all non-major dependencies ([#1108](https://github.com/mikavilpas/tui-sandbox/issues/1108)) ([5429867](https://github.com/mikavilpas/tui-sandbox/commit/5429867c7d6775f75f32cf6e42cb112572aca4b7))
+
 ## [12.4.1](https://github.com/mikavilpas/tui-sandbox/compare/library-v12.4.0...library-v12.4.1) (2026-04-13)
 
 

@@ -12,7 +12,7 @@
     "lint": "pnpx oxlint --type-aware --deny-warnings && eslint --max-warnings=0 .",
     "markdownlint": "rumdl check",
     "prettier": "prettier --check .",
-    "test": "vitest run",
+    "test": "vitest",
     "tui": "pnpm --filter=library build && pnpm --filter integration-tests exec tui"
   },
   "devDependencies": {

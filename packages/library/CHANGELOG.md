@@ -1,5 +1,12 @@
 # Changelog
 
+## [12.5.1](https://github.com/mikavilpas/tui-sandbox/compare/library-v12.5.0...library-v12.5.1) (2026-04-26)
+
+
+### Bug Fixes
+
+* borders around terminal error snapshots are jagged with emoji ([#1129](https://github.com/mikavilpas/tui-sandbox/issues/1129)) ([98c6ad2](https://github.com/mikavilpas/tui-sandbox/commit/98c6ad22c94467227ff19f35b8f10fbb7ec984fe))
+
 ## [12.5.0](https://github.com/mikavilpas/tui-sandbox/compare/library-v12.4.1...library-v12.5.0) (2026-04-25)
 
 

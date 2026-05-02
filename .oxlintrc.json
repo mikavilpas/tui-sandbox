@@ -1,6 +1,7 @@
 {
   "$schema": "https://raw.githubusercontent.com/oxc-project/oxc/main/npm/oxlint/configuration_schema.json",
   "plugins": ["typescript", "import", "unicorn"],
+  "jsPlugins": ["eslint-plugin-import-zod"],
   "categories": {
     "correctness": "warn"
   },
@@ -60,6 +61,7 @@
     ],
     "@typescript-eslint/no-shadow": "error",
     "object-shorthand": "warn",
+    "import-zod/prefer-zod-namespace": "error",
     "@typescript-eslint/no-require-imports": "error",
     "@typescript-eslint/no-unnecessary-type-constraint": "error",
     "@typescript-eslint/no-unsafe-function-type": "error",

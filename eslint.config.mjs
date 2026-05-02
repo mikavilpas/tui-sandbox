@@ -1,6 +1,5 @@
 import eslintConfigPrettier from "eslint-config-prettier"
 import eslintPluginImportX from "eslint-plugin-import-x"
-import importZod from "eslint-plugin-import-zod"
 import noOnlyTests from "eslint-plugin-no-only-tests"
 import oxlint from "eslint-plugin-oxlint"
 import { defineConfig } from "eslint/config"
@@ -25,7 +24,6 @@ export default defineConfig([
   tseslint.configs.strictTypeChecked,
   eslintPluginImportX.flatConfigs.recommended,
   eslintPluginImportX.flatConfigs.typescript,
-  importZod.configs.recommended,
 
   {
     files: ["packages/integration-tests/cypress/support/tui-sandbox.ts"],

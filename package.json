@@ -16,7 +16,7 @@
     "tui": "pnpm --filter=library build && pnpm --filter integration-tests exec tui"
   },
   "devDependencies": {
-    "cypress": "15.14.1",
+    "cypress": "15.14.2",
     "eslint": "10.2.1",
     "eslint-config-prettier": "10.1.8",
     "eslint-import-resolver-typescript": "4.4.4",

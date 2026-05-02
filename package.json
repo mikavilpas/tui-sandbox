@@ -22,7 +22,7 @@
     "eslint-import-resolver-typescript": "4.4.4",
     "eslint-plugin-import-x": "4.16.2",
     "eslint-plugin-import-zod": "1.2.1",
-    "eslint-plugin-no-only-tests": "3.3.0",
+    "eslint-plugin-no-only-tests": "3.4.0",
     "eslint-plugin-oxlint": "1.62.0",
     "knip": "6.8.0",
     "oxlint": "1.62.0",

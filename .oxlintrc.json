@@ -50,6 +50,16 @@
     "@typescript-eslint/no-empty-object-type": "error",
     "@typescript-eslint/no-explicit-any": "error",
     "@typescript-eslint/no-namespace": "error",
+    "@typescript-eslint/no-restricted-types": [
+      "error",
+      {
+        "types": {
+          "Omit": "Prefer using Except from type-fest instead. That one checks that the unwanted properties actually exist on the source object. See https://github.com/sindresorhus/type-fest"
+        }
+      }
+    ],
+    "@typescript-eslint/no-shadow": "error",
+    "object-shorthand": "warn",
     "@typescript-eslint/no-require-imports": "error",
     "@typescript-eslint/no-unnecessary-type-constraint": "error",
     "@typescript-eslint/no-unsafe-function-type": "error",

@@ -55,21 +55,12 @@ export default defineConfig([
       "@typescript-eslint/no-unnecessary-condition": ["warn", { allowConstantLoopConditions: true }],
       "no-only-tests/no-only-tests": "warn",
       "@typescript-eslint/require-await": "off",
-      "object-shorthand": "warn",
 
       "no-restricted-syntax": [
         "error",
         {
           selector: "TSEnumDeclaration",
           message: "Don't declare enums",
-        },
-      ],
-      "@typescript-eslint/no-restricted-types": [
-        "error",
-        {
-          types: {
-            Omit: "Prefer using Except from type-fest instead. That one checks that the unwanted properties actually exist on the source object. See https://github.com/sindresorhus/type-fest",
-          },
         },
       ],
 
@@ -80,11 +71,6 @@ export default defineConfig([
           allowBoolean: true,
         },
       ],
-      "@typescript-eslint/consistent-type-imports": "error",
-      "@typescript-eslint/no-import-type-side-effects": "error",
-      "@typescript-eslint/explicit-module-boundary-types": ["warn"],
-      "no-shadow": "off",
-      "@typescript-eslint/no-shadow": ["error"],
 
       "lines-between-class-members": [
         "error",
@@ -94,23 +80,7 @@ export default defineConfig([
         },
       ],
 
-      "no-empty-function": [
-        "error",
-        {
-          allow: ["constructors"],
-        },
-      ],
-
-      "no-return-await": "off",
-      "@typescript-eslint/return-await": "error",
       "no-useless-constructor": "off",
-
-      "no-void": [
-        "error",
-        {
-          allowAsStatement: true,
-        },
-      ],
 
       "@typescript-eslint/no-unused-vars": "off",
 

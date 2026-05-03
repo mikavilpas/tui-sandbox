@@ -1,5 +1,14 @@
 # Changelog
 
+## [12.5.3](https://github.com/mikavilpas/tui-sandbox/compare/library-v12.5.2...library-v12.5.3) (2026-05-03)
+
+
+### Bug Fixes
+
+* **deps:** update all non-major dependencies ([#1145](https://github.com/mikavilpas/tui-sandbox/issues/1145)) ([d5907d4](https://github.com/mikavilpas/tui-sandbox/commit/d5907d48d04db826fb7ca449762f28d6111f5184))
+* **deps:** update dependency zod to v4.4.1 ([#1152](https://github.com/mikavilpas/tui-sandbox/issues/1152)) ([a791e6a](https://github.com/mikavilpas/tui-sandbox/commit/a791e6af866d6553c399ba772b8759dd0564655c))
+* tui-sandbox-template supports `nodenext` module resolution ([#1153](https://github.com/mikavilpas/tui-sandbox/issues/1153)) ([be20919](https://github.com/mikavilpas/tui-sandbox/commit/be209194ef7cf91ae0473bc01196bfe554841eef))
+
 ## [12.5.2](https://github.com/mikavilpas/tui-sandbox/compare/library-v12.5.1...library-v12.5.2) (2026-04-30)
 
 

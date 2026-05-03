@@ -13,19 +13,19 @@
   "exports": {
     ".": {
       "types": "./dist/src/client/index.d.ts",
-      "import": "./dist/src/client/index.js"
+      "default": "./dist/src/client/index.js"
     },
     "./browser/neovim-client.js": {
       "types": "./dist/src/browser/neovim-client.d.ts",
-      "import": "./dist/src/browser/neovim-client.js"
+      "default": "./dist/src/browser/neovim-client.js"
     },
     "./client": {
       "types": "./dist/src/client/index.d.ts",
-      "import": "./dist/src/client/index.js"
+      "default": "./dist/src/client/index.js"
     },
     "./server": {
       "types": "./dist/src/server/index.d.ts",
-      "import": "./dist/src/server/index.js"
+      "default": "./dist/src/server/index.js"
     },
     "./dist/*": "./dist/*",
     "./src/*": "./dist/src/*"

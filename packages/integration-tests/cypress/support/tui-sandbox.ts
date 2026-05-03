@@ -24,7 +24,7 @@ import type {
   TestDirectory,
 } from "@tui-sandbox/library/server"
 import type { OverrideProperties } from "type-fest"
-import type { MyNeovimAppName, MyTestDirectory, MyTestDirectoryFile } from "../../MyTestDirectory"
+import type { MyNeovimAppName, MyTestDirectory, MyTestDirectoryFile } from "../../MyTestDirectory.js"
 
 export type TerminalTestApplicationContext = {
   /** Types text into the terminal, making the terminal application receive the

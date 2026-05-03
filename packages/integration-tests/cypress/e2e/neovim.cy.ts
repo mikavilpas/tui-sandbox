@@ -1,8 +1,8 @@
 import { flavors } from "@catppuccin/palette"
 import { rgbify } from "@tui-sandbox/library"
 import assert from "assert"
-import type { MyNeovimAppName, MyTestDirectoryFile } from "../../MyTestDirectory"
-import type { MyBlockingCommandClientInput } from "../support/tui-sandbox"
+import type { MyNeovimAppName, MyTestDirectoryFile } from "../../MyTestDirectory.js"
+import type { MyBlockingCommandClientInput } from "../support/tui-sandbox.js"
 
 describe("neovim features", () => {
   it("can load a custom init.lua file from the .config/nvim directory", () => {

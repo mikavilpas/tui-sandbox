@@ -1,6 +1,6 @@
 import { flavors } from "@catppuccin/palette"
+import { rgbify } from "@tui-sandbox/library"
 import assert from "assert"
-import { rgbify } from "../../../library/src/client"
 import type { MyNeovimAppName, MyTestDirectoryFile } from "../../MyTestDirectory"
 import type { MyBlockingCommandClientInput } from "../support/tui-sandbox"
 

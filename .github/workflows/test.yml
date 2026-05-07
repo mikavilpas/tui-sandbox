@@ -38,7 +38,15 @@ jobs:
           cache: "pnpm"
 
       - name: install dependencies and build
-        run: pnpm install && pnpm build
+        # Build the library before the full install so workspace consumers
+        # (e.g. integration-tests) can link the `tui` bin against an existing
+        # target. pnpm 11 no longer creates the bin symlink speculatively when
+        # the target file is missing, and a later `pnpm install` short-circuits
+        # with "Already up to date" without retrying — so the order matters.
+        run: |
+          pnpm install --filter library
+          pnpm --filter library build
+          pnpm install
 
       - uses: jdx/mise-action@1648a7812b9aeae629881980618f079932869151 # v4.0.1
         with:

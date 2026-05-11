@@ -70,7 +70,7 @@
     "@arethetypeswrong/cli": "0.18.2",
     "@types/cors": "2.8.19",
     "@types/express": "5.0.6",
-    "@types/node": "24.12.2",
+    "@types/node": "24.12.3",
     "cypress": "15.14.2",
     "nodemon": "3.1.14",
     "type-fest": "5.6.0",

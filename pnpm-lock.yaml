@@ -132,9 +132,6 @@ importers:
       neovim:
         specifier: 5.4.0
         version: 5.4.0
-      prettier:
-        specifier: 3.8.3
-        version: 3.8.3
       string-width:
         specifier: 8.2.1
         version: 8.2.1
@@ -175,6 +172,9 @@ importers:
       nodemon:
         specifier: 3.1.14
         version: 3.1.14
+      prettier:
+        specifier: 3.8.3
+        version: 3.8.3
       type-fest:
         specifier: 5.6.0
         version: 5.6.0

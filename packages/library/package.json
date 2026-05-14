@@ -58,8 +58,8 @@
     "concurrently": "9.2.1",
     "cors": "2.8.6",
     "dree": "5.1.5",
-    "express": "5.2.1",
     "neovim": "5.4.0",
+    "sirv": "3.0.2",
     "string-width": "8.2.1",
     "tsx": "4.21.0",
     "winston": "3.19.0",
@@ -69,7 +69,6 @@
   "devDependencies": {
     "@arethetypeswrong/cli": "0.18.2",
     "@types/cors": "2.8.19",
-    "@types/express": "5.0.6",
     "@types/node": "24.12.3",
     "cypress": "15.14.2",
     "nodemon": "3.1.14",

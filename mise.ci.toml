@@ -1,4 +1,4 @@
-settings.disable_tools = ["ubi:EmmyLuaLs/emmylua-analyzer-rust"]
+settings.disable_tools = ["github:EmmyLuaLs/emmylua-analyzer-rust"]
 
 [tools]
 jq = "1.8.1"

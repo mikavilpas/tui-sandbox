@@ -60,7 +60,6 @@
     "dree": "5.1.5",
     "express": "5.2.1",
     "neovim": "5.4.0",
-    "prettier": "3.8.3",
     "string-width": "8.2.1",
     "tsx": "4.21.0",
     "winston": "3.19.0",
@@ -74,6 +73,7 @@
     "@types/node": "24.12.3",
     "cypress": "15.14.2",
     "nodemon": "3.1.14",
+    "prettier": "3.8.3",
     "type-fest": "5.6.0",
     "vite": "8.0.11",
     "vitest": "4.1.5"

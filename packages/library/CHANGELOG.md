@@ -1,5 +1,14 @@
 # Changelog
 
+## [12.5.4](https://github.com/mikavilpas/tui-sandbox/compare/library-v12.5.3...library-v12.5.4) (2026-05-14)
+
+
+### Bug Fixes
+
+* **deps:** update all non-major dependencies ([#1158](https://github.com/mikavilpas/tui-sandbox/issues/1158)) ([a014bac](https://github.com/mikavilpas/tui-sandbox/commit/a014bace47b8a54d97acfaa7ee15416d008ee216))
+* **deps:** update dependency zod to v4.4.3 ([#1163](https://github.com/mikavilpas/tui-sandbox/issues/1163)) ([b0bcf82](https://github.com/mikavilpas/tui-sandbox/commit/b0bcf826d3f0fc6b696ba157204d7797d1e5faed))
+* **library:** move prettier to devDependencies ([#1187](https://github.com/mikavilpas/tui-sandbox/issues/1187)) ([786c5a7](https://github.com/mikavilpas/tui-sandbox/commit/786c5a76310d8a5a6c1400d3e99c7c7e3ee23537))
+
 ## [12.5.3](https://github.com/mikavilpas/tui-sandbox/compare/library-v12.5.2...library-v12.5.3) (2026-05-03)
 
 

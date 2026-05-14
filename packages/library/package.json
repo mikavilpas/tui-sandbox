@@ -33,9 +33,10 @@
   "main": "./dist/src/client/index.js",
   "types": "./dist/src/client/index.d.ts",
   "bin": {
-    "tui": "dist/src/scripts/tui.js"
+    "tui": "bin/tui.js"
   },
   "files": [
+    "bin",
     "dist",
     "src/server/cypress-support/tui-sandbox-template.ts"
   ],

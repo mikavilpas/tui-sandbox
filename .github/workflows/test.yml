@@ -64,7 +64,7 @@ jobs:
 
           ubi --project mikefarah/yq
 
-          VERSION=$(yq '.tools."ubi:EmmyLuaLs/emmylua-analyzer-rust".version' mise.toml)
+          VERSION=$(yq '.tools."github:EmmyLuaLs/emmylua-analyzer-rust".version' mise.toml)
           ubi --project EmmyLuaLs/emmylua-analyzer-rust --tag "$VERSION" --exe emmylua_ls --matching-regex "^emmylua_ls"
 
           mise install cowsay

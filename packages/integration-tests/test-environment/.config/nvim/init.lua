@@ -52,7 +52,7 @@ local plugins = {
       {
         "williamboman/mason.nvim",
         -- renovate: datasource=github-releases depName=williamboman/mason.nvim
-        version = "v2.2.1",
+        version = "v2.3.0",
         opts = {},
       },
       {

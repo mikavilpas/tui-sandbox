@@ -63,7 +63,7 @@
     "string-width": "8.2.1",
     "tsx": "4.22.3",
     "winston": "3.19.0",
-    "zigpty": "0.1.6",
+    "zigpty": "0.2.0",
     "zod": "4.4.3"
   },
   "devDependencies": {

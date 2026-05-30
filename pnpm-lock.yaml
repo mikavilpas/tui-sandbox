@@ -148,8 +148,8 @@ importers:
         specifier: 3.19.0
         version: 3.19.0
       zigpty:
-        specifier: 0.1.6
-        version: 0.1.6
+        specifier: 0.2.0
+        version: 0.2.0
       zod:
         specifier: 4.4.3
         version: 4.4.3
@@ -3009,8 +3009,8 @@ packages:
     resolution: {integrity: sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==}
     engines: {node: '>=10'}
 
-  zigpty@0.1.6:
-    resolution: {integrity: sha512-0B+6Xa4mKgyTNMq87HoGEUb30jQ08DZLEshSlgXPvUv+GB3E0zuTM+IUuYqe0CiaZyaZvCyx9snvGqxIKhl0sA==}
+  zigpty@0.2.0:
+    resolution: {integrity: sha512-rEn53TjljnMVzuCi5Rx9/Do0iZkq6y+71BMOX7tBVD2DSfOyCEKobNRXHWBUkC38g3nLjSaPU2bB/hLALY7HYg==}
 
   zod@4.4.3:
     resolution: {integrity: sha512-ytENFjIJFl2UwYglde2jchW2Hwm4GJFLDiSXWdTrJQBIN9Fcyp7n4DhxJEiWNAJMV1/BqWfW/kkg71UDcHJyTQ==}
@@ -5632,6 +5632,6 @@ snapshots:
 
   yocto-queue@0.1.0: {}
 
-  zigpty@0.1.6: {}
+  zigpty@0.2.0: {}
 
   zod@4.4.3: {}

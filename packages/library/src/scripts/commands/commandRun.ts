@@ -1,6 +1,6 @@
 import assert from "assert"
 import type { CloseEvent } from "concurrently"
-import concurrently from "concurrently"
+import { concurrently } from "concurrently"
 import type { PartialDeep } from "type-fest"
 import { debuglog } from "util"
 import * as z from "zod"
@@ -21,7 +21,7 @@ export async function commandRun(): Promise<TestResultExitCode> {
       },
       {
         name: cypressName,
-        command: `'wait-on --timeout 60000 http-get://127.0.0.1:3000/ping && cypress run --config baseUrl=http://127.0.0.1:3000 --quiet'`,
+        command: `wait-on --timeout 60000 http-get://127.0.0.1:3000/ping && cypress run --config baseUrl=http://127.0.0.1:3000 --quiet`,
         prefixColor: "yellow",
       },
     ],

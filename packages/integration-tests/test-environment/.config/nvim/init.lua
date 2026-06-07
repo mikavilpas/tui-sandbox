@@ -47,7 +47,7 @@ local plugins = {
   {
     "neovim/nvim-lspconfig",
     -- renovate: datasource=github-releases depName=neovim/nvim-lspconfig
-    version = "v2.9.0",
+    version = "v2.10.0",
     dependencies = {
       {
         "williamboman/mason.nvim",

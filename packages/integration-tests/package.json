@@ -12,7 +12,7 @@
     "zod": "4.4.3"
   },
   "devDependencies": {
-    "@types/node": "24.13.0",
+    "@types/node": "24.13.1",
     "assert": "2.1.0",
     "concurrently": "10.0.3",
     "nodemon": "3.1.14",

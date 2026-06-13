@@ -52,13 +52,13 @@ local plugins = {
       {
         "williamboman/mason.nvim",
         -- renovate: datasource=github-releases depName=williamboman/mason.nvim
-        version = "v2.3.0",
+        version = "v2.3.1",
         opts = {},
       },
       {
         "williamboman/mason-lspconfig.nvim",
         -- renovate: datasource=github-releases depName=williamboman/mason-lspconfig.nvim
-        version = "v2.2.0",
+        version = "v2.3.0",
         opts = {},
       },
     },

@@ -23,18 +23,18 @@
     "eslint-plugin-import-x": "4.16.2",
     "eslint-plugin-import-zod": "1.2.1",
     "eslint-plugin-no-only-tests": "3.4.0",
-    "eslint-plugin-oxlint": "1.69.0",
+    "eslint-plugin-oxlint": "1.70.0",
     "knip": "6.16.1",
-    "oxlint": "1.69.0",
+    "oxlint": "1.70.0",
     "oxlint-tsgolint": "0.23.0",
     "prettier": "3.8.4",
     "prettier-plugin-organize-imports": "4.3.0",
     "prettier-plugin-packagejson": "3.0.2",
     "tsx": "4.22.4",
     "typescript": "6.0.3",
-    "typescript-eslint": "8.61.0",
-    "vitest": "4.1.8",
+    "typescript-eslint": "8.61.1",
+    "vitest": "4.1.9",
     "wait-on": "9.0.10"
   },
-  "packageManager": "pnpm@11.6.0"
+  "packageManager": "pnpm@11.7.0"
 }

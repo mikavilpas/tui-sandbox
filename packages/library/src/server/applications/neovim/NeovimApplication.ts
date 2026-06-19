@@ -10,6 +10,7 @@ import type { TestDirectory, TestEnvironmentCommonEnvironmentVariables } from ".
 import { DisposableSingleApplication } from "../../utilities/DisposableSingleApplication.js"
 import type { Lazy } from "../../utilities/Lazy.js"
 import { TerminalApplication } from "../../utilities/TerminalApplication.js"
+import { XdgRuntimeDirectory } from "./environment/XdgRuntimeDirectory.js"
 import { connectNeovimApi } from "./NeovimJavascriptApiClient.js"
 
 const log = debuglog("tui-sandbox-neovim-application")
@@ -92,6 +93,7 @@ type ResettableState = {
   NVIM_APPNAME: string | undefined
   socketPath: string
   client: Lazy<Promise<NeovimApiClient>>
+  xdgRuntimeDirectory: XdgRuntimeDirectory
 }
 
 export class NeovimApplication implements AsyncDisposable {
@@ -159,11 +161,14 @@ export class NeovimApplication implements AsyncDisposable {
     const socketPath = `${tmpdir()}/tui-sandbox-nvim-socket-${id}`
     neovimArguments.push("--listen", socketPath)
 
+    const xdgRuntimeDirectory = await XdgRuntimeDirectory.create(testDirectory.rootPathAbsolute)
+
     const stdout = this.events
 
     await this.application.startNextAndKillCurrent(async () => {
       const env = NeovimApplication.getEnvironmentVariables(
         testDirectory,
+        xdgRuntimeDirectory.path,
         startArgs.NVIM_APPNAME,
         startArgs.additionalEnvironmentVariables
       )
@@ -192,6 +197,7 @@ export class NeovimApplication implements AsyncDisposable {
       socketPath,
       NVIM_APPNAME: startArgs.NVIM_APPNAME,
       client: connectNeovimApi(socketPath),
+      xdgRuntimeDirectory,
     }
 
     log(`🚀 Started Neovim instance ${processId} (NVIM_APPNAME: ${startArgs.NVIM_APPNAME})`)
@@ -199,6 +205,7 @@ export class NeovimApplication implements AsyncDisposable {
 
   public static getEnvironmentVariables(
     testDirectory: TestDirectory,
+    xdgRuntimeDir: string,
     NVIM_APPNAME: string | undefined,
     additionalEnvironmentVariables?: Record<string, string>
   ): Record<string, string> {
@@ -208,6 +215,7 @@ export class NeovimApplication implements AsyncDisposable {
         HOME: testDirectory.rootPathAbsolute,
         XDG_CONFIG_HOME: join(testDirectory.rootPathAbsolute, ".config"),
         XDG_DATA_HOME: join(testDirectory.testEnvironmentPath, ".repro", "data"),
+        XDG_RUNTIME_DIR: xdgRuntimeDir,
         TUI_SANDBOX_TEST_ENVIRONMENT_PATH: testDirectory.testEnvironmentPath,
       } satisfies TestEnvironmentCommonEnvironmentVariables),
       NVIM_APPNAME: NVIM_APPNAME ?? "nvim",
@@ -221,6 +229,7 @@ export class NeovimApplication implements AsyncDisposable {
 
     if (!this.state) return
 
+    await this.state.xdgRuntimeDirectory[Symbol.asyncDispose]()
     exec(`rm -rf ${this.state.testDirectory.rootPathAbsolute}`)
 
     try {

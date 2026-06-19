@@ -57,6 +57,19 @@ export type TestEnvironmentCommonEnvironmentVariables = {
    */
   XDG_DATA_HOME: string
 
+  /** There is a single base directory relative to which user-specific runtime
+   * files and other file objects should be placed. This directory is defined
+   * by the environment variable $XDG_RUNTIME_DIR.
+   *
+   * $XDG_RUNTIME_DIR defines the base directory relative to which
+   * user-specific non-essential runtime files and other file objects (such as
+   * sockets, named pipes, ...) should be stored. The directory MUST be owned
+   * by the user, and they MUST be the only one having read and write access to
+   * it. Its Unix access mode MUST be 0700.
+   *
+   * https://specifications.freedesktop.org/basedir/latest/ */
+  XDG_RUNTIME_DIR: string
+
   /** The path to the test environment directory, which is the blueprint for
    * the test directory.
    * @example /Users/mikavilpas/git/tui-sandbox/packages/integration-tests/test-environment

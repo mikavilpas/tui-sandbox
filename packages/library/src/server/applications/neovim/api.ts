@@ -136,7 +136,18 @@ export async function runBlockingShellCommand(
   const testDirectory = neovim.state?.testDirectory
   assert(testDirectory, `Test directory not found for client id ${input.tabId.tabId}. Maybe neovim's not started yet?`)
 
-  const env = NeovimApplication.getEnvironmentVariables(testDirectory, neovim.state?.NVIM_APPNAME, input.envOverrides)
+  const xdgRuntimeDirectory = neovim.state?.xdgRuntimeDirectory
+  assert(
+    xdgRuntimeDirectory,
+    `XDG runtime directory not found for client id ${input.tabId.tabId}. Maybe neovim's not started yet?`
+  )
+
+  const env = NeovimApplication.getEnvironmentVariables(
+    testDirectory,
+    xdgRuntimeDirectory.path,
+    neovim.state?.NVIM_APPNAME,
+    input.envOverrides
+  )
   return executeBlockingShellCommand(testDirectory, input, signal, allowFailure, env)
 }
 

@@ -55,5 +55,3 @@ jobs:
             exit 0
           fi
           pnpm publish packages/library --access public --no-git-checks
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_RELEASE_TOKEN }}

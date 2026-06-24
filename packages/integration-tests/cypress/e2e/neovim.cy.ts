@@ -1,8 +1,9 @@
 import { flavors } from "@catppuccin/palette"
 import { rgbify } from "@tui-sandbox/library"
+import type { RunLuaCodeOutput } from "@tui-sandbox/library/server"
 import assert from "assert"
 import type { MyNeovimAppName, MyTestDirectoryFile } from "../../MyTestDirectory.js"
-import type { MyBlockingCommandClientInput } from "../support/tui-sandbox.js"
+import type { MyBlockingCommandClientInput, NeovimContext } from "../support/tui-sandbox.js"
 
 describe("neovim features", () => {
   it("can load a custom init.lua file from the .config/nvim directory", () => {
@@ -327,25 +328,30 @@ describe("neovim features", () => {
   })
 
   describe("using an LSP server", () => {
+    /** It takes a bit of time for the LSP server to start. Wait until it's ready. */
+    const waitForEmmyluaLsReady = (nvim: NeovimContext): Cypress.Chainable<RunLuaCodeOutput> =>
+      // It takes a bit of time for the LSP server to start.
+      nvim.waitForLuaCode({
+        luaAssertion: `
+      local emmylua_ls = vim.lsp.get_clients({name="emmylua_ls"})[1]
+      assert(emmylua_ls.initialized)
+      `,
+      })
+
     it("can use an LSP server that's already installed", () => {
       // in the test setup, the LSP server is installed in the file
       // prepare.lua when the test environment is started
       cy.visit("/")
-      cy.startNeovim({ filename: "lua-project/init.lua" }).then(nvim => {
+      cy.startNeovim({
+        filename: "lua-project/init.lua",
+        additionalEnvironmentVariables: {
+          MISE_YES: "1",
+        },
+      }).then(nvim => {
         // wait until text on the start screen is visible
         cy.contains(`require("config")`)
 
-        // It takes a bit of time for the LSP server to start.
-        //
-        // This is a pretty hacky way to know when the LSP server is ready. It
-        // shows an "unused" warning when it has started :)
-        nvim.runLuaCode({ luaCode: `vim.lsp.get_clients({bufnr=0})` }).then(result => {
-          const clients = result.value
-          assert(!clients)
-        })
-        nvim.waitForLuaCode({
-          luaAssertion: `assert(#vim.diagnostic.get(0) > 0)`,
-        })
+        waitForEmmyluaLsReady(nvim)
 
         // Navigate to config.defaults and use go-to-definition
         cy.typeIntoTerminal("/config.defaults{enter}")

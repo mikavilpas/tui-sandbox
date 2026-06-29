@@ -1,5 +1,6 @@
 import { createTRPCClient, httpBatchLink, httpSubscriptionLink, splitLink } from "@trpc/client"
 import type { Terminal } from "@xterm/xterm"
+
 import type {
   ExCommandClientInput,
   LuaCodeClientInput,

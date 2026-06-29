@@ -1,7 +1,9 @@
 import { rm } from "fs/promises"
 import path from "path"
+
 import type { PartialDeep } from "type-fest"
 import { assert, describe, expect, it } from "vitest"
+
 import { createDefaultConfig } from "../../config.js"
 import type { TestServerConfig } from "../../updateTestdirectorySchemaFile.js"
 import { prepareNewTestDirectory } from "./prepareNewTestDirectory.js"

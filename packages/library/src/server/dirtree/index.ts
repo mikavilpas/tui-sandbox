@@ -1,10 +1,12 @@
 import assert from "assert"
-import type { Dree } from "dree"
-import { scan, Type } from "dree"
 import { readlinkSync } from "fs"
-import { format, resolveConfig } from "prettier"
 import { fileURLToPath } from "url"
 import { debuglog } from "util"
+
+import type { Dree } from "dree"
+import { scan, Type } from "dree"
+import { format, resolveConfig } from "prettier"
+
 import type { TestServerConfig } from "../updateTestdirectorySchemaFile.js"
 import { jsonToZod } from "./json-to-zod.js"
 

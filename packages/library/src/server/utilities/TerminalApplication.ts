@@ -1,9 +1,10 @@
-import type winston from "winston"
-import { createLogger, format, transports } from "winston"
+import { debuglog } from "util"
 
 import type { ITerminalDimensions } from "@xterm/addon-fit"
-import { debuglog } from "util"
+import type winston from "winston"
+import { createLogger, format, transports } from "winston"
 import * as zigpty from "zigpty"
+
 import type { StartableApplication } from "./DisposableSingleApplication.js"
 
 const log = debuglog("tui-sandbox.TerminalApplication")

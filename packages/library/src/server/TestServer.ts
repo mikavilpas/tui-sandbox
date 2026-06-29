@@ -1,14 +1,15 @@
-import type { AnyTRPCRouter } from "@trpc/server"
-import { createHTTPHandler } from "@trpc/server/adapters/standalone"
-import cors from "cors"
 import { once } from "events"
 import { accessSync } from "fs"
 import { createServer } from "http"
 import path from "path"
-import type { RequestHandler } from "sirv"
-import sirv from "sirv"
 import { fileURLToPath } from "url"
 import { debuglog } from "util"
+
+import type { AnyTRPCRouter } from "@trpc/server"
+import { createHTTPHandler } from "@trpc/server/adapters/standalone"
+import cors from "cors"
+import type { RequestHandler } from "sirv"
+import sirv from "sirv"
 
 export type TestServerSettings = {
   port: number

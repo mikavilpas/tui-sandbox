@@ -1,4 +1,5 @@
 import { describe, expect, it, vi } from "vitest"
+
 import type { StartableApplication } from "./DisposableSingleApplication.js"
 import { DisposableSingleApplication } from "./DisposableSingleApplication.js"
 import type { ExitInfo } from "./TerminalApplication.js"

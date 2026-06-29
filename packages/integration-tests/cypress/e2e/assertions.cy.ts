@@ -1,5 +1,4 @@
 import { flavors } from "@catppuccin/palette"
-
 import { rgbify, textIsVisibleWithBackgroundColor, textIsVisibleWithColor } from "@tui-sandbox/library/client"
 
 describe("custom assertions bundled with tui-sandbox", () => {

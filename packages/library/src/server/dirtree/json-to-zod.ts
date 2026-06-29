@@ -1,6 +1,7 @@
+import { fileURLToPath } from "url"
+
 import { format, resolveConfig } from "prettier"
 import babelParser from "prettier/parser-babel"
-import { fileURLToPath } from "url"
 
 const __filename = fileURLToPath(import.meta.url)
 

@@ -1,4 +1,5 @@
 import assert from "assert"
+
 import * as z from "zod"
 
 export const parseArguments = async (args: string[]): Promise<ParseArgumentsResult | undefined> => {

@@ -1,6 +1,8 @@
 import { readFileSync, writeFileSync } from "fs"
 import { mkdir, stat } from "fs/promises"
+
 import { describe, expect, it, vi } from "vitest"
+
 import { createCypressSupportFileContents } from "./contents.js"
 import type { CreateCypressSupportFileResult } from "./createCypressSupportFile.js"
 import { createCypressSupportFile } from "./createCypressSupportFile.js"

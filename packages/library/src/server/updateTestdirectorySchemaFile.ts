@@ -1,6 +1,8 @@
 import { readFileSync, writeFileSync } from "fs"
 import { debuglog } from "util"
+
 import * as z from "zod"
+
 import { buildTestDirectorySchema } from "./dirtree/index.js"
 
 const log = debuglog(`tui-sandbox.${updateTestdirectorySchemaFile.name}`)

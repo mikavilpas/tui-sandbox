@@ -1,0 +1,21 @@
+{
+  "$schema": "./node_modules/oxfmt/configuration_schema.json",
+  "arrowParens": "avoid",
+  "printWidth": 120,
+  "sortImports": true,
+  "proseWrap": "always",
+  "semi": false,
+  "singleQuote": false,
+  "trailingComma": "es5",
+  "sortPackageJson": {},
+  "ignorePatterns": [
+    "lazy-lock.json",
+    "CHANGELOG.md",
+    "release-please-config.json",
+    ".release-please-manifest.json",
+    "packages/integration-tests/test-environment/.repro",
+    "packages/integration-tests/dist",
+    "pnpm-lock.yaml",
+    "pnpm-workspace.yaml"
+  ]
+}

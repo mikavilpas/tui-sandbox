@@ -1,4 +1,5 @@
 import { describe, expect, it } from "vitest"
+
 import { blockingCommandInputSchema, type BlockingCommandInput } from "./blockingCommandInputSchema.js"
 
 describe("blockingCommandInputSchema", () => {

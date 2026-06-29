@@ -1,7 +1,9 @@
 import { access } from "fs/promises"
+
 import type { NeovimClient as NeovimApiClient } from "neovim"
 import { attach } from "neovim"
 import { createLogger, format, transports } from "winston"
+
 import { Lazy } from "../../utilities/Lazy.js"
 
 // const log = debuglog("tui-sandbox.neovim.NeovimJavascriptApiClient")

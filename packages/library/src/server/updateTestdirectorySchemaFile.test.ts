@@ -1,6 +1,8 @@
 import { readFileSync, writeFileSync } from "fs"
+
 import type { PartialDeep } from "type-fest"
 import { describe, expect, it, vi } from "vitest"
+
 import { buildTestDirectorySchema } from "./dirtree/index.js"
 import type { TestServerConfig, UpdateTestdirectorySchemaFileResult } from "./updateTestdirectorySchemaFile.js"
 import { updateTestdirectorySchemaFile } from "./updateTestdirectorySchemaFile.js"

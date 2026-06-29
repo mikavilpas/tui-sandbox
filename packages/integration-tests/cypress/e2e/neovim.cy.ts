@@ -1,7 +1,9 @@
+import assert from "assert"
+
 import { flavors } from "@catppuccin/palette"
 import { rgbify } from "@tui-sandbox/library"
 import type { RunLuaCodeOutput } from "@tui-sandbox/library/server"
-import assert from "assert"
+
 import type { MyNeovimAppName, MyTestDirectoryFile } from "../../MyTestDirectory.js"
 import type { MyBlockingCommandClientInput, NeovimContext } from "../support/tui-sandbox.js"
 

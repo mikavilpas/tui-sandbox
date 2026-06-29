@@ -1,7 +1,9 @@
 import { existsSync, lstatSync } from "fs"
 import { tmpdir } from "os"
 import { join } from "path"
+
 import { expect, it } from "vitest"
+
 import { TempDirectory } from "./TempDirectory.js"
 import type { XdgRuntimeDirPrefix } from "./XdgRuntimeDirectory.js"
 import { XdgRuntimeDirectory } from "./XdgRuntimeDirectory.js"

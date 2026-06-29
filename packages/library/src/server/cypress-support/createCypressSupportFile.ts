@@ -2,6 +2,7 @@ import { readFileSync, writeFileSync } from "fs"
 import { mkdir, stat } from "fs/promises"
 import path from "path"
 import { debuglog } from "util"
+
 import { createCypressSupportFileContents } from "./contents.js"
 
 const log = debuglog("tui-sandbox.dirtree")

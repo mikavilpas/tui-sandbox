@@ -1,4 +1,5 @@
 import type { Terminal } from "@xterm/xterm"
+
 import type { TuiTerminalApi } from "../startTerminal.js"
 
 /** DA1—Primary Device Attributes

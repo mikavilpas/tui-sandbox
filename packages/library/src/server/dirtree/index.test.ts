@@ -1,6 +1,8 @@
 import assert from "assert"
 import path from "path"
+
 import { describe, expect, it } from "vitest"
+
 import { createDefaultConfig } from "../config.js"
 import type { NeovimIntegrationDefaultAppName, TestServerConfig } from "../updateTestdirectorySchemaFile.js"
 import { Lazy } from "../utilities/Lazy.js"
@@ -43,32 +45,50 @@ describe("dirtree", () => {
       // be written with confidence that the files and directories they expect are
       // actually found. Otherwise the tests are brittle and can break easily.
 
-      import * as z from "zod"
+      import * as z from "zod";
 
       export const MyDirectoryTreeSchema = z.object({
         name: z.literal("test-environment/"),
         type: z.literal("directory"),
         contents: z.object({
-          ".bashrc": z.object({ name: z.literal(".bashrc"), type: z.literal("file") }),
+          ".bashrc": z.object({
+            name: z.literal(".bashrc"),
+            type: z.literal("file"),
+          }),
           ".config": z.object({
             name: z.literal(".config/"),
             type: z.literal("directory"),
             contents: z.object({
-              ".gitkeep": z.object({ name: z.literal(".gitkeep"), type: z.literal("file") }),
+              ".gitkeep": z.object({
+                name: z.literal(".gitkeep"),
+                type: z.literal("file"),
+              }),
               nvim: z.object({
                 name: z.literal("nvim/"),
                 type: z.literal("directory"),
                 contents: z.object({
-                  "init.lua": z.object({ name: z.literal("init.lua"), type: z.literal("file") }),
-                  "prepare.lua": z.object({ name: z.literal("prepare.lua"), type: z.literal("file") }),
+                  "init.lua": z.object({
+                    name: z.literal("init.lua"),
+                    type: z.literal("file"),
+                  }),
+                  "prepare.lua": z.object({
+                    name: z.literal("prepare.lua"),
+                    type: z.literal("file"),
+                  }),
                 }),
               }),
               nvim_alt: z.object({
                 name: z.literal("nvim_alt/"),
                 type: z.literal("directory"),
                 contents: z.object({
-                  "init.lua": z.object({ name: z.literal("init.lua"), type: z.literal("file") }),
-                  "prepare.lua": z.object({ name: z.literal("prepare.lua"), type: z.literal("file") }),
+                  "init.lua": z.object({
+                    name: z.literal("init.lua"),
+                    type: z.literal("file"),
+                  }),
+                  "prepare.lua": z.object({
+                    name: z.literal("prepare.lua"),
+                    type: z.literal("file"),
+                  }),
                 }),
               }),
             }),
@@ -85,11 +105,17 @@ describe("dirtree", () => {
                 name: z.literal("add_command_to_update_buffer_after_timeout.lua"),
                 type: z.literal("file"),
               }),
-              "don't_crash_when_modification_contains_unescaped_characters\\".lua": z.object({
-                name: z.literal("don't_crash_when_modification_contains_unescaped_characters\\".lua"),
+              "don't_crash_when_modification_contains_unescaped_characters\\".lua":
+                z.object({
+                  name: z.literal(
+                    "don't_crash_when_modification_contains_unescaped_characters\\".lua",
+                  ),
+                  type: z.literal("file"),
+                }),
+              "set_terminal_title.lua": z.object({
+                name: z.literal("set_terminal_title.lua"),
                 type: z.literal("file"),
               }),
-              "set_terminal_title.lua": z.object({ name: z.literal("set_terminal_title.lua"), type: z.literal("file") }),
               subdir: z.object({
                 name: z.literal("subdir/"),
                 type: z.literal("directory"),
@@ -106,26 +132,50 @@ describe("dirtree", () => {
             name: z.literal("dir with spaces/"),
             type: z.literal("directory"),
             contents: z.object({
-              "file1.txt": z.object({ name: z.literal("file1.txt"), type: z.literal("file") }),
-              "file2.txt": z.object({ name: z.literal("file2.txt"), type: z.literal("file") }),
+              "file1.txt": z.object({
+                name: z.literal("file1.txt"),
+                type: z.literal("file"),
+              }),
+              "file2.txt": z.object({
+                name: z.literal("file2.txt"),
+                type: z.literal("file"),
+              }),
             }),
           }),
-          "file.txt": z.object({ name: z.literal("file.txt"), type: z.literal("file") }),
-          "initial-file.txt": z.object({ name: z.literal("initial-file.txt"), type: z.literal("file") }),
+          "file.txt": z.object({
+            name: z.literal("file.txt"),
+            type: z.literal("file"),
+          }),
+          "initial-file.txt": z.object({
+            name: z.literal("initial-file.txt"),
+            type: z.literal("file"),
+          }),
           "lua-project": z.object({
             name: z.literal("lua-project/"),
             type: z.literal("directory"),
             contents: z.object({
-              ".luarc.json": z.object({ name: z.literal(".luarc.json"), type: z.literal("file") }),
-              "config.lua": z.object({ name: z.literal("config.lua"), type: z.literal("file") }),
-              "init.lua": z.object({ name: z.literal("init.lua"), type: z.literal("file") }),
+              ".luarc.json": z.object({
+                name: z.literal(".luarc.json"),
+                type: z.literal("file"),
+              }),
+              "config.lua": z.object({
+                name: z.literal("config.lua"),
+                type: z.literal("file"),
+              }),
+              "init.lua": z.object({
+                name: z.literal("init.lua"),
+                type: z.literal("file"),
+              }),
             }),
           }),
           "other-subdirectory": z.object({
             name: z.literal("other-subdirectory/"),
             type: z.literal("directory"),
             contents: z.object({
-              "other-sub-file.txt": z.object({ name: z.literal("other-sub-file.txt"), type: z.literal("file") }),
+              "other-sub-file.txt": z.object({
+                name: z.literal("other-sub-file.txt"),
+                type: z.literal("file"),
+              }),
             }),
           }),
           routes: z.object({
@@ -136,8 +186,14 @@ describe("dirtree", () => {
                 name: z.literal("posts.$postId/"),
                 type: z.literal("directory"),
                 contents: z.object({
-                  "adjacent-file.txt": z.object({ name: z.literal("adjacent-file.txt"), type: z.literal("file") }),
-                  "route.tsx": z.object({ name: z.literal("route.tsx"), type: z.literal("file") }),
+                  "adjacent-file.txt": z.object({
+                    name: z.literal("adjacent-file.txt"),
+                    type: z.literal("file"),
+                  }),
+                  "route.tsx": z.object({
+                    name: z.literal("route.tsx"),
+                    type: z.literal("file"),
+                  }),
                   "should-be-excluded-file.txt": z.object({
                     name: z.literal("should-be-excluded-file.txt"),
                     type: z.literal("file"),
@@ -150,7 +206,10 @@ describe("dirtree", () => {
             name: z.literal("subdirectory/"),
             type: z.literal("directory"),
             contents: z.object({
-              "subdirectory-file.txt": z.object({ name: z.literal("subdirectory-file.txt"), type: z.literal("file") }),
+              "subdirectory-file.txt": z.object({
+                name: z.literal("subdirectory-file.txt"),
+                type: z.literal("file"),
+              }),
             }),
           }),
           "symlink-target.txt": z.object({
@@ -162,11 +221,14 @@ describe("dirtree", () => {
             name: z.literal("symlink-test/"),
             type: z.literal("directory"),
             contents: z.object({
-              "symlink-target.txt": z.object({ name: z.literal("symlink-target.txt"), type: z.literal("file") }),
+              "symlink-target.txt": z.object({
+                name: z.literal("symlink-target.txt"),
+                type: z.literal("file"),
+              }),
             }),
           }),
         }),
-      })
+      });
 
       export const MyDirectoryTreeContentsSchema = MyDirectoryTreeSchema.shape.contents
       export type MyDirectoryTreeContentsSchemaType = z.infer<typeof MyDirectoryTreeSchema>
@@ -234,13 +296,13 @@ describe("dirtree", () => {
       // be written with confidence that the files and directories they expect are
       // actually found. Otherwise the tests are brittle and can break easily.
 
-      import * as z from "zod"
+      import * as z from "zod";
 
       export const MyDirectoryTreeSchema = z.object({
         type: z.literal("directory"),
         name: z.literal("root"),
         contents: z.object({}),
-      })
+      });
 
       export const MyDirectoryTreeContentsSchema = MyDirectoryTreeSchema.shape.contents
       export type MyDirectoryTreeContentsSchemaType = z.infer<typeof MyDirectoryTreeSchema>
@@ -278,15 +340,18 @@ describe("dirtree", () => {
         // be written with confidence that the files and directories they expect are
         // actually found. Otherwise the tests are brittle and can break easily.
 
-        import * as z from "zod"
+        import * as z from "zod";
 
         export const MyDirectoryTreeSchema = z.object({
           name: z.literal("other-subdirectory/"),
           type: z.literal("directory"),
           contents: z.object({
-            "other-sub-file.txt": z.object({ name: z.literal("other-sub-file.txt"), type: z.literal("file") }),
+            "other-sub-file.txt": z.object({
+              name: z.literal("other-sub-file.txt"),
+              type: z.literal("file"),
+            }),
           }),
-        })
+        });
 
         export const MyDirectoryTreeContentsSchema = MyDirectoryTreeSchema.shape.contents
         export type MyDirectoryTreeContentsSchemaType = z.infer<typeof MyDirectoryTreeSchema>
@@ -327,15 +392,18 @@ describe("dirtree", () => {
         // be written with confidence that the files and directories they expect are
         // actually found. Otherwise the tests are brittle and can break easily.
 
-        import * as z from "zod"
+        import * as z from "zod";
 
         export const MyDirectoryTreeSchema = z.object({
           name: z.literal("other-subdirectory/"),
           type: z.literal("directory"),
           contents: z.object({
-            "other-sub-file.txt": z.object({ name: z.literal("other-sub-file.txt"), type: z.literal("file") }),
+            "other-sub-file.txt": z.object({
+              name: z.literal("other-sub-file.txt"),
+              type: z.literal("file"),
+            }),
           }),
-        })
+        });
 
         export const MyDirectoryTreeContentsSchema = MyDirectoryTreeSchema.shape.contents
         export type MyDirectoryTreeContentsSchemaType = z.infer<typeof MyDirectoryTreeSchema>

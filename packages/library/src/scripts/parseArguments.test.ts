@@ -1,4 +1,5 @@
 import { describe, expect, it } from "vitest"
+
 import { parseArguments } from "./parseArguments.js"
 
 it(`can parse "neovim prepare"`, async () => {

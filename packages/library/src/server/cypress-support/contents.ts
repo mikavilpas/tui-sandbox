@@ -1,7 +1,8 @@
 import { readFileSync } from "fs"
 import { createRequire } from "module"
-import { format, resolveConfig } from "prettier"
 import { fileURLToPath } from "url"
+
+import { format, resolveConfig } from "prettier"
 
 const __filename = fileURLToPath(import.meta.url)
 const require = createRequire(import.meta.url)

@@ -1,5 +1,7 @@
 import { EventEmitter } from "stream"
+
 import { describe, expect, it } from "vitest"
+
 import { convertEventEmitterToAsyncGenerator } from "./generator.js"
 
 describe("when a listener is attached", () => {

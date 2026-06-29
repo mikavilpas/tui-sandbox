@@ -1,6 +1,8 @@
 import nodePath from "path"
+
 import type { PartialDeep } from "type-fest"
 import { expect, it, vi } from "vitest"
+
 import { createDefaultConfig } from "../../../config.js"
 import type { TestServerConfig } from "../../../updateTestdirectorySchemaFile.js"
 import type { TestDirsPath } from "./createTempDir.js"

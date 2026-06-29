@@ -1,4 +1,5 @@
 import path from "path"
+
 import type { TestServerConfig } from "./updateTestdirectorySchemaFile.js"
 
 export const createDefaultConfig = (cwd: string, environment: NodeJS.ProcessEnv): TestServerConfig => {

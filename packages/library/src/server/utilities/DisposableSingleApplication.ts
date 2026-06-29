@@ -1,5 +1,6 @@
 import assert from "assert"
 import { debuglog } from "util"
+
 import type { ExitInfo, TerminalApplication } from "./TerminalApplication.js"
 
 export type StartableApplication = Pick<TerminalApplication, "write" | "processId" | "killAndWait" | "untilExit">

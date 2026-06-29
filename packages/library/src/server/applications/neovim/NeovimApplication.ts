@@ -2,10 +2,12 @@ import assert from "assert"
 import { exec } from "child_process"
 import EventEmitter from "events"
 import { access } from "fs/promises"
-import type { NeovimClient as NeovimApiClient } from "neovim"
 import { tmpdir } from "os"
 import path, { join } from "path"
 import { debuglog } from "util"
+
+import type { NeovimClient as NeovimApiClient } from "neovim"
+
 import type { TestDirectory, TestEnvironmentCommonEnvironmentVariables } from "../../types.js"
 import { DisposableSingleApplication } from "../../utilities/DisposableSingleApplication.js"
 import type { Lazy } from "../../utilities/Lazy.js"

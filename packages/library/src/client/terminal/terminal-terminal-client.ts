@@ -1,5 +1,6 @@
 import { createTRPCClient, httpBatchLink, httpSubscriptionLink, splitLink } from "@trpc/client"
 import type { Terminal } from "@xterm/xterm"
+
 import type { StartTerminalBrowserArguments } from "../../browser/neovim-client.js"
 import type { BlockingCommandClientInput } from "../../server/blockingCommandInputSchema.js"
 import type { AppRouter } from "../../server/server.js"

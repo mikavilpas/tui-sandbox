@@ -1,12 +1,22 @@
 {
   "name": "@tui-sandbox/library",
   "version": "12.6.0",
+  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "https://github.com/mikavilpas/tui-sandbox"
   },
-  "license": "MIT",
+  "bin": {
+    "tui": "bin/tui.js"
+  },
+  "files": [
+    "bin",
+    "dist",
+    "src/server/cypress-support/tui-sandbox-template.ts"
+  ],
   "type": "module",
+  "main": "./dist/src/client/index.js",
+  "types": "./dist/src/client/index.d.ts",
   "imports": {
     "#tui-sandbox-template": "./src/server/cypress-support/tui-sandbox-template.ts"
   },
@@ -30,16 +40,6 @@
     "./dist/*": "./dist/*",
     "./src/*": "./dist/src/*"
   },
-  "main": "./dist/src/client/index.js",
-  "types": "./dist/src/client/index.d.ts",
-  "bin": {
-    "tui": "bin/tui.js"
-  },
-  "files": [
-    "bin",
-    "dist",
-    "src/server/cypress-support/tui-sandbox-template.ts"
-  ],
   "scripts": {
     "build": "concurrently --names 'vite,tsc' 'vite build' 'tsc' --prefix-colors blue,green && attw --pack --profile=esm-only",
     "dev": "concurrently --names 'client,server' 'pnpm dev:client' 'pnpm dev:server' --prefix-colors blue,green",

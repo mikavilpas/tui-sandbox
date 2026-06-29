@@ -1,4 +1,5 @@
 import { describe, expect, it } from "vitest"
+
 import type { RgbColor } from "./color-utilities.js"
 import { rgbify } from "./color-utilities.js"
 

@@ -1,5 +1,5 @@
 {
-  "$schema": "https://raw.githubusercontent.com/oxc-project/oxc/main/npm/oxlint/configuration_schema.json",
+  "$schema": "./node_modules/oxlint/configuration_schema.json",
   "plugins": ["typescript", "import", "unicorn"],
   "jsPlugins": ["eslint-plugin-import-zod"],
   "categories": {
@@ -35,13 +35,22 @@
         "allowAsStatement": true
       }
     ],
-
     "import-x/namespace": "error",
     "import-x/default": "error",
     "import-x/no-named-as-default": "warn",
     "import-x/no-named-as-default-member": "warn",
     "import-x/no-duplicates": "warn",
-
+    "no-unused-vars": [
+      "error",
+      {
+        "argsIgnorePattern": "^_",
+        "varsIgnorePattern": "^_",
+        "caughtErrorsIgnorePattern": "^_",
+        "fix": {
+          "imports": "safe-fix"
+        }
+      }
+    ],
     "@typescript-eslint/ban-ts-comment": [
       "error",
       {

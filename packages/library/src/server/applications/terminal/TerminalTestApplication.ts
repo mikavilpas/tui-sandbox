@@ -101,6 +101,7 @@ export default class TerminalTestApplication implements AsyncDisposable {
       XDG_RUNTIME_DIR: xdgRuntimeDir,
       TUI_SANDBOX_TEST_ENVIRONMENT_PATH: testDirectory.testEnvironmentPath,
       ...(miseStateDirectory ? { MISE_STATE_DIR: miseStateDirectory } : {}),
+      MISE_OFFLINE: "1",
       ...additionalEnvironmentVariables,
     } satisfies TestEnvironmentCommonEnvironmentVariables
   }

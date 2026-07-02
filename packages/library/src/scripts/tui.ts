@@ -27,7 +27,7 @@ if (major < 24) {
 export const cwd = process.cwd()
 const configResult = await resolveTuiConfig(cwd)
 if (configResult.error) {
-  console.error(configResult.message, configResult.error)
+  console.error(configResult.message, JSON.stringify(configResult.error))
   process.exit(1)
 }
 

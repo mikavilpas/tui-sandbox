@@ -1,5 +1,13 @@
 # Changelog
 
+## [12.7.1](https://github.com/mikavilpas/tui-sandbox/compare/library-v12.7.0...library-v12.7.1) (2026-07-02)
+
+
+### Bug Fixes
+
+* **mise:** asking if config files may be trusted ([e148851](https://github.com/mikavilpas/tui-sandbox/commit/e148851bae39217f7af439f979c3e6323050c7d4))
+* **mise:** forbid mise from making network calls during tests ([fc5f3dd](https://github.com/mikavilpas/tui-sandbox/commit/fc5f3dd0a04de7d10a741f6e0616dd0722112721))
+
 ## [12.7.0](https://github.com/mikavilpas/tui-sandbox/compare/library-v12.6.2...library-v12.7.0) (2026-07-02)
 
 

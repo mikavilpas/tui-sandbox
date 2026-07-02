@@ -7,6 +7,7 @@ import { debuglog } from "util"
 import type { TestDirectory, TestEnvironmentCommonEnvironmentVariables } from "../../types.js"
 import { DisposableSingleApplication } from "../../utilities/DisposableSingleApplication.js"
 import { TerminalApplication } from "../../utilities/TerminalApplication.js"
+import { resolveMiseStateDirectory } from "../neovim/environment/resolveMiseStateDirectory.js"
 import { XdgRuntimeDirectory } from "../neovim/environment/XdgRuntimeDirectory.js"
 import type { StdoutOrStderrMessage, TerminalDimensions } from "../neovim/NeovimApplication.js"
 
@@ -91,6 +92,7 @@ export default class TerminalTestApplication implements AsyncDisposable {
     xdgRuntimeDir: string,
     additionalEnvironmentVariables?: Record<string, string>
   ): Record<string, string> {
+    const miseStateDirectory = resolveMiseStateDirectory()
     return {
       ...process.env,
       HOME: testDirectory.rootPathAbsolute,
@@ -98,6 +100,7 @@ export default class TerminalTestApplication implements AsyncDisposable {
       XDG_DATA_HOME: join(testDirectory.testEnvironmentPath, ".repro", "data"),
       XDG_RUNTIME_DIR: xdgRuntimeDir,
       TUI_SANDBOX_TEST_ENVIRONMENT_PATH: testDirectory.testEnvironmentPath,
+      ...(miseStateDirectory ? { MISE_STATE_DIR: miseStateDirectory } : {}),
       ...additionalEnvironmentVariables,
     } satisfies TestEnvironmentCommonEnvironmentVariables
   }

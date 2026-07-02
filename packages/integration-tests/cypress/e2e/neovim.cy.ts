@@ -346,9 +346,6 @@ describe("neovim features", () => {
       cy.visit("/")
       cy.startNeovim({
         filename: "lua-project/init.lua",
-        additionalEnvironmentVariables: {
-          MISE_YES: "1",
-        },
       }).then(nvim => {
         // wait until text on the start screen is visible
         cy.contains(`require("config")`)

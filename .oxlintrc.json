@@ -35,13 +35,20 @@
         "allowAsStatement": true
       }
     ],
-
     "import-x/namespace": "error",
     "import-x/default": "error",
     "import-x/no-named-as-default": "warn",
     "import-x/no-named-as-default-member": "warn",
     "import-x/no-duplicates": "warn",
-
+    "no-unused-vars": [
+      "error",
+      {
+        "fix": {
+          "imports": "safe-fix",
+          "variables": "off"
+        }
+      }
+    ],
     "@typescript-eslint/ban-ts-comment": [
       "error",
       {

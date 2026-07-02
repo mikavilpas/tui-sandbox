@@ -1,5 +1,18 @@
 # Changelog
 
+## [12.6.1](https://github.com/mikavilpas/tui-sandbox/compare/library-v12.6.0...library-v12.6.1) (2026-07-02)
+
+
+### Bug Fixes
+
+* **deps:** update all non-major dependencies ([#1291](https://github.com/mikavilpas/tui-sandbox/issues/1291)) ([1a4d20c](https://github.com/mikavilpas/tui-sandbox/commit/1a4d20ce9be8f99c3e6d8ae2a6aa1eb29b647a65))
+* **deps:** update all non-major dependencies to v11.18.0 ([#1283](https://github.com/mikavilpas/tui-sandbox/issues/1283)) ([1fbc83d](https://github.com/mikavilpas/tui-sandbox/commit/1fbc83dd449f70bb34e7863ae08e7e8978b85b5c))
+
+
+### Performance Improvements
+
+* cache the MyTestDirectory schema to avoid reformatting it ([#1320](https://github.com/mikavilpas/tui-sandbox/issues/1320)) ([e83ad6b](https://github.com/mikavilpas/tui-sandbox/commit/e83ad6bef9c75bf55c2728a81c2b1bd4b588bb15))
+
 ## [12.6.0](https://github.com/mikavilpas/tui-sandbox/compare/library-v12.5.4...library-v12.6.0) (2026-06-19)
 
 

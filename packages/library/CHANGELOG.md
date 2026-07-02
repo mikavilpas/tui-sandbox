@@ -1,5 +1,12 @@
 # Changelog
 
+## [12.6.2](https://github.com/mikavilpas/tui-sandbox/compare/library-v12.6.1...library-v12.6.2) (2026-07-02)
+
+
+### Bug Fixes
+
+* config validation errors are not shown ([#1321](https://github.com/mikavilpas/tui-sandbox/issues/1321)) ([627d8f0](https://github.com/mikavilpas/tui-sandbox/commit/627d8f01f0a6f895a555c9910afa3c766b93331b))
+
 ## [12.6.1](https://github.com/mikavilpas/tui-sandbox/compare/library-v12.6.0...library-v12.6.1) (2026-07-02)
 
 

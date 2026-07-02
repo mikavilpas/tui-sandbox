@@ -18,7 +18,7 @@ export async function commandTuiStart(config: TestServerConfigMetadata): Promise
 }
 
 export async function updateGeneratedCode(config: TestServerConfigMetadata): Promise<void> {
-  await Promise.allSettled([updateSchemaFile(config.config), createSupportFile()])
+  await Promise.allSettled([updateSchemaFile(config.config), createSupportFile(config.config)])
 }
 
 async function updateSchemaFile(config: TestServerConfig): Promise<void> {
@@ -29,9 +29,10 @@ async function updateSchemaFile(config: TestServerConfig): Promise<void> {
   }
 }
 
-async function createSupportFile(): Promise<void> {
+async function createSupportFile(config: TestServerConfig): Promise<void> {
   try {
     await createCypressSupportFile({
+      config: config.formatter,
       cypressSupportDirectoryPath: path.join(cwd, "cypress", "support"),
       supportFileName: "tui-sandbox.ts",
     })

@@ -23,6 +23,12 @@ const neovimIntegration = z.strictObject({
     .default(["nvim" satisfies NeovimIntegrationDefaultAppName]),
 })
 
+export type FormatterConfig = z.output<typeof formatterConfigSchema>
+const formatterConfigSchema = z
+  .discriminatedUnion("use", [z.strictObject({ use: z.literal("prettier") })])
+  .optional()
+  .default({ use: "prettier" })
+
 export const testServerConfigSchema = z.strictObject({
   directories: z.object({
     testEnvironmentPath: z.string(),
@@ -33,6 +39,7 @@ export const testServerConfigSchema = z.strictObject({
   integrations: z.strictObject({
     neovim: neovimIntegration,
   }),
+  formatter: formatterConfigSchema,
 })
 
 export type UpdateTestdirectorySchemaFileResult = "updated" | "did-nothing"

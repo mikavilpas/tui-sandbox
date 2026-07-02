@@ -3,11 +3,13 @@ import { mkdir, stat } from "fs/promises"
 import path from "path"
 import { debuglog } from "util"
 
+import type { FormatterConfig } from "../updateTestdirectorySchemaFile.js"
 import { createCypressSupportFileContents } from "./contents.js"
 
 const log = debuglog("tui-sandbox.dirtree")
 
 export type CreateCypressSupportFileArgs = {
+  config: FormatterConfig
   cypressSupportDirectoryPath: string
   supportFileName: string
 }
@@ -20,6 +22,7 @@ export type CreateCypressSupportFileResult = "updated" | "did-nothing"
  * tui-sandbox version.
  */
 export async function createCypressSupportFile({
+  config,
   cypressSupportDirectoryPath,
   supportFileName,
 }: CreateCypressSupportFileArgs): Promise<CreateCypressSupportFileResult> {
@@ -34,7 +37,7 @@ export async function createCypressSupportFile({
     await mkdir(configModificationsDirectoryPath, { recursive: true })
   }
 
-  const text = await createCypressSupportFileContents()
+  const text = await createCypressSupportFileContents(config)
 
   let oldSchema = ""
   const outputFilePath = path.join(cypressSupportDirectoryPath, supportFileName)

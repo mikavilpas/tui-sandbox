@@ -6,7 +6,7 @@ import type { Dree } from "dree"
 import { scan, Type } from "dree"
 
 import type { TestServerConfig } from "../updateTestdirectorySchemaFile.js"
-import { formatCode } from "../utilities/format.js"
+import { formatCode, isTypeScriptPath } from "../utilities/format.js"
 import { jsonToZod } from "./json-to-zod.js"
 
 const log = debuglog("tui-sandbox.dirtree")
@@ -141,6 +141,7 @@ export async function buildTestDirectorySchema(config: TestServerConfig): Promis
   const unformatted = await buildSchemaForDirectoryTree(dree, "MyTestDirectory", config)
 
   const { outputFilePath } = config.directories
+  assert(isTypeScriptPath(outputFilePath), `outputFilePath must be a .ts file, got: ${outputFilePath}`)
 
   const cacheKey = JSON.stringify([config.formatter.use, outputFilePath, unformatted])
   if (lastFormattedSchema?.key === cacheKey) {
@@ -148,7 +149,7 @@ export async function buildTestDirectorySchema(config: TestServerConfig): Promis
     return lastFormattedSchema.value
   }
 
-  const formatted = await formatCode(config.formatter, unformatted)
+  const formatted = await formatCode(config.formatter, unformatted, outputFilePath)
   lastFormattedSchema = { key: cacheKey, value: formatted }
   return formatted
 }

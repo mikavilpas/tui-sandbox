@@ -1,19 +1,20 @@
 import path from "path"
 
-import type { TestServerConfig } from "./updateTestdirectorySchemaFile.js"
+import {
+  testServerConfigSchema,
+  type TestServerConfig,
+  type TestServerConfigInput,
+} from "./updateTestdirectorySchemaFile.js"
 
 export const createDefaultConfig = (cwd: string, environment: NodeJS.ProcessEnv): TestServerConfig => {
-  return {
+  return testServerConfigSchema.parse({
     directories: {
       testEnvironmentPath: path.join(cwd, "test-environment/"),
       outputFilePath: path.join(cwd, "MyTestDirectory.ts"),
-      latestSymlinkName: "latest",
     },
-    port: environment["PORT"] ? parseInt(environment["PORT"]) : 3000,
+    port: environment["PORT"] ? parseInt(environment["PORT"]) : undefined,
     integrations: {
-      neovim: {
-        NVIM_APPNAMEs: ["nvim"],
-      },
+      neovim: {},
     },
-  }
+  } satisfies TestServerConfigInput)
 }

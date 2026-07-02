@@ -7,6 +7,7 @@ import { buildTestDirectorySchema } from "./dirtree/index.js"
 
 const log = debuglog(`tui-sandbox.${updateTestdirectorySchemaFile.name}`)
 
+export type TestServerConfigInput = z.input<typeof testServerConfigSchema>
 export type TestServerConfig = z.output<typeof testServerConfigSchema>
 
 export type TestServerConfigMetadata = {
@@ -28,7 +29,7 @@ export const testServerConfigSchema = z.strictObject({
     outputFilePath: z.string(),
     latestSymlinkName: z.string().optional().default("latest"),
   }),
-  port: z.number().int().min(1).max(65535),
+  port: z.number().int().min(1).max(65535).optional().default(3000),
   integrations: z.strictObject({
     neovim: neovimIntegration,
   }),

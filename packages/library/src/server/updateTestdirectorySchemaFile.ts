@@ -25,7 +25,10 @@ const neovimIntegration = z.strictObject({
 
 export type FormatterConfig = z.output<typeof formatterConfigSchema>
 const formatterConfigSchema = z
-  .discriminatedUnion("use", [z.strictObject({ use: z.literal("prettier") })])
+  .discriminatedUnion("use", [
+    z.strictObject({ use: z.literal("prettier") }),
+    z.strictObject({ use: z.literal("oxfmt") }),
+  ])
   .optional()
   .default({ use: "prettier" })
 

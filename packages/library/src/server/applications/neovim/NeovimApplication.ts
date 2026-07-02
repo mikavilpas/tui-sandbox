@@ -12,6 +12,7 @@ import type { TestDirectory, TestEnvironmentCommonEnvironmentVariables } from ".
 import { DisposableSingleApplication } from "../../utilities/DisposableSingleApplication.js"
 import type { Lazy } from "../../utilities/Lazy.js"
 import { TerminalApplication } from "../../utilities/TerminalApplication.js"
+import { resolveMiseStateDirectory } from "./environment/resolveMiseStateDirectory.js"
 import { XdgRuntimeDirectory } from "./environment/XdgRuntimeDirectory.js"
 import { connectNeovimApi } from "./NeovimJavascriptApiClient.js"
 
@@ -211,6 +212,7 @@ export class NeovimApplication implements AsyncDisposable {
     NVIM_APPNAME: string | undefined,
     additionalEnvironmentVariables?: Record<string, string>
   ): Record<string, string> {
+    const miseStateDirectory = resolveMiseStateDirectory()
     return {
       ...process.env,
       ...({
@@ -219,6 +221,7 @@ export class NeovimApplication implements AsyncDisposable {
         XDG_DATA_HOME: join(testDirectory.testEnvironmentPath, ".repro", "data"),
         XDG_RUNTIME_DIR: xdgRuntimeDir,
         TUI_SANDBOX_TEST_ENVIRONMENT_PATH: testDirectory.testEnvironmentPath,
+        ...(miseStateDirectory ? { MISE_STATE_DIR: miseStateDirectory } : {}),
       } satisfies TestEnvironmentCommonEnvironmentVariables),
       NVIM_APPNAME: NVIM_APPNAME ?? "nvim",
 

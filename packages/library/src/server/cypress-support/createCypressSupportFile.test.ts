@@ -27,6 +27,7 @@ describe("createCypressSupportFileContents", () => {
     })
 
     const result = await createCypressSupportFile({
+      config: { use: "prettier" },
       cypressSupportDirectoryPath: "cypress/support",
       supportFileName: "tui-sandbox.ts",
     })
@@ -42,6 +43,7 @@ describe("createCypressSupportFileContents", () => {
     mocked.createCypressSupportFileContents.mockImplementationOnce(async () => "contents")
 
     const result = await createCypressSupportFile({
+      config: { use: "prettier" },
       cypressSupportDirectoryPath: "cypress/support",
       supportFileName: "tui-sandbox.ts",
     })
@@ -60,6 +62,7 @@ describe("createCypressSupportFileContents", () => {
     mocked.stat.mockRejectedValueOnce(new Error("ENOENT"))
 
     const result = await createCypressSupportFile({
+      config: { use: "prettier" },
       cypressSupportDirectoryPath: "cypress/support",
       supportFileName: "tui-sandbox.ts",
     })

@@ -28,6 +28,7 @@ it("loads a custom configuration file if it exists", async () => {
     },
     integrations: { neovim: { NVIM_APPNAMEs: ["nvim", "nvim_2"] } },
     port: 12345,
+    formatter: { use: "prettier" },
   }
   {
     const contents = `export const config = ${JSON.stringify(customConfig)}`

@@ -1,11 +1,7 @@
-import { fileURLToPath } from "url"
+import type { FormatterConfig } from "../updateTestdirectorySchemaFile.js"
+import { formatCode } from "../utilities/format.js"
 
-import { format, resolveConfig } from "prettier"
-import babelParser from "prettier/parser-babel"
-
-const __filename = fileURLToPath(import.meta.url)
-
-export async function jsonToZod(object: unknown, name: string = "schema"): Promise<string> {
+export async function jsonToZod(config: FormatterConfig, object: unknown, name: string = "schema"): Promise<string> {
   const parse = (o: unknown, seen: object[]): string => {
     switch (typeof o) {
       case "string":
@@ -51,11 +47,5 @@ export async function jsonToZod(object: unknown, name: string = "schema"): Promi
         return "z.unknown()"
     }
   }
-  const prettierConfig = await resolveConfig(__filename)
-
-  return format(`import * as z from "zod"\n\nexport const ${name}=${parse(object, [])}`, {
-    ...prettierConfig,
-    parser: "babel",
-    plugins: [babelParser],
-  })
+  return formatCode(config, `import * as z from "zod"\n\nexport const ${name}=${parse(object, [])}`)
 }

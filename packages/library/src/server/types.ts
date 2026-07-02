@@ -82,6 +82,15 @@ export type TestEnvironmentCommonEnvironmentVariables = {
    * the security check intact. Resolved by resolveMiseStateDirectory.
    */
   MISE_STATE_DIR?: string
+
+  /** Forbids mise from making network calls while a test runs. Without this,
+   * resolving a tool pinned to "latest" or a missing `npm:`/`cargo:` backend
+   * tool makes mise shell out (e.g. to npm), which is slow, prints update
+   * notices into the terminal, and can push a test past its timeout. Everything
+   * the sandbox needs is installed ahead of time, so offline resolution from
+   * disk is enough at test time.
+   */
+  MISE_OFFLINE: string
 }
 
 export type { StartNeovimGenericArguments } from "./applications/neovim/NeovimApplication.js"

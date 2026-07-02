@@ -1,5 +1,12 @@
 # Changelog
 
+## [12.7.0](https://github.com/mikavilpas/tui-sandbox/compare/library-v12.6.2...library-v12.7.0) (2026-07-02)
+
+
+### Features
+
+* add support for the oxfmt formatter ([#1317](https://github.com/mikavilpas/tui-sandbox/issues/1317)) ([1ba1fbc](https://github.com/mikavilpas/tui-sandbox/commit/1ba1fbca0a575e7eeac001d06f31419593f4c80e))
+
 ## [12.6.2](https://github.com/mikavilpas/tui-sandbox/compare/library-v12.6.1...library-v12.6.2) (2026-07-02)
 
 

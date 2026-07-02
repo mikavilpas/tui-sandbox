@@ -131,12 +131,24 @@ export async function buildSchemaForDirectoryTree(
   ].join("\n")
 }
 
+/** There aren't that many updates to the test-environment tree - cache the
+ * formatted schema to avoid reformatting it on every test setup. */
+let lastFormattedSchema: { key: string; value: string } | undefined
+
 export async function buildTestDirectorySchema(config: TestServerConfig): Promise<string> {
   log("Building schema for test directory", config.directories.testEnvironmentPath)
   const dree = getDirectoryTree(config.directories.testEnvironmentPath)
-  let text = await buildSchemaForDirectoryTree(dree, "MyTestDirectory", config)
+  const unformatted = await buildSchemaForDirectoryTree(dree, "MyTestDirectory", config)
 
-  text = await formatCode(config.formatter, text)
+  const { outputFilePath } = config.directories
 
-  return text
+  const cacheKey = JSON.stringify([config.formatter.use, outputFilePath, unformatted])
+  if (lastFormattedSchema?.key === cacheKey) {
+    log("Reusing cached formatted schema")
+    return lastFormattedSchema.value
+  }
+
+  const formatted = await formatCode(config.formatter, unformatted)
+  lastFormattedSchema = { key: cacheKey, value: formatted }
+  return formatted
 }

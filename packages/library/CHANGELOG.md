@@ -1,5 +1,13 @@
 # Changelog
 
+## [12.7.2](https://github.com/mikavilpas/tui-sandbox/compare/library-v12.7.1...library-v12.7.2) (2026-07-08)
+
+
+### Bug Fixes
+
+* **deps:** update dependency tsx to v4.22.5 ([#1335](https://github.com/mikavilpas/tui-sandbox/issues/1335)) ([5046351](https://github.com/mikavilpas/tui-sandbox/commit/50463516a4d2d1db9dedc2b078d315378330ab2b))
+* **deps:** update dependency tsx to v4.23.0 ([#1340](https://github.com/mikavilpas/tui-sandbox/issues/1340)) ([999afc8](https://github.com/mikavilpas/tui-sandbox/commit/999afc8be1fb9615e138008a38b059f19301d695))
+
 ## [12.7.1](https://github.com/mikavilpas/tui-sandbox/compare/library-v12.7.0...library-v12.7.1) (2026-07-02)
 
 

@@ -1,5 +1,12 @@
 # Changelog
 
+## [12.7.3](https://github.com/mikavilpas/tui-sandbox/compare/library-v12.7.2...library-v12.7.3) (2026-07-12)
+
+
+### Bug Fixes
+
+* **deps:** update dependency string-width to v8.2.2 ([#1352](https://github.com/mikavilpas/tui-sandbox/issues/1352)) ([8b2674a](https://github.com/mikavilpas/tui-sandbox/commit/8b2674a9d851ca03538c1e093ea5668afbc6c95b))
+
 ## [12.7.2](https://github.com/mikavilpas/tui-sandbox/compare/library-v12.7.1...library-v12.7.2) (2026-07-08)
 
 

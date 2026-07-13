@@ -67,7 +67,7 @@
     "zod": "4.4.3"
   },
   "devDependencies": {
-    "@arethetypeswrong/cli": "0.18.4",
+    "@arethetypeswrong/cli": "0.18.5",
     "@types/cors": "2.8.19",
     "@types/node": "24.13.3",
     "cypress": "15.18.1",

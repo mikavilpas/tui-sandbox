@@ -34,5 +34,5 @@
     "vitest": "4.1.10",
     "wait-on": "9.0.10"
   },
-  "packageManager": "pnpm@11.11.0"
+  "packageManager": "pnpm@11.13.1"
 }

@@ -12,6 +12,7 @@ import type {
 import type { TestServerConfig } from "../../updateTestdirectorySchemaFile.js"
 import { DisposableSingleApplication } from "../../utilities/DisposableSingleApplication.js"
 import { TerminalApplication } from "../../utilities/TerminalApplication.js"
+import { prependMiseBinPathsToPath, resolveMiseBinPaths } from "../neovim/environment/resolveMiseBinPaths.js"
 import { resolveMiseStateDirectory } from "../neovim/environment/resolveMiseStateDirectory.js"
 import { XdgRuntimeDirectory } from "../neovim/environment/XdgRuntimeDirectory.js"
 import type { StdoutOrStderrMessage, TerminalDimensions } from "../neovim/NeovimApplication.js"
@@ -32,6 +33,7 @@ export type StartTerminalGenericArguments = {
 
 export default class TerminalTestApplication implements AsyncDisposable {
   public state: ResettableState | undefined
+
   public readonly events: EventEmitter
 
   public constructor(public readonly application: DisposableSingleApplication = new DisposableSingleApplication()) {
@@ -101,24 +103,28 @@ export default class TerminalTestApplication implements AsyncDisposable {
     additionalEnvironmentVariables?: Record<string, string>,
   ): Record<string, string> {
     const miseStateDirectory = resolveMiseStateDirectory()
-    const env = {
+    let env: Record<string, string> = {
       ...process.env,
       HOME: testDirectory.rootPathAbsolute,
       XDG_CONFIG_HOME: join(testDirectory.rootPathAbsolute, ".config"),
       XDG_DATA_HOME: join(testDirectory.testEnvironmentPath, ".repro", "data"),
       XDG_RUNTIME_DIR: xdgRuntimeDir,
       TUI_SANDBOX_TEST_ENVIRONMENT_PATH: testDirectory.testEnvironmentPath,
-    }
+    } satisfies TestEnvironmentCommonEnvironmentVariables
 
     if (config.integrations.mise) {
       Object.assign(env, {
         ...(miseStateDirectory ? { MISE_STATE_DIR: miseStateDirectory } : {}),
         MISE_OFFLINE: "1",
       } satisfies MiseIntegrationEnvironmentVariables)
+
+      // put mise-managed tools' real install dirs on PATH so they are
+      // invocable in the isolated env (shims can't re-resolve there)
+      env = prependMiseBinPathsToPath(env, resolveMiseBinPaths())
     }
 
     Object.assign(env, additionalEnvironmentVariables ?? {})
-    return env satisfies TestEnvironmentCommonEnvironmentVariables
+    return env
   }
 
   async [Symbol.asyncDispose](): Promise<void> {

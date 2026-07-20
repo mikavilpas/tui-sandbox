@@ -14,7 +14,7 @@ vi.spyOn(console, "log").mockImplementation(vi.fn())
 
 it("should create a temp dir with no contents", async () => {
   // typically the user will want to have contents, but this should not be an error
-  using dir = TempDirectory.create()
+  await using dir = TempDirectory.create()
   const result = await createTempDir({
     ...createDefaultConfig("cwd", {}),
     directories: {

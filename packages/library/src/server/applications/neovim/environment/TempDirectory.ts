@@ -1,9 +1,10 @@
 import fs from "fs"
+import fsPromises from "fs/promises"
 import nodePath from "path"
 
 export type TestTempDirPrefix = "test-temp-dir-"
 
-export class TempDirectory implements Disposable {
+export class TempDirectory implements AsyncDisposable {
   private constructor(public readonly path: string) {}
 
   public static create(prefix: `${string}-` = "test-temp-dir-" satisfies TestTempDirPrefix): TempDirectory {
@@ -12,7 +13,7 @@ export class TempDirectory implements Disposable {
     return new TempDirectory(absolutePath)
   }
 
-  [Symbol.dispose](): void {
-    fs.rmdirSync(this.path, { recursive: true, maxRetries: 5 })
+  async [Symbol.asyncDispose](): Promise<void> {
+    await fsPromises.rm(this.path, { recursive: true, force: true })
   }
 }

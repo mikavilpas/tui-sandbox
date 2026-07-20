@@ -22,7 +22,7 @@ const symlinkFileExists = (path: string): boolean => {
 }
 
 it("creates a uniquely named directory under the system temp dir", async () => {
-  using testDir = newTestDir()
+  await using testDir = newTestDir()
   await using dir = await XdgRuntimeDirectory.create(testDir.path)
 
   expect(existsSync(dir.path)).toBe(true)
@@ -30,7 +30,7 @@ it("creates a uniquely named directory under the system temp dir", async () => {
 })
 
 it("removes the directory and the symlink when disposed", async () => {
-  using testDir = newTestDir()
+  await using testDir = newTestDir()
 
   let createdPath: string
   let createdSymlinkPath: string
@@ -59,7 +59,7 @@ it("stays well under the OS Unix-socket path limit (this is the reason it exists
   // `/yazi+<uid>/.dds.sock`). The full socket path must fit in `sun_path`
   // (~104 bytes on macOS, ~108 on Linux), so the directory itself must leave
   // ample room.
-  using testDir = newTestDir()
+  await using testDir = newTestDir()
   await using dir = await XdgRuntimeDirectory.create(testDir.path)
 
   const exampleSocketPath = join(dir.path, "yazi+1000", ".dds.sock")

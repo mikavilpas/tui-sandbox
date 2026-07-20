@@ -25,6 +25,7 @@ export async function start(
   assert(app, `Terminal with tabId ${tabId.tabId} not found.`)
   const testDirectory = await prepareNewTestDirectory(config)
   await app.startNextAndKillCurrent(
+    config,
     testDirectory,
     {
       commandToRun: startTerminalArguments.commandToRun,
@@ -70,6 +71,7 @@ export async function sendStdin(options: { tabId: TabId; data: string }): Promis
 }
 
 export async function runBlockingShellCommand(
+  config: TestServerConfig,
   signal: AbortSignal | undefined,
   input: BlockingCommandInput,
   allowFailure: boolean,
@@ -91,6 +93,6 @@ export async function runBlockingShellCommand(
     `XDG runtime directory not found for client id ${input.tabId.tabId}. Maybe it's not started yet?`,
   )
 
-  const env = app.getEnvironmentVariables(testDirectory, xdgRuntimeDirectory.path, input.envOverrides)
+  const env = app.getEnvironmentVariables(config, testDirectory, xdgRuntimeDirectory.path, input.envOverrides)
   return executeBlockingShellCommand(testDirectory, input, signal, allowFailure, env)
 }

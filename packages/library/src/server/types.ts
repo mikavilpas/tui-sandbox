@@ -75,7 +75,8 @@ export type TestEnvironmentCommonEnvironmentVariables = {
    * @example /Users/mikavilpas/git/tui-sandbox/packages/integration-tests/test-environment
    * */
   TUI_SANDBOX_TEST_ENVIRONMENT_PATH: string
-
+}
+export type MiseIntegrationEnvironmentVariables = {
   /** Points mise at the real user's state directory so it reuses their existing
    * trust database instead of prompting to trust config files (which no test can
    * answer). Trusted configs pass silently; untrusted ones still prompt, keeping

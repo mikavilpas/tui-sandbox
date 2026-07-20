@@ -56,6 +56,7 @@ export async function installDependencies(NVIM_APPNAME: string | undefined, conf
     output += data
   })
   await app.startNextAndKillCurrent(
+    config,
     testDirectory,
     {
       filename: "empty.txt",
@@ -105,7 +106,7 @@ export async function start(
   assert(neovim, `Neovim instance not found for client id ${tabId.tabId}`)
 
   const testDirectory = await prepareNewTestDirectory(config)
-  await neovim.startNextAndKillCurrent(testDirectory, options, terminalDimensions)
+  await neovim.startNextAndKillCurrent(config, testDirectory, options, terminalDimensions)
 
   return testDirectory
 }
@@ -125,6 +126,7 @@ export async function sendStdin(options: { tabId: TabId; data: string }): Promis
 }
 
 export async function runBlockingShellCommand(
+  config: TestServerConfig,
   signal: AbortSignal | undefined,
   input: BlockingCommandInput,
   allowFailure: boolean,
@@ -144,6 +146,7 @@ export async function runBlockingShellCommand(
   )
 
   const env = NeovimApplication.getEnvironmentVariables(
+    config,
     testDirectory,
     xdgRuntimeDirectory.path,
     neovim.state?.NVIM_APPNAME,

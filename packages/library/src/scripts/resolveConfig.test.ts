@@ -17,7 +17,7 @@ it("defaults to the default configuration if no config file is found", async () 
 })
 
 it("loads a custom configuration file if it exists", async () => {
-  using dir = TempDirectory.create()
+  await using dir = TempDirectory.create()
 
   const filename = `${dir.path}/tui-sandbox.config.ts`
   const customConfig: TestServerConfig = {
@@ -46,7 +46,7 @@ it("loads a custom configuration file if it exists", async () => {
 })
 
 it("uses the default configuration file if the config has invalid contents", async () => {
-  using dir = TempDirectory.create()
+  await using dir = TempDirectory.create()
 
   {
     const customConfig: TestServerConfig = {
@@ -66,7 +66,7 @@ it("uses the default configuration file if the config has invalid contents", asy
 })
 
 it("fails if the config has not been exported from the config file", async () => {
-  using dir = TempDirectory.create()
+  await using dir = TempDirectory.create()
 
   {
     const filename = `${dir.path}/tui-sandbox.config.ts`

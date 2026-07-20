@@ -17,6 +17,7 @@ import type { TestServerConfig } from "../../updateTestdirectorySchemaFile.js"
 import { DisposableSingleApplication } from "../../utilities/DisposableSingleApplication.js"
 import type { Lazy } from "../../utilities/Lazy.js"
 import { TerminalApplication } from "../../utilities/TerminalApplication.js"
+import { prependMiseBinPathsToPath, resolveMiseBinPaths } from "./environment/resolveMiseBinPaths.js"
 import { resolveMiseStateDirectory } from "./environment/resolveMiseStateDirectory.js"
 import { XdgRuntimeDirectory } from "./environment/XdgRuntimeDirectory.js"
 import { connectNeovimApi } from "./NeovimJavascriptApiClient.js"
@@ -106,6 +107,7 @@ type ResettableState = {
 
 export class NeovimApplication implements AsyncDisposable {
   public state: ResettableState | undefined
+
   public readonly events: EventEmitter
 
   public constructor(
@@ -220,7 +222,7 @@ export class NeovimApplication implements AsyncDisposable {
     NVIM_APPNAME: string | undefined,
     additionalEnvironmentVariables?: Record<string, string>,
   ): Record<string, string> {
-    const env = {
+    let env: Record<string, string> = {
       ...process.env,
       ...({
         HOME: testDirectory.rootPathAbsolute,
@@ -238,6 +240,10 @@ export class NeovimApplication implements AsyncDisposable {
         ...(miseStateDirectory ? { MISE_STATE_DIR: miseStateDirectory } : {}),
         MISE_OFFLINE: "1",
       } satisfies MiseIntegrationEnvironmentVariables)
+
+      // put mise-managed tools' real install dirs on PATH so they are
+      // invocable in the isolated env (shims can't re-resolve there)
+      env = prependMiseBinPathsToPath(env, resolveMiseBinPaths())
     }
 
     Object.assign(env, additionalEnvironmentVariables ?? {})

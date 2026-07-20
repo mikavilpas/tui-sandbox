@@ -62,7 +62,7 @@ export function createNeovimRouter(config: TestServerConfig) {
             cols: z.number(),
             rows: z.number(),
           }),
-        })
+        }),
       )
       .output(serverTestDirectorySchema)
       .mutation(async options => {
@@ -70,7 +70,7 @@ export function createNeovimRouter(config: TestServerConfig) {
           options.input.startNeovimArguments,
           options.input.terminalDimensions,
           options.input.tabId,
-          config
+          config,
         )
       }),
 

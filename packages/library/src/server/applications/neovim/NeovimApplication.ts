@@ -105,7 +105,7 @@ export class NeovimApplication implements AsyncDisposable {
 
   public constructor(
     private readonly testEnvironmentPath: string,
-    public readonly application: DisposableSingleApplication = new DisposableSingleApplication()
+    public readonly application: DisposableSingleApplication = new DisposableSingleApplication(),
   ) {
     this.events = new EventEmitter()
   }
@@ -116,12 +116,12 @@ export class NeovimApplication implements AsyncDisposable {
   public async startNextAndKillCurrent(
     testDirectory: TestDirectory,
     startArgs: StartNeovimGenericArguments,
-    terminalDimensions: TerminalDimensions
+    terminalDimensions: TerminalDimensions,
   ): Promise<void> {
     await this[Symbol.asyncDispose]()
     assert(
       this.state === undefined,
-      "NeovimApplication state should be undefined after disposing so that no previous state is reused."
+      "NeovimApplication state should be undefined after disposing so that no previous state is reused.",
     )
 
     const neovimArguments: string[] = []
@@ -173,7 +173,7 @@ export class NeovimApplication implements AsyncDisposable {
         testDirectory,
         xdgRuntimeDirectory.path,
         startArgs.NVIM_APPNAME,
-        startArgs.additionalEnvironmentVariables
+        startArgs.additionalEnvironmentVariables,
       )
       return TerminalApplication.start({
         command: "nvim",
@@ -210,7 +210,7 @@ export class NeovimApplication implements AsyncDisposable {
     testDirectory: TestDirectory,
     xdgRuntimeDir: string,
     NVIM_APPNAME: string | undefined,
-    additionalEnvironmentVariables?: Record<string, string>
+    additionalEnvironmentVariables?: Record<string, string>,
   ): Record<string, string> {
     const miseStateDirectory = resolveMiseStateDirectory()
     return {

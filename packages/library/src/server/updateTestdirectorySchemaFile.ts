@@ -48,7 +48,7 @@ export const testServerConfigSchema = z.strictObject({
 export type UpdateTestdirectorySchemaFileResult = "updated" | "did-nothing"
 
 export async function updateTestdirectorySchemaFile(
-  config: TestServerConfig
+  config: TestServerConfig,
 ): Promise<UpdateTestdirectorySchemaFileResult> {
   const newSchema: string = await buildTestDirectorySchema(config)
   let oldSchema = ""

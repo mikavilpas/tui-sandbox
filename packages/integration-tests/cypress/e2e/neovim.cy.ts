@@ -101,7 +101,7 @@ describe("neovim features", () => {
       cy.contains("f you see this text, Neovim is ready!").should(
         "have.css",
         "background-color",
-        rgbify(flavors.macchiato.colors.base.rgb)
+        rgbify(flavors.macchiato.colors.base.rgb),
       )
 
       // to make sure the catppuccin/nvim plugin is loaded, let's change the
@@ -110,7 +110,7 @@ describe("neovim features", () => {
       cy.contains("f you see this text, Neovim is ready!").should(
         "have.css",
         "background-color",
-        rgbify(flavors.latte.colors.base.rgb)
+        rgbify(flavors.latte.colors.base.rgb),
       )
     })
   })
@@ -122,7 +122,7 @@ describe("neovim features", () => {
       cy.contains("f you see this text, Neovim is ready!").should(
         "have.css",
         "background-color",
-        rgbify(flavors.macchiato.colors.base.rgb)
+        rgbify(flavors.macchiato.colors.base.rgb),
       )
     })
 

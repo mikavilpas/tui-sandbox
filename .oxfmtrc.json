@@ -6,7 +6,7 @@
   "proseWrap": "always",
   "semi": false,
   "singleQuote": false,
-  "trailingComma": "es5",
+  "trailingComma": "all",
   "sortPackageJson": {},
   "ignorePatterns": [
     "lazy-lock.json",

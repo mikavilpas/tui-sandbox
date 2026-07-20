@@ -41,7 +41,7 @@ export async function installDependencies(NVIM_APPNAME: string | undefined, conf
     //
     // eslint-disable-next-line no-restricted-properties
     console.log(
-      `Neovim prepareFilePath does not exist: ${prepareFilePath}. If you want to run a prepare script before starting the tests, create it.`
+      `Neovim prepareFilePath does not exist: ${prepareFilePath}. If you want to run a prepare script before starting the tests, create it.`,
     )
     return
   }
@@ -62,7 +62,7 @@ export async function installDependencies(NVIM_APPNAME: string | undefined, conf
       headlessCmd: `lua dofile("${prepareFilePath}")`,
       NVIM_APPNAME,
     },
-    { cols: 80, rows: 24 }
+    { cols: 80, rows: 24 },
   )
   await app.application.untilExit()
   // eslint-disable-next-line no-restricted-properties
@@ -74,7 +74,7 @@ export async function installDependencies(NVIM_APPNAME: string | undefined, conf
 export async function initializeStdout(
   options: { client: TabId },
   signal: AbortSignal | undefined,
-  testEnvironmentPath: string
+  testEnvironmentPath: string,
 ): Promise<AsyncGenerator<string, void, unknown>> {
   const tabId = options.client.tabId
   const neovim = neovims.get(tabId) ?? new NeovimApplication(testEnvironmentPath)
@@ -99,7 +99,7 @@ export async function start(
   options: StartNeovimGenericArguments,
   terminalDimensions: TerminalDimensions,
   tabId: TabId,
-  config: TestServerConfig
+  config: TestServerConfig,
 ): Promise<TestDirectory> {
   const neovim = neovims.get(tabId.tabId)
   assert(neovim, `Neovim instance not found for client id ${tabId.tabId}`)
@@ -114,11 +114,11 @@ export async function sendStdin(options: { tabId: TabId; data: string }): Promis
   const neovim = neovims.get(options.tabId.tabId)
   assert(
     neovim !== undefined,
-    `Neovim instance for clientId not found - cannot send stdin. Maybe it's not started yet?`
+    `Neovim instance for clientId not found - cannot send stdin. Maybe it's not started yet?`,
   )
   assert(
     neovim.application,
-    `Neovim application not found for client id ${options.tabId.tabId}. Maybe it's not started yet?`
+    `Neovim application not found for client id ${options.tabId.tabId}. Maybe it's not started yet?`,
   )
 
   await neovim.application.write(options.data)
@@ -127,12 +127,12 @@ export async function sendStdin(options: { tabId: TabId; data: string }): Promis
 export async function runBlockingShellCommand(
   signal: AbortSignal | undefined,
   input: BlockingCommandInput,
-  allowFailure: boolean
+  allowFailure: boolean,
 ): Promise<BlockingShellCommandOutput> {
   const neovim = neovims.get(input.tabId.tabId)
   assert(
     neovim !== undefined,
-    `Neovim instance for clientId not found - cannot run blocking shell command. Maybe neovim's not started yet?`
+    `Neovim instance for clientId not found - cannot run blocking shell command. Maybe neovim's not started yet?`,
   )
   const testDirectory = neovim.state?.testDirectory
   assert(testDirectory, `Test directory not found for client id ${input.tabId.tabId}. Maybe neovim's not started yet?`)
@@ -140,14 +140,14 @@ export async function runBlockingShellCommand(
   const xdgRuntimeDirectory = neovim.state?.xdgRuntimeDirectory
   assert(
     xdgRuntimeDirectory,
-    `XDG runtime directory not found for client id ${input.tabId.tabId}. Maybe neovim's not started yet?`
+    `XDG runtime directory not found for client id ${input.tabId.tabId}. Maybe neovim's not started yet?`,
   )
 
   const env = NeovimApplication.getEnvironmentVariables(
     testDirectory,
     xdgRuntimeDirectory.path,
     neovim.state?.NVIM_APPNAME,
-    input.envOverrides
+    input.envOverrides,
   )
   return executeBlockingShellCommand(testDirectory, input, signal, allowFailure, env)
 }
@@ -156,11 +156,11 @@ export async function runLuaCode(options: LuaCodeInput): Promise<RunLuaCodeOutpu
   const neovim = neovims.get(options.tabId.tabId)
   assert(
     neovim !== undefined,
-    `Neovim instance for clientId not found - cannot run Lua code. Maybe neovim's not started yet?`
+    `Neovim instance for clientId not found - cannot run Lua code. Maybe neovim's not started yet?`,
   )
   assert(
     neovim.application,
-    `Neovim application not found for client id ${options.tabId.tabId}. Maybe it's not started yet?`
+    `Neovim application not found for client id ${options.tabId.tabId}. Maybe it's not started yet?`,
   )
 
   const api = await neovim.state?.client.get()
@@ -185,16 +185,16 @@ export type PollLuaCodeInput = {
 
 export async function waitForLuaCode(
   options: PollLuaCodeInput,
-  signal: AbortSignal | undefined
+  signal: AbortSignal | undefined,
 ): Promise<RunLuaCodeOutput> {
   const neovim = neovims.get(options.tabId.tabId)
   assert(
     neovim !== undefined,
-    `Neovim instance for clientId not found - cannot pollLuaCode. Maybe neovim's not started yet?`
+    `Neovim instance for clientId not found - cannot pollLuaCode. Maybe neovim's not started yet?`,
   )
   assert(
     neovim.application,
-    `Neovim application not found for client id ${options.tabId.tabId}. Maybe it's not started yet?`
+    `Neovim application not found for client id ${options.tabId.tabId}. Maybe it's not started yet?`,
   )
 
   const api = await neovim.state?.client.get()
@@ -236,7 +236,7 @@ export async function waitForLuaCode(
 
   reportFailure()
   throw new Error(
-    `Polling Lua code: '${options.luaAssertion}' always raised an error after ${maxIterations} iterations`
+    `Polling Lua code: '${options.luaAssertion}' always raised an error after ${maxIterations} iterations`,
   )
 }
 
@@ -244,11 +244,11 @@ export async function runExCommand(options: ExCommandInput): Promise<RunExComman
   const neovim = neovims.get(options.tabId.tabId)
   assert(
     neovim !== undefined,
-    `Neovim instance for clientId not found - cannot runExCommand. Maybe neovim's not started yet?`
+    `Neovim instance for clientId not found - cannot runExCommand. Maybe neovim's not started yet?`,
   )
   assert(
     neovim.application,
-    `Neovim application not found for client id ${options.tabId.tabId}. Maybe it's not started yet?`
+    `Neovim application not found for client id ${options.tabId.tabId}. Maybe it's not started yet?`,
   )
 
   const api = await neovim.state?.client.get()

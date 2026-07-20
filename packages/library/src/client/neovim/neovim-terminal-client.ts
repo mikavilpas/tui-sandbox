@@ -33,7 +33,7 @@ export class NeovimTerminalClient {
     private readonly trpc: ReturnType<typeof createTRPCClient<AppRouter>>,
     public readonly clipboard: InMemoryClipboard,
     private readonly inputQueue: BatchedAsyncQueue<TerminalInputEvent>,
-    public readonly terminalApi: TuiTerminalApi
+    public readonly terminalApi: TuiTerminalApi,
   ) {}
 
   static async create(app: HTMLElement): Promise<NeovimTerminalClient> {
@@ -92,7 +92,7 @@ export class NeovimTerminalClient {
           onError(err: unknown) {
             console.error(`Error from the application`, err)
           },
-        }
+        },
       )
     })
 

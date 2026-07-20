@@ -4,7 +4,7 @@ import { resolveMiseStateDirectory } from "./resolveMiseStateDirectory.js"
 
 it("prefers MISE_STATE_DIR when set", () => {
   expect(
-    resolveMiseStateDirectory({ MISE_STATE_DIR: "/custom/state", XDG_STATE_HOME: "/xdg", HOME: "/home/user" })
+    resolveMiseStateDirectory({ MISE_STATE_DIR: "/custom/state", XDG_STATE_HOME: "/xdg", HOME: "/home/user" }),
   ).toBe("/custom/state")
 })
 

@@ -27,7 +27,7 @@ export type XdgRuntimeDirPrefix = "tui-xdg-"
 export class XdgRuntimeDirectory implements AsyncDisposable {
   private constructor(
     public readonly path: string,
-    public readonly symlinkPath: string
+    public readonly symlinkPath: string,
   ) {}
 
   public static async create(uniqueTestDirectory: string): Promise<XdgRuntimeDirectory> {

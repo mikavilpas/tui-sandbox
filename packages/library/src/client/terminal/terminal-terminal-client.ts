@@ -21,7 +21,7 @@ export class TerminalTerminalClient {
     private readonly terminal: Terminal,
     private readonly trpc: ReturnType<typeof createTRPCClient<AppRouter>>,
     private readonly inputQueue: BatchedAsyncQueue<TerminalInputEvent>,
-    public readonly terminalApi: TuiTerminalApi
+    public readonly terminalApi: TuiTerminalApi,
   ) {}
 
   static async create(app: HTMLElement): Promise<TerminalTerminalClient> {
@@ -80,7 +80,7 @@ export class TerminalTerminalClient {
           onError(err: unknown) {
             console.error(`Error from the application`, err)
           },
-        }
+        },
       )
     })
 

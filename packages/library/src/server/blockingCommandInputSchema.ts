@@ -21,7 +21,7 @@ export const blockingCommandInputSchema = z
     data =>
       // disallow both cwd and cwdRelative
       !(data.cwd && data.cwdRelative),
-    { message: "Both cwd and cwdRelative provided. Please provide either but not both at the same time." }
+    { message: "Both cwd and cwdRelative provided. Please provide either but not both at the same time." },
   )
 
 export type BlockingCommandClientInput = Except<BlockingCommandInput, "tabId">

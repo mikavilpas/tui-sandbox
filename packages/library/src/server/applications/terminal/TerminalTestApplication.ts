@@ -36,12 +36,12 @@ export default class TerminalTestApplication implements AsyncDisposable {
   public async startNextAndKillCurrent(
     testDirectory: TestDirectory,
     startArgs: StartTerminalGenericArguments,
-    terminalDimensions: TerminalDimensions
+    terminalDimensions: TerminalDimensions,
   ): Promise<void> {
     await this[Symbol.asyncDispose]()
     assert(
       this.state === undefined,
-      "TerminalTestApplication state should be undefined after disposing so that no previous state is reused."
+      "TerminalTestApplication state should be undefined after disposing so that no previous state is reused.",
     )
 
     const command = startArgs.commandToRun[0]
@@ -57,7 +57,7 @@ export default class TerminalTestApplication implements AsyncDisposable {
       const env = this.getEnvironmentVariables(
         testDirectory,
         xdgRuntimeDirectory.path,
-        startArgs.additionalEnvironmentVariables
+        startArgs.additionalEnvironmentVariables,
       )
       return TerminalApplication.start({
         command,
@@ -79,7 +79,7 @@ export default class TerminalTestApplication implements AsyncDisposable {
     const processId = this.application.processId()
     assert(
       processId !== undefined,
-      "TerminalApplication was started without a process ID. This is a bug - please open an issue."
+      "TerminalApplication was started without a process ID. This is a bug - please open an issue.",
     )
 
     this.state = { testDirectory, xdgRuntimeDirectory }
@@ -90,7 +90,7 @@ export default class TerminalTestApplication implements AsyncDisposable {
   public getEnvironmentVariables(
     testDirectory: TestDirectory,
     xdgRuntimeDir: string,
-    additionalEnvironmentVariables?: Record<string, string>
+    additionalEnvironmentVariables?: Record<string, string>,
   ): Record<string, string> {
     const miseStateDirectory = resolveMiseStateDirectory()
     return {

@@ -95,7 +95,7 @@ describe("TerminalTestApplication features", () => {
 
       expect(term.dir.testEnvironmentPathRelative).to.match(/testdirs\/dir-.*?/)
       expect(
-        term.dir.contents.subdirectory.contents["subdirectory-file.txt"].name satisfies "subdirectory-file.txt"
+        term.dir.contents.subdirectory.contents["subdirectory-file.txt"].name satisfies "subdirectory-file.txt",
       ).to.equal("subdirectory-file.txt")
 
       term.runBlockingShellCommand({ command: "echo $TUI_SANDBOX_TEST_ENVIRONMENT_PATH" }).then(output => {

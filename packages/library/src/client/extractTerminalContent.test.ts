@@ -8,7 +8,7 @@ describe("extractTerminalContent", () => {
     expect(extractTerminalContent(["", "  ", "\t"]), "returns undefined when every row is blank").toBeUndefined()
     expect(extractTerminalContent(["a", "b", "c"]), "returns undefined when every row is blank").toBe("a\nb\nc")
     expect(extractTerminalContent(["hello", "world", "", "  "]), "returns undefined when every row is blank").toBe(
-      "hello\nworld"
+      "hello\nworld",
     )
     expect(extractTerminalContent(["", "hello"]), "returns undefined when every row is blank").toBe("\nhello")
   })

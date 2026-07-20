@@ -116,7 +116,7 @@ export type MyRunLuaFileClientInput = OverrideProperties<RunLuaFileClientInput, 
 Cypress.Commands.add("startNeovim", (startArguments?: MyStartNeovimServerArguments) => {
   cy.window().then(async win => {
     const underlyingNeovim: GenericNeovimBrowserApi = await win.startNeovim(
-      startArguments as StartNeovimGenericArguments
+      startArguments as StartNeovimGenericArguments,
     )
     testNeovim = underlyingNeovim
     testEnvironmentPath = underlyingNeovim.dir.testEnvironmentPath
@@ -240,7 +240,7 @@ declare global {
     interface Chainable {
       startNeovim(args?: MyStartNeovimServerArguments): Chainable<NeovimContext>
       startTerminalApplication(
-        args: StartTerminalGenericArguments & BrowserTerminalSettings
+        args: StartTerminalGenericArguments & BrowserTerminalSettings,
       ): Chainable<TerminalTestApplicationContext>
 
       /** Types text into the terminal, making the terminal application receive

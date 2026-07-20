@@ -1,5 +1,12 @@
 # Changelog
 
+## [13.0.1](https://github.com/mikavilpas/tui-sandbox/compare/library-v13.0.0...library-v13.0.1) (2026-07-20)
+
+
+### Bug Fixes
+
+* **mise:** prepend mise bin paths to PATH in isolated test env ([#1381](https://github.com/mikavilpas/tui-sandbox/issues/1381)) ([31c73f5](https://github.com/mikavilpas/tui-sandbox/commit/31c73f5589e10abfd653512f2eac87a62de82ddd))
+
 ## [13.0.0](https://github.com/mikavilpas/tui-sandbox/compare/library-v12.7.3...library-v13.0.0) (2026-07-20)
 
 

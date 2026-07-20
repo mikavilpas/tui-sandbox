@@ -35,7 +35,7 @@ export function connectNeovimApi(socketPath: string): Lazy<Promise<NeovimJavascr
             return info
           })(),
           format.colorize(),
-          format.simple()
+          format.simple(),
         ),
       }),
     ],

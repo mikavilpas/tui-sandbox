@@ -10,7 +10,7 @@ export class BatchedAsyncQueue<T> {
 
   public constructor(
     private readonly processBatch: (values: T[]) => Promise<void>,
-    private readonly signal: AbortSignal
+    private readonly signal: AbortSignal,
   ) {}
 
   enqueue(value: T): void {

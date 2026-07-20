@@ -45,7 +45,7 @@ describe("DisposableSingleApplication", () => {
     // failing to make this error obvious
     const app = new TestDisposableSingleApplication()
     await expect(app.write("hello")).rejects.toThrowErrorMatchingInlineSnapshot(
-      `[AssertionError: The application not started yet. It makes no sense to write to it, so this looks like a bug.]`
+      `[AssertionError: The application not started yet. It makes no sense to write to it, so this looks like a bug.]`,
     )
   })
 

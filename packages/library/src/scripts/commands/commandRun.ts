@@ -31,7 +31,7 @@ export async function commandRun(): Promise<TestResultExitCode> {
       killOthersOn: ["failure", "success"],
       padPrefix: true, // makes all the prefixes the same length
       successCondition: "command-cypress", // the test run that determines success/failure
-    }
+    },
   )
 
   await job.result.then(
@@ -40,7 +40,7 @@ export async function commandRun(): Promise<TestResultExitCode> {
     },
     (err: unknown) => {
       log("One or more commands failed. Debug info follows.", err)
-    }
+    },
   )
 
   try {
@@ -58,7 +58,7 @@ export async function commandRun(): Promise<TestResultExitCode> {
             name: z.string(),
           } satisfies PartialDeep<AllKeys<CloseEvent["command"]>>),
           exitCode: z.number().or(z.string()),
-        } satisfies PartialDeep<AllKeys<CloseEvent>>)
+        } satisfies PartialDeep<AllKeys<CloseEvent>>),
       )
       .parse(e)
 

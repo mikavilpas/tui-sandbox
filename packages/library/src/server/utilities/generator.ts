@@ -2,7 +2,7 @@ import type EventEmitter from "events"
 
 export async function* convertEventEmitterToAsyncGenerator(
   emitter: EventEmitter,
-  eventName: string
+  eventName: string,
 ): AsyncGenerator<string, void, unknown> {
   while (true) {
     yield await new Promise(resolve => {

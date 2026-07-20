@@ -122,7 +122,7 @@ export type StartTerminalBrowserArguments = {
 
 /** Entrypoint for the test runner (cypress) */
 window.startTerminalApplication = async function (
-  args: StartTerminalBrowserArguments
+  args: StartTerminalBrowserArguments,
 ): Promise<GenericTerminalBrowserApi> {
   const terminal = await terminalClient.get()
   const testDirectory = await terminal.startTerminalApplication(args)

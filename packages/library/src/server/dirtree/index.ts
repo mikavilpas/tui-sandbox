@@ -29,7 +29,7 @@ export function getDirectoryTree(path: string): TreeResult {
     },
     (dir: Dree) => {
       allFiles.push(dir)
-    }
+    },
   ) as Dree | null // https://github.com/euberdeveloper/dree/pull/51
 
   return { dree: result ?? undefined, allFiles }
@@ -89,7 +89,7 @@ export function convertDree(root: Dree | undefined): TreeNode {
 export async function buildSchemaForDirectoryTree(
   result: TreeResult,
   name: string,
-  config: TestServerConfig
+  config: TestServerConfig,
 ): Promise<string> {
   const root = convertDree(result.dree)
 

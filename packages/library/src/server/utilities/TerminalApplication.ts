@@ -22,7 +22,7 @@ export class TerminalApplication implements StartableApplication {
     private readonly subProcess: zigpty.IPty,
     public readonly onStdoutOrStderr: (data: string) => void,
     public readonly untilExit: Promise<ExitInfo>,
-    public readonly name: string
+    public readonly name: string,
   ) {
     this.processId = subProcess.pid
 

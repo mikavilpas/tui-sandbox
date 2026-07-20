@@ -65,7 +65,7 @@ async function createLatestSymlink(config: TestServerConfig, uniqueTestDirectory
   const latestSymlinkPath = path.join(
     config.directories.testEnvironmentPath,
     "testdirs" satisfies TestDirsPath,
-    config.directories.latestSymlinkName
+    config.directories.latestSymlinkName,
   )
   try {
     await access(latestSymlinkPath, constants.F_OK)

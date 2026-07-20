@@ -22,7 +22,7 @@ export class DisposableSingleApplication implements AsyncDisposable {
   public async untilExit(): Promise<ExitInfo> {
     assert(
       this.application,
-      "The application not started yet. It makes no sense to wait for it to exit, so this looks like a bug."
+      "The application not started yet. It makes no sense to wait for it to exit, so this looks like a bug.",
     )
     return this.application.untilExit
   }
@@ -30,7 +30,7 @@ export class DisposableSingleApplication implements AsyncDisposable {
   public async write(input: string): Promise<void> {
     assert(
       this.application,
-      "The application not started yet. It makes no sense to write to it, so this looks like a bug."
+      "The application not started yet. It makes no sense to write to it, so this looks like a bug.",
     )
     this.application.write(input)
   }

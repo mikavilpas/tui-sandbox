@@ -17,7 +17,7 @@ export const formatCode = async (
   code: string,
   // oxfmt selects its parser from the file name's extension, and (via the CLI)
   // resolves its config by walking up from the file's directory.
-  fileName: `${string}.ts` = "generated.ts"
+  fileName: `${string}.ts` = "generated.ts",
 ): Promise<string> => {
   if (config.use === "prettier") {
     const { format, resolveConfig } = await import("prettier")

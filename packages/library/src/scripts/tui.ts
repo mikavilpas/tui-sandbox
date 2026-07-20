@@ -76,7 +76,7 @@ function showUsageAndExit() {
       `    tui codegen`,
       `    tui neovim exec '<ex-command>'`,
       `    tui neovim prepare`,
-    ].join("\n")
+    ].join("\n"),
   )
 
   process.exit(1)

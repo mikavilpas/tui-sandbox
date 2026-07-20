@@ -19,7 +19,7 @@ const resources: Lazy<AsyncDisposableStack> = new Lazy(() => {
 
 export async function start(
   { tabId, startTerminalArguments }: StartTerminalInput,
-  config: TestServerConfig
+  config: TestServerConfig,
 ): Promise<TestDirectory> {
   const app = terminals.get(tabId.tabId)
   assert(app, `Terminal with tabId ${tabId.tabId} not found.`)
@@ -30,7 +30,7 @@ export async function start(
       commandToRun: startTerminalArguments.commandToRun,
       additionalEnvironmentVariables: startTerminalArguments.additionalEnvironmentVariables,
     },
-    startTerminalArguments.terminalDimensions
+    startTerminalArguments.terminalDimensions,
   )
 
   return testDirectory
@@ -38,7 +38,7 @@ export async function start(
 
 export async function initializeStdout(
   options: { client: TabId },
-  signal: AbortSignal | undefined
+  signal: AbortSignal | undefined,
 ): Promise<AsyncGenerator<string, void, unknown>> {
   const tabId = options.client.tabId
   const app = terminals.get(tabId) ?? new TerminalTestApplication()
@@ -63,7 +63,7 @@ export async function sendStdin(options: { tabId: TabId; data: string }): Promis
   assert(app !== undefined, `Terminal instance for tabId not found - cannot send stdin. Maybe it's not started yet?`)
   assert(
     app.application,
-    `Terminal application not found for client id ${options.tabId.tabId}. Maybe it's not started yet?`
+    `Terminal application not found for client id ${options.tabId.tabId}. Maybe it's not started yet?`,
   )
 
   await app.application.write(options.data)
@@ -72,13 +72,13 @@ export async function sendStdin(options: { tabId: TabId; data: string }): Promis
 export async function runBlockingShellCommand(
   signal: AbortSignal | undefined,
   input: BlockingCommandInput,
-  allowFailure: boolean
+  allowFailure: boolean,
 ): Promise<BlockingShellCommandOutput> {
   const tabId = input.tabId.tabId
   const app = terminals.get(tabId)
   assert(
     app !== undefined,
-    `Terminal instance for tabId ${input.tabId.tabId} not found - cannot send stdin. Maybe it's not started yet?`
+    `Terminal instance for tabId ${input.tabId.tabId} not found - cannot send stdin. Maybe it's not started yet?`,
   )
   assert(app.application, `Terminal application not found for tabId ${input.tabId.tabId}. Maybe it's not started yet?`)
 
@@ -88,7 +88,7 @@ export async function runBlockingShellCommand(
   const xdgRuntimeDirectory = app.state?.xdgRuntimeDirectory
   assert(
     xdgRuntimeDirectory,
-    `XDG runtime directory not found for client id ${input.tabId.tabId}. Maybe it's not started yet?`
+    `XDG runtime directory not found for client id ${input.tabId.tabId}. Maybe it's not started yet?`,
   )
 
   const env = app.getEnvironmentVariables(testDirectory, xdgRuntimeDirectory.path, input.envOverrides)

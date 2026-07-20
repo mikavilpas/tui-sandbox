@@ -10,7 +10,7 @@ import { buildSchemaForDirectoryTree, getDirectoryTree } from "./index.js"
 
 describe("dirtree", () => {
   const output = new Lazy(() =>
-    getDirectoryTree(path.join(__dirname, "..", "..", "..", "..", "integration-tests", "test-environment"))
+    getDirectoryTree(path.join(__dirname, "..", "..", "..", "..", "integration-tests", "test-environment")),
   )
 
   it("can get a list of all the files", () => {

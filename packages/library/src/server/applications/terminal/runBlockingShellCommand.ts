@@ -12,7 +12,7 @@ export async function executeBlockingShellCommand(
   input: BlockingCommandInput,
   signal: AbortSignal | undefined,
   allowFailure: boolean,
-  env: NodeJS.ProcessEnv
+  env: NodeJS.ProcessEnv,
 ): Promise<BlockingShellCommandOutput> {
   const execPromise = util.promisify(exec)
 
@@ -33,7 +33,7 @@ export async function executeBlockingShellCommand(
       env,
     })
     log(
-      `Successfully ran shell blockingCommand (${input.command}) in cwd: '${cwd}' with stdout: ${result.stdout}, stderr: ${result.stderr}`
+      `Successfully ran shell blockingCommand (${input.command}) in cwd: '${cwd}' with stdout: ${result.stdout}, stderr: ${result.stderr}`,
     )
     return {
       type: "success",

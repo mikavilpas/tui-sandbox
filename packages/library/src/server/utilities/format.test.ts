@@ -32,7 +32,7 @@ describe("oxfmt", () => {
 
   it("throws when the code cannot be parsed", async () => {
     await expect(formatCode({ use: "oxfmt" }, "const x = {{{ invalid")).rejects.toThrow(
-      /Error formatting code with oxfmt/
+      /Error formatting code with oxfmt/,
     )
   })
 })

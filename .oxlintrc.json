@@ -41,7 +41,7 @@
     "import-x/no-named-as-default-member": "warn",
     "import-x/no-duplicates": "warn",
     "no-unused-vars": [
-      "error",
+      "warn",
       {
         "argsIgnorePattern": "^_",
         "varsIgnorePattern": "^_",

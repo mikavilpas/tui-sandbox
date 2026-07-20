@@ -22,6 +22,7 @@ const neovimIntegration = z.strictObject({
     .min(1)
     .default(["nvim" satisfies NeovimIntegrationDefaultAppName]),
 })
+const miseIntegration = z.strictObject({})
 
 export type FormatterConfig = z.output<typeof formatterConfigSchema>
 const formatterConfigSchema = z
@@ -41,6 +42,7 @@ export const testServerConfigSchema = z.strictObject({
   port: z.number().int().min(1).max(65535).optional().default(3000),
   integrations: z.strictObject({
     neovim: neovimIntegration,
+    mise: miseIntegration.optional(),
   }),
   formatter: formatterConfigSchema,
 })

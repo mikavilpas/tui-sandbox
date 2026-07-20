@@ -40,7 +40,12 @@ export function createTerminalRouter(config: TestServerConfig) {
     }),
 
     runBlockingShellCommand: trpc.procedure.input(blockingCommandInputSchema).mutation(async options => {
-      return terminal.runBlockingShellCommand(options.signal, options.input, options.input.allowFailure ?? false)
+      return terminal.runBlockingShellCommand(
+        config,
+        options.signal,
+        options.input,
+        options.input.allowFailure ?? false,
+      )
     }),
   })
 

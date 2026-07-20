@@ -3,20 +3,20 @@ import { prepareNewTestDirectory } from "../../server/applications/neovim/prepar
 import type { TestServerConfigMetadata } from "../../server/updateTestdirectorySchemaFile.js"
 import type { NeovimExec } from "../parseArguments.js"
 
-export async function commandTuiNeovimExec(command: NeovimExec, config: TestServerConfigMetadata): Promise<void> {
+export async function commandTuiNeovimExec(command: NeovimExec, configMeta: TestServerConfigMetadata): Promise<void> {
   // automatically dispose of the neovim instance when done
-  await using app = new NeovimApplication(config.config.directories.testEnvironmentPath)
+  await using app = new NeovimApplication(configMeta.config.directories.testEnvironmentPath)
   app.events.on("stdout" satisfies StdoutOrStderrMessage, data => {
     console.log(`  neovim output: ${data}`)
   })
-  const testDirectory = await prepareNewTestDirectory(config.config)
+  const testDirectory = await prepareNewTestDirectory(configMeta.config)
   const NVIM_APPNAME = process.env["NVIM_APPNAME"]
 
-  if (NVIM_APPNAME && !config.config.integrations.neovim.NVIM_APPNAMEs.find(n => n === NVIM_APPNAME)) {
+  if (NVIM_APPNAME && !configMeta.config.integrations.neovim.NVIM_APPNAMEs.find(n => n === NVIM_APPNAME)) {
     process.exitCode = 1
     const message = `The NVIM_APPNAME environment variable is set to "${NVIM_APPNAME}", but only the following neovim configurations are known in the configuration file: ${JSON.stringify(
-      config.config.integrations.neovim.NVIM_APPNAMEs,
-    )}. Please set NVIM_APPNAME to one of the configured names or unset it to use the default ("nvim"). Config file path: ${config.configFilePath}`
+      configMeta.config.integrations.neovim.NVIM_APPNAMEs,
+    )}. Please set NVIM_APPNAME to one of the configured names or unset it to use the default ("nvim"). Config file path: ${configMeta.configFilePath}`
 
     console.error(message)
 
@@ -24,6 +24,7 @@ export async function commandTuiNeovimExec(command: NeovimExec, config: TestServ
   }
 
   await app.startNextAndKillCurrent(
+    configMeta.config,
     testDirectory,
     {
       filename: "empty.txt",

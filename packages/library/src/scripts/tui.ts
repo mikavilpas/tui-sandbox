@@ -7,6 +7,7 @@ import { commandTuiNeovimExec } from "./commands/commandTuiNeovimExec.js"
 import { commandTuiNeovimPrepare } from "./commands/commandTuiNeovimPrepare.js"
 import { commandTuiStart, updateGeneratedCode } from "./commands/commandTuiStart.js"
 import { parseArguments } from "./parseArguments.js"
+import type { ResolveTuiConfigResult } from "./resolveTuiConfig.js"
 import { resolveTuiConfig } from "./resolveTuiConfig.js"
 
 //
@@ -25,7 +26,7 @@ if (major < 24) {
 /** The cwd in the user's directory when they are running this script. Not the
  * cwd of the script itself. */
 export const cwd = process.cwd()
-const configResult = await resolveTuiConfig(cwd)
+const configResult: ResolveTuiConfigResult = await resolveTuiConfig(cwd)
 if (configResult.error) {
   console.error(configResult.message, JSON.stringify(configResult.error))
   process.exit(1)

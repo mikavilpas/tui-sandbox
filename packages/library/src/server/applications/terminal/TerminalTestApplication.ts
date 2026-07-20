@@ -4,7 +4,12 @@ import EventEmitter from "events"
 import { join } from "path"
 import { debuglog } from "util"
 
-import type { TestDirectory, TestEnvironmentCommonEnvironmentVariables } from "../../types.js"
+import type {
+  MiseIntegrationEnvironmentVariables,
+  TestDirectory,
+  TestEnvironmentCommonEnvironmentVariables,
+} from "../../types.js"
+import type { TestServerConfig } from "../../updateTestdirectorySchemaFile.js"
 import { DisposableSingleApplication } from "../../utilities/DisposableSingleApplication.js"
 import { TerminalApplication } from "../../utilities/TerminalApplication.js"
 import { resolveMiseStateDirectory } from "../neovim/environment/resolveMiseStateDirectory.js"
@@ -34,6 +39,7 @@ export default class TerminalTestApplication implements AsyncDisposable {
   }
 
   public async startNextAndKillCurrent(
+    config: TestServerConfig,
     testDirectory: TestDirectory,
     startArgs: StartTerminalGenericArguments,
     terminalDimensions: TerminalDimensions,
@@ -55,6 +61,7 @@ export default class TerminalTestApplication implements AsyncDisposable {
 
     await this.application.startNextAndKillCurrent(async () => {
       const env = this.getEnvironmentVariables(
+        config,
         testDirectory,
         xdgRuntimeDirectory.path,
         startArgs.additionalEnvironmentVariables,
@@ -88,22 +95,30 @@ export default class TerminalTestApplication implements AsyncDisposable {
   }
 
   public getEnvironmentVariables(
+    config: TestServerConfig,
     testDirectory: TestDirectory,
     xdgRuntimeDir: string,
     additionalEnvironmentVariables?: Record<string, string>,
   ): Record<string, string> {
     const miseStateDirectory = resolveMiseStateDirectory()
-    return {
+    const env = {
       ...process.env,
       HOME: testDirectory.rootPathAbsolute,
       XDG_CONFIG_HOME: join(testDirectory.rootPathAbsolute, ".config"),
       XDG_DATA_HOME: join(testDirectory.testEnvironmentPath, ".repro", "data"),
       XDG_RUNTIME_DIR: xdgRuntimeDir,
       TUI_SANDBOX_TEST_ENVIRONMENT_PATH: testDirectory.testEnvironmentPath,
-      ...(miseStateDirectory ? { MISE_STATE_DIR: miseStateDirectory } : {}),
-      MISE_OFFLINE: "1",
-      ...additionalEnvironmentVariables,
-    } satisfies TestEnvironmentCommonEnvironmentVariables
+    }
+
+    if (config.integrations.mise) {
+      Object.assign(env, {
+        ...(miseStateDirectory ? { MISE_STATE_DIR: miseStateDirectory } : {}),
+        MISE_OFFLINE: "1",
+      } satisfies MiseIntegrationEnvironmentVariables)
+    }
+
+    Object.assign(env, additionalEnvironmentVariables ?? {})
+    return env satisfies TestEnvironmentCommonEnvironmentVariables
   }
 
   async [Symbol.asyncDispose](): Promise<void> {

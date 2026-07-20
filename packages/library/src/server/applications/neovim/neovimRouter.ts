@@ -82,7 +82,7 @@ export function createNeovimRouter(config: TestServerConfig) {
     }),
 
     runBlockingShellCommand: trpc.procedure.input(blockingCommandInputSchema).mutation(async options => {
-      return neovim.runBlockingShellCommand(options.signal, options.input, options.input.allowFailure ?? false)
+      return neovim.runBlockingShellCommand(config, options.signal, options.input, options.input.allowFailure ?? false)
     }),
 
     runLuaCode: trpc.procedure.input(luaCodeInputSchema).mutation(options => {

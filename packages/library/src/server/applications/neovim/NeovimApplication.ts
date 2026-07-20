@@ -8,7 +8,12 @@ import { debuglog } from "util"
 
 import type { NeovimClient as NeovimApiClient } from "neovim"
 
-import type { TestDirectory, TestEnvironmentCommonEnvironmentVariables } from "../../types.js"
+import type {
+  MiseIntegrationEnvironmentVariables,
+  TestDirectory,
+  TestEnvironmentCommonEnvironmentVariables,
+} from "../../types.js"
+import type { TestServerConfig } from "../../updateTestdirectorySchemaFile.js"
 import { DisposableSingleApplication } from "../../utilities/DisposableSingleApplication.js"
 import type { Lazy } from "../../utilities/Lazy.js"
 import { TerminalApplication } from "../../utilities/TerminalApplication.js"
@@ -114,6 +119,7 @@ export class NeovimApplication implements AsyncDisposable {
    * Kill the current application and start a new one with the given arguments.
    */
   public async startNextAndKillCurrent(
+    config: TestServerConfig,
     testDirectory: TestDirectory,
     startArgs: StartNeovimGenericArguments,
     terminalDimensions: TerminalDimensions,
@@ -170,6 +176,7 @@ export class NeovimApplication implements AsyncDisposable {
 
     await this.application.startNextAndKillCurrent(async () => {
       const env = NeovimApplication.getEnvironmentVariables(
+        config,
         testDirectory,
         xdgRuntimeDirectory.path,
         startArgs.NVIM_APPNAME,
@@ -207,13 +214,13 @@ export class NeovimApplication implements AsyncDisposable {
   }
 
   public static getEnvironmentVariables(
+    config: TestServerConfig,
     testDirectory: TestDirectory,
     xdgRuntimeDir: string,
     NVIM_APPNAME: string | undefined,
     additionalEnvironmentVariables?: Record<string, string>,
   ): Record<string, string> {
-    const miseStateDirectory = resolveMiseStateDirectory()
-    return {
+    const env = {
       ...process.env,
       ...({
         HOME: testDirectory.rootPathAbsolute,
@@ -221,13 +228,20 @@ export class NeovimApplication implements AsyncDisposable {
         XDG_DATA_HOME: join(testDirectory.testEnvironmentPath, ".repro", "data"),
         XDG_RUNTIME_DIR: xdgRuntimeDir,
         TUI_SANDBOX_TEST_ENVIRONMENT_PATH: testDirectory.testEnvironmentPath,
-        ...(miseStateDirectory ? { MISE_STATE_DIR: miseStateDirectory } : {}),
-        MISE_OFFLINE: "1",
       } satisfies TestEnvironmentCommonEnvironmentVariables),
       NVIM_APPNAME: NVIM_APPNAME ?? "nvim",
-
-      ...additionalEnvironmentVariables,
     }
+
+    if (config.integrations.mise) {
+      const miseStateDirectory = resolveMiseStateDirectory()
+      Object.assign(env, {
+        ...(miseStateDirectory ? { MISE_STATE_DIR: miseStateDirectory } : {}),
+        MISE_OFFLINE: "1",
+      } satisfies MiseIntegrationEnvironmentVariables)
+    }
+
+    Object.assign(env, additionalEnvironmentVariables ?? {})
+    return env
   }
 
   async [Symbol.asyncDispose](): Promise<void> {

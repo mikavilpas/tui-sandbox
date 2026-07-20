@@ -1,5 +1,16 @@
 # Changelog
 
+## [13.0.0](https://github.com/mikavilpas/tui-sandbox/compare/library-v12.7.3...library-v13.0.0) (2026-07-20)
+
+
+### ⚠ BREAKING CHANGES
+
+* The mise integration is now opt-in. If you want to use it, you need to add the following to your configuration file:
+
+### Features
+
+* mise integration related features are now opt-in ([#1379](https://github.com/mikavilpas/tui-sandbox/issues/1379)) ([696498a](https://github.com/mikavilpas/tui-sandbox/commit/696498a168430bcb8653d458a167450844896e2b))
+
 ## [12.7.3](https://github.com/mikavilpas/tui-sandbox/compare/library-v12.7.2...library-v12.7.3) (2026-07-12)
 
 

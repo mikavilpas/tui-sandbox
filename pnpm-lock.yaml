@@ -8,6 +8,12 @@ importers:
 
   .:
     devDependencies:
+      '@mikavilpas/oxfmt-config':
+        specifier: 3.0.0
+        version: 3.0.0(oxfmt@0.59.0)
+      '@types/node':
+        specifier: 24.13.3
+        version: 24.13.3
       cypress:
         specifier: 15.18.1
         version: 15.18.1
@@ -468,6 +474,11 @@ packages:
 
   '@loaderkit/resolve@1.0.4':
     resolution: {integrity: sha512-rJzYKVcV4dxJv+vW6jlvagF8zvGxHJ2+HTr1e2qOejfmGhAApgJHl8Aog4mMszxceTRiKTTbnpgmTO1bEZHV/A==}
+
+  '@mikavilpas/oxfmt-config@3.0.0':
+    resolution: {integrity: sha512-4DwrRdllfMa4hxgbjFxkdvt0RY3Dr9qFoRDwfh4sfb3wjGsM0WYNTQK/xCxQ3A0T1b7h2Yxteyedi7mPjZw5Pw==}
+    peerDependencies:
+      oxfmt: ^0.59.0
 
   '@msgpack/msgpack@2.8.0':
     resolution: {integrity: sha512-h9u4u/jiIRKbq25PM+zymTyW6bhTzELvOoUd+AvYriWOAKpLGnIamaET3pnHYoI5iYphAHBI4ayx0MehR+VVPQ==}
@@ -3388,6 +3399,10 @@ snapshots:
   '@loaderkit/resolve@1.0.4':
     dependencies:
       '@braidai/lang': 1.1.2
+
+  '@mikavilpas/oxfmt-config@3.0.0(oxfmt@0.59.0)':
+    dependencies:
+      oxfmt: 0.59.0
 
   '@msgpack/msgpack@2.8.0': {}
 

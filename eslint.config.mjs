@@ -96,6 +96,7 @@ export default defineConfig([
           devDependencies: [
             // don't check this in the files that match these
             "**/*.test.ts",
+            "oxfmt.config.ts",
           ],
           optionalDependencies: false,
           peerDependencies: ["packages/library/**/*.ts"],

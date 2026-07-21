@@ -16,6 +16,8 @@
     "tui": "pnpm --filter=library build && pnpm --filter integration-tests exec tui"
   },
   "devDependencies": {
+    "@mikavilpas/oxfmt-config": "3.0.0",
+    "@types/node": "24.13.3",
     "cypress": "15.18.1",
     "eslint": "10.7.0",
     "eslint-config-prettier": "10.1.8",

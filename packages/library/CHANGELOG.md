@@ -1,5 +1,12 @@
 # Changelog
 
+## [13.0.2](https://github.com/mikavilpas/tui-sandbox/compare/library-v13.0.1...library-v13.0.2) (2026-07-22)
+
+
+### Bug Fixes
+
+* support mixed mise setups (mise locally but not in CI) ([#1388](https://github.com/mikavilpas/tui-sandbox/issues/1388)) ([41d4f2d](https://github.com/mikavilpas/tui-sandbox/commit/41d4f2d2f707137ae119b4f69cf8ef08575ded51))
+
 ## [13.0.1](https://github.com/mikavilpas/tui-sandbox/compare/library-v13.0.0...library-v13.0.1) (2026-07-20)
 
 

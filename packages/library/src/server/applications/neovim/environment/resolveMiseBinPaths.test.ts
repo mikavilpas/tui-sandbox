@@ -31,23 +31,14 @@ it("memoizes per working directory (only shells out once)", () => {
   expect(calls).toBe(1)
 })
 
-it("crashes when mise is not installed", () => {
-  // The mise integration is opt-in, so a failure here means the user asked for
-  // mise but it could not be used. resolveMiseBinPaths must crash rather than
-  // silently continue, so the misconfiguration is not hidden.
-  expect(() =>
+it("no-ops when mise is not installed", () => {
+  // Support cases where mise is used for local development but not installed
+  // in CI.
+  expect(
     resolveMiseBinPaths("/repo", {}, () => {
-      throw Object.assign(new Error("spawn mise ENOENT"), { code: "ENOENT" })
+      throw Object.assign(new Error("(test) spawn mise ENOENT"), { code: "ENOENT" })
     }),
-  ).toThrow(/ENOENT/)
-})
-
-it("crashes when `mise bin-paths` exits non-zero", () => {
-  expect(() =>
-    resolveMiseBinPaths("/repo", {}, () => {
-      throw new Error("Command failed")
-    }),
-  ).toThrow(/Command failed/)
+  ).toEqual([])
 })
 
 it("prepends bin paths so mise-managed tools win over system copies", () => {

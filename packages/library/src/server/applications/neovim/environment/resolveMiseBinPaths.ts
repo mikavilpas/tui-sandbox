@@ -55,7 +55,17 @@ export const resolveMiseBinPaths = (
   const cached = cache.get(cwd)
   if (cached) return cached
 
-  const binPaths: string[] = parseMiseBinPaths(run(cwd, environment))
+  let paths: string
+  try {
+    paths = run(cwd, environment)
+  } catch (err) {
+    // Support cases where mise is used for local development but not installed
+    // in CI.
+    log(`Failed to resolve mise bin paths from ${cwd}`, err)
+    console.warn(`Failed to resolve mise bin paths from ${cwd}: ${JSON.stringify(err)}`)
+    paths = ""
+  }
+  const binPaths: string[] = parseMiseBinPaths(paths)
   log(`Resolved ${binPaths.length} mise bin path(s) from ${cwd}`)
   cache.set(cwd, binPaths)
   return binPaths

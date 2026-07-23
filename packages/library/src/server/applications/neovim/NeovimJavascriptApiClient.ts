@@ -24,6 +24,7 @@ export function connectNeovimApi(socketPath: string): Lazy<Promise<NeovimJavascr
       new transports.Console({
         format: format.combine(
           format(info => {
+            // oxlint-disable-next-line typescript/no-unsafe-type-assertion
             if ((info.message as string).startsWith("failed request to")) {
               // This is logged when neovim is started with --embed, which we don't use.
               // It's not a problem, so hide it.
@@ -46,11 +47,13 @@ export function connectNeovimApi(socketPath: string): Lazy<Promise<NeovimJavascr
   return new Lazy(async () => {
     for (let i = 0; i < 100; i++) {
       try {
+        // oxlint-disable-next-line no-await-in-loop
         await access(socketPath)
         // log(`socket file ${socketPath} created after at attempt ${i + 1}`)
         break
       } catch {
         // log(`polling for socket file ${socketPath} to be created (attempt ${i + 1})`)
+        // oxlint-disable-next-line no-await-in-loop
         await new Promise(resolve => setTimeout(resolve, 100 satisfies PollingInterval))
       }
     }

@@ -1,10 +1,12 @@
 import type { Terminal } from "@xterm/xterm"
 
+// oxlint-disable-next-line import/no-unassigned-import
 import "@xterm/xterm/css/xterm.css"
 import type { InMemoryClipboard } from "../client/clipboard.js"
 import { NeovimTerminalClient } from "../client/neovim/neovim-terminal-client.js"
 import type { TuiTerminalApi } from "../client/startTerminal.js"
 
+// oxlint-disable-next-line import/no-unassigned-import
 import "../client/style.css"
 import { TerminalTerminalClient } from "../client/terminal/terminal-terminal-client.js"
 import type {
@@ -31,8 +33,8 @@ if (!app) {
 }
 
 // limitation: right now only one client can be used in the same test
-const neovimClient = new Lazy(() => NeovimTerminalClient.create(app))
-const terminalClient = new Lazy(() => TerminalTerminalClient.create(app))
+const neovimClient = new Lazy(async () => NeovimTerminalClient.create(app))
+const terminalClient = new Lazy(async () => TerminalTerminalClient.create(app))
 
 export type GenericNeovimBrowserApi = {
   runBlockingShellCommand(input: BlockingCommandClientInput): Promise<BlockingShellCommandOutput>
@@ -57,19 +59,19 @@ window.startNeovim = async function (startArgs?: StartNeovimGenericArguments): P
   } satisfies AllKeys<StartNeovimGenericArguments>)
 
   const neovimBrowserApi: GenericNeovimBrowserApi = {
-    runBlockingShellCommand(input: BlockingCommandClientInput): Promise<BlockingShellCommandOutput> {
+    async runBlockingShellCommand(input: BlockingCommandClientInput): Promise<BlockingShellCommandOutput> {
       return neovim.runBlockingShellCommand(input)
     },
-    runLuaCode(input) {
+    async runLuaCode(input) {
       return neovim.runLuaCode(input)
     },
-    doFile(input) {
+    async doFile(input) {
       return neovim.doFile(input)
     },
-    waitForLuaCode(input) {
+    async waitForLuaCode(input) {
       return neovim.waitForLuaCode(input)
     },
-    runExCommand(input) {
+    async runExCommand(input) {
       return neovim.runExCommand(input)
     },
     dir: testDirectory,
@@ -129,7 +131,7 @@ window.startTerminalApplication = async function (
 
   const terminalBrowserApi: GenericTerminalBrowserApi = {
     dir: testDirectory,
-    runBlockingShellCommand(input) {
+    async runBlockingShellCommand(input) {
       return terminal.runBlockingShellCommand(input)
     },
     clipboard: terminal.terminalApi.clipboard,

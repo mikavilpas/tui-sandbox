@@ -1,5 +1,7 @@
 import assert from "assert"
 import { writeFile } from "fs/promises"
+import path from "path"
+import { fileURLToPath } from "url"
 
 import { expect } from "vitest"
 
@@ -9,8 +11,11 @@ import { testServerConfigSchema } from "../server/updateTestdirectorySchemaFile.
 import type { ResolveTuiConfigResult, ResolveTuiConfigResultSuccess } from "./resolveTuiConfig.js"
 import { resolveTuiConfig } from "./resolveTuiConfig.js"
 
+const thisfile = fileURLToPath(import.meta.url)
+const thisdir = path.dirname(thisfile)
+
 it("defaults to the default configuration if no config file is found", async () => {
-  const config = await resolveTuiConfig(__dirname)
+  const config = await resolveTuiConfig(thisdir)
   assert(!config.error)
   expect(config.id).toBe("no-config-found" satisfies ResolveTuiConfigResultSuccess["id"])
   expect(testServerConfigSchema.safeParse(config.result.config).success).toBe(true)

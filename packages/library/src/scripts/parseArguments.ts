@@ -49,6 +49,7 @@ export const parseArguments = async (args: string[]): Promise<ParseArgumentsResu
       return { action: "run" }
     }
   }
+  return undefined
 }
 
 export type ParseArgumentsResult = NeovimPrepare | NeovimExec | TuiStart | TuiCodegen | TuiRunOnce

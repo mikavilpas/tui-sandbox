@@ -4,6 +4,7 @@
     "module": "NodeNext",
     "sourceMap": true,
     "noImplicitOverride": true,
+    "noImplicitReturns": true,
     "noPropertyAccessFromIndexSignature": true,
     "noUncheckedIndexedAccess": true,
     "moduleResolution": "NodeNext",

@@ -22,5 +22,6 @@ it("returns config-modifications recursively", () => {
     | "don't_crash_when_modification_contains_unescaped_characters\".lua"
     | "subdir/subdir-modification.lua"
     | "subdir"
+    // oxlint-disable-next-line typescript/no-unsafe-type-assertion
   >(1 as unknown as result)
 })

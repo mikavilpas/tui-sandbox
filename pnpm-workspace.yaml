@@ -6,6 +6,7 @@ allowBuilds:
   unrs-resolver: true
 minimumReleaseAgeExclude:
   - '@mikavilpas/oxfmt-config@1.0.0 || 2.0.0 || 2.0.1 || 3.0.0'
+  - '@mikavilpas/oxlint-config@1.1.0 || 2.0.0 || 3.0.0'
 saveExact: true
 
 # https://pnpm.io/pnpm-workspace_yaml

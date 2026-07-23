@@ -9,6 +9,7 @@
     "esModuleInterop": true,
     "noEmit": true,
     "noImplicitOverride": true,
+    "noImplicitReturns": true,
     "noPropertyAccessFromIndexSignature": true,
     "noUncheckedIndexedAccess": true,
     "allowImportingTsExtensions": true,
@@ -26,7 +27,6 @@
   "include": [
     //
     "./cypress",
-    "./eslint.config.mjs",
     "./MyTestDirectory.ts",
     "./tui-sandbox.config.ts"
   ],

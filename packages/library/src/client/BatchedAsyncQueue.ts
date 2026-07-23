@@ -28,8 +28,8 @@ export class BatchedAsyncQueue<T> {
     while (!this.signal.aborted) {
       if (this.values.length === 0) {
         // park the iterator until a new value is available
-        // eslint-disable-next-line @typescript-eslint/no-invalid-void-type
         this.waiting = Promise.withResolvers<void>()
+        // oxlint-disable-next-line no-await-in-loop
         await this.waiting.promise // wait for it to be resolved
         continue
       }
@@ -37,6 +37,7 @@ export class BatchedAsyncQueue<T> {
       // collect all pending values and process them as a batch. Remove the
       // values from the queue so that they are not processed again.
       const batch = this.values.splice(0, this.values.length)
+      // oxlint-disable-next-line no-await-in-loop
       await this.processBatch(batch)
     }
   }

@@ -4,10 +4,9 @@ import { createCypressSupportFile } from "../../server/cypress-support/createCyp
 import { startTestServer } from "../../server/server.js"
 import type { TestServerConfig, TestServerConfigMetadata } from "../../server/updateTestdirectorySchemaFile.js"
 import { updateTestdirectorySchemaFile } from "../../server/updateTestdirectorySchemaFile.js"
-import { cwd } from "../tui.js"
 
-export async function commandTuiStart(config: TestServerConfigMetadata): Promise<void> {
-  await updateGeneratedCode(config)
+export async function commandTuiStart(cwd: string, config: TestServerConfigMetadata): Promise<void> {
+  await updateGeneratedCode(cwd, config)
 
   try {
     console.log(`🚀 Starting test server in ${cwd} - this should be the root of your integration-tests directory 🤞🏻`)
@@ -17,8 +16,8 @@ export async function commandTuiStart(config: TestServerConfigMetadata): Promise
   }
 }
 
-export async function updateGeneratedCode(config: TestServerConfigMetadata): Promise<void> {
-  await Promise.allSettled([updateSchemaFile(config.config), createSupportFile(config.config)])
+export async function updateGeneratedCode(cwd: string, config: TestServerConfigMetadata): Promise<void> {
+  await Promise.allSettled([updateSchemaFile(config.config), createSupportFile(cwd, config.config)])
 }
 
 async function updateSchemaFile(config: TestServerConfig): Promise<void> {
@@ -29,7 +28,7 @@ async function updateSchemaFile(config: TestServerConfig): Promise<void> {
   }
 }
 
-async function createSupportFile(config: TestServerConfig): Promise<void> {
+async function createSupportFile(cwd: string, config: TestServerConfig): Promise<void> {
   try {
     await createCypressSupportFile({
       config: config.formatter,

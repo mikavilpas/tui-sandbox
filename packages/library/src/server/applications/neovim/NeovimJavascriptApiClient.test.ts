@@ -43,7 +43,8 @@ it("connects right away if the socket file is already there", async () => {
   expect(mocked.attach).toHaveBeenCalledWith({
     socket: "foosocket",
     options: {
-      logger: expect.any(Object) as never,
+      // oxlint-disable-next-line typescript/no-unsafe-assignment
+      logger: expect.any(Object),
     },
   } satisfies Partial<Parameters<typeof attach>[0]>)
   expect(mocked.attach).toHaveBeenCalledTimes(1)

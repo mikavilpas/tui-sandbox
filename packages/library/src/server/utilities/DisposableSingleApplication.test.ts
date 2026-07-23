@@ -86,7 +86,7 @@ describe("DisposableSingleApplication", () => {
       expect(app.getApplication()).toBeUndefined()
       expect(app.processId()).toBeUndefined()
 
-      expect(() => app[Symbol.asyncDispose]()).not.toThrow()
+      await expect(app[Symbol.asyncDispose]()).resolves.not.toThrow()
     })
   })
 })

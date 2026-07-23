@@ -3,6 +3,8 @@ on:
   push:
     branches:
       - main
+env:
+  CYPRESS_INSTALL_BINARY: "0" # https://docs.cypress.io/app/references/advanced-installation#Environment-variables
 
 permissions:
   contents: read

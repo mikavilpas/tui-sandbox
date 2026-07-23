@@ -2,6 +2,8 @@ name: Linting
 permissions:
   contents: read
 on: [push, pull_request]
+env:
+  CYPRESS_INSTALL_BINARY: "0" # https://docs.cypress.io/app/references/advanced-installation#Environment-variables
 
 jobs:
   markdownlint:

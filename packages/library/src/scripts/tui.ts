@@ -47,11 +47,11 @@ switch (command?.action) {
     break
   }
   case "start": {
-    await commandTuiStart(config)
+    await commandTuiStart(cwd, config)
     break
   }
   case "codegen": {
-    await updateGeneratedCode(config)
+    await updateGeneratedCode(cwd, config)
     break
   }
   case "run": {

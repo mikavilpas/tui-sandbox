@@ -138,9 +138,10 @@ export class NeovimApplication implements AsyncDisposable {
       for (const modification of startArgs.startupScriptModifications) {
         let file = path.join(testDirectory.rootPathAbsolute, "config-modifications", modification)
         try {
+          // oxlint-disable-next-line no-await-in-loop
           await access(file)
         } catch (e) {
-          throw new Error(`startupScriptModifications file does not exist: ${file}. Error: ${String(e)}`)
+          throw new Error(`startupScriptModifications file does not exist: ${file}. Error: ${String(e)}`, { cause: e })
         }
 
         file = file.replaceAll("'", "\\'")

@@ -15,8 +15,7 @@ export type TestServerSettings = {
   port: number
 }
 
-const __filename = fileURLToPath(import.meta.url)
-const __dirname = path.dirname(__filename)
+const thisdir = path.dirname(fileURLToPath(import.meta.url))
 const log = debuglog("tui-sandbox.TestServer")
 
 export class TestServer {
@@ -32,7 +31,8 @@ export class TestServer {
       middleware: cors({ origin: "*" }),
     })
 
-    const publicPath = path.resolve(__dirname, "..", "..", "browser")
+    const publicPath = path.resolve(thisdir, "..", "..", "browser")
+    // oxlint-disable-next-line unicorn/consistent-function-scoping
     let serveStatic: RequestHandler = (_req, _res, next) => void next?.()
 
     try {
@@ -73,9 +73,11 @@ export class TestServer {
     server.close(error => {
       if (error) {
         console.error("Error closing server", error)
+        // oxlint-disable-next-line unicorn/no-process-exit
         process.exit(1)
       }
       log("Server closed")
+      // oxlint-disable-next-line unicorn/no-process-exit
       process.exit(0)
     })
   }

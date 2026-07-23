@@ -60,14 +60,15 @@ describe("BatchedAsyncQueue", () => {
     // Check that only the first two values were processed
     expect(processedValues).toEqual([1, 2])
   })
-
-  const poll = async (condition: () => boolean) =>
-    Promise.race([
-      timeout(1000),
-      (async () => {
-        while (!condition()) {
-          await new Promise(resolve => setTimeout(resolve, 10))
-        }
-      })(),
-    ])
 })
+
+const poll = async (condition: () => boolean) =>
+  Promise.race([
+    timeout(1000),
+    (async () => {
+      while (!condition()) {
+        // oxlint-disable-next-line no-await-in-loop
+        await new Promise(resolve => setTimeout(resolve, 10))
+      }
+    })(),
+  ])

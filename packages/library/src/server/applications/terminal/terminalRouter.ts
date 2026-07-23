@@ -24,7 +24,7 @@ export type StartTerminalInput = z.infer<typeof startTerminalInputSchema>
 // oxlint-disable-next-line explicit-module-boundary-types
 export function createTerminalRouter(config: TestServerConfig) {
   const terminalRouter = trpc.router({
-    onStdout: trpc.procedure.input(z.object({ client: tabIdSchema })).subscription(options => {
+    onStdout: trpc.procedure.input(z.object({ client: tabIdSchema })).subscription(async options => {
       return terminal.initializeStdout(options.input, options.signal)
     }),
 
@@ -35,7 +35,7 @@ export function createTerminalRouter(config: TestServerConfig) {
         return terminal.start(options.input, config)
       }),
 
-    sendStdin: trpc.procedure.input(z.object({ tabId: tabIdSchema, data: z.string() })).mutation(options => {
+    sendStdin: trpc.procedure.input(z.object({ tabId: tabIdSchema, data: z.string() })).mutation(async options => {
       return terminal.sendStdin(options.input)
     }),
 

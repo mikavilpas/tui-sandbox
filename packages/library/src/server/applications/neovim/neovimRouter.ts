@@ -74,10 +74,10 @@ export function createNeovimRouter(config: TestServerConfig) {
         )
       }),
 
-    onStdout: trpc.procedure.input(z.object({ client: tabIdSchema })).subscription(options => {
+    onStdout: trpc.procedure.input(z.object({ client: tabIdSchema })).subscription(async options => {
       return neovim.initializeStdout(options.input, options.signal, config.directories.testEnvironmentPath)
     }),
-    sendStdin: trpc.procedure.input(z.object({ tabId: tabIdSchema, data: z.string() })).mutation(options => {
+    sendStdin: trpc.procedure.input(z.object({ tabId: tabIdSchema, data: z.string() })).mutation(async options => {
       return neovim.sendStdin(options.input)
     }),
 
@@ -85,7 +85,7 @@ export function createNeovimRouter(config: TestServerConfig) {
       return neovim.runBlockingShellCommand(config, options.signal, options.input, options.input.allowFailure ?? false)
     }),
 
-    runLuaCode: trpc.procedure.input(luaCodeInputSchema).mutation(options => {
+    runLuaCode: trpc.procedure.input(luaCodeInputSchema).mutation(async options => {
       return timeoutable(10_000, neovim.runLuaCode(options.input))
     }),
 
@@ -94,7 +94,7 @@ export function createNeovimRouter(config: TestServerConfig) {
       return result
     }),
 
-    runExCommand: trpc.procedure.input(exCommandInputSchema).mutation(options => {
+    runExCommand: trpc.procedure.input(exCommandInputSchema).mutation(async options => {
       return timeoutable(10_000, neovim.runExCommand(options.input))
     }),
   })

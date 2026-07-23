@@ -1,5 +1,6 @@
 import assert from "assert"
 import path from "path"
+import { fileURLToPath } from "url"
 
 import { describe, expect, it } from "vitest"
 
@@ -8,9 +9,11 @@ import type { NeovimIntegrationDefaultAppName, TestServerConfig } from "../updat
 import { Lazy } from "../utilities/Lazy.js"
 import { buildSchemaForDirectoryTree, getDirectoryTree } from "./index.js"
 
+const thisdir = path.dirname(fileURLToPath(import.meta.url))
+
 describe("dirtree", () => {
   const output = new Lazy(() =>
-    getDirectoryTree(path.join(__dirname, "..", "..", "..", "..", "integration-tests", "test-environment")),
+    getDirectoryTree(path.join(thisdir, "..", "..", "..", "..", "integration-tests", "test-environment")),
   )
 
   it("can get a list of all the files", () => {
@@ -320,7 +323,7 @@ describe("dirtree", () => {
     // configuration. These should be available for them in a type-safe manner so
     // that they have the least possible friction when coding.
     //
-    const smallDirectory = path.resolve(__dirname, "../../../../integration-tests/test-environment/other-subdirectory/")
+    const smallDirectory = path.resolve(thisdir, "../../../../integration-tests/test-environment/other-subdirectory/")
 
     it("when there is a single name", async () => {
       const config: TestServerConfig = createDefaultConfig("/my/root/path", {})

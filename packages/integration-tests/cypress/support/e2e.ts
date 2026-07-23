@@ -14,6 +14,7 @@
 // ***********************************************************
 
 /// <reference types="cypress" />
+// oxlint-disable-next-line import/no-unassigned-import
 import "./tui-sandbox.ts"
 
 Cypress.Keyboard.defaults({

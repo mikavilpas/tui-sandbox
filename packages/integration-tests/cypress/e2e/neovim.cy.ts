@@ -331,6 +331,7 @@ describe("neovim features", () => {
 
   describe("using an LSP server", () => {
     /** It takes a bit of time for the LSP server to start. Wait until it's ready. */
+    // oxlint-disable-next-line unicorn/consistent-function-scoping
     const waitForEmmyluaLsReady = (nvim: NeovimContext): Cypress.Chainable<RunLuaCodeOutput> =>
       // It takes a bit of time for the LSP server to start.
       nvim.waitForLuaCode({

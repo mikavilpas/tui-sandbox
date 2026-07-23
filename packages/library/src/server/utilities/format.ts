@@ -8,7 +8,7 @@ import * as z from "zod"
 
 import type { FormatterConfig } from "../updateTestdirectorySchemaFile.js"
 
-const __filename = fileURLToPath(import.meta.url)
+const thisfile = fileURLToPath(import.meta.url)
 const require = createRequire(import.meta.url)
 export const isTypeScriptPath = (filePath: string): filePath is `${string}.ts` => filePath.endsWith(".ts")
 
@@ -21,7 +21,7 @@ export const formatCode = async (
 ): Promise<string> => {
   if (config.use === "prettier") {
     const { format, resolveConfig } = await import("prettier")
-    const prettierConfig = await resolveConfig(__filename)
+    const prettierConfig = await resolveConfig(thisfile)
 
     return format(code, {
       ...prettierConfig,
@@ -41,7 +41,7 @@ const resolveOxfmtCliPath = (): string => {
   return path.join(path.dirname(packageJsonPath), packageJson.bin.oxfmt)
 }
 
-const formatWithOxfmt = (code: string, fileName: string): Promise<string> => {
+const formatWithOxfmt = async (code: string, fileName: string): Promise<string> => {
   const oxfmtCliPath = resolveOxfmtCliPath()
 
   return new Promise<string>((resolve, reject) => {

@@ -15,6 +15,7 @@
     "tui": "pnpm --filter=library build && pnpm --filter integration-tests exec tui"
   },
   "devDependencies": {
+    "@mikavilpas/knip-config": "1.0.0",
     "@mikavilpas/oxfmt-config": "3.0.0",
     "@mikavilpas/oxlint-config": "3.0.0",
     "@types/node": "24.13.3",

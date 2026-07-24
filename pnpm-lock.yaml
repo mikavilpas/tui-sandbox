@@ -4,124 +4,241 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
+catalogs:
+  default:
+    '@arethetypeswrong/cli':
+      specifier: 0.18.5
+      version: 0.18.5
+    '@catppuccin/palette':
+      specifier: 1.8.0
+      version: 1.8.0
+    '@mikavilpas/knip-config':
+      specifier: 1.0.0
+      version: 1.0.0
+    '@mikavilpas/oxfmt-config':
+      specifier: 3.0.0
+      version: 3.0.0
+    '@mikavilpas/oxlint-config':
+      specifier: 3.0.0
+      version: 3.0.0
+    '@trpc/client':
+      specifier: 11.18.0
+      version: 11.18.0
+    '@trpc/server':
+      specifier: 11.18.0
+      version: 11.18.0
+    '@types/cors':
+      specifier: 2.8.19
+      version: 2.8.19
+    '@types/node':
+      specifier: 24.13.3
+      version: 24.13.3
+    '@xterm/addon-clipboard':
+      specifier: 0.2.0
+      version: 0.2.0
+    '@xterm/addon-fit':
+      specifier: 0.11.0
+      version: 0.11.0
+    '@xterm/addon-unicode11':
+      specifier: 0.9.0
+      version: 0.9.0
+    '@xterm/xterm':
+      specifier: 6.0.0
+      version: 6.0.0
+    assert:
+      specifier: 2.1.0
+      version: 2.1.0
+    concurrently:
+      specifier: 10.0.3
+      version: 10.0.3
+    cors:
+      specifier: 2.8.6
+      version: 2.8.6
+    cypress:
+      specifier: 15.18.1
+      version: 15.18.1
+    dree:
+      specifier: 5.1.5
+      version: 5.1.5
+    eslint-plugin-import-zod:
+      specifier: 1.2.1
+      version: 1.2.1
+    eslint-plugin-no-only-tests:
+      specifier: 3.4.0
+      version: 3.4.0
+    knip:
+      specifier: 6.27.0
+      version: 6.27.0
+    neovim:
+      specifier: 5.4.0
+      version: 5.4.0
+    nodemon:
+      specifier: 3.1.14
+      version: 3.1.14
+    oxfmt:
+      specifier: 0.59.0
+      version: 0.59.0
+    oxlint:
+      specifier: 1.74.0
+      version: 1.74.0
+    oxlint-tsgolint:
+      specifier: 7.0.2001
+      version: 7.0.2001
+    prettier:
+      specifier: 3.9.6
+      version: 3.9.6
+    sirv:
+      specifier: 3.0.2
+      version: 3.0.2
+    string-width:
+      specifier: 8.2.2
+      version: 8.2.2
+    tsx:
+      specifier: 4.23.1
+      version: 4.23.1
+    type-fest:
+      specifier: 5.8.0
+      version: 5.8.0
+    typescript:
+      specifier: 6.0.3
+      version: 6.0.3
+    vite:
+      specifier: 8.1.5
+      version: 8.1.5
+    vitest:
+      specifier: 4.1.10
+      version: 4.1.10
+    wait-on:
+      specifier: 9.0.10
+      version: 9.0.10
+    winston:
+      specifier: 3.19.0
+      version: 3.19.0
+    zigpty:
+      specifier: 0.2.1
+      version: 0.2.1
+    zod:
+      specifier: 4.4.3
+      version: 4.4.3
+
 importers:
 
   .:
     devDependencies:
       '@mikavilpas/knip-config':
-        specifier: 1.0.0
+        specifier: 'catalog:'
         version: 1.0.0(knip@6.27.0)
       '@mikavilpas/oxfmt-config':
-        specifier: 3.0.0
+        specifier: 'catalog:'
         version: 3.0.0(oxfmt@0.59.0)
       '@mikavilpas/oxlint-config':
-        specifier: 3.0.0
+        specifier: 'catalog:'
         version: 3.0.0(oxlint-tsgolint@7.0.2001)(oxlint@1.74.0(oxlint-tsgolint@7.0.2001))
       '@types/node':
-        specifier: 24.13.3
+        specifier: 'catalog:'
         version: 24.13.3
       cypress:
-        specifier: 15.18.1
+        specifier: 'catalog:'
         version: 15.18.1
       eslint-plugin-import-zod:
-        specifier: 1.2.1
+        specifier: 'catalog:'
         version: 1.2.1(@typescript-eslint/utils@8.64.0(eslint@10.7.0(jiti@2.7.0)(supports-color@8.1.1))(supports-color@8.1.1)(typescript@6.0.3))(eslint@10.7.0(jiti@2.7.0)(supports-color@8.1.1))
       eslint-plugin-no-only-tests:
-        specifier: 3.4.0
+        specifier: 'catalog:'
         version: 3.4.0
       knip:
-        specifier: 6.27.0
+        specifier: 'catalog:'
         version: 6.27.0
       oxfmt:
-        specifier: 0.59.0
+        specifier: 'catalog:'
         version: 0.59.0
       oxlint:
-        specifier: 1.74.0
+        specifier: 'catalog:'
         version: 1.74.0(oxlint-tsgolint@7.0.2001)
       oxlint-tsgolint:
-        specifier: 7.0.2001
+        specifier: 'catalog:'
         version: 7.0.2001
       tsx:
-        specifier: 4.23.1
+        specifier: 'catalog:'
         version: 4.23.1
       typescript:
-        specifier: 6.0.3
+        specifier: 'catalog:'
         version: 6.0.3
       vitest:
-        specifier: 4.1.10
+        specifier: 'catalog:'
         version: 4.1.10(@types/node@24.13.3)(vite@8.1.5(@types/node@24.13.3)(esbuild@0.28.1)(jiti@2.7.0)(tsx@4.23.1)(yaml@2.9.0))
       wait-on:
-        specifier: 9.0.10
+        specifier: 'catalog:'
         version: 9.0.10(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)
 
   packages/integration-tests:
     dependencies:
       '@catppuccin/palette':
-        specifier: 1.8.0
+        specifier: 'catalog:'
         version: 1.8.0
       '@tui-sandbox/library':
         specifier: workspace:*
         version: link:../library
       zod:
-        specifier: 4.4.3
+        specifier: 'catalog:'
         version: 4.4.3
     devDependencies:
       '@types/node':
-        specifier: 24.13.3
+        specifier: 'catalog:'
         version: 24.13.3
       assert:
-        specifier: 2.1.0
+        specifier: 'catalog:'
         version: 2.1.0
       concurrently:
-        specifier: 10.0.3
+        specifier: 'catalog:'
         version: 10.0.3
       type-fest:
-        specifier: 5.8.0
+        specifier: 'catalog:'
         version: 5.8.0
 
   packages/library:
     dependencies:
       '@catppuccin/palette':
-        specifier: 1.8.0
+        specifier: 'catalog:'
         version: 1.8.0
       '@trpc/client':
-        specifier: 11.18.0
+        specifier: 'catalog:'
         version: 11.18.0(@trpc/server@11.18.0(typescript@6.0.3))(typescript@6.0.3)
       '@trpc/server':
-        specifier: 11.18.0
+        specifier: 'catalog:'
         version: 11.18.0(typescript@6.0.3)
       '@xterm/addon-clipboard':
-        specifier: 0.2.0
+        specifier: 'catalog:'
         version: 0.2.0
       '@xterm/addon-fit':
-        specifier: 0.11.0
+        specifier: 'catalog:'
         version: 0.11.0
       '@xterm/addon-unicode11':
-        specifier: 0.9.0
+        specifier: 'catalog:'
         version: 0.9.0
       '@xterm/xterm':
-        specifier: 6.0.0
+        specifier: 'catalog:'
         version: 6.0.0
       concurrently:
-        specifier: 10.0.3
+        specifier: 'catalog:'
         version: 10.0.3
       cors:
-        specifier: 2.8.6
+        specifier: 'catalog:'
         version: 2.8.6
       dree:
-        specifier: 5.1.5
+        specifier: 'catalog:'
         version: 5.1.5
       neovim:
-        specifier: 5.4.0
+        specifier: 'catalog:'
         version: 5.4.0
       sirv:
-        specifier: 3.0.2
+        specifier: 'catalog:'
         version: 3.0.2
       string-width:
-        specifier: 8.2.2
+        specifier: 'catalog:'
         version: 8.2.2
       tsx:
-        specifier: 4.23.1
+        specifier: 'catalog:'
         version: 4.23.1
       typescript:
         specifier: '>= 5.6.3'
@@ -130,44 +247,44 @@ importers:
         specifier: '>=9.0.0'
         version: 9.0.10(debug@4.4.3(supports-color@5.5.0))(supports-color@5.5.0)
       winston:
-        specifier: 3.19.0
+        specifier: 'catalog:'
         version: 3.19.0
       zigpty:
-        specifier: 0.2.1
+        specifier: 'catalog:'
         version: 0.2.1
       zod:
-        specifier: 4.4.3
+        specifier: 'catalog:'
         version: 4.4.3
     devDependencies:
       '@arethetypeswrong/cli':
-        specifier: 0.18.5
+        specifier: 'catalog:'
         version: 0.18.5
       '@types/cors':
-        specifier: 2.8.19
+        specifier: 'catalog:'
         version: 2.8.19
       '@types/node':
-        specifier: 24.13.3
+        specifier: 'catalog:'
         version: 24.13.3
       cypress:
-        specifier: 15.18.1
+        specifier: 'catalog:'
         version: 15.18.1
       nodemon:
-        specifier: 3.1.14
+        specifier: 'catalog:'
         version: 3.1.14
       oxfmt:
-        specifier: 0.59.0
+        specifier: 'catalog:'
         version: 0.59.0
       prettier:
-        specifier: 3.9.6
+        specifier: 'catalog:'
         version: 3.9.6
       type-fest:
-        specifier: 5.8.0
+        specifier: 'catalog:'
         version: 5.8.0
       vite:
-        specifier: 8.1.5
+        specifier: 'catalog:'
         version: 8.1.5(@types/node@24.13.3)(esbuild@0.28.1)(jiti@2.7.0)(tsx@4.23.1)(yaml@2.9.0)
       vitest:
-        specifier: 4.1.10
+        specifier: 'catalog:'
         version: 4.1.10(@types/node@24.13.3)(vite@8.1.5(@types/node@24.13.3)(esbuild@0.28.1)(jiti@2.7.0)(tsx@4.23.1)(yaml@2.9.0))
 
 packages:

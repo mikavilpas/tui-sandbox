@@ -15,21 +15,21 @@
     "tui": "pnpm --filter=library build && pnpm --filter integration-tests exec tui"
   },
   "devDependencies": {
-    "@mikavilpas/knip-config": "1.0.0",
-    "@mikavilpas/oxfmt-config": "3.0.0",
-    "@mikavilpas/oxlint-config": "3.0.0",
-    "@types/node": "24.13.3",
-    "cypress": "15.18.1",
-    "eslint-plugin-import-zod": "1.2.1",
-    "eslint-plugin-no-only-tests": "3.4.0",
-    "knip": "6.27.0",
-    "oxfmt": "0.59.0",
-    "oxlint": "1.74.0",
-    "oxlint-tsgolint": "7.0.2001",
-    "tsx": "4.23.1",
-    "typescript": "6.0.3",
-    "vitest": "4.1.10",
-    "wait-on": "9.0.10"
+    "@mikavilpas/knip-config": "catalog:",
+    "@mikavilpas/oxfmt-config": "catalog:",
+    "@mikavilpas/oxlint-config": "catalog:",
+    "@types/node": "catalog:",
+    "cypress": "catalog:",
+    "eslint-plugin-import-zod": "catalog:",
+    "eslint-plugin-no-only-tests": "catalog:",
+    "knip": "catalog:",
+    "oxfmt": "catalog:",
+    "oxlint": "catalog:",
+    "oxlint-tsgolint": "catalog:",
+    "tsx": "catalog:",
+    "typescript": "catalog:",
+    "vitest": "catalog:",
+    "wait-on": "catalog:"
   },
   "packageManager": "pnpm@11.15.1"
 }

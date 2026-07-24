@@ -11,7 +11,6 @@
     "preinstall": "npx only-allow pnpm",
     "knip": "knip",
     "lint": "oxlint",
-    "markdownlint": "rumdl check",
     "test": "vitest",
     "tui": "pnpm --filter=library build && pnpm --filter integration-tests exec tui"
   },

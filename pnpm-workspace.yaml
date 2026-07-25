@@ -13,7 +13,7 @@ catalog:
   "@arethetypeswrong/cli": 0.18.5
   "@catppuccin/palette": 1.8.0
   "@mikavilpas/knip-config": 1.0.0
-  "@mikavilpas/oxfmt-config": 3.0.0
+  "@mikavilpas/oxfmt-config": 3.0.2
   "@mikavilpas/oxlint-config": 3.0.0
   "@trpc/client": 11.18.0
   "@trpc/server": 11.18.0

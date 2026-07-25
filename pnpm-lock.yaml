@@ -16,8 +16,8 @@ catalogs:
       specifier: 1.0.0
       version: 1.0.0
     '@mikavilpas/oxfmt-config':
-      specifier: 3.0.0
-      version: 3.0.0
+      specifier: 3.0.2
+      version: 3.0.2
     '@mikavilpas/oxlint-config':
       specifier: 3.0.0
       version: 3.0.0
@@ -130,7 +130,7 @@ importers:
         version: 1.0.0(knip@6.27.0)
       '@mikavilpas/oxfmt-config':
         specifier: 'catalog:'
-        version: 3.0.0(oxfmt@0.60.0)
+        version: 3.0.2(oxfmt@0.60.0)
       '@mikavilpas/oxlint-config':
         specifier: 'catalog:'
         version: 3.0.0(oxlint-tsgolint@7.0.2001)(oxlint@1.75.0(oxlint-tsgolint@7.0.2001))
@@ -577,8 +577,8 @@ packages:
     peerDependencies:
       knip: ^6.27.0
 
-  '@mikavilpas/oxfmt-config@3.0.0':
-    resolution: {integrity: sha512-4DwrRdllfMa4hxgbjFxkdvt0RY3Dr9qFoRDwfh4sfb3wjGsM0WYNTQK/xCxQ3A0T1b7h2Yxteyedi7mPjZw5Pw==}
+  '@mikavilpas/oxfmt-config@3.0.2':
+    resolution: {integrity: sha512-EN31oQttxjYzs31S3wwnyS+aS3DkSwHXPYP1Qx0DDWa7BGUbxmIFAQr6IdJNIIMv4qN6gT9doyN2ZIoGGC7z0Q==}
     peerDependencies:
       oxfmt: ^0.59.0
 
@@ -3268,7 +3268,7 @@ snapshots:
     dependencies:
       knip: 6.27.0
 
-  '@mikavilpas/oxfmt-config@3.0.0(oxfmt@0.60.0)':
+  '@mikavilpas/oxfmt-config@3.0.2(oxfmt@0.60.0)':
     dependencies:
       oxfmt: 0.60.0
 

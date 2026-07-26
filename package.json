@@ -1,6 +1,7 @@
 {
   "name": "@tui-sandbox/monorepo",
   "version": "1.0.0",
+  "private": true,
   "license": "MIT",
   "author": "Mika Vilpas",
   "type": "module",
@@ -15,6 +16,8 @@
     "tui": "pnpm --filter=library build && pnpm --filter integration-tests exec tui"
   },
   "devDependencies": {
+    "@changesets/changelog-github": "catalog:",
+    "@changesets/cli": "catalog:",
     "@mikavilpas/knip-config": "catalog:",
     "@mikavilpas/oxfmt-config": "catalog:",
     "@mikavilpas/oxlint-config": "catalog:",

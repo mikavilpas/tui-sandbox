@@ -5,9 +5,8 @@ config.ignoreDependencies = [
   "tsx",
   // Root devDependency satisfying @tui-sandbox/library's peer dependency
   "wait-on",
-]
-config.ignoreBinaries = [
-  "show", // false positive: "pnpm show" in github-actions
+  // used locally and in the release workflow, cannot be detected by knip
+  "@changesets/cli",
 ]
 config.ignoreFiles = [
   // runtime blueprint for the tests, not published code

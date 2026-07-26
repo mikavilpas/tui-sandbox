@@ -1,59 +1,66 @@
+---
+name: release
 on:
   workflow_dispatch: # makes it possible to run the workflow manually
   push:
     branches:
       - main
+
 env:
   CYPRESS_INSTALL_BINARY: "0" # https://docs.cypress.io/app/references/advanced-installation#Environment-variables
+
+# Never run two releases against the same branch at once (avoids double publishes)
+concurrency: ${{ github.workflow }}-${{ github.ref }}
 
 permissions:
   contents: read
 
-name: release
-
 jobs:
-  release-please:
+  release:
+    name: Release
     runs-on: ubuntu-24.04
     permissions:
-      contents: write
-      pull-requests: write
+      id-token: write # npm OIDC trusted publishing (no NPM_TOKEN needed)
     steps:
-      - uses: googleapis/release-please-action@45996ed1f6d02564a971a2fa1b5860e934307cf7 # v5.0
-        id: release
+      - name: Mint a release-bot installation token
+        id: app-token
+        uses: actions/create-github-app-token@bcd2ba49218906704ab6c1aa796996da409d3eb1 # v3.2.0
         with:
-          token: ${{ secrets.RELEASE_PLEASE_ACCESS_TOKEN }}
-          config-file: release-please-config.json
-          manifest-file: .release-please-manifest.json
-
-  publish-to-npm:
-    runs-on: ubuntu-24.04
-    permissions:
-      contents: read
-      id-token: write
-
-    steps:
-      # https://dev.to/receter/automatically-publish-your-node-package-to-npm-with-pnpm-and-github-actions-22eg
-      - name: Checkout
-        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+          app-id: ${{ secrets.RELEASE_BOT_APP_ID }}
+          private-key: ${{ secrets.RELEASE_BOT_PRIVATE_KEY }}
+          permission-contents: write # push the Version PR branch, tags, and GitHub releases
+          permission-pull-requests: write # open/update the "Version Packages" PR
+          permission-workflows: write # a new tag ref carries .github/workflows/*; a GitHub App can't create those tags without this
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
-          persist-credentials: false
+          fetch-depth: 0
+          token: ${{ steps.app-token.outputs.token }}
+          persist-credentials: true # changesets pushes the Version PR branch with this token
       - uses: pnpm/action-setup@0ebf47130e4866e96fce0953f49152a61190b271 # v6.0.9
-      - name: Install Node.js
-        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          run_install: false
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
         with:
           node-version-file: .nvmrc
           cache: "pnpm"
           registry-url: https://registry.npmjs.org
-
       - run: pnpm install
-      - run: pnpm build
-      - name: Publish 🚀
-        shell: bash
-        run: |
-          npm_version=$(pnpm show @tui-sandbox/library version)
-          local_version=$(node -p "require('./packages/library/package.json').version")
-          if [ "$npm_version" = "$local_version" ]; then
-            echo "Version $npm_version already published. Skipping publish."
-            exit 0
-          fi
-          pnpm publish packages/library --access public --no-git-checks
+      - run: pnpm build # generate the dist files for the release
+      - name: Create Version PR or publish
+        id: changesets
+        uses: changesets/action@a45c4d594aa4e2c509dc14a9f2b3b67ba3780d0d # v1.9.0
+        with:
+          version: pnpm changeset version
+          publish: pnpm changeset publish
+          commit: "chore: version packages"
+          title: "chore: version packages"
+        env:
+          GITHUB_TOKEN: ${{ steps.app-token.outputs.token }}
+
+      - name: Enable auto-merge on the Version PR
+        if: steps.changesets.outputs.pullRequestNumber
+        env:
+          GH_TOKEN: ${{ steps.app-token.outputs.token }}
+          STEPS_CHANGESETS_OUTPUTS_PULLREQUESTNUMBER: ${{ steps.changesets.outputs.pullRequestNumber }}
+        run: >
+          gh pr merge "${STEPS_CHANGESETS_OUTPUTS_PULLREQUESTNUMBER}" --auto --squash --repo "${{ github.repository }}"

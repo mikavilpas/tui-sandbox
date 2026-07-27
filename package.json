@@ -11,6 +11,7 @@
     "format:check": "oxfmt --check",
     "preinstall": "npx only-allow pnpm",
     "knip": "knip",
+    "syncpack": "syncpack",
     "lint": "oxlint",
     "test": "vitest",
     "tui": "pnpm --filter=library build && pnpm --filter integration-tests exec tui"
@@ -21,6 +22,7 @@
     "@mikavilpas/knip-config": "catalog:",
     "@mikavilpas/oxfmt-config": "catalog:",
     "@mikavilpas/oxlint-config": "catalog:",
+    "@mikavilpas/syncpack-config": "catalog:",
     "@types/node": "catalog:",
     "cypress": "catalog:",
     "eslint-plugin-import-zod": "catalog:",
@@ -29,6 +31,7 @@
     "oxfmt": "catalog:",
     "oxlint": "catalog:",
     "oxlint-tsgolint": "catalog:",
+    "syncpack": "catalog:",
     "tsx": "catalog:",
     "typescript": "catalog:",
     "vitest": "catalog:",

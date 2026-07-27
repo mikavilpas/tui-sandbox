@@ -6,8 +6,6 @@ export default defineConfig({
   ignorePatterns: [
     "lazy-lock.json",
     "CHANGELOG.md",
-    "release-please-config.json",
-    ".release-please-manifest.json",
     "packages/integration-tests/test-environment/.repro",
     "packages/integration-tests/dist",
     "pnpm-lock.yaml",

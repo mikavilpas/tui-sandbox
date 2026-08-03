@@ -11,7 +11,7 @@ permissions:
 
 env:
   # renovate: datasource=git-refs-master packageName=https://github.com/neovim/neovim
-  NEOVIM_NIGHTLY_COMMIT: 7f8175dc48f9fbceb2d89f0646f03e2e18f9debb
+  NEOVIM_NIGHTLY_COMMIT: 0aed30b4de042dce9941f789b6df1035b0fa73c8
 
 jobs:
   pnpm-tests:

@@ -44,7 +44,7 @@ catalog:
   sirv: 3.0.2
   string-width: 8.2.2
   syncpack: 15.3.2
-  tsx: 4.23.1
+  tsx: 4.23.4
   type-fest: 5.8.0
   typescript: 6.0.3
   vite: 8.2.0

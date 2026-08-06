@@ -46,7 +46,7 @@ catalog:
   syncpack: 15.3.2
   tsx: 4.23.5
   type-fest: 5.8.0
-  typescript: 6.0.3
+  typescript: 7.0.2
   vite: 8.2.0
   vitest: 4.1.10
   wait-on: 9.1.0

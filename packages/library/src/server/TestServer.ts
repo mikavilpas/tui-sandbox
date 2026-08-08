@@ -33,7 +33,9 @@ export class TestServer {
 
     const publicPath = path.resolve(thisdir, "..", "..", "browser")
     // oxlint-disable-next-line unicorn/consistent-function-scoping
-    let serveStatic: RequestHandler = (_req, _res, next) => void next?.()
+    let serveStatic: RequestHandler = (_req, _res, next) => {
+      void next?.()
+    }
 
     try {
       accessSync(publicPath)

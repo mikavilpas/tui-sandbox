@@ -43,7 +43,7 @@ catalog:
   prettier: 3.9.6
   sirv: 3.0.2
   string-width: 8.2.2
-  syncpack: 15.3.2
+  syncpack: 15.3.3
   tsx: 4.23.11
   type-fest: 5.8.0
   typescript: 7.0.2

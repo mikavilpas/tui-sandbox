@@ -14,7 +14,7 @@ catalog:
   "@arethetypeswrong/cli": 0.18.5
   "@catppuccin/palette": 1.8.0
   "@changesets/changelog-github": 1.0.0
-  "@changesets/cli": 2.31.1
+  "@changesets/cli": 3.0.0
   "@mikavilpas/knip-config": 1.0.1
   "@mikavilpas/oxfmt-config": 3.0.3
   "@mikavilpas/oxlint-config": 3.0.1

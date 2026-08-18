@@ -58,8 +58,8 @@ catalogs:
       specifier: 2.1.0
       version: 2.1.0
     concurrently:
-      specifier: 10.0.4
-      version: 10.0.4
+      specifier: 10.0.5
+      version: 10.0.5
     cors:
       specifier: 2.8.6
       version: 2.8.6
@@ -215,7 +215,7 @@ importers:
         version: 2.1.0
       concurrently:
         specifier: 'catalog:'
-        version: 10.0.4
+        version: 10.0.5
       type-fest:
         specifier: 'catalog:'
         version: 5.8.0
@@ -245,7 +245,7 @@ importers:
         version: 6.0.0
       concurrently:
         specifier: 'catalog:'
-        version: 10.0.4
+        version: 10.0.5
       cors:
         specifier: 'catalog:'
         version: 2.8.6
@@ -1833,8 +1833,8 @@ packages:
     resolution: {integrity: sha512-gk/Z852D2Wtb//0I+kRFNKKE9dIIVirjoqPoA1wJU+XePVXZfGeBpk45+A1rKO4Q43prqWBNY/MiIeRLbPWUaA==}
     engines: {node: '>=4.0.0'}
 
-  concurrently@10.0.4:
-    resolution: {integrity: sha512-trZql+7l/0+WRAsAnEdctr4+iiOS6ZrViI6H8QWcCF9MFS/LT0dKpe8vluB1to6it+OxSI4VospFTIFMW8DJRw==}
+  concurrently@10.0.5:
+    resolution: {integrity: sha512-JaP/CoftUrCcAFW/g//RbgEGwlelnEae6cfBLgH6ZdO6s8jPkn6p9SB9u6pdVxYXoiSnFqseOlHfrEfF82TVOg==}
     engines: {node: '>=22'}
     hasBin: true
 
@@ -4550,7 +4550,7 @@ snapshots:
 
   common-tags@1.8.2: {}
 
-  concurrently@10.0.4:
+  concurrently@10.0.5:
     dependencies:
       chalk: 5.6.2
       rxjs: 7.8.2

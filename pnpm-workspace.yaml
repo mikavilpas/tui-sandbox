@@ -37,9 +37,9 @@ catalog:
   knip: 6.32.2
   neovim: 5.4.0
   nodemon: 3.1.14
-  oxfmt: 0.63.0
+  oxfmt: 0.64.0
   oxlint-tsgolint: 7.0.2001
-  oxlint: 1.78.0
+  oxlint: 1.79.0
   prettier: 3.9.6
   sirv: 3.0.2
   string-width: 8.2.2
@@ -48,7 +48,7 @@ catalog:
   type-fest: 5.8.0
   typescript: 7.0.2
   vite: 8.2.1
-  vitest: 4.1.10
+  vitest: 4.1.11
   wait-on: 9.1.0
   winston: 3.19.0
   zigpty: 0.2.1

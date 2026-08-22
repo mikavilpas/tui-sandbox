@@ -14,7 +14,7 @@ catalog:
   "@arethetypeswrong/cli": 0.18.5
   "@catppuccin/palette": 1.8.0
   "@changesets/changelog-github": 1.0.0
-  "@changesets/cli": 3.0.0
+  "@changesets/cli": 3.0.1
   "@mikavilpas/knip-config": 1.0.1
   "@mikavilpas/oxfmt-config": 3.0.3
   "@mikavilpas/oxlint-config": 3.0.1
@@ -30,7 +30,7 @@ catalog:
   assert: 2.1.0
   concurrently: 10.0.5
   cors: 2.8.6
-  cypress: 15.20.1
+  cypress: 15.21.0
   dree: 5.1.5
   eslint-plugin-import-zod: 1.2.1
   eslint-plugin-no-only-tests: 3.4.0

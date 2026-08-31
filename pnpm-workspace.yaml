@@ -15,6 +15,7 @@ catalog:
   "@catppuccin/palette": 1.8.0
   "@changesets/changelog-github": 1.0.0
   "@changesets/cli": 3.0.0
+  "@tsconfig/node24": 24.0.5
   "@mikavilpas/knip-config": 1.0.1
   "@mikavilpas/oxfmt-config": 3.0.3
   "@mikavilpas/oxlint-config": 3.0.1

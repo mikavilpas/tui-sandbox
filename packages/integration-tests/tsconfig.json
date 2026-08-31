@@ -1,12 +1,10 @@
 {
+  // https://www.npmjs.com/package/@tsconfig/node24
+  "extends": "@tsconfig/node24/tsconfig.json",
   "compilerOptions": {
-    "skipLibCheck": true,
-    "module": "nodenext",
     "moduleResolution": "nodenext",
-    "target": "ESNext",
     "rootDir": ".",
     "isolatedModules": true,
-    "esModuleInterop": true,
     "noEmit": true,
     "noImplicitOverride": true,
     "noImplicitReturns": true,
@@ -15,10 +13,7 @@
     "allowImportingTsExtensions": true,
     "outDir": "dist",
     "lib": ["ES2023", "ESNext.Disposable"],
-    "types": ["node"],
 
-    /* Linting */
-    "strict": true,
     "noUnusedLocals": false,
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true

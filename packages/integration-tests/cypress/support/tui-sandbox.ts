@@ -292,7 +292,7 @@ afterEach(function () {
       .split("\n")
       .map(line => `  ${line}`)
       .join("\n")
-    const testFile = this.currentTest?.file ?? "unknown"
+    const testFile = this.currentTest?.file ?? this.test?.file ?? "unknown"
     const yaml = [
       `testTitle: ${JSON.stringify(snapshot.testTitle)}`,
       `testFile: ${JSON.stringify(testFile)}`,

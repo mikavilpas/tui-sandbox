@@ -133,8 +133,8 @@ catalogs:
       specifier: 0.2.1
       version: 0.2.1
     zod:
-      specifier: 4.4.3
-      version: 4.4.3
+      specifier: 4.5.1
+      version: 4.5.1
 
 importers:
 
@@ -211,7 +211,7 @@ importers:
         version: link:../library
       zod:
         specifier: 'catalog:'
-        version: 4.4.3
+        version: 4.5.1
     devDependencies:
       '@types/node':
         specifier: 'catalog:'
@@ -284,7 +284,7 @@ importers:
         version: 0.2.1
       zod:
         specifier: 'catalog:'
-        version: 4.4.3
+        version: 4.5.1
     devDependencies:
       '@arethetypeswrong/cli':
         specifier: 'catalog:'
@@ -3366,6 +3366,9 @@ packages:
   zod@4.4.3:
     resolution: {integrity: sha512-ytENFjIJFl2UwYglde2jchW2Hwm4GJFLDiSXWdTrJQBIN9Fcyp7n4DhxJEiWNAJMV1/BqWfW/kkg71UDcHJyTQ==}
 
+  zod@4.5.1:
+    resolution: {integrity: sha512-P3GqeAEOEDqKvafVGLezbg+39YW/ze4xrD4qdS0adOY8eoI3zfjv1PQM4UwQzgT8mZKXEbqtVt8K+ZKGqkMFKg==}
+
 snapshots:
 
   '@andrewbranch/untar.js@1.0.3': {}
@@ -5988,7 +5991,7 @@ snapshots:
   vite@8.2.2(@types/node@24.13.3)(esbuild@0.28.1)(jiti@2.7.0)(tsx@4.23.12)(yaml@2.9.0):
     dependencies:
       lightningcss: 1.33.0
-      picomatch: 4.0.5
+      picomatch: 4.0.7
       postcss: 8.5.26
       rolldown: 1.2.6
       tinyglobby: 0.2.17
@@ -6170,3 +6173,5 @@ snapshots:
   zigpty@0.2.1: {}
 
   zod@4.4.3: {}
+
+  zod@4.5.1: {}

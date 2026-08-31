@@ -54,8 +54,7 @@ jobs:
           publish-script: pnpm changeset publish
           commit-message: "chore: version packages"
           pr-title: "chore: version packages"
-        env:
-          GITHUB_TOKEN: ${{ steps.app-token.outputs.token }}
+          github-token: ${{ steps.app-token.outputs.token }}
 
       - name: Enable auto-merge on the Version PR
         if: steps.changesets.outputs.pullRequestNumber

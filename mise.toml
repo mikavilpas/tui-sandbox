@@ -3,9 +3,9 @@ disable_tools = ["node"]
 
 [tools]
 "github:EmmyLuaLs/emmylua-analyzer-rust" = { version = "0.25.1", matching = "emmylua_ls" }
-"github:rvben/rumdl" = "0.2.58"
+"github:rvben/rumdl" = "0.2.62"
 
 # small sample application that can be installed with mise and used in the test
 # environment
 cowsay = "latest"
-zizmor = "1.29.0"
+zizmor = "1.30.0"

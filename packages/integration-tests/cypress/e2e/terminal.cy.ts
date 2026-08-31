@@ -9,7 +9,9 @@ describe("terminal snapshot file", () => {
   before(() => {
     // Remove any stale snapshot from a previous run so the test can't
     // pass by reading old data.
-    cy.exec("rm -f test-environment/testdirs/.terminal-snapshot.yaml")
+    if (snapshotPath) {
+      cy.writeFile(snapshotPath, "empty")
+    }
   })
 
   it("writes a snapshot after a passing test", () => {

@@ -1,5 +1,13 @@
 # Changelog
 
+## 13.0.3
+
+### Patch Changes
+
+- [#1469](https://github.com/mikavilpas/tui-sandbox/pull/1469) [`50f58be`](https://github.com/mikavilpas/tui-sandbox/commit/50f58be6807686c15e3c6d97ae85a46349b4290f) Thanks [@renovate](https://github.com/apps/renovate)! - fix: missing test file name in cypress 15.21.1
+  
+  Came up as a build failure in https://github.com/mikavilpas/tui-sandbox/pull/1469
+
 ## [13.0.2](https://github.com/mikavilpas/tui-sandbox/compare/library-v13.0.1...library-v13.0.2) (2026-07-22)
 
 

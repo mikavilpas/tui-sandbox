@@ -112,8 +112,8 @@ catalogs:
       specifier: 4.23.13
       version: 4.23.13
     type-fest:
-      specifier: 5.8.0
-      version: 5.8.0
+      specifier: 5.9.0
+      version: 5.9.0
     typescript:
       specifier: 7.0.2
       version: 7.0.2
@@ -224,7 +224,7 @@ importers:
         version: 10.0.5
       type-fest:
         specifier: 'catalog:'
-        version: 5.8.0
+        version: 5.9.0
 
   packages/library:
     dependencies:
@@ -309,7 +309,7 @@ importers:
         version: 3.9.6
       type-fest:
         specifier: 'catalog:'
-        version: 5.8.0
+        version: 5.9.0
       vite:
         specifier: 'catalog:'
         version: 8.2.2(@types/node@24.13.3)(esbuild@0.28.1)(jiti@2.7.0)(tsx@4.23.13)(yaml@2.9.0)
@@ -3111,8 +3111,8 @@ packages:
     resolution: {integrity: sha512-4dbzIzqvjtgiM5rw1k5rEHtBANKmdudhGyBEajN01fEyhaAIhsoKNy6y7+IN93IfpFtwY9iqi7kD+xwKhQsNJA==}
     engines: {node: '>=8'}
 
-  type-fest@5.8.0:
-    resolution: {integrity: sha512-YGYEVz3Fm5iy/AybuA0oyNFq7H4CgQNfRp/qfe8nurE1kuCeNm3/vfm9X4Mtl+qLyaKJUh5xrFZwogr41SMjYA==}
+  type-fest@5.9.0:
+    resolution: {integrity: sha512-yANm3Jr3GiJ1qgJlxGAVxTOIcEOk1rhQHamlXtnrCK7EHP4HeM9OGxtMg/W7HFdrVzw/ZWJKGVIJusVH85sLtw==}
     engines: {node: '>=20'}
 
   typescript@5.6.1-rc:
@@ -5921,7 +5921,7 @@ snapshots:
 
   type-fest@0.8.1: {}
 
-  type-fest@5.8.0:
+  type-fest@5.9.0:
     dependencies:
       tagged-tag: 1.0.0
 

@@ -79,8 +79,8 @@ catalogs:
       specifier: 3.4.0
       version: 3.4.0
     knip:
-      specifier: 6.33.0
-      version: 6.33.0
+      specifier: 6.34.0
+      version: 6.34.0
     neovim:
       specifier: 5.4.0
       version: 5.4.0
@@ -148,7 +148,7 @@ importers:
         version: 3.0.1
       '@mikavilpas/knip-config':
         specifier: 'catalog:'
-        version: 1.0.1(knip@6.33.0)
+        version: 1.0.1(knip@6.34.0)
       '@mikavilpas/oxfmt-config':
         specifier: 'catalog:'
         version: 3.0.3(oxfmt@0.65.0)
@@ -175,7 +175,7 @@ importers:
         version: 3.4.0
       knip:
         specifier: 'catalog:'
-        version: 6.33.0
+        version: 6.34.0
       oxfmt:
         specifier: 'catalog:'
         version: 0.65.0
@@ -2384,8 +2384,8 @@ packages:
   keyv@4.5.4:
     resolution: {integrity: sha512-oxVHkHR/EJf2CNXnWxRLW6mg7JyCCUcG0DtEGmL2ctUo1PNTin1PUil+r/+4r5MpVgC/fn1kjsx7mjSujKqIpw==}
 
-  knip@6.33.0:
-    resolution: {integrity: sha512-gMXWV2bqgJcdZKsaRgl1oH5V2J0VumhJ2ujfP4M6b9ftpca2BNpvlX3Dq++vVtEey7sU67EXCvZGNkQfG2w1RQ==}
+  knip@6.34.0:
+    resolution: {integrity: sha512-bbHIrnGspYwe4EBPjjx+lvkUor0F2qfKQc5BPzPI4SOAImYA+k2ueVpIcF7d/W1LEVT7XoJUPt6zELeGZhXBgA==}
     engines: {node: ^20.19.0 || >=22.12.0}
     hasBin: true
 
@@ -3363,9 +3363,6 @@ packages:
   zigpty@0.2.1:
     resolution: {integrity: sha512-MR9JqJx2wf5f4wz8zpx050AlqrmWeIW+1h0SO5iEyhG3HFRjY5luC3szS2ux2EGuPjE5OU9ZAuiCBeMWBTrqZw==}
 
-  zod@4.4.3:
-    resolution: {integrity: sha512-ytENFjIJFl2UwYglde2jchW2Hwm4GJFLDiSXWdTrJQBIN9Fcyp7n4DhxJEiWNAJMV1/BqWfW/kkg71UDcHJyTQ==}
-
   zod@4.5.4:
     resolution: {integrity: sha512-sC95tT5iHHH9gtpj6A81kh+NEaRAUFN+qlUPDUbRfOMvNf5QCBqsb3WgvnpVtK5Y+4UfA6KqufotuTvMGiTlsA==}
 
@@ -3456,7 +3453,7 @@ snapshots:
       '@changesets/should-skip-package': 1.0.0
       '@changesets/types': 7.0.0
       '@manypkg/get-packages': 3.1.0
-      picomatch: 4.0.5
+      picomatch: 4.0.7
 
   '@changesets/errors@1.0.0': {}
 
@@ -3479,7 +3476,7 @@ snapshots:
       '@changesets/errors': 1.0.0
       '@changesets/types': 7.0.0
       '@manypkg/get-packages': 3.1.0
-      picomatch: 4.0.5
+      picomatch: 4.0.7
       tinyexec: 1.3.0
 
   '@changesets/parse@1.0.0':
@@ -3738,9 +3735,9 @@ snapshots:
       tinyglobby: 0.2.17
       yaml: 2.9.0
 
-  '@mikavilpas/knip-config@1.0.1(knip@6.33.0)':
+  '@mikavilpas/knip-config@1.0.1(knip@6.34.0)':
     dependencies:
-      knip: 6.33.0
+      knip: 6.34.0
 
   '@mikavilpas/oxfmt-config@3.0.3(oxfmt@0.65.0)':
     dependencies:
@@ -4870,10 +4867,6 @@ snapshots:
     dependencies:
       walk-up-path: 4.0.0
 
-  fdir@6.5.0(picomatch@4.0.5):
-    optionalDependencies:
-      picomatch: 4.0.5
-
   fdir@6.5.0(picomatch@4.0.7):
     optionalDependencies:
       picomatch: 4.0.7
@@ -5171,7 +5164,7 @@ snapshots:
     dependencies:
       json-buffer: 3.0.1
 
-  knip@6.33.0:
+  knip@6.34.0:
     dependencies:
       fdir: 6.5.0(picomatch@4.0.7)
       formatly: 0.7.0
@@ -5185,7 +5178,7 @@ snapshots:
       tinyglobby: 0.2.17
       unbash: 4.0.10
       yaml: 2.9.0
-      zod: 4.4.3
+      zod: 4.5.4
 
   kuler@2.0.0: {}
 
@@ -5866,8 +5859,8 @@ snapshots:
 
   tinyglobby@0.2.17:
     dependencies:
-      fdir: 6.5.0(picomatch@4.0.5)
-      picomatch: 4.0.5
+      fdir: 6.5.0(picomatch@4.0.7)
+      picomatch: 4.0.7
 
   tinypool@2.1.0: {}
 
@@ -6171,7 +6164,5 @@ snapshots:
   yocto-queue@0.1.0: {}
 
   zigpty@0.2.1: {}
-
-  zod@4.4.3: {}
 
   zod@4.5.4: {}

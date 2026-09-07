@@ -38,5 +38,5 @@
     "vitest": "catalog:",
     "wait-on": "catalog:"
   },
-  "packageManager": "pnpm@12.3.1"
+  "packageManager": "pnpm@12.3.4"
 }

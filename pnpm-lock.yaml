@@ -291,8 +291,8 @@ catalogs:
       specifier: 0.2.1
       version: 0.2.1
     zod:
-      specifier: 4.6.0
-      version: 4.6.0
+      specifier: 4.6.1
+      version: 4.6.1
 
 importers:
 
@@ -369,7 +369,7 @@ importers:
         version: link:../library
       zod:
         specifier: 'catalog:'
-        version: 4.6.0
+        version: 4.6.1
     devDependencies:
       '@types/node':
         specifier: 'catalog:'
@@ -442,7 +442,7 @@ importers:
         version: 0.2.1
       zod:
         specifier: 'catalog:'
-        version: 4.6.0
+        version: 4.6.1
     devDependencies:
       '@arethetypeswrong/cli':
         specifier: 'catalog:'
@@ -3501,8 +3501,8 @@ packages:
   zod@4.5.4:
     resolution: {integrity: sha512-sC95tT5iHHH9gtpj6A81kh+NEaRAUFN+qlUPDUbRfOMvNf5QCBqsb3WgvnpVtK5Y+4UfA6KqufotuTvMGiTlsA==}
 
-  zod@4.6.0:
-    resolution: {integrity: sha512-iIvwyDnebKYpww2ta0DjaNOL8RnVLmPMhgWyOzlW9y0EIIxv5gl+H6Y0ONpt83HqjGqkk78uWp6xWtpxzZdPbw==}
+  zod@4.6.1:
+    resolution: {integrity: sha512-341aRWQsve0rvronKNTqZpjmzdbUDlFuzHaI/XLg/Ej82qffDJRRfBTCuv7+9q/rMjB6LSLyEBnW4InJeMtt/Q==}
 
 snapshots:
 
@@ -6268,4 +6268,4 @@ snapshots:
 
   zod@4.5.4: {}
 
-  zod@4.6.0: {}
+  zod@4.6.1: {}

@@ -240,8 +240,8 @@ catalogs:
       specifier: 6.35.1
       version: 6.35.1
     neovim:
-      specifier: 5.4.0
-      version: 5.4.0
+      specifier: 5.5.0
+      version: 5.5.0
     nodemon:
       specifier: 3.1.14
       version: 3.1.14
@@ -418,7 +418,7 @@ importers:
         version: 5.1.5
       neovim:
         specifier: 'catalog:'
-        version: 5.4.0
+        version: 5.5.0
       sirv:
         specifier: 'catalog:'
         version: 3.0.2
@@ -871,9 +871,9 @@ packages:
     peerDependencies:
       syncpack: '>=15.3.2'
 
-  '@msgpack/msgpack@2.8.0':
-    resolution: {integrity: sha512-h9u4u/jiIRKbq25PM+zymTyW6bhTzELvOoUd+AvYriWOAKpLGnIamaET3pnHYoI5iYphAHBI4ayx0MehR+VVPQ==}
-    engines: {node: '>= 10'}
+  '@msgpack/msgpack@3.1.3':
+    resolution: {integrity: sha512-47XIizs9XZXvuJgoaJUIE2lFoID8ugvc0jzSHP+Ptfk8nTbnR8g788wv48N03Kx0UkAv559HWRQ3yzOgzlRNUA==}
+    engines: {node: '>= 18'}
 
   '@napi-rs/wasm-runtime@1.2.2':
     resolution: {integrity: sha512-JfB4kuJQjaoHuCTseIINHtHWeJnvgEcxjwA5t/Y00ZgaOO1Crz3fjT/p8kT28zA/Caz7oiUMn3d6H2yOVCVwuw==}
@@ -2715,9 +2715,9 @@ packages:
   natural-compare@1.4.0:
     resolution: {integrity: sha512-OWND8ei3VtNC9h7V60qff3SVobHr996CTwgxubgyQYEpg290h9J0buyECNNJexkFm5sOajh5G116RYA1c8ZMSw==}
 
-  neovim@5.4.0:
-    resolution: {integrity: sha512-95YXs6d5p8M0k8xrmJHQ9aVLv9ebpM3ZQnmTaSpbJtPSdxFaKq7szCP1Ou+S8K++rEsh7BvTPwqdtdlwQfT0pw==}
-    engines: {node: '>=10'}
+  neovim@5.5.0:
+    resolution: {integrity: sha512-B68xdr5OUwLuUgD73aDa3yCg10Lg7gqroIDrSadvDpCJFC52pOD22iOI+omzQi+sgixTl5UyOHqnAd73E5RlEA==}
+    engines: {node: '>=14'}
     hasBin: true
 
   node-emoji@2.2.0:
@@ -3897,7 +3897,7 @@ snapshots:
     dependencies:
       syncpack: 15.3.3
 
-  '@msgpack/msgpack@2.8.0': {}
+  '@msgpack/msgpack@3.1.3': {}
 
   '@napi-rs/wasm-runtime@1.2.2(@emnapi/core@1.11.2)(@emnapi/runtime@1.11.2)':
     dependencies:
@@ -5448,9 +5448,9 @@ snapshots:
 
   natural-compare@1.4.0: {}
 
-  neovim@5.4.0:
+  neovim@5.5.0:
     dependencies:
-      '@msgpack/msgpack': 2.8.0
+      '@msgpack/msgpack': 3.1.3
       winston: 3.15.0
 
   node-emoji@2.2.0:

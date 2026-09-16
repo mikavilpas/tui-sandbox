@@ -1,5 +1,5 @@
-import { createNeovimRouter } from "./applications/neovim/neovimRouter.js"
-import { createTerminalRouter } from "./applications/terminal/terminalRouter.js"
+import { lazy } from "@trpc/server"
+
 import { trpc } from "./connection/trpc.js"
 import { TestServer } from "./TestServer.js"
 import type { TestServerConfig } from "./updateTestdirectorySchemaFile.js"
@@ -8,8 +8,14 @@ import type { TestServerConfig } from "./updateTestdirectorySchemaFile.js"
 // oxlint-disable-next-line explicit-module-boundary-types
 export async function createAppRouter(config: TestServerConfig) {
   const appRouter = trpc.router({
-    terminal: createTerminalRouter(config),
-    neovim: createNeovimRouter(config),
+    terminal: lazy(async () => {
+      const terminal = await import("./applications/terminal/terminalRouter.js")
+      return terminal.createTerminalRouter(config)
+    }),
+    neovim: lazy(async () => {
+      const neovim = await import("./applications/neovim/neovimRouter.js")
+      return neovim.createNeovimRouter(config)
+    }),
   })
 
   return appRouter

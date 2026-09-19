@@ -36,7 +36,7 @@ catalog:
   oxfmt: 0.68.0
   oxlint-tsgolint: 7.0.2001
   oxlint: 1.83.0
-  prettier: 3.9.6
+  prettier: 3.9.7
   sirv: 3.0.2
   string-width: 8.2.2
   syncpack: 15.3.3

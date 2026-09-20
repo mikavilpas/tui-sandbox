@@ -41,7 +41,7 @@ catalog:
   string-width: 8.2.2
   syncpack: 15.3.3
   tsx: 4.23.13
-  type-fest: 5.9.0
+  type-fest: 5.10.0
   typescript: 7.0.2
   vite: 8.3.0
   vitest: 5.0.1

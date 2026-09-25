@@ -22,12 +22,12 @@ describe("when the schema has not changed", () => {
     mock.buildTestDirectorySchema.mockResolvedValue("schema")
     mock.readFileSync.mockImplementation(() => "schema")
 
-    // oxlint-disable-next-line typescript/no-unsafe-type-assertion
     const result = await updateTestdirectorySchemaFile({
       directories: {
         testEnvironmentPath: "path",
         outputFilePath: "path",
       },
+      // oxlint-disable-next-line typescript/no-unsafe-type-assertion
     } satisfies PartialDeep<TestServerConfig> as TestServerConfig)
 
     expect(result).toBe("did-nothing" satisfies UpdateTestdirectorySchemaFileResult)
@@ -39,12 +39,12 @@ describe("when the schema has changed", () => {
     mock.buildTestDirectorySchema.mockResolvedValue("new schema")
     mock.readFileSync.mockImplementation(() => "old schema")
 
-    // oxlint-disable-next-line typescript/no-unsafe-type-assertion
     const result = await updateTestdirectorySchemaFile({
       directories: {
         testEnvironmentPath: "path",
         outputFilePath: "path",
       },
+      // oxlint-disable-next-line typescript/no-unsafe-type-assertion
     } satisfies PartialDeep<TestServerConfig> as TestServerConfig)
 
     expect(result).toBe("updated" satisfies UpdateTestdirectorySchemaFileResult)

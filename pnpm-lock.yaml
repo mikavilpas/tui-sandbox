@@ -237,8 +237,8 @@ catalogs:
       specifier: 3.4.0
       version: 3.4.0
     knip:
-      specifier: 6.37.0
-      version: 6.37.0
+      specifier: 6.38.0
+      version: 6.38.0
     neovim:
       specifier: 5.5.0
       version: 5.5.0
@@ -306,7 +306,7 @@ importers:
         version: 3.0.3
       '@mikavilpas/knip-config':
         specifier: 'catalog:'
-        version: 1.0.1(knip@6.37.0)
+        version: 1.0.1(knip@6.38.0)
       '@mikavilpas/oxfmt-config':
         specifier: 'catalog:'
         version: 3.0.3(oxfmt@0.70.0)
@@ -333,7 +333,7 @@ importers:
         version: 3.4.0
       knip:
         specifier: 'catalog:'
-        version: 6.37.0
+        version: 6.38.0
       oxfmt:
         specifier: 'catalog:'
         version: 0.70.0
@@ -2534,8 +2534,8 @@ packages:
   keyv@4.5.4:
     resolution: {integrity: sha512-oxVHkHR/EJf2CNXnWxRLW6mg7JyCCUcG0DtEGmL2ctUo1PNTin1PUil+r/+4r5MpVgC/fn1kjsx7mjSujKqIpw==}
 
-  knip@6.37.0:
-    resolution: {integrity: sha512-NKCYuoGKJ+o2AuoCuV1mDvfMYnSSWfDXqxwmzxeHyd8fftjNRl8TBUg3fbSrtJjhm7Vj6sc1PX3WZnZhECs9EQ==}
+  knip@6.38.0:
+    resolution: {integrity: sha512-umytiMCaZf02MV9SOO1FEDgbDf6h20VZk3ruJE0kh52kkGjYZFRUAXHJWYoLhvhoHGINO/7GXVJmQ2vxTBvl6A==}
     engines: {node: ^20.19.0 || >=22.12.0}
     hasBin: true
 
@@ -3886,9 +3886,9 @@ snapshots:
       tinyglobby: 0.2.17
       yaml: 2.9.0
 
-  '@mikavilpas/knip-config@1.0.1(knip@6.37.0)':
+  '@mikavilpas/knip-config@1.0.1(knip@6.38.0)':
     dependencies:
-      knip: 6.37.0
+      knip: 6.38.0
 
   '@mikavilpas/oxfmt-config@3.0.3(oxfmt@0.70.0)':
     dependencies:
@@ -5285,7 +5285,7 @@ snapshots:
     dependencies:
       json-buffer: 3.0.1
 
-  knip@6.37.0:
+  knip@6.38.0:
     dependencies:
       fdir: 6.5.0(picomatch@4.0.7)
       formatly: 0.7.0

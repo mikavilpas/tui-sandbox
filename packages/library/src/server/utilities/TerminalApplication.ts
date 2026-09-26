@@ -77,16 +77,7 @@ export class TerminalApplication implements StartableApplication {
     if (!processId) {
       throw new Error("Failed to spawn child process")
     }
-    // Keep the Node.js event loop alive until the process exits. When the
-    // child exits, zigpty destroys its internal tty.ReadStream — if that was
-    // the last active handle, Node.js would exit before the native waitpid()
-    // callback can resolve the `exited` promise.
-    // oxlint-disable-next-line no-empty-function
-    const keepAlive = setInterval(() => {}, 60_000)
-    const untilExit = ptyProcess.exited.then(exitCode => {
-      clearInterval(keepAlive)
-      return { exitCode }
-    })
+    const untilExit = ptyProcess.exited.then(exitCode => ({ exitCode }))
 
     return new TerminalApplication(ptyProcess, onStdoutOrStderr, untilExit, command)
   }

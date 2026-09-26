@@ -18,7 +18,7 @@ catalog:
   "@trpc/server": 11.19.0
   "@tsconfig/node24": 24.0.5
   "@types/cors": 2.8.19
-  "@types/node": 24.13.5
+  "@types/node": 24.13.6
   "@xterm/addon-clipboard": 0.2.0
   "@xterm/addon-fit": 0.11.0
   "@xterm/addon-unicode11": 0.9.0
@@ -30,17 +30,17 @@ catalog:
   dree: 5.1.5
   eslint-plugin-import-zod: 1.2.1
   eslint-plugin-no-only-tests: 3.4.0
-  knip: 6.36.0
+  knip: 6.37.0
   neovim: 5.5.0
   nodemon: 3.1.14
-  oxfmt: 0.68.0
-  oxlint-tsgolint: 7.0.2001
-  oxlint: 1.83.0
+  oxfmt: 0.70.0
+  oxlint-tsgolint: 7.0.2002
+  oxlint: 1.85.0
   prettier: 3.9.8
   sirv: 3.0.2
   string-width: 8.2.2
   syncpack: 15.3.3
-  tsx: 4.23.13
+  tsx: 4.23.15
   type-fest: 5.10.0
   typescript: 7.0.2
   vite: 8.3.0

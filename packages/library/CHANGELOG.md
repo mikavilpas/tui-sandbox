@@ -1,5 +1,14 @@
 # Changelog
 
+## 13.0.4
+
+### Patch Changes
+
+- [#1539](https://github.com/mikavilpas/tui-sandbox/pull/1539) [`aa120c7`](https://github.com/mikavilpas/tui-sandbox/commit/aa120c79b37b443b4d1588c00d7b346dccb265ef) Thanks [@mikavilpas](https://github.com/mikavilpas)! - refactor: remove unnecessary keepAlive interval in TerminalApplication
+  
+  It was needed because of a bug in zigpty, but that has been fixed in
+  https://github.com/pithings/zigpty/releases/tag/v0.2.0
+
 ## 13.0.3
 
 ### Patch Changes

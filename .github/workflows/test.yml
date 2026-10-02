@@ -68,7 +68,7 @@ jobs:
           pnpm --filter library build
           pnpm install
 
-      - uses: jdx/mise-action@9149ea85001c7435d5a66bb127d6a1b6227cb0a5 # v5.0.0
+      - uses: jdx/mise-action@7a4e45a543138629540c9a1616d08632b893e492 # v5.0.1
         with:
           install: false
 
@@ -131,7 +131,7 @@ jobs:
       - run: pnpm --filter integration-tests exec cypress install
 
       - name: Cypress run
-        uses: cypress-io/github-action@789d836053c5ca389c2905fc0c9f2909da778c46 # v7.4.5
+        uses: cypress-io/github-action@c541a95ea92d9239347a2355f2e895cd4b3f8060 # v7.4.6
         with:
           command: |
             pnpm tui run

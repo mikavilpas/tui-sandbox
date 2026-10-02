@@ -125,4 +125,5 @@ export type RunExCommandOutput = { value?: string }
  * - if the target object type has optional keys, they might be missing. In
  *   this case, they will never get set
  **/
+// oxlint-disable-next-line typescript/no-generated-empty-object-type
 export type AllKeys<T extends Record<never, never>> = Record<keyof T, unknown>

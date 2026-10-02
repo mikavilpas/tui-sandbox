@@ -225,8 +225,8 @@ catalogs:
       specifier: 2.8.6
       version: 2.8.6
     cypress:
-      specifier: 16.1.0
-      version: 16.1.0
+      specifier: 16.1.1
+      version: 16.1.1
     dree:
       specifier: 5.1.5
       version: 5.1.5
@@ -324,7 +324,7 @@ importers:
         version: 24.19.0
       cypress:
         specifier: 'catalog:'
-        version: 16.1.0
+        version: 16.1.1
       eslint-plugin-import-zod:
         specifier: 'catalog:'
         version: 1.2.1(@typescript-eslint/utils@8.64.0(eslint@10.7.0(jiti@2.7.0)(supports-color@8.1.1))(supports-color@8.1.1)(typescript@7.0.2))(eslint@10.7.0(jiti@2.7.0)(supports-color@8.1.1))
@@ -455,7 +455,7 @@ importers:
         version: 24.19.0
       cypress:
         specifier: 'catalog:'
-        version: 16.1.0
+        version: 16.1.1
       nodemon:
         specifier: 'catalog:'
         version: 3.1.14
@@ -2004,8 +2004,8 @@ packages:
     resolution: {integrity: sha512-uV2QOWP2nWzsy2aMp8aRibhi9dlzF5Hgh5SHaB9OiTGEyDTiJJyx0uy51QXdyWbtAHNua4XJzUKca3OzKUd3vA==}
     engines: {node: '>= 8'}
 
-  cypress@16.1.0:
-    resolution: {integrity: sha512-t8suSUVzQyHI7v6KhhA07M9ChftdfqVZNLCekhguIb+2f0fCmI8WAih5L0oGH7K6slapNduGy5zpJ+17LmSXkQ==}
+  cypress@16.1.1:
+    resolution: {integrity: sha512-T09qNpMKssD6eEMqqfywQ8OUub/VrNCvIUFAyQCfWsJ6o4CZ5Yeapce+WoZY9FXly6+3+pk7sjEB5voxduWQlQ==}
     engines: {node: ^22.0.0 || ^24.0.0 || >=26.0.0}
     hasBin: true
 
@@ -4685,7 +4685,7 @@ snapshots:
       shebang-command: 2.0.0
       which: 2.0.2
 
-  cypress@16.1.0:
+  cypress@16.1.1:
     dependencies:
       '@cypress/request': 4.0.1
       '@cypress/xvfb': 1.2.4(supports-color@8.1.1)

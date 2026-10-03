@@ -45,7 +45,7 @@ catalog:
   type-fest: 5.10.0
   typescript: 7.0.2
   vite: 8.3.1
-  vitest: 5.0.2
+  vitest: 5.0.3
   wait-on: 9.5.1
   winston: 3.19.0
   zigpty: 0.2.1

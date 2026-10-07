@@ -17,6 +17,7 @@ const fakeApp = {
   write: vi.fn(),
   killAndWait: vi.fn(),
   untilExit: Promise.resolve({ exitCode: 0 }),
+  isRunning: () => true,
 } satisfies StartableApplication
 
 describe("DisposableSingleApplication", () => {

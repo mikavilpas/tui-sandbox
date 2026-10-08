@@ -1,5 +1,11 @@
 # Changelog
 
+## 13.0.6
+
+### Patch Changes
+
+- [#1570](https://github.com/mikavilpas/tui-sandbox/pull/1570) [`a7dcba9`](https://github.com/mikavilpas/tui-sandbox/commit/a7dcba95e9f3eacd30c2301073499a4fe66bac40) Thanks [@mikavilpas](https://github.com/mikavilpas)! - fix(neovim): leaving neovim open after closing the application
+
 ## 13.0.5
 
 ### Patch Changes

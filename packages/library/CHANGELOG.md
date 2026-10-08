@@ -1,5 +1,11 @@
 # Changelog
 
+## 13.0.5
+
+### Patch Changes
+
+- [#1573](https://github.com/mikavilpas/tui-sandbox/pull/1573) [`8078174`](https://github.com/mikavilpas/tui-sandbox/commit/807817474fce926970251408a82801f3ce01822e) Thanks [@mikavilpas](https://github.com/mikavilpas)! - fix: typos in rare error messages
+
 ## 13.0.4
 
 ### Patch Changes

@@ -4,6 +4,7 @@ import EventEmitter from "events"
 import { access } from "fs/promises"
 import { tmpdir } from "os"
 import path, { join } from "path"
+import { setTimeout } from "timers/promises"
 import { debuglog } from "util"
 
 import type { NeovimClient as NeovimApiClient } from "neovim"
@@ -252,6 +253,24 @@ export class NeovimApplication implements AsyncDisposable {
   }
 
   async [Symbol.asyncDispose](): Promise<void> {
+    // cannot ask neovim to close nicely if it's not running
+    if (!this.application.isRunning()) return
+
+    if (this.state) {
+      try {
+        // The TUI `nvim` spawns a separate `nvim --embed` server in its own
+        // process group. We need to kill the child process as well, otherwise
+        // it is left running as an orphan.
+        const timeout = setTimeout<never>(2000).then(() => {
+          throw new Error("timed out connecting to neovim")
+        })
+        const api = await Promise.race([this.state.client.get(), timeout])
+        await Promise.race([api.command("qa!"), timeout])
+      } catch {
+        // the server may already be gone, or the connection closes on quit
+      }
+    }
+
     await this.application[Symbol.asyncDispose]()
 
     if (!this.state) return

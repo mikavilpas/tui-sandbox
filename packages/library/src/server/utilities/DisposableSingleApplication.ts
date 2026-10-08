@@ -3,7 +3,10 @@ import { debuglog } from "util"
 
 import type { ExitInfo, TerminalApplication } from "./TerminalApplication.js"
 
-export type StartableApplication = Pick<TerminalApplication, "write" | "processId" | "killAndWait" | "untilExit">
+export type StartableApplication = Pick<
+  TerminalApplication,
+  "write" | "processId" | "killAndWait" | "untilExit" | "isRunning"
+>
 
 const log = debuglog("tui-sandbox.DisposableSingleApplication")
 
@@ -17,6 +20,10 @@ export class DisposableSingleApplication implements AsyncDisposable {
   public async startNextAndKillCurrent(startNext: () => Promise<StartableApplication>): Promise<void> {
     await this[Symbol.asyncDispose]()
     this.application = await startNext()
+  }
+
+  public isRunning(): boolean {
+    return this.application?.isRunning() ?? false
   }
 
   public async untilExit(): Promise<ExitInfo> {

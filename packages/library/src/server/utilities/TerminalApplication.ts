@@ -15,8 +15,9 @@ export type ExitInfo = { exitCode: number }
 // https://github.com/microsoft/node-pty/issues/71
 export class TerminalApplication implements StartableApplication {
   public readonly processId: number
-
   public readonly logger: winston.Logger
+
+  private exited = false
 
   private constructor(
     private readonly subProcess: zigpty.IPty,
@@ -35,11 +36,16 @@ export class TerminalApplication implements StartableApplication {
     this.logger.debug(`started`)
 
     subProcess.onExit(({ exitCode, signal }) => {
+      this.exited = true
       signal satisfies number | undefined
       const msg = `Child process ${this.processId} (${this.name}) exited with code ${String(exitCode)} and signal ${String(signal)}`
       this.onStdoutOrStderr(msg)
       this.logger.debug(msg)
     })
+  }
+
+  public isRunning(): boolean {
+    return !this.exited
   }
 
   /** @constructor Start a new terminal application. */

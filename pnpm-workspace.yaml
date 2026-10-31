@@ -19,7 +19,7 @@ catalog:
   "@trpc/server": 11.19.0
   "@tsconfig/node24": 24.0.5
   "@types/cors": 2.8.19
-  "@types/node": 26.6.5
+  "@types/node": 26.6.6
   "@xterm/addon-clipboard": 0.2.0
   "@xterm/addon-fit": 0.11.0
   "@xterm/addon-unicode11": 0.9.0
@@ -27,7 +27,7 @@ catalog:
   assert: 2.1.0
   concurrently: 10.0.6
   cors: 2.8.6
-  cypress: 16.2.0
+  cypress: 16.2.1
   dree: 5.1.5
   eslint-plugin-import-zod: 1.2.1
   eslint-plugin-no-only-tests: 3.4.0

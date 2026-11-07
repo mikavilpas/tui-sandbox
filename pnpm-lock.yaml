@@ -189,11 +189,11 @@ catalogs:
       specifier: 1.0.1
       version: 1.0.1
     '@trpc/client':
-      specifier: 11.23.0
-      version: 11.23.0
+      specifier: 11.24.0
+      version: 11.24.0
     '@trpc/server':
-      specifier: 11.23.0
-      version: 11.23.0
+      specifier: 11.24.0
+      version: 11.24.0
     '@tsconfig/node24':
       specifier: 24.0.5
       version: 24.0.5
@@ -391,10 +391,10 @@ importers:
         version: 1.8.0
       '@trpc/client':
         specifier: 'catalog:'
-        version: 11.23.0(@trpc/server@11.23.0(typescript@7.0.2))(typescript@7.0.2)
+        version: 11.24.0(@trpc/server@11.24.0(typescript@7.0.2))(typescript@7.0.2)
       '@trpc/server':
         specifier: 'catalog:'
-        version: 11.23.0(typescript@7.0.2)
+        version: 11.24.0(typescript@7.0.2)
       '@xterm/addon-clipboard':
         specifier: 'catalog:'
         version: 0.2.0
@@ -1503,14 +1503,14 @@ packages:
   '@standard-schema/spec@1.1.0':
     resolution: {integrity: sha512-l2aFy5jALhniG5HgqrD6jXLi/rUWrKvqN/qJx6yoJsgKhblVd+iqqU4RCXavm/jPityDo5TCvKMnpjKnOriy0w==}
 
-  '@trpc/client@11.23.0':
-    resolution: {integrity: sha512-61qMX0YY8FDrFuAScBFMzeAPbH9l3p7fEa2YGY6wKhGlOcgCiJOVxSw8P5JdHVJEV6sw81HPPXlSWI51byxkXA==}
+  '@trpc/client@11.24.0':
+    resolution: {integrity: sha512-D9zoHnF/LGL5SpVnDaSO3b9ymF0jgfnawxtU7HkDjVbcmXeWiAGnJT6fD2UTfEmP63+i57VE49RQqRO0Ig7WJg==}
     peerDependencies:
-      '@trpc/server': 11.23.0
+      '@trpc/server': 11.24.0
       typescript: '>=5.7.2'
 
-  '@trpc/server@11.23.0':
-    resolution: {integrity: sha512-kHQY+MvRYm/NaerM6zM755NA4elBrA+PVve4RoJQf1P+hBzqQUuIBsmg+y7DWDsrWtg4wPASWbcYInP2xCBIFQ==}
+  '@trpc/server@11.24.0':
+    resolution: {integrity: sha512-CxpaiIY58ItaLpGxwYTxHHYx5evRAJ4B2Eq94axvg28nwihDgjQIUiLG8T49DZ/t4R2tPHHdeLkF6t0kyjD5YQ==}
     peerDependencies:
       '@types/aws-lambda': '*'
       '@types/express': '*'
@@ -4234,12 +4234,12 @@ snapshots:
 
   '@standard-schema/spec@1.1.0': {}
 
-  '@trpc/client@11.23.0(@trpc/server@11.23.0(typescript@7.0.2))(typescript@7.0.2)':
+  '@trpc/client@11.24.0(@trpc/server@11.24.0(typescript@7.0.2))(typescript@7.0.2)':
     dependencies:
-      '@trpc/server': 11.23.0(typescript@7.0.2)
+      '@trpc/server': 11.24.0(typescript@7.0.2)
       typescript: 7.0.2
 
-  '@trpc/server@11.23.0(typescript@7.0.2)':
+  '@trpc/server@11.24.0(typescript@7.0.2)':
     dependencies:
       typescript: 7.0.2
 

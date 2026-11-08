@@ -35,7 +35,7 @@ catalog:
   neovim: 5.5.0
   nodemon: 3.1.14
   oxfmt: 0.76.0
-  oxlint-tsgolint: 7.0.2005
+  oxlint-tsgolint: 7.0.2006
   oxlint: 1.91.0
   prettier: 3.9.10
   sirv: 3.0.2

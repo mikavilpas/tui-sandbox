@@ -15,8 +15,8 @@ catalog:
   "@mikavilpas/oxfmt-config": 3.0.3
   "@mikavilpas/oxlint-config": 3.0.1
   "@mikavilpas/syncpack-config": 1.0.1
-  "@trpc/client": 11.25.2
-  "@trpc/server": 11.25.2
+  "@trpc/client": 11.26.0
+  "@trpc/server": 11.26.0
   "@tsconfig/node24": 24.0.5
   "@types/cors": 2.8.19
   "@types/node": 26.6.6
@@ -34,9 +34,9 @@ catalog:
   knip: 6.44.2
   neovim: 5.5.0
   nodemon: 3.1.14
-  oxfmt: 0.77.0
+  oxfmt: 0.78.0
   oxlint-tsgolint: 7.0.2006
-  oxlint: 1.92.0
+  oxlint: 1.93.0
   prettier: 3.9.10
   sirv: 3.0.2
   string-width: 8.3.0
@@ -44,7 +44,7 @@ catalog:
   tsx: 4.23.15
   type-fest: 5.10.0
   typescript: 7.0.2
-  vite: 8.3.6
+  vite: 8.3.7
   vitest: 5.1.0
   wait-on: 9.5.1
   winston: 3.19.0

@@ -39,7 +39,7 @@ catalog:
   oxlint: 1.93.0
   prettier: 3.10.0
   sirv: 3.0.2
-  string-width: 8.3.0
+  string-width: 9.0.0
   syncpack: 15.3.3
   tsx: 4.23.15
   type-fest: 5.10.0

@@ -17,7 +17,7 @@ catalog:
   "@mikavilpas/syncpack-config": 1.0.1
   "@trpc/client": 11.28.3
   "@trpc/server": 11.28.3
-  "@tsconfig/node24": 24.0.6
+  "@tsconfig/node26": 26.0.0
   "@types/cors": 2.8.19
   "@types/node": 26.6.6
   "@xterm/addon-clipboard": 0.2.0

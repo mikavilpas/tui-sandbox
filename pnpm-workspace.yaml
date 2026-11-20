@@ -15,9 +15,9 @@ catalog:
   "@mikavilpas/oxfmt-config": 3.0.3
   "@mikavilpas/oxlint-config": 3.0.1
   "@mikavilpas/syncpack-config": 1.0.1
-  "@trpc/client": 11.28.3
-  "@trpc/server": 11.28.3
-  "@tsconfig/node26": 26.0.0
+  "@trpc/client": 11.28.5
+  "@trpc/server": 11.28.5
+  "@tsconfig/node26": 26.0.2
   "@types/cors": 2.8.19
   "@types/node": 26.6.6
   "@xterm/addon-clipboard": 0.2.0

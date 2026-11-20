@@ -1,6 +1,6 @@
 {
   // https://www.npmjs.com/package/@tsconfig/node24
-  "extends": "@tsconfig/node24/tsconfig.json",
+  "extends": "@tsconfig/node26/tsconfig.json",
   "compilerOptions": {
     "moduleResolution": "nodenext",
     "rootDir": ".",

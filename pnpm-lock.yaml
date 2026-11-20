@@ -198,14 +198,14 @@ catalogs:
       specifier: 1.0.1
       version: 1.0.1
     '@trpc/client':
-      specifier: 11.28.3
-      version: 11.28.3
+      specifier: 11.28.5
+      version: 11.28.5
     '@trpc/server':
-      specifier: 11.28.3
-      version: 11.28.3
+      specifier: 11.28.5
+      version: 11.28.5
     '@tsconfig/node26':
-      specifier: 26.0.0
-      version: 26.0.0
+      specifier: 26.0.2
+      version: 26.0.2
     '@types/cors':
       specifier: 2.8.19
       version: 2.8.19
@@ -327,7 +327,7 @@ importers:
         version: 1.0.1(syncpack@15.3.3)
       '@tsconfig/node26':
         specifier: 'catalog:'
-        version: 26.0.0
+        version: 26.0.2
       '@types/node':
         specifier: 'catalog:'
         version: 26.6.6
@@ -400,10 +400,10 @@ importers:
         version: 1.8.0
       '@trpc/client':
         specifier: 'catalog:'
-        version: 11.28.3(@trpc/server@11.28.3(typescript@7.0.2))(typescript@7.0.2)
+        version: 11.28.5(@trpc/server@11.28.5(typescript@7.0.2))(typescript@7.0.2)
       '@trpc/server':
         specifier: 'catalog:'
-        version: 11.28.3(typescript@7.0.2)
+        version: 11.28.5(typescript@7.0.2)
       '@xterm/addon-clipboard':
         specifier: 'catalog:'
         version: 0.2.0
@@ -1509,14 +1509,14 @@ packages:
   '@standard-schema/spec@1.1.0':
     resolution: {integrity: sha512-l2aFy5jALhniG5HgqrD6jXLi/rUWrKvqN/qJx6yoJsgKhblVd+iqqU4RCXavm/jPityDo5TCvKMnpjKnOriy0w==}
 
-  '@trpc/client@11.28.3':
-    resolution: {integrity: sha512-NnMXBOCVzPMELdQH/X26MhI4u9g83nxWy3apc7UX1beevUk6rEYqfOboqCb/rVoVPu3CBVaPb8PB7AG51oEKvQ==}
+  '@trpc/client@11.28.5':
+    resolution: {integrity: sha512-vJgiu8pmiitsX0IMpIybiaBl798jhhQ5vtqf62svjkdVbv5aHJZNNuazTGYLFTjmHoCjLuwMKeY1qlVr0a7VSQ==}
     peerDependencies:
-      '@trpc/server': 11.28.3
+      '@trpc/server': 11.28.5
       typescript: '>=5.7.2'
 
-  '@trpc/server@11.28.3':
-    resolution: {integrity: sha512-os9o1enNvbcSSyn9agxsYPkIE8kWK7IJbkD5/ySCCApsdM58cFZ5IF410G9Q0k3RwKfsM2Q/GbGp1rbgCWLp5Q==}
+  '@trpc/server@11.28.5':
+    resolution: {integrity: sha512-j7e+BuqHr7AEwLfUdBMT1Ph9JlKtBfOYdg2tix7SJbpSQK0a+8xVlgVK7XkTy0PY/8JI+DHQrplhlblSoiEd/Q==}
     peerDependencies:
       '@types/aws-lambda': '*'
       '@types/express': '*'
@@ -1536,8 +1536,8 @@ packages:
       next:
         optional: true
 
-  '@tsconfig/node26@26.0.0':
-    resolution: {integrity: sha512-AlW882moMu/JzvTVjdGqJEsrqD5nSWHiFD7Aeuw6Rb58S4Aig+09mDUFFlXJx/y6/y77NwGYLlqhWxvolcC0sw==}
+  '@tsconfig/node26@26.0.2':
+    resolution: {integrity: sha512-RIBSoNGQxUQ8r4hSrEzS6TrUneoKaCuX6BjL4zF3wqttGq2w06zCea4d8P1gRvM/HZyDT1FQJ8trZSyy/63oMg==}
 
   '@tybys/wasm-util@0.10.3':
     resolution: {integrity: sha512-F3fo1MYrRJYL3zER0OUOmkutjr1Vp23m7OsSgp7nq4SP6OqX6C/56XFIPAl5bt3zaBRjmW7SGz3u/6LwFpYcOg==}
@@ -4246,16 +4246,16 @@ snapshots:
 
   '@standard-schema/spec@1.1.0': {}
 
-  '@trpc/client@11.28.3(@trpc/server@11.28.3(typescript@7.0.2))(typescript@7.0.2)':
+  '@trpc/client@11.28.5(@trpc/server@11.28.5(typescript@7.0.2))(typescript@7.0.2)':
     dependencies:
-      '@trpc/server': 11.28.3(typescript@7.0.2)
+      '@trpc/server': 11.28.5(typescript@7.0.2)
       typescript: 7.0.2
 
-  '@trpc/server@11.28.3(typescript@7.0.2)':
+  '@trpc/server@11.28.5(typescript@7.0.2)':
     dependencies:
       typescript: 7.0.2
 
-  '@tsconfig/node26@26.0.0': {}
+  '@tsconfig/node26@26.0.2': {}
 
   '@tybys/wasm-util@0.10.3':
     dependencies:

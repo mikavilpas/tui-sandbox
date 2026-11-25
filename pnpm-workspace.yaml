@@ -31,7 +31,7 @@ catalog:
   dree: 5.1.5
   eslint-plugin-import-zod: 1.2.1
   eslint-plugin-no-only-tests: 3.4.0
-  knip: 6.47.0
+  knip: 6.48.0
   neovim: 5.5.0
   nodemon: 3.1.14
   oxfmt: 0.79.0
@@ -40,7 +40,7 @@ catalog:
   prettier: 3.10.1
   sirv: 3.0.2
   string-width: 9.0.0
-  syncpack: 15.3.3
+  syncpack: 15.3.4
   tsx: 4.23.15
   type-fest: 6.0.3
   typescript: 7.0.2

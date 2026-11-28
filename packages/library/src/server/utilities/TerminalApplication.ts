@@ -28,6 +28,7 @@ export class TerminalApplication implements StartableApplication {
     this.processId = subProcess.pid
 
     this.logger = createLogger({
+      // oxlint-disable-next-line typescript/no-unsafe-class-instance-assignment
       transports: [new transports.Console()],
       defaultMeta: { pid: this.processId },
       format: format.combine(format.colorize(), format.cli()),

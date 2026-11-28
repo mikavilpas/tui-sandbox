@@ -70,6 +70,7 @@ export class TestServer {
 
     console.info(`✅ Server listening on port ${this.settings.port}`)
 
+    // oxlint-disable-next-line typescript/no-unsafe-class-instance-assignment
     await Promise.race([once(process, "SIGTERM"), once(process, "SIGINT")])
     log("😴 Shutting down...")
     server.close(error => {

@@ -21,6 +21,7 @@ export function connectNeovimApi(socketPath: string): Lazy<Promise<NeovimJavascr
     level: "warn",
 
     transports: [
+      // oxlint-disable-next-line typescript/no-unsafe-class-instance-assignment
       new transports.Console({
         format: format.combine(
           format(info => {

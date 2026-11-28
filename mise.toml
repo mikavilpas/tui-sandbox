@@ -1,6 +1,6 @@
 [tools]
 "github:EmmyLuaLs/emmylua-analyzer-rust" = { version = "0.25.1", matching = "emmylua_ls" }
-"github:rvben/rumdl" = "0.3.6"
+"github:rvben/rumdl" = "0.3.8"
 
 # small sample application that can be installed with mise and used in the test
 # environment
